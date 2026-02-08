@@ -147,6 +147,208 @@ function Metric({ prefix = "", value, suffix = "", label, delay = 0 }) {
 }
 
 // ========================================
+// ECOSYSTEM ANIMATION
+// ========================================
+function EcosystemAnimation() {
+  const svgRef = useRef(null);
+  const animationRef = useRef(null);
+  const particlesRef = useRef([]);
+  const frameRef = useRef(0);
+  const startTimeRef = useRef(null);
+
+  const nodes = {
+    core: { x: 400, y: 250, label: "JUST Core", size: 40, color: "#f45546" },
+    beneficios: { x: 160, y: 90, label: "Beneficios", size: 26, color: "#6C5CE7" },
+    frotas: { x: 400, y: 65, label: "Frotas", size: 26, color: "#00B894" },
+    banking: { x: 640, y: 90, label: "Banking", size: 26, color: "#0984E3" },
+    despesas: { x: 130, y: 380, label: "Despesas", size: 26, color: "#E17055" },
+    antecipacao: { x: 400, y: 410, label: "Antecipacao", size: 26, color: "#FDCB6E" },
+    "sob-demanda": { x: 670, y: 380, label: "Sob Demanda", size: 26, color: "#636E72" },
+    swap: { x: 250, y: 500, label: "Swap / Idez", size: 22, color: "#1abc9c" },
+    sitef: { x: 400, y: 520, label: "Sitef / Rede", size: 22, color: "#3498db" },
+    gateway: { x: 550, y: 500, label: "Gateway", size: 22, color: "#9b59b6" },
+  };
+
+  // Deterministic bezier control point per path
+  const getControlPoint = (from, to, seed) => {
+    const mx = (from.x + to.x) / 2;
+    const my = (from.y + to.y) / 2;
+    const perpX = -(to.y - from.y) * 0.25;
+    const perpY = (to.x - from.x) * 0.25;
+    return { x: mx + perpX * (0.6 + seed * 0.4), y: my + perpY * (0.6 + seed * 0.4) };
+  };
+
+  const createParticle = (fromKey, toKey, seed) => {
+    const from = nodes[fromKey];
+    const to = nodes[toKey];
+    const cp = getControlPoint(from, to, seed);
+    return {
+      id: Math.random(), fromKey, toKey, from, to, cp,
+      progress: 0, color: from.color, trail: [],
+    };
+  };
+
+  useEffect(() => {
+    if (!svgRef.current) return;
+
+    const launchQueue = [
+      { from: "beneficios", to: "core", interval: 3200, offset: 0 },
+      { from: "frotas", to: "core", interval: 2800, offset: 400 },
+      { from: "banking", to: "core", interval: 3400, offset: 800 },
+      { from: "despesas", to: "core", interval: 3000, offset: 1200 },
+      { from: "antecipacao", to: "core", interval: 3600, offset: 1600 },
+      { from: "sob-demanda", to: "core", interval: 3100, offset: 2000 },
+      { from: "core", to: "swap", interval: 4000, offset: 2400 },
+      { from: "core", to: "sitef", interval: 4200, offset: 2800 },
+      { from: "core", to: "gateway", interval: 4400, offset: 3200 },
+      { from: "swap", to: "core", interval: 5000, offset: 4200 },
+      { from: "sitef", to: "core", interval: 5200, offset: 4600 },
+      { from: "gateway", to: "core", interval: 5000, offset: 5000 },
+      { from: "beneficios", to: "antecipacao", interval: 7000, offset: 6000 },
+      { from: "frotas", to: "despesas", interval: 7500, offset: 7000 },
+    ];
+
+    const nextLaunch = {};
+    launchQueue.forEach((q, i) => { nextLaunch[i] = q.offset; });
+
+    const animate = (timestamp) => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      const elapsed = timestamp - startTimeRef.current;
+      const frame = frameRef.current++;
+
+      // Launch particles
+      launchQueue.forEach((q, i) => {
+        if (elapsed >= nextLaunch[i]) {
+          const seed = (Math.sin(i * 7.3 + frame * 0.01) + 1) * 0.5;
+          particlesRef.current.push(createParticle(q.from, q.to, seed));
+          nextLaunch[i] += q.interval;
+        }
+      });
+
+      // Update particles
+      particlesRef.current = particlesRef.current.filter((p) => {
+        p.progress += 0.006;
+        if (p.progress > 1) return false;
+
+        const t = p.progress;
+        const eased = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+        const x = (1-eased)*(1-eased)*p.from.x + 2*(1-eased)*eased*p.cp.x + eased*eased*p.to.x;
+        const y = (1-eased)*(1-eased)*p.from.y + 2*(1-eased)*eased*p.cp.y + eased*eased*p.to.y;
+
+        p.trail.push({ x, y });
+        if (p.trail.length > 10) p.trail.shift();
+        p.cx = x;
+        p.cy = y;
+        p.glow = Math.sin(eased * Math.PI) * 0.8;
+        return true;
+      });
+
+      // Render particles via DOM
+      const svg = svgRef.current;
+      if (!svg) return;
+      svg.querySelectorAll("[data-p]").forEach((el) => el.remove());
+
+      particlesRef.current.forEach((p) => {
+        let html = "";
+        p.trail.forEach((pt, i) => {
+          const op = (i / p.trail.length) * 0.35;
+          const r = 1.5 + (i / p.trail.length) * 1;
+          html += `<circle cx="${pt.x}" cy="${pt.y}" r="${r}" fill="${p.color}" opacity="${op}" data-p="1"/>`;
+        });
+        const gr = 5 + p.glow * 5;
+        html += `<circle cx="${p.cx}" cy="${p.cy}" r="${gr}" fill="${p.color}" opacity="${0.4 + p.glow * 0.3}" filter="url(#pGlow)" data-p="1"/>`;
+        html += `<circle cx="${p.cx}" cy="${p.cy}" r="3.5" fill="${p.color}" opacity="0.95" data-p="1"/>`;
+        html += `<circle cx="${p.cx}" cy="${p.cy}" r="1.5" fill="#fff" opacity="0.7" data-p="1"/>`;
+        svg.insertAdjacentHTML("beforeend", html);
+      });
+
+      // Pulse core glow
+      const cg = svg.querySelector("[data-cg]");
+      if (cg) {
+        const s = 1 + Math.sin(frame * 0.025) * 0.25;
+        cg.setAttribute("r", String(52 * s));
+        cg.setAttribute("opacity", String(0.12 + Math.sin(frame * 0.025) * 0.06));
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+    return () => { if (animationRef.current) cancelAnimationFrame(animationRef.current); };
+  }, []);
+
+  const connections = [
+    ["beneficios","core"],["frotas","core"],["banking","core"],
+    ["despesas","core"],["antecipacao","core"],["sob-demanda","core"],
+    ["core","swap"],["core","sitef"],["core","gateway"],
+    ["beneficios","antecipacao"],["frotas","despesas"],
+  ];
+
+  return (
+    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <svg ref={svgRef} viewBox="0 0 800 570" style={{ width: "100%", maxWidth: 800, height: "auto" }}>
+        <defs>
+          <filter id="nGlow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="cGlow"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="pGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <radialGradient id="bgGrad" cx="50%" cy="45%" r="55%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.015)"/>
+            <stop offset="100%" stopColor="rgba(0,0,0,0.2)"/>
+          </radialGradient>
+        </defs>
+
+        <rect width="800" height="570" fill="url(#bgGrad)" rx="16"/>
+
+        {/* Layer labels */}
+        <text x="30" y="70" fill="rgba(242,244,248,0.2)" fontSize="10" fontWeight="600" letterSpacing="2" textAnchor="start">PRODUTOS</text>
+        <text x="30" y="245" fill="rgba(242,244,248,0.2)" fontSize="10" fontWeight="600" letterSpacing="2" textAnchor="start">CORE</text>
+        <text x="30" y="495" fill="rgba(242,244,248,0.2)" fontSize="10" fontWeight="600" letterSpacing="2" textAnchor="start">INFRA</text>
+
+        {/* Separator lines */}
+        <line x1="30" y1="165" x2="770" y2="165" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="4,8"/>
+        <line x1="30" y1="460" x2="770" y2="460" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="4,8"/>
+
+        {/* Connection paths */}
+        {connections.map((c, i) => {
+          const f = nodes[c[0]], t = nodes[c[1]];
+          const seed = (Math.sin(i * 5.7) + 1) * 0.5;
+          const cp = getControlPoint(f, t, seed);
+          return (
+            <path key={i} d={`M ${f.x} ${f.y} Q ${cp.x} ${cp.y} ${t.x} ${t.y}`}
+              stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" fill="none"
+              strokeDasharray="4,6" strokeDashoffset={i * 10}
+              style={{ animation: `ecosDash 15s linear infinite` }}
+            />
+          );
+        })}
+
+        {/* Nodes */}
+        {Object.entries(nodes).map(([key, n]) => (
+          <g key={key}>
+            <circle cx={n.x} cy={n.y} r={n.size + 10} fill={n.color} opacity="0.06" filter="url(#nGlow)"/>
+            {key === "core" && <circle cx={n.x} cy={n.y} r={52} fill={n.color} opacity="0.12" data-cg="1"/>}
+            <circle cx={n.x} cy={n.y} r={n.size} fill="#0f112b" opacity="0.7"/>
+            <circle cx={n.x} cy={n.y} r={n.size} fill={n.color} opacity={key === "core" ? 0.9 : 0.5}
+              filter={key === "core" ? "url(#cGlow)" : "url(#nGlow)"}/>
+            <circle cx={n.x} cy={n.y} r={n.size} fill="none" stroke={n.color} strokeWidth="1.5" opacity="0.4"/>
+            {key === "core" ? (
+              <>
+                <text x={n.x} y={n.y - 5} textAnchor="middle" fill="#fff" fontSize="11" fontWeight="700" letterSpacing="0.5">JUST</text>
+                <text x={n.x} y={n.y + 9} textAnchor="middle" fill="rgba(255,255,255,0.7)" fontSize="9" fontWeight="500">CORE</text>
+              </>
+            ) : (
+              <text x={n.x} y={n.y + n.size + 18} textAnchor="middle" fill="rgba(242,244,248,0.65)" fontSize="10" fontWeight="600" letterSpacing="0.3">{n.label}</text>
+            )}
+          </g>
+        ))}
+      </svg>
+      <style>{`@keyframes ecosDash { to { stroke-dashoffset: -80; } }`}</style>
+    </div>
+  );
+}
+
+// ========================================
 // PRODUCT MOCKUPS - Realistic UI per vertical
 // ========================================
 const mockupBase = (color) => ({
@@ -740,21 +942,9 @@ function HomePage({ setPage }) {
             </Reveal>
           </div>
 
-          {/* Hero visual: product preview grid */}
-          <Reveal delay={0.3} direction="right">
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-              {products.slice(0, 4).map((p, i) => (
-                <div key={i} onClick={() => nav(p.key)} style={{
-                  padding: 20, borderRadius: 14, cursor: "pointer",
-                  background: `${p.accent}08`, border: `1px solid ${p.accent}18`,
-                  transition: "all 0.3s ease",
-                }}>
-                  <div style={{ width: 10, height: 10, borderRadius: "50%", background: p.accent, marginBottom: 10 }} />
-                  <div style={{ fontSize: 14, fontWeight: 600, color: T.textLight, marginBottom: 4 }}>{p.name}</div>
-                  <div style={{ fontSize: 11, color: T.textMuted, lineHeight: 1.5 }}>{p.desc.slice(0, 60)}...</div>
-                </div>
-              ))}
-            </div>
+          {/* Hero visual: Ecosystem Animation */}
+          <Reveal delay={0.2} direction="right">
+            <EcosystemAnimation />
           </Reveal>
         </div>
       </section>
@@ -1046,28 +1236,10 @@ function StackPage({ setPage }) {
 
       <section style={{ background: T.primary, padding: "100px 48px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          {[
-            { label: "Seus produtos white-label", items: Object.entries(PRODUCT_COLORS).map(([, v]) => ({ name: v.label, color: v.accent })), isProducts: true },
-            { label: "Core JUST", items: [{ name: "Core Financeiro" }, { name: "Autorizador" }, { name: "Motor Regras" }, { name: "Gateway" }], isCore: true },
-            { label: "Provedores (BaaS & Captura)", items: [{ name: "Swap" }, { name: "Idez" }, { name: "Sitef" }, { name: "Linx" }, { name: "Rede Compras" }] },
-          ].map((layer, li) => (
-            <Reveal key={li} delay={li * 0.15}>
-              <div style={{ marginBottom: li < 2 ? 20 : 0 }}>
-                <div style={{ fontSize: 11, color: T.textMuted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8, fontWeight: 600 }}>{layer.label}</div>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  {layer.items.map((item, ii) => (
-                    <span key={ii} style={{
-                      flex: 1, minWidth: 90, textAlign: "center", padding: "14px 10px", fontSize: 12, fontWeight: 600,
-                      borderRadius: 10, color: layer.isProducts ? item.color : T.textLight,
-                      background: layer.isProducts ? `${item.color}10` : (layer.isCore ? `${T.cta}08` : T.secondary),
-                      border: `1px solid ${layer.isProducts ? `${item.color}20` : (layer.isCore ? `${T.cta}15` : T.borderLight)}`,
-                    }}>{item.name}</span>
-                  ))}
-                </div>
-                {li < 2 && <div style={{ textAlign: "center", padding: "6px 0", color: "rgba(242,244,248,0.15)", fontSize: 16 }}>&#8595; &#8595; &#8595;</div>}
-              </div>
-            </Reveal>
-          ))}
+          <SectionTitle tag="Arquitetura viva" title="Veja o ecossistema se comunicando." center subtitle="Produtos, core financeiro e provedores trocando dados em tempo real." />
+          <Reveal>
+            <EcosystemAnimation />
+          </Reveal>
         </div>
       </section>
 
