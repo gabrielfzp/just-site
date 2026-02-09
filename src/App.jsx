@@ -1434,6 +1434,40 @@ function HeroOrbital() {
   .depara-labels {
     grid-template-columns: 1fr 36px 1fr !important;
   }
+  .comp-row {
+    grid-template-columns: 1fr 36px 1fr !important;
+  }
+  .comp-row > div:first-child,
+  .comp-row > div:last-child {
+    padding: 16px 14px !important;
+    gap: 10px !important;
+  }
+  .comp-row p {
+    display: none !important;
+  }
+  .comp-row h4 {
+    font-size: 13px !important;
+    margin-bottom: 0 !important;
+  }
+  .comp-row > div:first-child > div:first-child,
+  .comp-row > div:last-child > div:first-child {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    border-radius: 8px !important;
+  }
+  .comp-row svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .comp-arrow {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .comp-arrow svg {
+    width: 11px !important;
+    height: 11px !important;
+  }
 
   /* --- Bento Grid --- */
   .bento-grid {
@@ -1448,11 +1482,17 @@ function HeroOrbital() {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
+  .card-visual {
+    display: none !important;
+  }
 
   /* --- Hybrid Section --- */
   .hybrid-section-grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
+  }
+  .hybrid-card-stack {
+    display: none !important;
   }
 
   /* --- Process Timeline --- */
@@ -1559,6 +1599,17 @@ function HeroOrbital() {
 
   .depara-labels {
     grid-template-columns: 1fr 28px 1fr !important;
+  }
+  .comp-row {
+    grid-template-columns: 1fr 28px 1fr !important;
+  }
+  .comp-row > div:first-child,
+  .comp-row > div:last-child {
+    padding: 12px 10px !important;
+    gap: 8px !important;
+  }
+  .comp-row h4 {
+    font-size: 12px !important;
   }
 
   .metrics-grid {
