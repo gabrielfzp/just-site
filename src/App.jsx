@@ -714,7 +714,441 @@ function HeroOrbital() {
           opacity: 1 !important;
           color: #fff !important;
         }
-      `}</style>
+      
+/* ===== CARD ARRANGEMENTS SECTION ===== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+.card-option {
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  overflow: hidden;
+  transition: border-color 0.4s ease, background 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+.card-option:hover {
+  border-color: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.035);
+}
+.card-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  position: relative;
+  min-height: 280px;
+}
+.physical-card {
+  width: 300px;
+  height: 190px;
+  border-radius: 14px;
+  position: relative;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+.card-option:hover .physical-card {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 28px 70px rgba(0,0,0,0.5), 0 0 50px rgba(0,0,0,0.3);
+}
+.physical-card.bandeirado {
+  background: linear-gradient(145deg, #1a1d3a, #12142e);
+  border: 1px solid rgba(108,92,231,0.3);
+}
+.physical-card.bandeirado::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(108,92,231,0.15), transparent 70%);
+  border-radius: 50%;
+}
+.physical-card.privatelabel {
+  background: linear-gradient(145deg, #1a2a1a, #0e1a12);
+  border: 1px solid rgba(0,184,148,0.3);
+}
+.physical-card.privatelabel::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0,184,148,0.15), transparent 70%);
+  border-radius: 50%;
+}
+.card-chip-gold {
+  width: 36px;
+  height: 28px;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #C9A84C, #F2D06B, #C9A84C);
+  position: relative;
+  overflow: hidden;
+}
+.card-chip-gold .chip-lines {
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 2px;
+}
+.card-chip-gold .chip-lines::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0,0,0,0.12);
+}
+.card-chip-gold .chip-lines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: rgba(0,0,0,0.12);
+}
+.card-number {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Inter', monospace;
+}
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.card-holder {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.4);
+}
+.card-holder-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.6);
+  margin-top: 3px;
+}
+.mc-logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.mc-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.mc-circle.red { background: #EB001B; }
+.mc-circle.yellow { background: #F79E1B; margin-left: -12px; mix-blend-mode: screen; }
+.pl-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pl-brand-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(0,184,148,0.2);
+  border: 1px solid rgba(0,184,148,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pl-brand-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(0,184,148,0.7);
+  letter-spacing: 0.02em;
+}
+.card-info {
+  padding: 32px;
+}
+.card-type-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.card-type-label .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.card-info h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f2f4f8;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(242,244,248,0.5);
+  line-height: 1.5;
+}
+.features-list li .check {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.center-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
+.divider-line {
+  width: 1px;
+  flex: 1;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent);
+}
+.divider-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(244,85,70,0.08);
+  border: 1px solid rgba(244,85,70,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #f45546;
+  letter-spacing: 0.02em;
+}
+/* Hybrid section */
+.hybrid-section {
+  margin-top: 48px;
+  position: relative;
+  border-radius: 24px;
+  padding: 3px;
+  background: linear-gradient(135deg, rgba(108,92,231,0.5), rgba(244,85,70,0.5), rgba(0,184,148,0.5));
+  background-size: 200% 200%;
+  animation: hybridGradientShift 6s ease infinite;
+}
+@keyframes hybridGradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.hybrid-inner {
+  border-radius: 22px;
+  background: linear-gradient(160deg, #0d1030, #0a0c1f 50%, #0d1a14);
+  padding: 56px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hybrid-inner::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(244,85,70,0.06), transparent 70%);
+  pointer-events: none;
+}
+.hybrid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.hybrid-content {
+  position: relative;
+  z-index: 1;
+}
+.hybrid-exclusive-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: linear-gradient(135deg, rgba(244,85,70,0.12), rgba(244,85,70,0.06));
+  border: 1px solid rgba(244,85,70,0.25);
+  color: #f45546;
+  margin-bottom: 20px;
+}
+.hybrid-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #f2f4f8;
+  margin-bottom: 16px;
+}
+.hybrid-title .gradient-text {
+  background: linear-gradient(135deg, #6C5CE7, #f45546, #00B894);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hybrid-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(242,244,248,0.5);
+  margin-bottom: 28px;
+  max-width: 440px;
+}
+.hybrid-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.hybrid-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.hybrid-feature-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.hybrid-feature-icon.purple {
+  background: rgba(108,92,231,0.12);
+  border: 1px solid rgba(108,92,231,0.2);
+}
+.hybrid-feature-icon.green {
+  background: rgba(0,184,148,0.12);
+  border: 1px solid rgba(0,184,148,0.2);
+}
+.hybrid-feature-icon.red {
+  background: rgba(244,85,70,0.12);
+  border: 1px solid rgba(244,85,70,0.2);
+}
+.hybrid-feature-text {
+  font-size: 14px;
+  color: rgba(242,244,248,0.6);
+  line-height: 1.5;
+}
+.hybrid-feature-text strong {
+  color: rgba(242,244,248,0.85);
+  font-weight: 600;
+}
+.hybrid-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 320px;
+  z-index: 1;
+}
+.hybrid-card-stack {
+  position: relative;
+  width: 320px;
+  height: 280px;
+}
+.hybrid-card-stack .physical-card.bandeirado {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 280px;
+  height: 175px;
+  transform: rotate(-6deg) translateX(0) translateY(0);
+  z-index: 1;
+  opacity: 0.8;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease, box-shadow 0.4s ease;
+}
+.hybrid-card-stack:hover .physical-card.bandeirado {
+  transform: rotate(-12deg) translateX(-30px) translateY(-15px);
+  opacity: 1;
+  box-shadow: 0 25px 60px rgba(108,92,231,0.3), 0 0 40px rgba(108,92,231,0.1);
+}
+.hybrid-card-stack .physical-card.privatelabel {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  width: 280px;
+  height: 175px;
+  transform: rotate(4deg) translateX(0) translateY(0);
+  z-index: 2;
+  opacity: 0.8;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease, box-shadow 0.4s ease;
+}
+.hybrid-card-stack:hover .physical-card.privatelabel {
+  transform: rotate(10deg) translateX(25px) translateY(15px);
+  opacity: 1;
+  box-shadow: 0 25px 60px rgba(0,184,148,0.3), 0 0 40px rgba(0,184,148,0.1);
+}
+.hybrid-merge-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 10;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(108,92,231,0.2), rgba(244,85,70,0.3), rgba(0,184,148,0.2));
+  border: 2px solid rgba(244,85,70,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(244,85,70,0.25), 0 0 60px rgba(244,85,70,0.1);
+  animation: mergeGlow 3s ease-in-out infinite;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, opacity 0.4s ease;
+}
+.hybrid-card-stack:hover .hybrid-merge-badge {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 0 50px rgba(244,85,70,0.4), 0 0 100px rgba(244,85,70,0.2);
+}
+@keyframes mergeGlow {
+  0%, 100% { box-shadow: 0 0 30px rgba(244,85,70,0.25), 0 0 60px rgba(244,85,70,0.1); }
+  50% { box-shadow: 0 0 40px rgba(244,85,70,0.35), 0 0 80px rgba(244,85,70,0.15); }
+}
+
+`}</style>
     </div>
   );
 }
@@ -1840,6 +2274,204 @@ function HomePage({ setPage }) {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      
+      {/* ===== CARD ARRANGEMENTS ===== */}
+      <section style={{ background: T.darkAlt, padding: "120px 48px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <SectionTitle tag="Arranjos de cartao" title={<>Bandeirado ou Private Label?<br /><span style={{ background: "linear-gradient(135deg, #f45546, #FF7675)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Voce escolhe.</span></>} subtitle="Operamos com arranjo aberto (bandeirado), fechado (private label) ou hibrido. A decisao e estrategica e nos ajudamos voce a tomar." center />
+
+          <div className="cards-grid">
+            {/* LEFT: Bandeirado */}
+            <Reveal>
+              <div className="card-option">
+                <div className="card-visual" style={{ background: "linear-gradient(160deg, rgba(108,92,231,0.04), transparent)" }}>
+                  <div className="physical-card bandeirado">
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                      <div className="card-chip-gold"><div className="chip-lines" /></div>
+                      <svg width="20" height="16" viewBox="0 0 20 16" fill="none" style={{ opacity: 0.3 }}><path d="M2 2h5v4H2zM8 2h5v4H8zM2 8h5v4H2zM8 8h5v4H8z" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8"/></svg>
+                    </div>
+                    <div className="card-number">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4832</div>
+                    <div className="card-bottom">
+                      <div>
+                        <div className="card-holder">Titular</div>
+                        <div className="card-holder-name">MARIA C SANTOS</div>
+                      </div>
+                      <div className="mc-logo">
+                        <div className="mc-circle red" />
+                        <div className="mc-circle yellow" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="card-info">
+                  <div className="card-type-label" style={{ color: "#6C5CE7" }}>
+                    <span className="dot" style={{ background: "#6C5CE7" }} />
+                    Arranjo Aberto
+                  </div>
+                  <h3>Cartao Bandeirado</h3>
+                  <ul className="features-list">
+                    {["Aceitacao ampla em toda rede credenciada", "Mastercard, Visa ou Elo", "Ideal para beneficios e banking com capilaridade", "Regras de MCC e controle por categoria"].map((f, i) => (
+                      <li key={i}>
+                        <span className="check" style={{ background: "rgba(108,92,231,0.1)", border: "1px solid rgba(108,92,231,0.25)" }}>
+                          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2.5 5l2 2 3.5-3.5" stroke="#6C5CE7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        </span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Center divider */}
+            <div className="center-divider">
+              <div className="divider-line" />
+              <div className="divider-badge">ou</div>
+              <div className="divider-line" />
+            </div>
+
+            {/* RIGHT: Private Label */}
+            <Reveal delay={0.1}>
+              <div className="card-option">
+                <div className="card-visual" style={{ background: "linear-gradient(160deg, rgba(0,184,148,0.04), transparent)" }}>
+                  <div className="physical-card privatelabel">
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                      <div className="card-chip-gold"><div className="chip-lines" /></div>
+                      <div className="pl-brand">
+                        <div className="pl-brand-icon">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L2 5.5v5L8 14l6-3.5v-5L8 2z" stroke="#00B894" strokeWidth="1.5" fill="none" opacity="0.8" strokeLinejoin="round"/><circle cx="8" cy="8" r="2" stroke="#55EFC4" strokeWidth="1" opacity="0.6"/></svg>
+                        </div>
+                        <span className="pl-brand-text">SuaMarca</span>
+                      </div>
+                    </div>
+                    <div className="card-number">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 7291</div>
+                    <div className="card-bottom">
+                      <div>
+                        <div className="card-holder">Titular</div>
+                        <div className="card-holder-name">JOAO P OLIVEIRA</div>
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3L3 7v6l7 4 7-4V7l-7-4z" stroke="rgba(0,184,148,0.4)" strokeWidth="1.3" fill="none" strokeLinejoin="round"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="card-info">
+                  <div className="card-type-label" style={{ color: "#00B894" }}>
+                    <span className="dot" style={{ background: "#00B894" }} />
+                    Arranjo Fechado
+                  </div>
+                  <h3>Cartao Private Label</h3>
+                  <ul className="features-list">
+                    {["Rede propria de aceitacao, controle total", "Sua marca no cartao, sem bandeira de terceiro", "Ideal para frotas, vales e ecossistemas fechados", "Autorizador proprio com regras em tempo real"].map((f, i) => (
+                      <li key={i}>
+                        <span className="check" style={{ background: "rgba(0,184,148,0.1)", border: "1px solid rgba(0,184,148,0.25)" }}>
+                          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2.5 5l2 2 3.5-3.5" stroke="#00B894" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        </span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Hybrid section */}
+          <Reveal delay={0.15}>
+            <div className="hybrid-section">
+              <div className="hybrid-inner">
+                <div className="hybrid-layout">
+                  <div className="hybrid-content">
+                    <div className="hybrid-exclusive-tag">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.76 3.57L13 5.27l-3 2.93.71 4.13L7 10.27l-3.71 2.06.71-4.13-3-2.93 4.24-.7L7 1z" fill="#f45546" opacity="0.9"/></svg>
+                      Pioneiros no Brasil
+                    </div>
+                    <h3 className="hybrid-title">
+                      Por que escolher um<br />se voce pode ter <span className="gradient-text">os dois?</span>
+                    </h3>
+                    <p className="hybrid-description">
+                      Somos pioneiros no Brasil em operar o modelo hibrido: arranjo aberto e fechado na mesma plataforma, com experiencia unificada. Voce decide quais usuarios usam bandeirado e quais usam private label.
+                    </p>
+                    <div className="hybrid-features">
+                      <div className="hybrid-feature">
+                        <div className="hybrid-feature-icon purple">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2v8" stroke="#6C5CE7" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                        </div>
+                        <span className="hybrid-feature-text"><strong>Bandeirado para uso geral</strong> com aceitacao em toda rede credenciada Mastercard/Visa</span>
+                      </div>
+                      <div className="hybrid-feature">
+                        <div className="hybrid-feature-icon green">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2v8" stroke="#00B894" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                        </div>
+                        <span className="hybrid-feature-text"><strong>Private label para rede propria</strong> com regras especificas e controle total do ecossistema</span>
+                      </div>
+                      <div className="hybrid-feature">
+                        <div className="hybrid-feature-icon red">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#f45546" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                        </div>
+                        <span className="hybrid-feature-text"><strong>Dois meios de uso,</strong> uma experiencia unificada para o seu usuario</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="hybrid-visual">
+                    <div className="hybrid-card-stack">
+                      {/* Back card: bandeirado */}
+                      <div className="physical-card bandeirado">
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                          <div className="card-chip-gold"><div className="chip-lines" /></div>
+                        </div>
+                        <div className="card-number">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4832</div>
+                        <div className="card-bottom">
+                          <div>
+                            <div className="card-holder">Titular</div>
+                            <div className="card-holder-name">MARIA C SANTOS</div>
+                          </div>
+                          <div className="mc-logo">
+                            <div className="mc-circle red" />
+                            <div className="mc-circle yellow" />
+                          </div>
+                        </div>
+                      </div>
+                      {/* Front card: private label */}
+                      <div className="physical-card privatelabel">
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                          <div className="card-chip-gold"><div className="chip-lines" /></div>
+                          <div className="pl-brand">
+                            <div className="pl-brand-icon">
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L2 5.5v5L8 14l6-3.5v-5L8 2z" stroke="#00B894" strokeWidth="1.5" fill="none" opacity="0.8" strokeLinejoin="round"/><circle cx="8" cy="8" r="2" stroke="#55EFC4" strokeWidth="1" opacity="0.6"/></svg>
+                            </div>
+                            <span className="pl-brand-text">SuaMarca</span>
+                          </div>
+                        </div>
+                        <div className="card-number">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 7291</div>
+                        <div className="card-bottom">
+                          <div>
+                            <div className="card-holder">Titular</div>
+                            <div className="card-holder-name">JOAO P OLIVEIRA</div>
+                          </div>
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3L3 7v6l7 4 7-4V7l-7-4z" stroke="rgba(0,184,148,0.4)" strokeWidth="1.3" fill="none" strokeLinejoin="round"/></svg>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Merge glow */}
+                      <div className="hybrid-merge-badge">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                          <path d="M7 11h8" stroke="#f45546" strokeWidth="2" strokeLinecap="round"/>
+                          <path d="M11 7v8" stroke="#f45546" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
