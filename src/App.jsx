@@ -25,7 +25,7 @@ const PRODUCT_COLORS = {
   frotas: { accent: "#00B894", gradient: "linear-gradient(135deg, #00B894, #55efc4)", label: "Fleet" },
   banking: { accent: "#0984E3", gradient: "linear-gradient(135deg, #0984E3, #74b9ff)", label: "Banking" },
   despesas: { accent: "#E17055", gradient: "linear-gradient(135deg, #E17055, #fab1a0)", label: "Expense" },
-  antecipacao: { accent: "#FDCB6E", gradient: "linear-gradient(135deg, #D4A017, #FDCB6E)", label: "Advance" },
+  antecipacao: { accent: "#FDCB6E", gradient: "linear-gradient(135deg, #D4A017, #FDCB6E)", label: "Credit" },
   "sob-demanda": { accent: "#636E72", gradient: "linear-gradient(135deg, #636E72, #b2bec3)", label: "Custom" },
 };
 
@@ -243,7 +243,7 @@ const HERO_ORBITAL_NODES = [
   { key: "frotas", label: "Fleet", top: "4%", right: "12%", animName: "nodeFloat2", dur: "7s", delay: "0.5s" },
   { key: "banking", label: "Banking", top: "40%", right: "0%", animName: "nodeFloat3", dur: "5.5s", delay: "1s" },
   { key: "despesas", label: "Expense", top: "45%", left: "0%", animName: "nodeFloat4", dur: "6.5s", delay: "1.5s" },
-  { key: "antecipacao", label: "Advance", bottom: "6%", left: "14%", animName: "nodeFloat5", dur: "5s", delay: "2s" },
+  { key: "antecipacao", label: "Credit", bottom: "6%", left: "14%", animName: "nodeFloat5", dur: "5s", delay: "2s" },
   { key: "sob-demanda", label: "Custom", bottom: "2%", right: "10%", animName: "nodeFloat6", dur: "7s", delay: "0.8s" },
 ];
 
@@ -401,6 +401,57 @@ function HeroOrbital() {
 
       {/* CSS Animations */}
       <style>{`
+
+/* Bento grid products */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.bento-grid .bento-card:nth-child(1) { grid-column: span 2; }
+.bento-grid .bento-card:nth-child(2) { grid-column: span 1; }
+.bento-grid .bento-card:nth-child(3) { grid-column: span 1; }
+.bento-grid .bento-card:nth-child(4) { grid-column: span 2; }
+.bento-grid .bento-card:nth-child(5) { grid-column: span 2; }
+.bento-grid .bento-card:nth-child(6) { grid-column: span 1; }
+.bento-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+.bento-card:hover {
+  border-color: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.035);
+}
+.bento-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.bento-card:hover::after {
+  transform: scaleX(1);
+}
+.bento-card:hover .bento-icon-card {
+  transform: scale(1.1);
+}
+.bento-card:hover .bento-arrow-btn {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateX(2px);
+}
+
 /* DE > PARA comparison hover effects */
 .comp-row {
   transition: border-color 0.4s ease;
@@ -463,6 +514,57 @@ function HeroOrbital() {
 
 
         
+
+/* Bento grid products */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.bento-grid .bento-card:nth-child(1) { grid-column: span 2; }
+.bento-grid .bento-card:nth-child(2) { grid-column: span 1; }
+.bento-grid .bento-card:nth-child(3) { grid-column: span 1; }
+.bento-grid .bento-card:nth-child(4) { grid-column: span 2; }
+.bento-grid .bento-card:nth-child(5) { grid-column: span 2; }
+.bento-grid .bento-card:nth-child(6) { grid-column: span 1; }
+.bento-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+.bento-card:hover {
+  border-color: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.035);
+}
+.bento-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.bento-card:hover::after {
+  transform: scaleX(1);
+}
+.bento-card:hover .bento-icon-card {
+  transform: scale(1.1);
+}
+.bento-card:hover .bento-arrow-btn {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateX(2px);
+}
+
 /* DE > PARA comparison hover effects */
 .comp-row {
   transition: border-color 0.4s ease;
@@ -633,7 +735,7 @@ function EcosystemAnimation() {
     frotas: { x: 400, y: 65, label: "Fleet", size: 26, color: "#00B894" },
     banking: { x: 640, y: 90, label: "Banking", size: 26, color: "#0984E3" },
     despesas: { x: 130, y: 380, label: "Expense", size: 26, color: "#E17055" },
-    antecipacao: { x: 400, y: 410, label: "Advance", size: 26, color: "#FDCB6E" },
+    antecipacao: { x: 400, y: 410, label: "Credit", size: 26, color: "#FDCB6E" },
     "sob-demanda": { x: 670, y: 380, label: "Custom", size: 26, color: "#636E72" },
     swap: { x: 250, y: 500, label: "Swap / Idez", size: 22, color: "#1abc9c" },
     sitef: { x: 400, y: 520, label: "Sitef / Rede", size: 22, color: "#3498db" },
@@ -1075,18 +1177,18 @@ function AntecipacaoMockup({ color }) {
     <div style={mockupBase(color)}>
       <div style={mockupBar(color)}>
         <div style={mockupDot(color, "50")} /><div style={mockupDot(color)} /><div style={mockupDot(color)} />
-        <div style={{ marginLeft: 10, fontSize: 8, fontWeight: 700, color: `${color}60` }}>JUST Advance</div>
+        <div style={{ marginLeft: 10, fontSize: 8, fontWeight: 700, color: `${color}60` }}>JUST Credit</div>
       </div>
       <div style={{ padding: "34px 16px 12px", display: "flex", gap: 12 }}>
         <div style={{ flex: 1, textAlign: "center" }}>
           <div style={{ ...mockupCard(color), background: `linear-gradient(135deg, ${color}14, ${color}08)`, padding: "14px 12px", marginBottom: 10 }}>
-            <div style={{ fontSize: 6, color: `${color}45` }}>Disponivel para antecipacao</div>
+            <div style={{ fontSize: 6, color: `${color}45` }}>Limite de credito disponivel</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: color, margin: "4px 0", letterSpacing: "-0.02em" }}>R$ 3.200,00</div>
-            <div style={{ fontSize: 6, color: `${color}35` }}>Salario: R$ 8.000 | Dia 5 a 25</div>
+            <div style={{ fontSize: 6, color: `${color}35` }}>Aprovado | Vigencia ativa</div>
             <div style={{ height: 4, background: `${color}10`, borderRadius: 3, margin: "8px 0 4px" }}>
               <div style={{ height: "100%", width: "40%", background: `linear-gradient(90deg, ${color}50, ${color}80)`, borderRadius: 3 }} />
             </div>
-            <div style={{ fontSize: 5, color: `${color}30` }}>40% do salario disponivel</div>
+            <div style={{ fontSize: 5, color: `${color}30` }}>40% do limite utilizado</div>
           </div>
           <div style={{ ...mockupCard(color), padding: "10px", textAlign: "left" }}>
             <div style={{ fontSize: 7, color: `${color}50`, fontWeight: 600, marginBottom: 6, textAlign: "center" }}>SOLICITAR ANTECIPACAO</div>
@@ -1242,7 +1344,7 @@ function Header({ page, setPage }) {
     { key: "frotas", label: "JUST Fleet", desc: "Controle financeiro completo por veiculo", color: PRODUCT_COLORS.frotas.accent },
     { key: "banking", label: "JUST Banking", desc: "Conta, cartao e PIX white-label", color: PRODUCT_COLORS.banking.accent },
     { key: "despesas", label: "JUST Expense", desc: "Cartoes corporativos com politicas inteligentes", color: PRODUCT_COLORS.despesas.accent },
-    { key: "antecipacao", label: "JUST Advance", desc: "Antecipacao salarial e credito ao colaborador", color: PRODUCT_COLORS.antecipacao.accent },
+    { key: "antecipacao", label: "JUST Credit", desc: "Produtos de credito white-label", color: PRODUCT_COLORS.antecipacao.accent },
     { key: "sob-demanda", label: "JUST Custom", desc: "Produtos financeiros sob medida", color: PRODUCT_COLORS["sob-demanda"].accent },
   ];
 
@@ -1314,7 +1416,7 @@ function Footer({ setPage }) {
         </div>
         <div>
           <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>Produtos</h4>
-          {[["beneficios","JUST Benefits"],["frotas","JUST Fleet"],["banking","JUST Banking"],["despesas","JUST Expense"],["antecipacao","JUST Advance"],["sob-demanda","JUST Custom"]].map(([k,l]) =>
+          {[["beneficios","JUST Benefits"],["frotas","JUST Fleet"],["banking","JUST Banking"],["despesas","JUST Expense"],["antecipacao","JUST Credit"],["sob-demanda","JUST Custom"]].map(([k,l]) =>
             <button key={k} style={{ ...fl, display: "flex", alignItems: "center", gap: 8 }} onClick={() => nav(k)}>
               <ProductIcon productKey={k} size={18} />
               {l}
@@ -1354,7 +1456,7 @@ function HomePage({ setPage }) {
     { key: "frotas", name: "JUST Fleet", desc: "Abastecimento, pedagio, manutencao. Controle financeiro por veiculo com regras em tempo real.", ...PRODUCT_COLORS.frotas },
     { key: "banking", name: "JUST Banking", desc: "Conta digital, cartao, PIX, transferencias. Banking completo e white-label sobre BaaS.", ...PRODUCT_COLORS.banking },
     { key: "despesas", name: "JUST Expense", desc: "Cartoes corporativos com politicas de uso, limites e conciliacao automatica.", ...PRODUCT_COLORS.despesas },
-    { key: "antecipacao", name: "JUST Advance", desc: "Cartao private label ou credito via CCB. Beneficio financeiro sem custo para o colaborador.", ...PRODUCT_COLORS.antecipacao },
+    { key: "antecipacao", name: "JUST Credit", desc: "Private label, antecipacao e recebiveis. Produtos de credito white-label integrados ao seu negocio.", ...PRODUCT_COLORS.antecipacao },
     { key: "sob-demanda", name: "JUST Custom", desc: "Produto que nao cabe em prateleira? Arquitetamos e construimos sob medida.", ...PRODUCT_COLORS["sob-demanda"] },
   ];
 
@@ -1624,34 +1726,116 @@ function HomePage({ setPage }) {
         </div>
       </section>
 
-      {/* ===== PRODUCTS (com identidade por vertical) ===== */}
+      {/* ===== PRODUCTS BENTO GRID ===== */}
       <section style={{ background: T.primary, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionTitle tag="Produtos" title={"Modulos prontos para cada\nvertical do seu negocio."} subtitle="Cada produto opera de forma independente ou combinada. White-label completo." />
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            {products.map((p, i) => (
-              <Reveal key={p.key} delay={i * 0.06}>
+          <div className="bento-grid">
+            {[
+              { key: "beneficios", size: "wide", label: "JUST Benefits", title: "Beneficios flexiveis com\narranjo customizavel", badge: "Arranjo aberto, fechado ou hibrido", color: PRODUCT_COLORS.beneficios.accent, colorLight: "#A29BFE" },
+              { key: "frotas", size: "narrow", label: "JUST Fleet", title: "Controle financeiro\npor veiculo", badge: "Abastecimento + pedagio com integracoes nativas", color: PRODUCT_COLORS.frotas.accent, colorLight: "#55EFC4" },
+              { key: "banking", size: "narrow", label: "JUST Banking", title: "Conta, cartao e PIX\nwhite-label", badge: "Conta + cartao + PIX sobre BaaS regulado", color: PRODUCT_COLORS.banking.accent, colorLight: "#74B9FF" },
+              { key: "despesas", size: "wide", label: "JUST Expense", title: "Cartoes corporativos com\npoliticas inteligentes", badge: "Politicas inteligentes + conciliacao automatica", color: PRODUCT_COLORS.despesas.accent, colorLight: "#FAB1A0" },
+              { key: "antecipacao", size: "wide", label: "JUST Credit", title: "Produtos de credito\nwhite-label", badge: "Private label, antecipacao e recebiveis", color: PRODUCT_COLORS.antecipacao.accent, colorLight: "#FFEAA7" },
+              { key: "sob-demanda", size: "narrow", label: "JUST Custom", title: "Produto sob medida?\nConstruimos.", badge: "Sob medida", color: PRODUCT_COLORS["sob-demanda"].accent, colorLight: "#B2BEC3" },
+            ].map((card, i) => (
+              <Reveal key={card.key} delay={i * 0.06}>
                 <div
-                  onClick={() => nav(p.key)}
-                  style={{
-                    display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 40, alignItems: "center",
-                    padding: 40, borderRadius: 16, cursor: "pointer",
-                    background: `linear-gradient(135deg, ${p.accent}06, ${p.accent}03)`,
-                    border: `1px solid ${p.accent}15`,
-                    transition: "all 0.3s ease",
-                  }}
+                  className="bento-card"
+                  data-size={card.size}
+                  onClick={() => nav(card.key)}
+                  style={{ cursor: "pointer" }}
                 >
-                  <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                      <ProductIcon productKey={p.key} size={36} showCard />
-                      <span style={{ fontSize: 11, fontWeight: 600, color: p.accent, textTransform: "uppercase", letterSpacing: "0.08em" }}>{p.label}</span>
+                  {/* Visual area */}
+                  <div style={{
+                    position: "relative", flex: 1, minHeight: 200,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    overflow: "hidden", padding: 32,
+                    background: `linear-gradient(145deg, ${card.color}0F, ${card.color}05)`,
+                  }}>
+                    {/* Neon icon card */}
+                    <div className="bento-icon-card" style={{
+                      position: "absolute", zIndex: 2, top: 20, right: card.size === "wide" ? 24 : 20,
+                      width: 44, height: 44, borderRadius: 12,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      background: `linear-gradient(145deg, ${card.color}26, rgba(10,12,31,0.9))`,
+                      border: `1px solid ${card.color}4D`,
+                      boxShadow: `0 0 16px ${card.color}1A`,
+                      backdropFilter: "blur(4px)",
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    }}>
+                      <ProductIcon productKey={card.key} size={24} />
                     </div>
-                    <h3 style={{ fontSize: 24, fontWeight: 700, color: T.textLight, marginBottom: 12 }}>{p.name}</h3>
-                    <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.6, marginBottom: 20 }}>{p.desc}</p>
-                    <span style={{ fontSize: 14, fontWeight: 600, color: p.accent }}>Conhecer produto &rarr;</span>
+                    {/* Mockup frame */}
+                    <div style={{
+                      position: "relative", zIndex: 1, width: "100%",
+                      maxWidth: card.size === "wide" ? 480 : 240,
+                      aspectRatio: card.size === "wide" ? "2/1" : "16/10",
+                      borderRadius: 10,
+                      border: "1px solid rgba(255,255,255,0.06)",
+                      background: "rgba(0,0,0,0.35)",
+                      padding: 14, display: "flex", flexDirection: "column", gap: 8,
+                      backdropFilter: "blur(8px)",
+                    }}>
+                      <div style={{ display: "flex", gap: 4, marginBottom: 4 }}>
+                        {[1,2,3].map(d => <div key={d} style={{ width: 6, height: 6, borderRadius: "50%", background: card.color, opacity: 0.4 }} />)}
+                      </div>
+                      <div style={{ height: 5, width: card.size === "wide" ? "45%" : "55%", borderRadius: 3, background: card.color, opacity: 0.15 }} />
+                      {card.size === "wide" ? (
+                        <>
+                          <div style={{ display: "flex", gap: 6, flex: 1 }}>
+                            <div style={{ flex: 1, borderRadius: 6, background: card.color, opacity: 0.08 }} />
+                            <div style={{ flex: 1.5, borderRadius: 6, background: card.color, opacity: 0.08 }} />
+                          </div>
+                          <div style={{ height: 5, width: "50%", borderRadius: 3, background: card.color, opacity: 0.15 }} />
+                        </>
+                      ) : (
+                        <div style={{ flex: 1, borderRadius: 6, background: card.color, opacity: 0.08 }} />
+                      )}
+                    </div>
+                    {/* Stat badge */}
+                    <div style={{
+                      position: "absolute", zIndex: 2, bottom: 16, left: card.size === "wide" ? 20 : 16,
+                      padding: "6px 12px", borderRadius: 8, fontSize: 11, fontWeight: 600,
+                      background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.08)",
+                      backdropFilter: "blur(4px)", whiteSpace: "nowrap", color: card.colorLight,
+                    }}>
+                      <span style={{ opacity: 0.5 }}>&#9679;</span> {card.badge}
+                    </div>
                   </div>
-                  <ProductMockup color={p.accent} label={p.label} productKey={p.key} />
+                  {/* Content area */}
+                  <div style={{
+                    padding: "24px 28px 28px", display: "flex",
+                    justifyContent: "space-between", alignItems: "flex-end", gap: 16,
+                  }}>
+                    <div>
+                      <div style={{
+                        display: "inline-flex", alignItems: "center", gap: 7,
+                        fontSize: 12, fontWeight: 600, marginBottom: 10,
+                        color: card.color, opacity: 0.7,
+                      }}>
+                        <span style={{ width: 7, height: 7, borderRadius: "50%", background: card.color }} />
+                        {card.label}
+                      </div>
+                      <div style={{
+                        fontSize: card.size === "wide" ? 22 : 20, fontWeight: 700,
+                        color: "#f2f4f8", lineHeight: 1.3, letterSpacing: "-0.01em",
+                        whiteSpace: "pre-line",
+                      }}>
+                        {card.title}
+                      </div>
+                    </div>
+                    <div className="bento-arrow-btn" style={{
+                      width: 40, height: 40, borderRadius: "50%",
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      flexShrink: 0, transition: "all 0.3s ease",
+                    }}>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="rgba(255,255,255,0.35)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -1897,7 +2081,7 @@ function CasesPage({ setPage }) {
     { tag: "Beneficios", name: "ViaSoftPay", headline: "Do zero a producao em 45 dias", items: ["45 dias do inicio ao go-live", "100k+ usuarios ativos", "R$500M+ processamento anual", "NPS 100"], color: PRODUCT_COLORS.beneficios.accent },
     { tag: "Frotas", name: "eFleet", headline: "5+ anos de parceria, 10+ modulos", items: ["5+ anos de parceria continua", "10+ modulos em producao", "R$500M+ processamento anual"], color: PRODUCT_COLORS.frotas.accent },
     { tag: "Arranjo Hibrido", name: "SmartVale", headline: "Primeiro arranjo hibrido do portfolio", items: ["Arranjo hibrido em producao", "Fechado + aberto integrados", "Regras customizadas por saldo"], color: PRODUCT_COLORS.beneficios.accent },
-    { tag: "Beneficios + Credito", name: "KPI", headline: "266% de crescimento em transacoes", items: ["266% crescimento", "Beneficios + antecipacao integrados", "Produto combinado unico"], color: PRODUCT_COLORS.antecipacao.accent },
+    { tag: "Beneficios + Credito", name: "KPI", headline: "266% de crescimento em transacoes", items: ["266% crescimento", "Beneficios + credito integrados", "Produto combinado unico"], color: PRODUCT_COLORS.antecipacao.accent },
   ];
   return (
     <div>
@@ -1975,7 +2159,7 @@ function ContatoPage() {
                   <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>Produto de interesse *</label>
                   <select style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14 }}>
                     <option>Selecione</option>
-                    {["JUST Benefits", "JUST Fleet", "JUST Banking", "JUST Expense", "JUST Advance", "JUST Custom", "Ainda nao sei"].map(o => <option key={o}>{o}</option>)}
+                    {["JUST Benefits", "JUST Fleet", "JUST Banking", "JUST Expense", "JUST Credit", "JUST Custom", "Ainda nao sei"].map(o => <option key={o}>{o}</option>)}
                   </select>
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -2087,7 +2271,7 @@ const SOL = {
   frotas: { key: "frotas", title: "JUST Fleet: gestao de frotas com controle financeiro real", subtitle: "Abastecimento, pedagio, manutencao. Tudo em um unico produto financeiro.", model1: { title: "Rede aberta", desc: "Postos e fornecedores com ampla aceitacao nacional." }, model2: { title: "Rede propria", desc: "Credenciados especificos, controle e governanca total." }, capabilities: ["Controle por veiculo", "Regras em tempo real", "Despesas por tipo", "Monitoramento", "Conciliacao", "Escala"] },
   banking: { key: "banking", title: "JUST Banking: banking digital white-label pronto para operar", subtitle: "Conta, cartao, PIX, transferencias. Integrado com BaaS.", model1: { title: "Banking completo", desc: "Conta digital, cartao, PIX, transferencias, boletos." }, model2: { title: "Banking embarcado", desc: "Funcionalidades bancarias integradas ao produto existente." }, capabilities: ["Conta digital", "Cartao", "PIX", "Transferencias", "Credito", "White-label"] },
   despesas: { key: "despesas", title: "JUST Expense: despesas corporativas com controle total", subtitle: "Cartoes corporativos com politicas, limites e conciliacao.", model1: { title: "Arranjo aberto", desc: "Flexibilidade e ampla aceitacao para equipes distribuidas." }, model2: { title: "Arranjo fechado", desc: "Regras rigidas e controle operacional maximo." }, capabilities: ["Cartoes", "Politicas", "Limites", "Real-time", "Conciliacao", "Relatorios"] },
-  antecipacao: { key: "antecipacao", title: "JUST Advance: antecipacao salarial com flexibilidade", subtitle: "Cartao private label ou credito via CCB.", model1: { title: "Arranjo fechado", desc: "Cartao private label, sem custo ao colaborador, desconto em folha." }, model2: { title: "Credito (CCB)", desc: "Emissao de CCB, credito em conta, operacao formal." }, capabilities: ["Elegibilidade", "Limites", "Folha", "Controle", "Compliance", "Escala"] },
+  antecipacao: { key: "antecipacao", title: "JUST Credit: produtos de credito white-label", subtitle: "Private label, antecipacao e recebiveis integrados ao seu negocio.", model1: { title: "Private label", desc: "Cartao proprio com regras customizaveis e rede controlada." }, model2: { title: "Credito (CCB)", desc: "Emissao de CCB, credito em conta, operacao regulada." }, capabilities: ["Private label", "Antecipacao", "Recebiveis", "Limites", "Compliance", "Escala"] },
   "sob-demanda": { key: "sob-demanda", title: "JUST Custom: projetos sob demanda, do zero a operacao", subtitle: "Produto que nao cabe em prateleira? Arquitetamos sob medida.", model1: { title: "Custom", desc: "Cada componente desenhado para o cenario unico." }, model2: { title: "Hibrido", desc: "Combinacao de arranjo aberto e fechado." }, capabilities: ["Arquitetura", "Multi-provider", "Hibrido", "Go-live rapido", "Evolucao", "Diagnostico"] },
 };
 
