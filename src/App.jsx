@@ -401,7 +401,129 @@ function HeroOrbital() {
 
       {/* CSS Animations */}
       <style>{`
-        @keyframes ringPulse {
+/* DE > PARA comparison hover effects */
+.comp-row {
+  transition: border-color 0.4s ease;
+}
+.comp-row:hover {
+  border-color: rgba(39,174,96,0.25) !important;
+}
+.comp-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    rgba(232,93,74,0.03) 0%,
+    rgba(232,93,74,0.01) 25%,
+    transparent 45%,
+    rgba(39,174,96,0.04) 55%,
+    rgba(39,174,96,0.07) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.comp-row:hover::before {
+  opacity: 1;
+}
+.comp-row::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(39,174,96,0.07) 48%,
+    rgba(39,174,96,0.12) 52%,
+    rgba(39,174,96,0.07) 56%,
+    transparent 65%,
+    transparent 100%
+  );
+  transition: left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+  z-index: 0;
+}
+.comp-row:hover::after {
+  left: 100%;
+}
+.comp-row:hover .comp-icon-com {
+  transform: scale(1.08);
+  box-shadow: 0 0 24px rgba(39,174,96,0.2) !important;
+}
+.comp-row:hover .comp-arrow {
+  background: rgba(39,174,96,0.12) !important;
+  border-color: rgba(39,174,96,0.3) !important;
+  transform: translateX(3px);
+}
+.comp-row:hover .comp-arrow svg path {
+  stroke: rgba(39,174,96,0.8);
+}
+
+
+        
+/* DE > PARA comparison hover effects */
+.comp-row {
+  transition: border-color 0.4s ease;
+}
+.comp-row:hover {
+  border-color: rgba(39,174,96,0.25) !important;
+}
+.comp-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    rgba(232,93,74,0.03) 0%,
+    rgba(232,93,74,0.01) 25%,
+    transparent 45%,
+    rgba(39,174,96,0.04) 55%,
+    rgba(39,174,96,0.07) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.comp-row:hover::before {
+  opacity: 1;
+}
+.comp-row::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(39,174,96,0.07) 48%,
+    rgba(39,174,96,0.12) 52%,
+    rgba(39,174,96,0.07) 56%,
+    transparent 65%,
+    transparent 100%
+  );
+  transition: left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+  z-index: 0;
+}
+.comp-row:hover::after {
+  left: 100%;
+}
+.comp-row:hover .comp-icon-com {
+  transform: scale(1.08);
+  box-shadow: 0 0 24px rgba(39,174,96,0.2) !important;
+}
+.comp-row:hover .comp-arrow {
+  background: rgba(39,174,96,0.12) !important;
+  border-color: rgba(39,174,96,0.3) !important;
+  transform: translateX(3px);
+}
+.comp-row:hover .comp-arrow svg path {
+  stroke: rgba(39,174,96,0.8);
+}
+
+@keyframes ringPulse {
           0%, 100% { opacity: 1; transform: scale(1); }
           50% { opacity: 0.5; transform: scale(1.02); }
         }
@@ -1236,12 +1358,60 @@ function HomePage({ setPage }) {
     { key: "sob-demanda", name: "JUST Custom", desc: "Produto que nao cabe em prateleira? Arquitetamos e construimos sob medida.", ...PRODUCT_COLORS["sob-demanda"] },
   ];
 
-  // Pain points (problema antes de solucao - igual Finaya)
-  const pains = [
-    { icon: "&#9888;", title: "Meses (ou anos) para lancar", desc: "Projetos que prometem 6 meses e levam 2 anos. Enquanto isso, o mercado anda." },
-    { icon: "&#128274;", title: "Lock-in com fornecedores", desc: "Dependencia de um unico BaaS, adquirente ou provedor. Sem flexibilidade para mudar." },
-    { icon: "&#9881;", title: "Complexidade regulatoria", desc: "Perder tempo com compliance bancario ao inves de focar no produto e na jornada." },
-    { icon: "&#128200;", title: "Solucoes que nao escalam", desc: "Produto que funciona com 1.000 usuarios e quebra com 50.000." },
+  // DE > PARA comparison data
+  const comparisons = [
+    {
+      sem: { title: "12-24 meses para lancar", desc: "Projetos longos, estouro de prazo e budget. Produto chega tarde ao mercado." },
+      com: { title: "Produto no ar em semanas", desc: "Stack com 70-80% de reuso. Go-live em semanas, nao anos." },
+    },
+    {
+      sem: { title: "Lock-in com um unico provedor", desc: "Preso a um BaaS ou adquirente. Sem flexibilidade para mudar ou negociar." },
+      com: { title: "Multi-provider, sem lock-in", desc: "Arquitetura multi-BaaS e multi-adquirente. Troque sem reescrever." },
+    },
+    {
+      sem: { title: "Complexidade regulatoria", desc: "Tempo e dinheiro gastos com compliance bancario ao inves de produto." },
+      com: { title: "Regulatorio resolvido", desc: "Operamos sobre BaaS regulados. Com isso nosso time pode se focar 100% no desenvolvimento do seu produto." },
+    },
+    {
+      sem: { title: "Tecnologia que nao escala", desc: "Funciona com 1.000 usuarios. Quebra com 50.000." },
+      com: { title: "Escala comprovada", desc: "R$900M+ processados, 500k+ usuarios. Infraestrutura testada em producao." },
+    },
+    {
+      sem: { title: "White-labels genericos", desc: "Produto de prateleira com cara de template. Mesma experiencia pra todo mundo." },
+      com: { title: "Produtos customizados de verdade", desc: "Jornada, regras e visual desenhados pro seu negocio. Ninguem sabe que somos nos." },
+    },
+    {
+      sem: { title: "Time sem experiencia no segmento", desc: "Desenvolvedores generalistas aprendendo fintech do zero. Curva longa e cara." },
+      com: { title: "Time especialista no segmento", desc: "+5 anos construindo fintechs. Beneficios, frotas, banking, despesas. Ja passamos por isso." },
+    },
+  ];
+
+  // SVG icons for DE > PARA (red = sem, green = com)
+  const comparisonIcons = [
+    { // Tempo
+      sem: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="9" stroke="#E85D4A" strokeWidth="1.8" opacity="0.8"/><path d="M12 7v5l3 3" stroke="#F09080" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/><path d="M4 4l2 2M20 4l-2 2" stroke="#E85D4A" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/></svg>,
+      com: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#27AE60" strokeWidth="1.8" fill="none" opacity="0.9" strokeLinejoin="round"/></svg>,
+    },
+    { // Lock-in
+      sem: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><rect x="5" y="11" width="14" height="10" rx="2" stroke="#E85D4A" strokeWidth="1.8" opacity="0.8"/><path d="M8 11V7a4 4 0 1 1 8 0v4" stroke="#F09080" strokeWidth="1.8" strokeLinecap="round" opacity="0.7"/><circle cx="12" cy="16" r="1.5" fill="#E85D4A" opacity="0.6"/></svg>,
+      com: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M8 3v3a2 2 0 0 1-2 2H3" stroke="#27AE60" strokeWidth="1.8" strokeLinecap="round" opacity="0.6"/><path d="M16 3v3a2 2 0 0 0 2 2h3" stroke="#27AE60" strokeWidth="1.8" strokeLinecap="round" opacity="0.6"/><path d="M8 21v-3a2 2 0 0 0-2-2H3" stroke="#27AE60" strokeWidth="1.8" strokeLinecap="round" opacity="0.6"/><path d="M16 21v-3a2 2 0 0 1 2-2h3" stroke="#27AE60" strokeWidth="1.8" strokeLinecap="round" opacity="0.6"/><circle cx="12" cy="12" r="4" stroke="#4CD97B" strokeWidth="1.8" opacity="0.8"/><path d="M12 12L12 12" stroke="#4CD97B" strokeWidth="3" strokeLinecap="round"/></svg>,
+    },
+    { // Regulatorio
+      sem: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M12 2L3 7v5c0 5.25 3.83 10.15 9 11 5.17-.85 9-5.75 9-11V7l-9-5z" stroke="#E85D4A" strokeWidth="1.8" fill="none" opacity="0.8"/><path d="M9 12l1 1" stroke="#F09080" strokeWidth="1.8" strokeLinecap="round" opacity="0.5"/><path d="M15 10l-4 4" stroke="#F09080" strokeWidth="1.8" strokeLinecap="round" opacity="0.5"/></svg>,
+      com: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M12 2L3 7v5c0 5.25 3.83 10.15 9 11 5.17-.85 9-5.75 9-11V7l-9-5z" stroke="#27AE60" strokeWidth="1.8" fill="none" opacity="0.8"/><path d="M9 12l2 2 4-4" stroke="#4CD97B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/></svg>,
+    },
+    { // Escala
+      sem: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M3 20L8 14L12 17L17 10L21 13" stroke="#E85D4A" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/><path d="M17 10L21 13" stroke="#F09080" strokeWidth="1.8" strokeLinecap="round" opacity="0.5"/><line x1="21" y1="13" x2="21" y2="20" stroke="#E85D4A" strokeWidth="1.2" strokeDasharray="2 2" opacity="0.3"/></svg>,
+      com: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M3 20L8 15L12 18L21 6" stroke="#27AE60" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/><path d="M16 6h5v5" stroke="#4CD97B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>,
+    },
+    { // White-label
+      sem: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#E85D4A" strokeWidth="1.8" opacity="0.8"/><rect x="8" y="8" width="8" height="8" rx="1.5" stroke="#F09080" strokeWidth="1.5" opacity="0.4"/><rect x="10" y="10" width="4" height="4" rx="1" stroke="#E85D4A" strokeWidth="1" opacity="0.3"/></svg>,
+      com: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="4" stroke="#27AE60" strokeWidth="1.8" opacity="0.8"/><path d="M8 12h8" stroke="#4CD97B" strokeWidth="1.8" strokeLinecap="round" opacity="0.6"/><path d="M8 8h4" stroke="#4CD97B" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/><path d="M8 16h6" stroke="#4CD97B" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/><circle cx="18" cy="18" r="4" fill={T.primary} stroke="#27AE60" strokeWidth="1.5" opacity="0.9"/><path d="M17 18l1 1 2-2" stroke="#4CD97B" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/></svg>,
+    },
+    { // Time
+      sem: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="9" cy="8" r="3.5" stroke="#E85D4A" strokeWidth="1.8" opacity="0.7"/><path d="M2 20c0-3.3 2.7-6 6-6h2c3.3 0 6 2.7 6 6" stroke="#F09080" strokeWidth="1.8" strokeLinecap="round" opacity="0.5"/><path d="M17 10l2-2 2 2" stroke="#E85D4A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.4"/><path d="M19 8v4" stroke="#E85D4A" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/></svg>,
+      com: <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="9" cy="8" r="3.5" stroke="#27AE60" strokeWidth="1.8" opacity="0.8"/><path d="M2 20c0-3.3 2.7-6 6-6h2c3.3 0 6 2.7 6 6" stroke="#4CD97B" strokeWidth="1.8" strokeLinecap="round" opacity="0.6"/><circle cx="19" cy="8" r="3" stroke="#27AE60" strokeWidth="1.5" opacity="0.6"/><path d="M17.5 7l1 1 2-2" stroke="#4CD97B" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/></svg>,
+    },
   ];
 
   const steps = [
@@ -1331,41 +1501,127 @@ function HomePage({ setPage }) {
         </Reveal>
       </section>
 
-      {/* ===== PAIN POINTS (Problema antes de produto - padrao Finaya) ===== */}
+      {/* ===== DE > PARA (Comparison) ===== */}
       <section style={{ background: T.primary, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionTitle
-            tag="O problema"
-            title={"Construir uma fintech ainda e\ncaro, lento e arriscado."}
-            subtitle="A maioria das empresas que quer operar produtos financeiros esbarra nos mesmos obstaculos."
-            center
-          />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
-            {pains.map((p, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div style={{
-                  padding: "32px 24px", borderRadius: 14, background: "rgba(255,255,255,0.02)",
-                  border: `1px solid ${T.borderLight}`, textAlign: "center",
-                }}>
-                  <div style={{ fontSize: 32, marginBottom: 16, opacity: 0.6 }} dangerouslySetInnerHTML={{ __html: p.icon }} />
-                  <h3 style={{ fontSize: 16, fontWeight: 700, color: T.textLight, marginBottom: 10 }}>{p.title}</h3>
-                  <p style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.6 }}>{p.desc}</p>
+          {/* Section header */}
+          <Reveal>
+            <div style={{ textAlign: "center", marginBottom: 56 }}>
+              <span style={{
+                display: "inline-block", padding: "6px 14px", borderRadius: 100,
+                fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em",
+                background: "rgba(244,85,70,0.08)", border: "1px solid rgba(244,85,70,0.2)", color: "#f45546",
+                marginBottom: 16,
+              }}>Por que a JUST</span>
+              <h2 style={{ fontSize: 44, fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.025em", color: "#f2f4f8" }}>
+                O que muda quando voce<br />opera com a gente.
+              </h2>
+            </div>
+          </Reveal>
+
+          {/* Column labels */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 52px 1fr", gap: 0, marginBottom: 14, padding: "0 4px" }}>
+            <div>
+              <span style={{
+                display: "inline-flex", alignItems: "center", gap: 7,
+                fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em",
+                padding: "7px 16px", borderRadius: 8, color: "#E85D4A",
+                background: "rgba(232,93,74,0.06)", border: "1px solid rgba(232,93,74,0.15)",
+              }}>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.5"/><line x1="4" y1="4" x2="8" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><line x1="8" y1="4" x2="4" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                Sem a JUST
+              </span>
+            </div>
+            <div />
+            <div>
+              <span style={{
+                display: "inline-flex", alignItems: "center", gap: 7,
+                fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em",
+                padding: "7px 16px", borderRadius: 8, color: "#27AE60",
+                background: "rgba(39,174,96,0.06)", border: "1px solid rgba(39,174,96,0.15)",
+              }}>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.5"/><path d="M4 6l1.5 1.5L8 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                Com a JUST
+              </span>
+            </div>
+          </div>
+
+          {/* Comparison rows */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {comparisons.map((row, i) => (
+              <Reveal key={i} delay={i * 0.06}>
+                <div
+                  className="comp-row"
+                  style={{
+                    display: "grid", gridTemplateColumns: "1fr 52px 1fr", gap: 0,
+                    borderRadius: 14, overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.05)",
+                    background: "rgba(255,255,255,0.015)",
+                    position: "relative",
+                  }}
+                >
+                  {/* SEM cell */}
+                  <div style={{
+                    position: "relative", zIndex: 1, padding: "24px 28px",
+                    display: "flex", gap: 16, alignItems: "flex-start",
+                    background: "rgba(0,0,0,0.12)",
+                  }}>
+                    <div style={{
+                      width: 44, height: 44, borderRadius: 12,
+                      display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                      background: "linear-gradient(145deg, rgba(232,93,74,0.12), rgba(10,12,31,0.9))",
+                      border: "1px solid rgba(232,93,74,0.25)",
+                      boxShadow: "0 0 12px rgba(232,93,74,0.08)",
+                      backdropFilter: "blur(4px)",
+                    }}>
+                      {comparisonIcons[i].sem}
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: 16, fontWeight: 700, marginBottom: 5, lineHeight: 1.3, color: "rgba(242,244,248,0.65)" }}>{row.sem.title}</h4>
+                      <p style={{ fontSize: 14, color: "rgba(242,244,248,0.4)", lineHeight: 1.55 }}>{row.sem.desc}</p>
+                    </div>
+                  </div>
+                  {/* Arrow */}
+                  <div style={{
+                    position: "relative", zIndex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+                    background: "rgba(0,0,0,0.08)",
+                  }}>
+                    <div className="comp-arrow" style={{
+                      width: 30, height: 30, borderRadius: "50%",
+                      background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      transition: "all 0.4s ease",
+                    }}>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </div>
+                  </div>
+                  {/* COM cell */}
+                  <div style={{
+                    position: "relative", zIndex: 1, padding: "24px 28px",
+                    display: "flex", gap: 16, alignItems: "flex-start",
+                    background: "rgba(39,174,96,0.02)",
+                  }}>
+                    <div className="comp-icon-com" style={{
+                      width: 44, height: 44, borderRadius: 12,
+                      display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                      background: "linear-gradient(145deg, rgba(39,174,96,0.12), rgba(10,12,31,0.9))",
+                      border: "1px solid rgba(39,174,96,0.25)",
+                      boxShadow: "0 0 12px rgba(39,174,96,0.08)",
+                      backdropFilter: "blur(4px)",
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    }}>
+                      {comparisonIcons[i].com}
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: 16, fontWeight: 700, marginBottom: 5, lineHeight: 1.3, color: "#f2f4f8" }}>{row.com.title}</h4>
+                      <p style={{ fontSize: 14, color: "rgba(242,244,248,0.4)", lineHeight: 1.55 }}>{row.com.desc}</p>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* ===== TRANSITION STATEMENT ===== */}
-      <section style={{ background: T.darkAlt, padding: "80px 48px", textAlign: "center" }}>
-        <Reveal>
-          <p style={{ fontSize: 28, fontWeight: 600, color: T.textLight, lineHeight: 1.4, maxWidth: 700, margin: "0 auto", letterSpacing: "-0.01em" }}>
-            A JUST resolve isso com <span style={{ color: T.cta }}>produtos prontos</span>,{" "}
-            <span style={{ color: "#6C5CE7" }}>tecnologia modular</span> e{" "}
-            <span style={{ color: "#00B894" }}>integracao com os melhores BaaS</span> do mercado.
-          </p>
-        </Reveal>
       </section>
 
       {/* ===== PRODUCTS (com identidade por vertical) ===== */}
