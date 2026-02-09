@@ -236,203 +236,261 @@ function Metric({ prefix = "", value, suffix = "", label, delay = 0 }) {
 }
 
 // ========================================
-// ECOSYSTEM ANIMATION
+// HERO ORBITAL VISUAL
 // ========================================
-function EcosystemAnimation() {
-  const svgRef = useRef(null);
-  const animationRef = useRef(null);
-  const particlesRef = useRef([]);
-  const frameRef = useRef(0);
-  const startTimeRef = useRef(null);
+const HERO_ORBITAL_NODES = [
+  { key: "beneficios", label: "Beneficios", top: "12%", left: "8%", animName: "nodeFloat1", dur: "6s", delay: "0s" },
+  { key: "frotas", label: "Frotas", top: "4%", right: "12%", animName: "nodeFloat2", dur: "7s", delay: "0.5s" },
+  { key: "banking", label: "Banking", top: "40%", right: "0%", animName: "nodeFloat3", dur: "5.5s", delay: "1s" },
+  { key: "despesas", label: "Despesas", top: "45%", left: "0%", animName: "nodeFloat4", dur: "6.5s", delay: "1.5s" },
+  { key: "antecipacao", label: "Antecipacao", bottom: "6%", left: "14%", animName: "nodeFloat5", dur: "5s", delay: "2s" },
+  { key: "sob-demanda", label: "Sob Demanda", bottom: "2%", right: "10%", animName: "nodeFloat6", dur: "7s", delay: "0.8s" },
+];
 
-  const nodes = {
-    core: { x: 400, y: 250, label: "JUST Core", size: 40, color: "#f45546" },
-    beneficios: { x: 160, y: 90, label: "Beneficios", size: 26, color: "#6C5CE7" },
-    frotas: { x: 400, y: 65, label: "Frotas", size: 26, color: "#00B894" },
-    banking: { x: 640, y: 90, label: "Banking", size: 26, color: "#0984E3" },
-    despesas: { x: 130, y: 380, label: "Despesas", size: 26, color: "#E17055" },
-    antecipacao: { x: 400, y: 410, label: "Antecipacao", size: 26, color: "#FDCB6E" },
-    "sob-demanda": { x: 670, y: 380, label: "Sob Demanda", size: 26, color: "#636E72" },
-    swap: { x: 250, y: 500, label: "Swap / Idez", size: 22, color: "#1abc9c" },
-    sitef: { x: 400, y: 520, label: "Sitef / Rede", size: 22, color: "#3498db" },
-    gateway: { x: 550, y: 500, label: "Gateway", size: 22, color: "#9b59b6" },
-  };
+const HERO_SVG_ICONS = {
+  beneficios: (
+    <svg viewBox="0 0 44 44" fill="none" style={{width:34,height:34}}>
+      <rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" strokeWidth="2" fill="none" opacity="0.9"/>
+      <rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#A29BFE" strokeWidth="1.5" fill="none" opacity="0.7"/>
+      <line x1="10" y1="26" x2="22" y2="26" stroke="#A29BFE" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+      <circle cx="33" cy="27" r="3" stroke="#6C5CE7" strokeWidth="1.5" fill="none" opacity="0.6"/>
+      <circle cx="30" cy="27" r="3" stroke="#6C5CE7" strokeWidth="1.5" fill="none" opacity="0.4"/>
+    </svg>
+  ),
+  frotas: (
+    <svg viewBox="0 0 44 44" fill="none" style={{width:34,height:34}}>
+      <rect x="6" y="14" width="32" height="16" rx="4" stroke="#00B894" strokeWidth="2" fill="none" opacity="0.9"/>
+      <circle cx="14" cy="30" r="3.5" stroke="#55EFC4" strokeWidth="1.5" fill="none" opacity="0.7"/>
+      <circle cx="30" cy="30" r="3.5" stroke="#55EFC4" strokeWidth="1.5" fill="none" opacity="0.7"/>
+      <path d="M12 14 L12 10 L24 10 L28 14" stroke="#00B894" strokeWidth="1.5" fill="none" opacity="0.6"/>
+      <circle cx="35" cy="19" r="2" stroke="#55EFC4" strokeWidth="1" fill="none" opacity="0.5"/>
+    </svg>
+  ),
+  banking: (
+    <svg viewBox="0 0 44 44" fill="none" style={{width:34,height:34}}>
+      <rect x="8" y="8" width="28" height="28" rx="6" stroke="#0984E3" strokeWidth="2" fill="none" opacity="0.9"/>
+      <path d="M16 18 L22 14 L28 18" stroke="#74B9FF" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7"/>
+      <line x1="16" y1="20" x2="28" y2="20" stroke="#0984E3" strokeWidth="1" opacity="0.4"/>
+      <line x1="18" y1="22" x2="18" y2="28" stroke="#74B9FF" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+      <line x1="22" y1="22" x2="22" y2="28" stroke="#74B9FF" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+      <line x1="26" y1="22" x2="26" y2="28" stroke="#74B9FF" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+      <line x1="15" y1="30" x2="29" y2="30" stroke="#0984E3" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+    </svg>
+  ),
+  despesas: (
+    <svg viewBox="0 0 44 44" fill="none" style={{width:34,height:34}}>
+      <rect x="10" y="6" width="24" height="32" rx="3" stroke="#E17055" strokeWidth="2" fill="none" opacity="0.9"/>
+      <line x1="15" y1="14" x2="29" y2="14" stroke="#FAB1A0" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+      <line x1="15" y1="20" x2="25" y2="20" stroke="#FAB1A0" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+      <line x1="15" y1="26" x2="22" y2="26" stroke="#FAB1A0" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+      <circle cx="28" cy="30" r="4" stroke="#E17055" strokeWidth="1.5" fill="none" opacity="0.7"/>
+      <path d="M26 30 L28 32 L31 28" stroke="#FAB1A0" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.8"/>
+    </svg>
+  ),
+  antecipacao: (
+    <svg viewBox="0 0 44 44" fill="none" style={{width:34,height:34}}>
+      <circle cx="22" cy="22" r="14" stroke="#FDCB6E" strokeWidth="2" fill="none" opacity="0.9"/>
+      <path d="M22 12 L22 22 L30 22" stroke="#FFEAA7" strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
+      <path d="M17 8 L15 12" stroke="#FDCB6E" strokeWidth="1.2" strokeLinecap="round" opacity="0.4"/>
+      <path d="M27 8 L29 12" stroke="#FDCB6E" strokeWidth="1.2" strokeLinecap="round" opacity="0.4"/>
+    </svg>
+  ),
+  "sob-demanda": (
+    <svg viewBox="0 0 44 44" fill="none" style={{width:34,height:34}}>
+      <rect x="8" y="8" width="28" height="28" rx="6" stroke="#636E72" strokeWidth="2" fill="none" opacity="0.9"/>
+      <circle cx="22" cy="22" r="6" stroke="#B2BEC3" strokeWidth="1.5" fill="none" opacity="0.6"/>
+      <circle cx="22" cy="22" r="2" fill="#B2BEC3" opacity="0.5"/>
+      <path d="M22 12 L22 14 M22 30 L22 32 M12 22 L14 22 M30 22 L32 22" stroke="#636E72" strokeWidth="1.2" strokeLinecap="round" opacity="0.4"/>
+    </svg>
+  ),
+};
 
-  // Deterministic bezier control point per path
-  const getControlPoint = (from, to, seed) => {
-    const mx = (from.x + to.x) / 2;
-    const my = (from.y + to.y) / 2;
-    const perpX = -(to.y - from.y) * 0.25;
-    const perpY = (to.x - from.x) * 0.25;
-    return { x: mx + perpX * (0.6 + seed * 0.4), y: my + perpY * (0.6 + seed * 0.4) };
-  };
-
-  const createParticle = (fromKey, toKey, seed) => {
-    const from = nodes[fromKey];
-    const to = nodes[toKey];
-    const cp = getControlPoint(from, to, seed);
-    return {
-      id: Math.random(), fromKey, toKey, from, to, cp,
-      progress: 0, color: from.color, trail: [],
-    };
-  };
-
-  useEffect(() => {
-    if (!svgRef.current) return;
-
-    const launchQueue = [
-      { from: "beneficios", to: "core", interval: 3200, offset: 0 },
-      { from: "frotas", to: "core", interval: 2800, offset: 400 },
-      { from: "banking", to: "core", interval: 3400, offset: 800 },
-      { from: "despesas", to: "core", interval: 3000, offset: 1200 },
-      { from: "antecipacao", to: "core", interval: 3600, offset: 1600 },
-      { from: "sob-demanda", to: "core", interval: 3100, offset: 2000 },
-      { from: "core", to: "swap", interval: 4000, offset: 2400 },
-      { from: "core", to: "sitef", interval: 4200, offset: 2800 },
-      { from: "core", to: "gateway", interval: 4400, offset: 3200 },
-      { from: "swap", to: "core", interval: 5000, offset: 4200 },
-      { from: "sitef", to: "core", interval: 5200, offset: 4600 },
-      { from: "gateway", to: "core", interval: 5000, offset: 5000 },
-      { from: "beneficios", to: "antecipacao", interval: 7000, offset: 6000 },
-      { from: "frotas", to: "despesas", interval: 7500, offset: 7000 },
-    ];
-
-    const nextLaunch = {};
-    launchQueue.forEach((q, i) => { nextLaunch[i] = q.offset; });
-
-    const animate = (timestamp) => {
-      if (!startTimeRef.current) startTimeRef.current = timestamp;
-      const elapsed = timestamp - startTimeRef.current;
-      const frame = frameRef.current++;
-
-      // Launch particles
-      launchQueue.forEach((q, i) => {
-        if (elapsed >= nextLaunch[i]) {
-          const seed = (Math.sin(i * 7.3 + frame * 0.01) + 1) * 0.5;
-          particlesRef.current.push(createParticle(q.from, q.to, seed));
-          nextLaunch[i] += q.interval;
-        }
-      });
-
-      // Update particles
-      particlesRef.current = particlesRef.current.filter((p) => {
-        p.progress += 0.006;
-        if (p.progress > 1) return false;
-
-        const t = p.progress;
-        const eased = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-
-        const x = (1-eased)*(1-eased)*p.from.x + 2*(1-eased)*eased*p.cp.x + eased*eased*p.to.x;
-        const y = (1-eased)*(1-eased)*p.from.y + 2*(1-eased)*eased*p.cp.y + eased*eased*p.to.y;
-
-        p.trail.push({ x, y });
-        if (p.trail.length > 10) p.trail.shift();
-        p.cx = x;
-        p.cy = y;
-        p.glow = Math.sin(eased * Math.PI) * 0.8;
-        return true;
-      });
-
-      // Render particles via DOM
-      const svg = svgRef.current;
-      if (!svg) return;
-      svg.querySelectorAll("[data-p]").forEach((el) => el.remove());
-
-      particlesRef.current.forEach((p) => {
-        let html = "";
-        p.trail.forEach((pt, i) => {
-          const op = (i / p.trail.length) * 0.35;
-          const r = 1.5 + (i / p.trail.length) * 1;
-          html += `<circle cx="${pt.x}" cy="${pt.y}" r="${r}" fill="${p.color}" opacity="${op}" data-p="1"/>`;
-        });
-        const gr = 5 + p.glow * 5;
-        html += `<circle cx="${p.cx}" cy="${p.cy}" r="${gr}" fill="${p.color}" opacity="${0.4 + p.glow * 0.3}" filter="url(#pGlow)" data-p="1"/>`;
-        html += `<circle cx="${p.cx}" cy="${p.cy}" r="3.5" fill="${p.color}" opacity="0.95" data-p="1"/>`;
-        html += `<circle cx="${p.cx}" cy="${p.cy}" r="1.5" fill="#fff" opacity="0.7" data-p="1"/>`;
-        svg.insertAdjacentHTML("beforeend", html);
-      });
-
-      // Pulse core glow
-      const cg = svg.querySelector("[data-cg]");
-      if (cg) {
-        const s = 1 + Math.sin(frame * 0.025) * 0.25;
-        cg.setAttribute("r", String(52 * s));
-        cg.setAttribute("opacity", String(0.12 + Math.sin(frame * 0.025) * 0.06));
-      }
-
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-    return () => { if (animationRef.current) cancelAnimationFrame(animationRef.current); };
-  }, []);
-
-  const connections = [
-    ["beneficios","core"],["frotas","core"],["banking","core"],
-    ["despesas","core"],["antecipacao","core"],["sob-demanda","core"],
-    ["core","swap"],["core","sitef"],["core","gateway"],
-    ["beneficios","antecipacao"],["frotas","despesas"],
-  ];
-
+function HeroOrbital() {
   return (
-    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-      <svg ref={svgRef} viewBox="0 0 800 570" style={{ width: "100%", maxWidth: 800, height: "auto" }}>
-        <defs>
-          <filter id="nGlow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="cGlow"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="pGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <radialGradient id="bgGrad" cx="50%" cy="45%" r="55%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0.015)"/>
-            <stop offset="100%" stopColor="rgba(0,0,0,0.2)"/>
-          </radialGradient>
-        </defs>
+    <div style={{ position: "relative", width: "100%", height: 520, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      {/* Orbital rings */}
+      {[200, 340, 460].map((size, i) => (
+        <div key={i} style={{
+          position: "absolute", width: size, height: size, borderRadius: "50%",
+          border: `1px solid rgba(108,92,231,${0.1 - i * 0.03})`,
+          animation: `ringPulse ${4 + i}s ease-in-out infinite ${i}s`,
+        }} />
+      ))}
 
-        <rect width="800" height="570" fill="url(#bgGrad)" rx="16"/>
-
-        {/* Layer labels */}
-        <text x="30" y="70" fill="rgba(242,244,248,0.2)" fontSize="10" fontWeight="600" letterSpacing="2" textAnchor="start">PRODUTOS</text>
-        <text x="30" y="245" fill="rgba(242,244,248,0.2)" fontSize="10" fontWeight="600" letterSpacing="2" textAnchor="start">CORE</text>
-        <text x="30" y="495" fill="rgba(242,244,248,0.2)" fontSize="10" fontWeight="600" letterSpacing="2" textAnchor="start">INFRA</text>
-
-        {/* Separator lines */}
-        <line x1="30" y1="165" x2="770" y2="165" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="4,8"/>
-        <line x1="30" y1="460" x2="770" y2="460" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="4,8"/>
-
-        {/* Connection paths */}
-        {connections.map((c, i) => {
-          const f = nodes[c[0]], t = nodes[c[1]];
-          const seed = (Math.sin(i * 5.7) + 1) * 0.5;
-          const cp = getControlPoint(f, t, seed);
-          return (
-            <path key={i} d={`M ${f.x} ${f.y} Q ${cp.x} ${cp.y} ${t.x} ${t.y}`}
-              stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" fill="none"
-              strokeDasharray="4,6" strokeDashoffset={i * 10}
-              style={{ animation: `ecosDash 15s linear infinite` }}
-            />
-          );
-        })}
-
-        {/* Nodes */}
-        {Object.entries(nodes).map(([key, n]) => (
-          <g key={key}>
-            <circle cx={n.x} cy={n.y} r={n.size + 10} fill={n.color} opacity="0.06" filter="url(#nGlow)"/>
-            {key === "core" && <circle cx={n.x} cy={n.y} r={52} fill={n.color} opacity="0.12" data-cg="1"/>}
-            <circle cx={n.x} cy={n.y} r={n.size} fill="#0f112b" opacity="0.7"/>
-            <circle cx={n.x} cy={n.y} r={n.size} fill={n.color} opacity={key === "core" ? 0.9 : 0.5}
-              filter={key === "core" ? "url(#cGlow)" : "url(#nGlow)"}/>
-            <circle cx={n.x} cy={n.y} r={n.size} fill="none" stroke={n.color} strokeWidth="1.5" opacity="0.4"/>
-            {key === "core" ? (
-              <>
-                <text x={n.x} y={n.y - 5} textAnchor="middle" fill="#fff" fontSize="11" fontWeight="700" letterSpacing="0.5">JUST</text>
-                <text x={n.x} y={n.y + 9} textAnchor="middle" fill="rgba(255,255,255,0.7)" fontSize="9" fontWeight="500">CORE</text>
-              </>
-            ) : (
-              <text x={n.x} y={n.y + n.size + 18} textAnchor="middle" fill="rgba(242,244,248,0.65)" fontSize="10" fontWeight="600" letterSpacing="0.3">{n.label}</text>
-            )}
-          </g>
+      {/* SVG connecting lines */}
+      <svg style={{ position: "absolute", width: 460, height: 460, zIndex: 2, pointerEvents: "none" }} viewBox="0 0 460 460">
+        {[
+          { x2: 72, y2: 82, c: "108,92,231" },
+          { x2: 380, y2: 50, c: "0,184,148" },
+          { x2: 430, y2: 230, c: "9,132,227" },
+          { x2: 40, y2: 260, c: "225,112,85" },
+          { x2: 100, y2: 410, c: "253,203,110" },
+          { x2: 370, y2: 400, c: "99,110,114" },
+        ].map((l, i) => (
+          <line key={i} x1="230" y1="230" x2={l.x2} y2={l.y2}
+            stroke={`rgba(${l.c},0.12)`} strokeWidth="1"
+            strokeDasharray="4 6"
+            style={{ animation: "dashFlow 15s linear infinite" }}
+          />
         ))}
       </svg>
-      <style>{`@keyframes ecosDash { to { stroke-dashoffset: -80; } }`}</style>
+
+      {/* Floating particles */}
+      {[
+        { top: "15%", left: "25%", dur: "8s", delay: "0s", dx1: "20px", dy1: "-15px", dx2: "-10px", dy2: "10px", dx3: "15px", dy3: "5px", bg: "rgba(108,92,231,0.3)" },
+        { top: "60%", right: "20%", dur: "10s", delay: "2s", dx1: "-15px", dy1: "20px", dx2: "10px", dy2: "-8px", dx3: "-20px", dy3: "12px", bg: "rgba(108,92,231,0.3)" },
+        { top: "30%", right: "35%", dur: "7s", delay: "1s", dx1: "12px", dy1: "18px", dx2: "-8px", dy2: "-15px", dx3: "20px", dy3: "-5px", bg: "rgba(0,184,148,0.3)" },
+        { bottom: "25%", left: "35%", dur: "9s", delay: "3s", dx1: "-18px", dy1: "-12px", dx2: "15px", dy2: "8px", dx3: "-5px", dy3: "20px", bg: "rgba(9,132,227,0.3)" },
+        { top: "45%", left: "15%", dur: "11s", delay: "4s", dx1: "8px", dy1: "-20px", dx2: "-12px", dy2: "15px", dx3: "18px", dy3: "-8px", bg: "rgba(225,112,85,0.25)" },
+        { top: "20%", right: "15%", dur: "9s", delay: "1.5s", dx1: "-20px", dy1: "8px", dx2: "12px", dy2: "18px", dx3: "-15px", dy3: "-12px", bg: "rgba(253,203,110,0.25)" },
+        { bottom: "35%", right: "30%", dur: "8s", delay: "2.5s", dx1: "15px", dy1: "12px", dx2: "-18px", dy2: "-8px", dx3: "5px", dy3: "20px", bg: "rgba(108,92,231,0.3)" },
+      ].map((p, i) => (
+        <div key={i} style={{
+          position: "absolute", width: 3, height: 3, borderRadius: "50%",
+          background: p.bg, zIndex: 1,
+          top: p.top, left: p.left, right: p.right, bottom: p.bottom,
+          animation: `particleFloat${i} ${p.dur} ease-in-out infinite`,
+          animationDelay: p.delay,
+        }} />
+      ))}
+
+      {/* Center hub - JUST Logo */}
+      <div style={{
+        position: "absolute", width: 100, height: 100, borderRadius: 28, zIndex: 5,
+        background: "linear-gradient(145deg, rgba(108,92,231,0.2), rgba(10,12,31,0.95))",
+        border: "1.5px solid rgba(108,92,231,0.35)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        boxShadow: "0 0 40px rgba(108,92,231,0.15), 0 0 80px rgba(108,92,231,0.08), inset 0 1px 0 rgba(255,255,255,0.1)",
+        animation: "hubFloat 5s ease-in-out infinite",
+      }}>
+        <img src={LOGO_PATH} alt="JUST" style={{ height: 36, filter: "brightness(1.1)" }} />
+      </div>
+
+      {/* Product nodes */}
+      {HERO_ORBITAL_NODES.map((node) => {
+        const pc = PRODUCT_COLORS[node.key];
+        const c = pc?.accent || "#fff";
+        return (
+          <div key={node.key} className="hero-product-node" style={{
+            position: "absolute", zIndex: 4,
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+            top: node.top, left: node.left, right: node.right, bottom: node.bottom,
+            animation: `${node.animName} ${node.dur} ease-in-out infinite`,
+            animationDelay: node.delay,
+            cursor: "default",
+          }}>
+            <div style={{
+              width: 72, height: 72, borderRadius: 20,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              background: `linear-gradient(145deg, ${c}26, rgba(10,12,31,0.9))`,
+              border: `1.5px solid ${c}59`,
+              boxShadow: `0 0 20px ${c}1F, 0 4px 16px rgba(0,0,0,0.3)`,
+              backdropFilter: "blur(8px)",
+              transition: "all 0.4s ease",
+            }}>
+              {HERO_SVG_ICONS[node.key]}
+            </div>
+            <span style={{
+              fontSize: 11, fontWeight: 600, letterSpacing: "0.5px",
+              color: "rgba(255,255,255,0.45)", textAlign: "center",
+              whiteSpace: "nowrap", transition: "all 0.3s",
+            }}>{node.label}</span>
+          </div>
+        );
+      })}
+
+      {/* CSS Animations */}
+      <style>{`
+        @keyframes ringPulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(1.02); }
+        }
+        @keyframes hubFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes dashFlow { to { stroke-dashoffset: -100; } }
+        @keyframes nodeFloat1 {
+          0%, 100% { transform: translate(0, 0); }
+          33% { transform: translate(8px, -12px); }
+          66% { transform: translate(-5px, -6px); }
+        }
+        @keyframes nodeFloat2 {
+          0%, 100% { transform: translate(0, 0); }
+          33% { transform: translate(-10px, -8px); }
+          66% { transform: translate(5px, -14px); }
+        }
+        @keyframes nodeFloat3 {
+          0%, 100% { transform: translate(0, 0); }
+          33% { transform: translate(-12px, 6px); }
+          66% { transform: translate(-6px, -10px); }
+        }
+        @keyframes nodeFloat4 {
+          0%, 100% { transform: translate(0, 0); }
+          33% { transform: translate(10px, -8px); }
+          66% { transform: translate(6px, 10px); }
+        }
+        @keyframes nodeFloat5 {
+          0%, 100% { transform: translate(0, 0); }
+          33% { transform: translate(8px, 10px); }
+          66% { transform: translate(-6px, 5px); }
+        }
+        @keyframes nodeFloat6 {
+          0%, 100% { transform: translate(0, 0); }
+          33% { transform: translate(-8px, 8px); }
+          66% { transform: translate(10px, 4px); }
+        }
+        @keyframes particleFloat0 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          25% { transform: translate(20px, -15px); opacity: 0.7; }
+          50% { transform: translate(-10px, 10px); opacity: 0.4; }
+          75% { transform: translate(15px, 5px); opacity: 0.8; }
+        }
+        @keyframes particleFloat1 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          25% { transform: translate(-15px, 20px); opacity: 0.7; }
+          50% { transform: translate(10px, -8px); opacity: 0.4; }
+          75% { transform: translate(-20px, 12px); opacity: 0.8; }
+        }
+        @keyframes particleFloat2 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          25% { transform: translate(12px, 18px); opacity: 0.7; }
+          50% { transform: translate(-8px, -15px); opacity: 0.4; }
+          75% { transform: translate(20px, -5px); opacity: 0.8; }
+        }
+        @keyframes particleFloat3 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          25% { transform: translate(-18px, -12px); opacity: 0.7; }
+          50% { transform: translate(15px, 8px); opacity: 0.4; }
+          75% { transform: translate(-5px, 20px); opacity: 0.8; }
+        }
+        @keyframes particleFloat4 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          25% { transform: translate(8px, -20px); opacity: 0.7; }
+          50% { transform: translate(-12px, 15px); opacity: 0.4; }
+          75% { transform: translate(18px, -8px); opacity: 0.8; }
+        }
+        @keyframes particleFloat5 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          25% { transform: translate(-20px, 8px); opacity: 0.7; }
+          50% { transform: translate(12px, 18px); opacity: 0.4; }
+          75% { transform: translate(-15px, -12px); opacity: 0.8; }
+        }
+        @keyframes particleFloat6 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          25% { transform: translate(15px, 12px); opacity: 0.7; }
+          50% { transform: translate(-18px, -8px); opacity: 0.4; }
+          75% { transform: translate(5px, 20px); opacity: 0.8; }
+        }
+        .hero-product-node:hover > div:first-child {
+          transform: scale(1.12);
+          box-shadow: 0 0 35px rgba(108,92,231,0.3), 0 4px 24px rgba(0,0,0,0.4) !important;
+        }
+        .hero-product-node:hover span {
+          opacity: 1 !important;
+          color: #fff !important;
+        }
+      `}</style>
     </div>
   );
 }
@@ -1002,8 +1060,8 @@ function HomePage({ setPage }) {
     <div>
       {/* ===== HERO ===== */}
       <section style={{
-        background: `linear-gradient(160deg, ${T.primary} 0%, ${T.darkAlt} 50%, ${T.secondary} 100%)`,
-        padding: "160px 48px 120px", position: "relative", overflow: "hidden",
+        background: `linear-gradient(160deg, #06080F 0%, ${T.primary} 50%, ${T.darkAlt} 100%)`,
+        padding: "140px 48px 80px", position: "relative", overflow: "hidden",
       }}>
         {/* Ambient glow effects */}
         <div style={{ position: "absolute", top: "15%", right: "10%", width: 500, height: 500, background: "radial-gradient(circle, rgba(108,92,231,0.07), transparent 70%)", borderRadius: "50%", filter: "blur(80px)" }} />
@@ -1016,7 +1074,7 @@ function HomePage({ setPage }) {
             </Reveal>
             <Reveal delay={0.1}>
               <h1 style={{ fontSize: 60, fontWeight: 800, color: T.textLight, lineHeight: 1.06, letterSpacing: "-0.035em", margin: "20px 0" }}>
-                Sua fintech.<br />Pronta para operar<br />em <span style={{ color: "#f45546" }}>semanas</span>, nao meses.
+                Sua fintech.<br />Pronta para operar<br />em <span style={{ background: "linear-gradient(135deg, #6C5CE7, #A29BFE, #74B9FF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>semanas, nao meses.</span>
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
@@ -1055,9 +1113,9 @@ function HomePage({ setPage }) {
             </Reveal>
           </div>
 
-          {/* Hero visual: Ecosystem Animation */}
+          {/* Hero visual: Orbital product icons */}
           <Reveal delay={0.2} direction="right">
-            <EcosystemAnimation />
+            <HeroOrbital />
           </Reveal>
         </div>
       </section>
@@ -1351,7 +1409,7 @@ function StackPage({ setPage }) {
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <SectionTitle tag="Arquitetura viva" title="Veja o ecossistema se comunicando." center subtitle="Produtos, core financeiro e provedores trocando dados em tempo real." />
           <Reveal>
-            <EcosystemAnimation />
+            <HeroOrbital />
           </Reveal>
         </div>
       </section>
