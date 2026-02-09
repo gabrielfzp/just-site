@@ -239,12 +239,12 @@ function Metric({ prefix = "", value, suffix = "", label, delay = 0 }) {
 // HERO ORBITAL VISUAL
 // ========================================
 const HERO_ORBITAL_NODES = [
-  { key: "beneficios", label: "Beneficios", top: "12%", left: "8%", animName: "nodeFloat1", dur: "6s", delay: "0s" },
-  { key: "frotas", label: "Frotas", top: "4%", right: "12%", animName: "nodeFloat2", dur: "7s", delay: "0.5s" },
+  { key: "beneficios", label: "Benefits", top: "12%", left: "8%", animName: "nodeFloat1", dur: "6s", delay: "0s" },
+  { key: "frotas", label: "Fleet", top: "4%", right: "12%", animName: "nodeFloat2", dur: "7s", delay: "0.5s" },
   { key: "banking", label: "Banking", top: "40%", right: "0%", animName: "nodeFloat3", dur: "5.5s", delay: "1s" },
-  { key: "despesas", label: "Despesas", top: "45%", left: "0%", animName: "nodeFloat4", dur: "6.5s", delay: "1.5s" },
-  { key: "antecipacao", label: "Antecipacao", bottom: "6%", left: "14%", animName: "nodeFloat5", dur: "5s", delay: "2s" },
-  { key: "sob-demanda", label: "Sob Demanda", bottom: "2%", right: "10%", animName: "nodeFloat6", dur: "7s", delay: "0.8s" },
+  { key: "despesas", label: "Expense", top: "45%", left: "0%", animName: "nodeFloat4", dur: "6.5s", delay: "1.5s" },
+  { key: "antecipacao", label: "Advance", bottom: "6%", left: "14%", animName: "nodeFloat5", dur: "5s", delay: "2s" },
+  { key: "sob-demanda", label: "Custom", bottom: "2%", right: "10%", animName: "nodeFloat6", dur: "7s", delay: "0.8s" },
 ];
 
 const HERO_SVG_ICONS = {
@@ -927,12 +927,12 @@ function Header({ page, setPage }) {
   const lnk = (p) => ({ color: page === p ? T.cta : "rgba(242,244,248,0.8)", fontSize: 14, fontWeight: 500, cursor: "pointer", background: "none", border: "none", padding: "8px 14px", transition: "color 0.2s" });
 
   const solucoes = [
-    { key: "beneficios", label: "Beneficios Flexiveis", color: PRODUCT_COLORS.beneficios.accent },
-    { key: "frotas", label: "Gestao de Frotas", color: PRODUCT_COLORS.frotas.accent },
-    { key: "banking", label: "Banking Digital", color: PRODUCT_COLORS.banking.accent },
-    { key: "despesas", label: "Despesas Corporativas", color: PRODUCT_COLORS.despesas.accent },
-    { key: "antecipacao", label: "Antecipacao Salarial", color: PRODUCT_COLORS.antecipacao.accent },
-    { key: "sob-demanda", label: "Projetos Sob Demanda", color: PRODUCT_COLORS["sob-demanda"].accent },
+    { key: "beneficios", label: "JUST Benefits", desc: "Beneficios flexiveis com arranjo customizavel", color: PRODUCT_COLORS.beneficios.accent },
+    { key: "frotas", label: "JUST Fleet", desc: "Controle financeiro completo por veiculo", color: PRODUCT_COLORS.frotas.accent },
+    { key: "banking", label: "JUST Banking", desc: "Conta, cartao e PIX white-label", color: PRODUCT_COLORS.banking.accent },
+    { key: "despesas", label: "JUST Expense", desc: "Cartoes corporativos com politicas inteligentes", color: PRODUCT_COLORS.despesas.accent },
+    { key: "antecipacao", label: "JUST Advance", desc: "Antecipacao salarial e credito ao colaborador", color: PRODUCT_COLORS.antecipacao.accent },
+    { key: "sob-demanda", label: "JUST Custom", desc: "Produtos financeiros sob medida", color: PRODUCT_COLORS["sob-demanda"].accent },
   ];
 
   return (
@@ -954,16 +954,22 @@ function Header({ page, setPage }) {
             <div style={{
               position: "absolute", top: "100%", left: -20, background: "rgba(15,17,43,0.98)",
               border: `1px solid ${T.borderLight}`, borderRadius: 14, padding: "12px 8px",
-              minWidth: 260, backdropFilter: "blur(20px)", boxShadow: "0 20px 60px rgba(0,0,0,0.4)", zIndex: 200,
+              minWidth: 320, backdropFilter: "blur(20px)", boxShadow: "0 20px 60px rgba(0,0,0,0.4)", zIndex: 200,
             }}>
               {solucoes.map((s) => (
                 <button key={s.key} onClick={() => nav(s.key)} style={{
-                  display: "flex", alignItems: "center", gap: 10, width: "100%", textAlign: "left",
+                  display: "flex", alignItems: "center", gap: 12, width: "100%", textAlign: "left",
                   padding: "10px 14px", background: "none", border: "none", color: T.textLight,
-                  fontSize: 14, cursor: "pointer", borderRadius: 8, transition: "background 0.15s",
-                }}>
-                  <ProductIcon productKey={s.key} size={28} showCard />
-                  {s.label}
+                  fontSize: 14, cursor: "pointer", borderRadius: 10, transition: "background 0.15s",
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.04)"}
+                onMouseLeave={(e) => e.currentTarget.style.background = "none"}
+                >
+                  <ProductIcon productKey={s.key} size={32} showCard />
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 13, color: T.textLight }}>{s.label}</div>
+                    <div style={{ fontSize: 11, color: T.textMuted, marginTop: 2, fontWeight: 400 }}>{s.desc}</div>
+                  </div>
                 </button>
               ))}
             </div>
@@ -997,7 +1003,7 @@ function Footer({ setPage }) {
         </div>
         <div>
           <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>Produtos</h4>
-          {[["beneficios","Beneficios"],["frotas","Frotas"],["banking","Banking"],["despesas","Despesas"],["antecipacao","Antecipacao"],["sob-demanda","Sob Demanda"]].map(([k,l]) =>
+          {[["beneficios","JUST Benefits"],["frotas","JUST Fleet"],["banking","JUST Banking"],["despesas","JUST Expense"],["antecipacao","JUST Advance"],["sob-demanda","JUST Custom"]].map(([k,l]) =>
             <button key={k} style={{ ...fl, display: "flex", alignItems: "center", gap: 8 }} onClick={() => nav(k)}>
               <ProductIcon productKey={k} size={18} />
               {l}
@@ -1033,12 +1039,12 @@ function HomePage({ setPage }) {
 
   // Products with individual identity
   const products = [
-    { key: "beneficios", name: "Beneficios Flexiveis", desc: "Arranjo aberto, fechado ou hibrido. Multiplos saldos com regras customizaveis e controle total.", ...PRODUCT_COLORS.beneficios },
-    { key: "frotas", name: "Gestao de Frotas", desc: "Abastecimento, pedagio, manutencao. Controle financeiro por veiculo com regras em tempo real.", ...PRODUCT_COLORS.frotas },
-    { key: "banking", name: "Banking Digital", desc: "Conta digital, cartao, PIX, transferencias. Banking completo e white-label sobre BaaS.", ...PRODUCT_COLORS.banking },
-    { key: "despesas", name: "Despesas Corporativas", desc: "Cartoes corporativos com politicas de uso, limites e conciliacao automatica.", ...PRODUCT_COLORS.despesas },
-    { key: "antecipacao", name: "Antecipacao Salarial", desc: "Cartao private label ou credito via CCB. Beneficio financeiro sem custo para o colaborador.", ...PRODUCT_COLORS.antecipacao },
-    { key: "sob-demanda", name: "Projetos Sob Demanda", desc: "Produto que nao cabe em prateleira? Arquitetamos e construimos sob medida.", ...PRODUCT_COLORS["sob-demanda"] },
+    { key: "beneficios", name: "JUST Benefits", desc: "Arranjo aberto, fechado ou hibrido. Multiplos saldos com regras customizaveis e controle total.", ...PRODUCT_COLORS.beneficios },
+    { key: "frotas", name: "JUST Fleet", desc: "Abastecimento, pedagio, manutencao. Controle financeiro por veiculo com regras em tempo real.", ...PRODUCT_COLORS.frotas },
+    { key: "banking", name: "JUST Banking", desc: "Conta digital, cartao, PIX, transferencias. Banking completo e white-label sobre BaaS.", ...PRODUCT_COLORS.banking },
+    { key: "despesas", name: "JUST Expense", desc: "Cartoes corporativos com politicas de uso, limites e conciliacao automatica.", ...PRODUCT_COLORS.despesas },
+    { key: "antecipacao", name: "JUST Advance", desc: "Cartao private label ou credito via CCB. Beneficio financeiro sem custo para o colaborador.", ...PRODUCT_COLORS.antecipacao },
+    { key: "sob-demanda", name: "JUST Custom", desc: "Produto que nao cabe em prateleira? Arquitetamos e construimos sob medida.", ...PRODUCT_COLORS["sob-demanda"] },
   ];
 
   // Pain points (problema antes de solucao - igual Finaya)
@@ -1524,7 +1530,7 @@ function ContatoPage() {
                   <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>Produto de interesse *</label>
                   <select style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14 }}>
                     <option>Selecione</option>
-                    {["Beneficios Flexiveis", "Gestao de Frotas", "Banking Digital", "Despesas Corporativas", "Antecipacao Salarial", "Sob Demanda", "Ainda nao sei"].map(o => <option key={o}>{o}</option>)}
+                    {["JUST Benefits", "JUST Fleet", "JUST Banking", "JUST Expense", "JUST Advance", "JUST Custom", "Ainda nao sei"].map(o => <option key={o}>{o}</option>)}
                   </select>
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -1632,12 +1638,12 @@ function SolutionPage({ setPage, config }) {
 // SOLUTIONS CONFIG
 // ========================================
 const SOL = {
-  beneficios: { key: "beneficios", title: "Beneficios flexiveis construidos para operar em escala", subtitle: "Arranjo aberto, fechado ou hibrido. Multiplos saldos com regras customizaveis e controle total.", model1: { title: "Arranjo aberto", desc: "Aceitacao ampla, bandeiras tradicionais, escala e capilaridade." }, model2: { title: "Arranjo fechado", desc: "Processamento proprio, ecossistemas controlados, governanca total." }, capabilities: ["Multiplos saldos", "Regras customizaveis", "Controle de uso", "Compliance", "Conciliacao", "Escala"] },
-  frotas: { key: "frotas", title: "Gestao de frotas com controle financeiro real", subtitle: "Abastecimento, pedagio, manutencao. Tudo em um unico produto financeiro.", model1: { title: "Rede aberta", desc: "Postos e fornecedores com ampla aceitacao nacional." }, model2: { title: "Rede propria", desc: "Credenciados especificos, controle e governanca total." }, capabilities: ["Controle por veiculo", "Regras em tempo real", "Despesas por tipo", "Monitoramento", "Conciliacao", "Escala"] },
-  banking: { key: "banking", title: "Banking digital white-label pronto para operar", subtitle: "Conta, cartao, PIX, transferencias. Integrado com BaaS.", model1: { title: "Banking completo", desc: "Conta digital, cartao, PIX, transferencias, boletos." }, model2: { title: "Banking embarcado", desc: "Funcionalidades bancarias integradas ao produto existente." }, capabilities: ["Conta digital", "Cartao", "PIX", "Transferencias", "Credito", "White-label"] },
-  despesas: { key: "despesas", title: "Despesas corporativas com controle total", subtitle: "Cartoes corporativos com politicas, limites e conciliacao.", model1: { title: "Arranjo aberto", desc: "Flexibilidade e ampla aceitacao para equipes distribuidas." }, model2: { title: "Arranjo fechado", desc: "Regras rigidas e controle operacional maximo." }, capabilities: ["Cartoes", "Politicas", "Limites", "Real-time", "Conciliacao", "Relatorios"] },
-  antecipacao: { key: "antecipacao", title: "Antecipacao salarial com flexibilidade", subtitle: "Cartao private label ou credito via CCB.", model1: { title: "Arranjo fechado", desc: "Cartao private label, sem custo ao colaborador, desconto em folha." }, model2: { title: "Credito (CCB)", desc: "Emissao de CCB, credito em conta, operacao formal." }, capabilities: ["Elegibilidade", "Limites", "Folha", "Controle", "Compliance", "Escala"] },
-  "sob-demanda": { key: "sob-demanda", title: "Projetos sob demanda, do zero a operacao", subtitle: "Produto que nao cabe em prateleira? Arquitetamos sob medida.", model1: { title: "Custom", desc: "Cada componente desenhado para o cenario unico." }, model2: { title: "Hibrido", desc: "Combinacao de arranjo aberto e fechado." }, capabilities: ["Arquitetura", "Multi-provider", "Hibrido", "Go-live rapido", "Evolucao", "Diagnostico"] },
+  beneficios: { key: "beneficios", title: "JUST Benefits: beneficios flexiveis construidos para operar em escala", subtitle: "Arranjo aberto, fechado ou hibrido. Multiplos saldos com regras customizaveis e controle total.", model1: { title: "Arranjo aberto", desc: "Aceitacao ampla, bandeiras tradicionais, escala e capilaridade." }, model2: { title: "Arranjo fechado", desc: "Processamento proprio, ecossistemas controlados, governanca total." }, capabilities: ["Multiplos saldos", "Regras customizaveis", "Controle de uso", "Compliance", "Conciliacao", "Escala"] },
+  frotas: { key: "frotas", title: "JUST Fleet: gestao de frotas com controle financeiro real", subtitle: "Abastecimento, pedagio, manutencao. Tudo em um unico produto financeiro.", model1: { title: "Rede aberta", desc: "Postos e fornecedores com ampla aceitacao nacional." }, model2: { title: "Rede propria", desc: "Credenciados especificos, controle e governanca total." }, capabilities: ["Controle por veiculo", "Regras em tempo real", "Despesas por tipo", "Monitoramento", "Conciliacao", "Escala"] },
+  banking: { key: "banking", title: "JUST Banking: banking digital white-label pronto para operar", subtitle: "Conta, cartao, PIX, transferencias. Integrado com BaaS.", model1: { title: "Banking completo", desc: "Conta digital, cartao, PIX, transferencias, boletos." }, model2: { title: "Banking embarcado", desc: "Funcionalidades bancarias integradas ao produto existente." }, capabilities: ["Conta digital", "Cartao", "PIX", "Transferencias", "Credito", "White-label"] },
+  despesas: { key: "despesas", title: "JUST Expense: despesas corporativas com controle total", subtitle: "Cartoes corporativos com politicas, limites e conciliacao.", model1: { title: "Arranjo aberto", desc: "Flexibilidade e ampla aceitacao para equipes distribuidas." }, model2: { title: "Arranjo fechado", desc: "Regras rigidas e controle operacional maximo." }, capabilities: ["Cartoes", "Politicas", "Limites", "Real-time", "Conciliacao", "Relatorios"] },
+  antecipacao: { key: "antecipacao", title: "JUST Advance: antecipacao salarial com flexibilidade", subtitle: "Cartao private label ou credito via CCB.", model1: { title: "Arranjo fechado", desc: "Cartao private label, sem custo ao colaborador, desconto em folha." }, model2: { title: "Credito (CCB)", desc: "Emissao de CCB, credito em conta, operacao formal." }, capabilities: ["Elegibilidade", "Limites", "Folha", "Controle", "Compliance", "Escala"] },
+  "sob-demanda": { key: "sob-demanda", title: "JUST Custom: projetos sob demanda, do zero a operacao", subtitle: "Produto que nao cabe em prateleira? Arquitetamos sob medida.", model1: { title: "Custom", desc: "Cada componente desenhado para o cenario unico." }, model2: { title: "Hibrido", desc: "Combinacao de arranjo aberto e fechado." }, capabilities: ["Arquitetura", "Multi-provider", "Hibrido", "Go-live rapido", "Evolucao", "Diagnostico"] },
 };
 
 // ========================================
