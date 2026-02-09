@@ -29,6 +29,68 @@ const PRODUCT_COLORS = {
   "sob-demanda": { accent: "#636E72", gradient: "linear-gradient(135deg, #636E72, #b2bec3)", label: "Custom" },
 };
 
+// Logo assets (base64 embedded)
+const LOGO_SM = "data:image/png;base64,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";
+const LOGO_MD = "data:image/png;base64,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";
+const JustLogo = ({ height = 32, style = {} }) => (
+  <img src={height <= 40 ? LOGO_SM : LOGO_MD} alt="JUST" style={{ height, objectFit: "contain", ...style }} />
+);
+
+// Neon product icons (soft glow SVG)
+const PRODUCT_ICONS = {
+  beneficios: (color, size) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <defs><filter id="glow-b"><feGaussianBlur stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <rect x="3" y="6" width="18" height="13" rx="2.5" stroke={color} strokeWidth="1.5" opacity="0.85" filter="url(#glow-b)"/>
+      <path d="M3 10h18" stroke={color} strokeWidth="1.5" opacity="0.6"/>
+      <circle cx="7" cy="15" r="1.5" fill={color} opacity="0.7"/>
+    </svg>
+  ),
+  frotas: (color, size) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <defs><filter id="glow-f"><feGaussianBlur stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <path d="M12 3v10M8 8l4-5 4 5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.85" filter="url(#glow-f)"/>
+      <rect x="6" y="14" width="12" height="7" rx="2" stroke={color} strokeWidth="1.5" opacity="0.7"/>
+      <path d="M10 17.5h4" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+    </svg>
+  ),
+  banking: (color, size) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <defs><filter id="glow-bk"><feGaussianBlur stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <path d="M3 21h18M4 10h16M12 3l9 7H3l9-7z" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.85" filter="url(#glow-bk)"/>
+      <path d="M7 10v8M12 10v8M17 10v8" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    </svg>
+  ),
+  despesas: (color, size) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <defs><filter id="glow-d"><feGaussianBlur stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <rect x="4" y="3" width="16" height="18" rx="2" stroke={color} strokeWidth="1.5" opacity="0.85" filter="url(#glow-d)"/>
+      <path d="M8 8h8M8 12h5M8 16h6" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    </svg>
+  ),
+  antecipacao: (color, size) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <defs><filter id="glow-a"><feGaussianBlur stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <circle cx="12" cy="12" r="9" stroke={color} strokeWidth="1.5" opacity="0.85" filter="url(#glow-a)"/>
+      <path d="M12 7v5l3.5 3.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
+    </svg>
+  ),
+  "sob-demanda": (color, size) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <defs><filter id="glow-s"><feGaussianBlur stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <circle cx="12" cy="12" r="3" stroke={color} strokeWidth="1.5" opacity="0.85" filter="url(#glow-s)"/>
+      <path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    </svg>
+  ),
+};
+
+const ProductIcon = ({ productKey, size = 18 }) => {
+  const color = PRODUCT_COLORS[productKey]?.accent || "#888";
+  const iconFn = PRODUCT_ICONS[productKey];
+  if (!iconFn) return null;
+  return <span style={{ display: "inline-flex", flexShrink: 0 }}>{iconFn(color, size)}</span>;
+};
+
 // ========================================
 // HOOKS
 // ========================================
@@ -797,9 +859,8 @@ function Header({ page, setPage }) {
       borderBottom: scrolled ? `1px solid ${T.borderLight}` : "1px solid transparent",
       transition: "all 0.35s ease", zIndex: 100,
     }}>
-      <div style={{ cursor: "pointer", display: "flex", alignItems: "baseline", gap: 2 }} onClick={() => nav("home")}>
-        <span style={{ fontSize: 26, fontWeight: 900, color: T.textLight, letterSpacing: "-0.04em" }}>just</span>
-        <span style={{ width: 7, height: 7, borderRadius: "50%", background: T.cta, display: "inline-block", marginBottom: 1 }} />
+      <div style={{ cursor: "pointer", display: "flex", alignItems: "center" }} onClick={() => nav("home")}>
+        <JustLogo height={36} />
       </div>
       <nav style={{ display: "flex", alignItems: "center", gap: 2 }}>
         <div style={{ position: "relative" }} onMouseEnter={() => setDropOpen(true)} onMouseLeave={() => setDropOpen(false)}>
@@ -816,7 +877,7 @@ function Header({ page, setPage }) {
                   padding: "10px 14px", background: "none", border: "none", color: T.textLight,
                   fontSize: 14, cursor: "pointer", borderRadius: 8, transition: "background 0.15s",
                 }}>
-                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: s.color, flexShrink: 0 }} />
+                  <ProductIcon productKey={s.key} size={18} />
                   {s.label}
                 </button>
               ))}
@@ -842,9 +903,8 @@ function Footer({ setPage }) {
     <footer style={{ background: T.footerBg, padding: "80px 48px 40px", borderTop: `1px solid ${T.borderLight}` }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48 }}>
         <div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 2, marginBottom: 20 }}>
-            <span style={{ fontSize: 22, fontWeight: 900, color: T.textLight }}>just</span>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: T.cta }} />
+          <div style={{ marginBottom: 20 }}>
+            <JustLogo height={30} />
           </div>
           <p style={{ fontSize: 13, color: "rgba(242,244,248,0.35)", lineHeight: 1.7, maxWidth: 260 }}>
             Plataforma de produtos financeiros digitais. Tecnologia pronta para operar, escalar e evoluir.
@@ -853,7 +913,10 @@ function Footer({ setPage }) {
         <div>
           <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>Produtos</h4>
           {[["beneficios","Beneficios"],["frotas","Frotas"],["banking","Banking"],["despesas","Despesas"],["antecipacao","Antecipacao"],["sob-demanda","Sob Demanda"]].map(([k,l]) =>
-            <button key={k} style={fl} onClick={() => nav(k)}>{l}</button>
+            <button key={k} style={{ ...fl, display: "flex", alignItems: "center", gap: 8 }} onClick={() => nav(k)}>
+              <ProductIcon productKey={k} size={16} />
+              {l}
+            </button>
           )}
         </div>
         <div>
@@ -925,14 +988,37 @@ function HomePage({ setPage }) {
               <Tag>Plataforma de produtos financeiros</Tag>
             </Reveal>
             <Reveal delay={0.1}>
-              <h1 style={{ fontSize: 56, fontWeight: 700, color: T.textLight, lineHeight: 1.08, letterSpacing: "-0.03em", margin: "20px 0" }}>
-                Sua fintech.<br />Pronta para operar<br />em meses.
+              <h1 style={{ fontSize: 60, fontWeight: 800, color: T.textLight, lineHeight: 1.06, letterSpacing: "-0.035em", margin: "20px 0" }}>
+                Sua fintech.<br />Pronta para operar<br />em <span style={{ color: "#f45546" }}>semanas</span>, nao meses.
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
               <p style={{ fontSize: 18, color: T.textMutedLight, lineHeight: 1.6, maxWidth: 480, marginBottom: 36 }}>
-                Produtos financeiros completos, white-label, com tecnologia modular e integracoes prontas. Configure, personalize e lance.
+                Produtos financeiros completos, white-label, com tecnologia modular e integracoes prontas.
               </p>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 36, flexWrap: "wrap" }}>
+                {["Configure", "Personalize"].map((word) => (
+                  <span key={word} style={{
+                    fontSize: 15, fontWeight: 600, color: "rgba(242,244,248,0.55)",
+                    background: "rgba(242,244,248,0.06)", border: "1px solid rgba(242,244,248,0.1)",
+                    borderRadius: 8, padding: "6px 16px", letterSpacing: "0.01em",
+                  }}>{word}</span>
+                ))}
+                <svg width="20" height="14" viewBox="0 0 20 14" fill="none" style={{ margin: "0 2px", flexShrink: 0 }}>
+                  <path d="M1 7h16M13 1l5 6-5 6" stroke="rgba(242,244,248,0.3)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span style={{
+                  fontSize: 15, fontWeight: 700, color: "#fff",
+                  background: "linear-gradient(135deg, #f45546, #e0392b)", border: "1px solid rgba(244,85,70,0.4)",
+                  borderRadius: 8, padding: "6px 20px", letterSpacing: "0.01em",
+                  boxShadow: "0 0 20px rgba(244,85,70,0.25), 0 2px 8px rgba(0,0,0,0.2)",
+                }}>
+                  Lance
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ marginLeft: 6, verticalAlign: "middle" }}>
+                    <path d="M2 12L12 2M12 2H5M12 2v7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
             </Reveal>
             <Reveal delay={0.4}>
               <div style={{ display: "flex", gap: 12 }}>
