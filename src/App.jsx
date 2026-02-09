@@ -2733,10 +2733,10 @@ function HomePage({ setPage }) {
             </Reveal>
           </div>
 
+          <Reveal delay={0.15}>
           <div className="process-timeline">
 
             {/* Step 1: Discovery */}
-            <Reveal delay={0.1}>
               <div className="process-step">
                 <div className="step-indicator">
                   <div className="step-number" style={{ background: "#1a1120", border: "1.5px solid rgba(244,85,70,0.35)", color: "#f45546", boxShadow: "inset 0 0 12px rgba(244,85,70,0.08)" }}>01</div>
@@ -2775,10 +2775,8 @@ function HomePage({ setPage }) {
                   </div>
                 </div>
               </div>
-            </Reveal>
 
             {/* Step 2: Arquitetura */}
-            <Reveal delay={0.2}>
               <div className="process-step">
                 <div className="step-indicator">
                   <div className="step-number" style={{ background: "#120f22", border: "1.5px solid rgba(108,92,231,0.35)", color: "#6C5CE7", boxShadow: "inset 0 0 12px rgba(108,92,231,0.08)" }}>02</div>
@@ -2807,10 +2805,8 @@ function HomePage({ setPage }) {
                   </div>
                 </div>
               </div>
-            </Reveal>
 
             {/* Step 3: Integracao */}
-            <Reveal delay={0.3}>
               <div className="process-step">
                 <div className="step-indicator">
                   <div className="step-number" style={{ background: "#0c1620", border: "1.5px solid rgba(0,184,148,0.35)", color: "#00B894", boxShadow: "inset 0 0 12px rgba(0,184,148,0.08)" }}>03</div>
@@ -2848,10 +2844,8 @@ function HomePage({ setPage }) {
                   </div>
                 </div>
               </div>
-            </Reveal>
 
             {/* Step 4: Operacao */}
-            <Reveal delay={0.4}>
               <div className="process-step">
                 <div className="step-indicator">
                   <div className="step-number" style={{ background: "#0e1820", border: "1.5px solid rgba(39,174,96,0.35)", color: "#27AE60", boxShadow: "inset 0 0 12px rgba(39,174,96,0.08)" }}>04</div>
@@ -2889,9 +2883,9 @@ function HomePage({ setPage }) {
                   </div>
                 </div>
               </div>
-            </Reveal>
 
           </div>
+          </Reveal>
 
           {/* Summary bar */}
           <Reveal delay={0.5}>
