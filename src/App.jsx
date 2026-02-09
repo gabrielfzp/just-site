@@ -1510,6 +1510,77 @@ function EcosystemAnimation() {
 .summary-text { font-size: 14px; color: rgba(242,244,248,0.5); line-height: 1.4; }
 .summary-text strong { color: rgba(242,244,248,0.85); font-weight: 600; display: block; }
 .summary-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.06); }
+
+
+/* ===== CASES VIDEO SECTION ===== */
+.cases-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.case-card {
+  background: rgba(255,255,255,0.025);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  border-color: rgba(255,255,255,0.1);
+}
+.case-video {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #0f112b;
+  overflow: hidden;
+}
+.case-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.case-content { padding: 32px; }
+.case-products { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.product-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px 5px 8px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.product-badge svg { width: 20px; height: 20px; flex-shrink: 0; }
+.case-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(242,244,248,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.case-headline {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f2f4f8;
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+.case-metrics { display: flex; flex-wrap: wrap; gap: 8px; }
+.case-metric {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 6px;
+  line-height: 1.4;
+}
 }`}</style>
     </div>
   );
@@ -2871,35 +2942,88 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== CASES PREVIEW ===== */}
-      <section style={{ background: T.bgLight, padding: "120px 48px" }}>
+      <section style={{ background: T.darkAlt, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionTitle tag="Cases" title="Resultados reais. Fintechs em producao." light center />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-            {[
-              { tag: "Beneficios", name: "ViaSoftPay", headline: "Do zero a producao em 45 dias", metrics: ["100k+ usuarios", "R$500M+ processamento/ano", "NPS 100"], color: PRODUCT_COLORS.beneficios.accent },
-              { tag: "Frotas", name: "eFleet", headline: "5+ anos de parceria, 10+ modulos", metrics: ["R$500M+ processamento/ano", "10+ modulos integrados", "Evolucao continua"], color: PRODUCT_COLORS.frotas.accent },
-            ].map((c, i) => (
-              <Reveal key={i} delay={i * 0.12}>
-                <div onClick={() => nav("cases")} style={{
-                  borderRadius: 16, padding: 40, cursor: "pointer",
-                  background: T.bgOffwhite, border: "1px solid rgba(15,17,43,0.06)",
-                  transition: "all 0.3s ease",
-                }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: c.color }} />
-                    <Tag light color={c.color}>{c.tag}</Tag>
-                  </div>
-                  <p style={{ fontSize: 13, fontWeight: 600, color: "rgba(15,17,43,0.4)", textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: 4 }}>{c.name}</p>
-                  <h3 style={{ fontSize: 26, fontWeight: 700, color: T.primary, lineHeight: 1.2, marginBottom: 20 }}>{c.headline}</h3>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
-                    {c.metrics.map((m, j) => (
-                      <span key={j} style={{ fontSize: 12, padding: "5px 12px", borderRadius: 6, background: `${c.color}10`, color: c.color, fontWeight: 500 }}>{m}</span>
-                    ))}
-                  </div>
-                  <span style={{ fontSize: 14, color: T.cta, fontWeight: 600 }}>Ver case completo &rarr;</span>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <Reveal>
+              <Tag>Cases</Tag>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 style={{ fontSize: 44, fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.025em", color: T.textLight }}>
+                Resultados reais. Fintechs em producao.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p style={{ fontSize: 17, color: T.textMutedLight, lineHeight: 1.6, marginTop: 16, maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>
+                Conheca alguns dos produtos que construimos e operamos com nossos parceiros.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="cases-grid">
+
+            {/* Case 1: eFleet */}
+            <Reveal delay={0.1}>
+              <div className="case-card">
+                <div className="case-video">
+                  <iframe
+                    src="https://www.youtube.com/embed/rngBWxLvsNw?rel=0&modestbranding=1"
+                    title="eFleet - Case JUST"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
-              </Reveal>
-            ))}
+                <div className="case-content">
+                  <div className="case-products">
+                    <span className="product-badge" style={{ background: "rgba(0,184,148,0.08)", color: "#00B894", border: "1px solid rgba(0,184,148,0.15)" }}>
+                      <svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" strokeWidth="2" fill="none" opacity="0.9" /><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#55EFC4" strokeWidth="1.5" fill="none" opacity="0.6" /><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" strokeWidth="1.8" fill="none" strokeLinecap="round" opacity="0.7" /><circle cx="33" cy="26" r="2" stroke="#00B894" strokeWidth="1.5" fill="none" opacity="0.5" /><line x1="8" y1="36" x2="28" y2="36" stroke="#55EFC4" strokeWidth="1.8" strokeLinecap="round" opacity="0.4" /></svg>
+                      Fleet
+                    </span>
+                  </div>
+                  <p className="case-name">eFleet</p>
+                  <h3 className="case-headline">Gestao de Frota com abastecimento e pagamento de pedagio</h3>
+                  <div className="case-metrics">
+                    <span className="case-metric" style={{ background: "rgba(0,184,148,0.06)", color: "#00B894" }}>5+ anos de parceria</span>
+                    <span className="case-metric" style={{ background: "rgba(0,184,148,0.06)", color: "#00B894" }}>R$250M+ processamento/ano</span>
+                    <span className="case-metric" style={{ background: "rgba(0,184,148,0.06)", color: "#00B894" }}>10+ modulos integrados</span>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Case 2: Viasoft Pay */}
+            <Reveal delay={0.2}>
+              <div className="case-card">
+                <div className="case-video">
+                  <iframe
+                    src="https://www.youtube.com/embed/dr_fzCkw7Z8?rel=0&modestbranding=1"
+                    title="ViasoftPay - Case JUST"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="case-content">
+                  <div className="case-products">
+                    <span className="product-badge" style={{ background: "rgba(108,92,231,0.08)", color: "#6C5CE7", border: "1px solid rgba(108,92,231,0.15)" }}>
+                      <svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" strokeWidth="2" fill="none" opacity="0.9" /><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#A29BFE" strokeWidth="1.5" fill="none" opacity="0.7" /><line x1="10" y1="26" x2="22" y2="26" stroke="#A29BFE" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" /><line x1="10" y1="29" x2="17" y2="29" stroke="#A29BFE" strokeWidth="1.2" strokeLinecap="round" opacity="0.35" /><circle cx="33" cy="27" r="3" stroke="#6C5CE7" strokeWidth="1.5" fill="none" opacity="0.6" /><circle cx="30" cy="27" r="3" stroke="#6C5CE7" strokeWidth="1.5" fill="none" opacity="0.4" /></svg>
+                      Benefits
+                    </span>
+                    <span className="product-badge" style={{ background: "rgba(225,112,85,0.08)", color: "#E17055", border: "1px solid rgba(225,112,85,0.15)" }}>
+                      <svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" strokeWidth="2" fill="none" opacity="0.9" strokeLinejoin="round" /><line x1="16" y1="14" x2="28" y2="14" stroke="#FAB1A0" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" /><line x1="16" y1="19" x2="28" y2="19" stroke="#FAB1A0" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" /><line x1="16" y1="24" x2="24" y2="24" stroke="#FAB1A0" strokeWidth="1.5" strokeLinecap="round" opacity="0.4" /><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5" /></svg>
+                      Expense
+                    </span>
+                  </div>
+                  <p className="case-name">Viasoft Pay</p>
+                  <h3 className="case-headline">Beneficios e Despesas Corporativas com Arranjo Hibrido</h3>
+                  <div className="case-metrics">
+                    <span className="case-metric" style={{ background: "rgba(108,92,231,0.06)", color: "#6C5CE7" }}>100k+ usuarios</span>
+                    <span className="case-metric" style={{ background: "rgba(108,92,231,0.06)", color: "#6C5CE7" }}>R$500M+ processamento/ano</span>
+                    <span className="case-metric" style={{ background: "rgba(108,92,231,0.06)", color: "#6C5CE7" }}>45 dias zero-to-production</span>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
           </div>
         </div>
       </section>
