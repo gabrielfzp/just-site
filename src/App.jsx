@@ -2927,13 +2927,35 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== METRICS ===== */}
-      <section style={{ background: T.primary, padding: "100px 48px", borderTop: `1px solid ${T.borderLight}`, borderBottom: `1px solid ${T.borderLight}` }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
-          <Metric prefix="R$" value={35.9} suffix="M" label="TPV processado" />
-          <Metric value={40955} suffix="+" label="Usuarios ativos" delay={0.08} />
-          <Metric value={18} suffix="+" label="Clientes ativos" delay={0.16} />
-          <Metric prefix="NPS " value={76} suffix="" label="Satisfacao" delay={0.24} />
-        </div>
+      <section style={{ background: T.primary, padding: "80px 48px", borderTop: `1px solid rgba(255,255,255,0.04)`, borderBottom: `1px solid rgba(255,255,255,0.04)` }}>
+        <Reveal>
+          <div className="metrics-grid" style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0 }}>
+            <div className="metric-item" style={{ textAlign: "center", padding: "32px 24px", position: "relative" }}>
+              <div style={{ fontSize: 42, fontWeight: 800, letterSpacing: "-0.03em", color: "rgba(242,244,248,0.85)", lineHeight: 1, marginBottom: 10 }}>
+                <span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginRight: 2 }}>R$</span>4<span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginLeft: 2 }}>bi+</span>
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>TPV processado</div>
+            </div>
+            <div className="metric-item" style={{ textAlign: "center", padding: "32px 24px", position: "relative", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ fontSize: 42, fontWeight: 800, letterSpacing: "-0.03em", color: "rgba(242,244,248,0.85)", lineHeight: 1, marginBottom: 10 }}>
+                30<span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginLeft: 2 }}>M+</span>
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>Transacoes processadas</div>
+            </div>
+            <div className="metric-item" style={{ textAlign: "center", padding: "32px 24px", position: "relative", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ fontSize: 42, fontWeight: 800, letterSpacing: "-0.03em", color: "rgba(242,244,248,0.85)", lineHeight: 1, marginBottom: 10 }}>
+                500<span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginLeft: 2 }}>mil+</span>
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>Usuarios em plataforma</div>
+            </div>
+            <div className="metric-item" style={{ textAlign: "center", padding: "32px 24px", position: "relative", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ fontSize: 42, fontWeight: 800, letterSpacing: "-0.03em", color: "rgba(242,244,248,0.85)", lineHeight: 1, marginBottom: 10 }}>
+                15<span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginLeft: 2 }}>+</span>
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>Fintechs construidas</div>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* ===== CASES PREVIEW ===== */}
@@ -3019,31 +3041,6 @@ function HomePage({ setPage }) {
               </div>
             </Reveal>
 
-          </div>
-        </div>
-      </section>
-
-      {/* ===== WHY JUST ===== */}
-      <section style={{ background: T.primary, padding: "120px 48px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <SectionTitle tag="Por que a JUST" title={"Plataforma. Nao promessa."} center subtitle="Diferente de consultorias que entregam projetos, a JUST entrega produtos que continuam evoluindo." />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            {[
-              { icon: "&#9889;", t: "Produtos prontos, nao projetos", d: "70-80% da tecnologia ja esta pronta. Voce configura e personaliza, nao reconstroi do zero." },
-              { icon: "&#128274;", t: "Sem lock-in de provedor", d: "Arquitetura multi-BaaS. Troque provedores sem impactar o produto final." },
-              { icon: "&#127912;", t: "White-label completo", d: "Sua marca, suas regras. O usuario final nunca sabe que a JUST esta por tras." },
-              { icon: "&#128736;", t: "Sustentacao e evolucao continua", d: "Nao entregamos e sumimos. Monitoramos, evoluimos e operamos junto." },
-            ].map((d, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div style={{ padding: 28, borderRadius: 14, background: "rgba(255,255,255,0.025)", border: `1px solid ${T.borderLight}`, display: "flex", gap: 16 }}>
-                  <div style={{ fontSize: 24, flexShrink: 0, opacity: 0.7 }} dangerouslySetInnerHTML={{ __html: d.icon }} />
-                  <div>
-                    <h3 style={{ fontSize: 16, fontWeight: 700, color: T.textLight, marginBottom: 6 }}>{d.t}</h3>
-                    <p style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.6 }}>{d.d}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>
