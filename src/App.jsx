@@ -1150,6 +1150,11 @@ function HeroOrbital() {
 
 
 
+/* ===== PARTNER LOGOS ===== */
+.partner-logo:hover {
+  opacity: 0.6 !important;
+}
+
 /* ===== PROCESS TIMELINE ===== */
 .process-timeline {
   position: relative;
@@ -1587,8 +1592,8 @@ function HeroOrbital() {
   .social-logos {
     gap: 14px !important;
   }
-  .social-logos span {
-    font-size: 13px !important;
+  .social-logos img {
+    height: 18px !important;
   }
 
   .section-depara,
@@ -2515,16 +2520,21 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== SOCIAL PROOF BAR ===== */}
-      <section className="section-social-proof" style={{ background: T.primary, borderTop: `1px solid ${T.borderLight}`, borderBottom: `1px solid ${T.borderLight}`, padding: "32px 48px" }}>
+      <section className="section-social-proof" style={{ background: T.primary, borderTop: `1px solid ${T.borderLight}`, borderBottom: `1px solid ${T.borderLight}`, padding: "28px 48px" }}>
         <Reveal>
-          <div className="social-proof-bar" style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <span style={{ fontSize: 12, color: T.textMuted, textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 500, flexShrink: 0 }}>
-              Empresas que operam com a JUST
-            </span>
-            <div className="social-logos" style={{ display: "flex", gap: 40, alignItems: "center" }}>
-              {["eFleet", "ViaSoftPay", "SmartVale", "KPI", "FaithPay"].map((n) => (
-                <span key={n} style={{ fontSize: 16, fontWeight: 700, color: "rgba(242,244,248,0.25)", letterSpacing: "0.01em", transition: "color 0.3s" }}>{n}</span>
-              ))}
+          <div className="social-proof-bar" style={{ maxWidth: 1200, margin: "0 auto" }}>
+            <div style={{ textAlign: "center", fontSize: 11, fontWeight: 500, color: "rgba(242,244,248,0.25)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 20 }}>
+              Ecossistema e parceiros
+            </div>
+            <div className="social-logos" style={{ display: "flex", gap: 40, alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/abfintechs.png`} alt="ABFintechs" style={{ height: 22, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/abstartups.png`} alt="ABStartups" style={{ height: 26, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itaú" style={{ height: 34, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/aws-partner.png`} alt="AWS Partner" style={{ height: 30, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/fiserv.png`} alt="Fiserv" style={{ height: 22, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/linx.png`} alt="Linx" style={{ height: 24, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/swap.svg`} alt="Swap" style={{ height: 22, width: "auto", opacity: 0.3, filter: "invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/evertec.svg`} alt="Evertec" style={{ height: 22, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
             </div>
           </div>
         </Reveal>
