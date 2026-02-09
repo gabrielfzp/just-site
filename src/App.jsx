@@ -1393,6 +1393,204 @@ function HeroOrbital() {
   line-height: 1.4;
 }
 
+
+
+/* ===== RESPONSIVE / MOBILE ===== */
+@media (max-width: 900px) {
+  /* --- Global section padding --- */
+  .section-hero { padding: 100px 24px 60px !important; }
+  .section-social-proof { padding: 24px 20px !important; }
+  .section-depara { padding: 72px 20px !important; }
+  .section-products { padding: 72px 20px !important; }
+  .section-cards { padding: 72px 20px !important; }
+  .section-process { padding: 72px 20px !important; }
+  .section-metrics { padding: 48px 20px !important; }
+  .section-cases { padding: 72px 20px !important; }
+  .section-cta { padding: 80px 20px !important; }
+
+  /* --- Hero --- */
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  .hero-title {
+    font-size: 36px !important;
+    line-height: 1.1 !important;
+  }
+
+  /* --- Social Proof --- */
+  .social-proof-bar {
+    flex-direction: column !important;
+    gap: 16px !important;
+    text-align: center !important;
+  }
+  .social-logos {
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  /* --- DE > PARA --- */
+  .depara-labels {
+    grid-template-columns: 1fr 36px 1fr !important;
+  }
+
+  /* --- Bento Grid --- */
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .bento-grid .bento-card {
+    grid-column: span 1 !important;
+  }
+
+  /* --- Card Arrangements --- */
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* --- Hybrid Section --- */
+  .hybrid-section-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* --- Process Timeline --- */
+  .process-step {
+    grid-template-columns: 60px 1fr !important;
+    gap: 16px !important;
+  }
+  .step-visual {
+    display: none !important;
+  }
+  .process-timeline::before {
+    left: 29px !important;
+  }
+  .step-number {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 14px !important;
+  }
+  .step-title {
+    font-size: 18px !important;
+  }
+  .step-desc {
+    font-size: 14px !important;
+  }
+  .process-summary {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding: 24px 20px !important;
+  }
+  .summary-divider {
+    display: none !important;
+  }
+  .summary-item {
+    justify-content: flex-start !important;
+    padding: 0 !important;
+  }
+
+  /* --- Metrics --- */
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .metric-item {
+    border-left: none !important;
+  }
+  .metric-item:nth-child(2) {
+    border-left: 1px solid rgba(255,255,255,0.06) !important;
+  }
+  .metric-item:nth-child(4) {
+    border-left: 1px solid rgba(255,255,255,0.06) !important;
+  }
+  .metric-item:nth-child(3),
+  .metric-item:nth-child(4) {
+    border-top: 1px solid rgba(255,255,255,0.06) !important;
+  }
+
+  /* --- Cases --- */
+  .cases-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .case-headline {
+    font-size: 20px !important;
+  }
+
+  /* --- General heading overrides --- */
+  .section-depara h2,
+  .section-products h2,
+  .section-cards h2,
+  .section-process h2,
+  .section-cases h2 {
+    font-size: 30px !important;
+  }
+  .section-cta h2 {
+    font-size: 30px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  /* --- Extra small screens --- */
+  .section-hero { padding: 80px 16px 48px !important; }
+  .hero-title {
+    font-size: 28px !important;
+  }
+  .hero-grid p {
+    font-size: 15px !important;
+  }
+
+  .section-social-proof { padding: 20px 16px !important; }
+  .social-logos {
+    gap: 14px !important;
+  }
+  .social-logos span {
+    font-size: 13px !important;
+  }
+
+  .section-depara,
+  .section-products,
+  .section-cards,
+  .section-process,
+  .section-cases {
+    padding: 56px 16px !important;
+  }
+  .section-metrics { padding: 36px 16px !important; }
+  .section-cta { padding: 64px 16px !important; }
+
+  .depara-labels {
+    grid-template-columns: 1fr 28px 1fr !important;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .process-step {
+    grid-template-columns: 48px 1fr !important;
+  }
+  .process-timeline::before {
+    left: 23px !important;
+  }
+  .step-number {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+    font-size: 13px !important;
+  }
+
+  .section-depara h2,
+  .section-products h2,
+  .section-cards h2,
+  .section-process h2,
+  .section-cases h2,
+  .section-cta h2 {
+    font-size: 26px !important;
+  }
+
+  .case-content { padding: 20px !important; }
+  .case-headline { font-size: 18px !important; }
+  .case-metrics { gap: 6px !important; }
+}
 `}</style>
     </div>
   );
@@ -2200,7 +2398,7 @@ function HomePage({ setPage }) {
   return (
     <div>
       {/* ===== HERO ===== */}
-      <section style={{
+      <section className="section-hero" style={{
         background: `linear-gradient(160deg, #06080F 0%, ${T.primary} 50%, ${T.darkAlt} 100%)`,
         padding: "140px 48px 80px", position: "relative", overflow: "hidden",
       }}>
@@ -2208,13 +2406,13 @@ function HomePage({ setPage }) {
         <div style={{ position: "absolute", top: "15%", right: "10%", width: 500, height: 500, background: "radial-gradient(circle, rgba(108,92,231,0.07), transparent 70%)", borderRadius: "50%", filter: "blur(80px)" }} />
         <div style={{ position: "absolute", bottom: "10%", left: "5%", width: 400, height: 400, background: "radial-gradient(circle, rgba(244,85,70,0.05), transparent 70%)", borderRadius: "50%", filter: "blur(60px)" }} />
 
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center", position: "relative", zIndex: 2 }}>
+        <div className="hero-grid" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center", position: "relative", zIndex: 2 }}>
           <div>
             <Reveal>
               <Tag>Plataforma de produtos financeiros</Tag>
             </Reveal>
             <Reveal delay={0.1}>
-              <h1 style={{ fontSize: 60, fontWeight: 800, color: T.textLight, lineHeight: 1.06, letterSpacing: "-0.035em", margin: "20px 0" }}>
+              <h1 className="hero-title" style={{ fontSize: 60, fontWeight: 800, color: T.textLight, lineHeight: 1.06, letterSpacing: "-0.035em", margin: "20px 0" }}>
                 Sua fintech.<br />Pronta para operar<br />em <span style={{ background: "linear-gradient(135deg, #6C5CE7, #A29BFE, #74B9FF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>semanas, nao meses.</span>
               </h1>
             </Reveal>
@@ -2262,13 +2460,13 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== SOCIAL PROOF BAR ===== */}
-      <section style={{ background: T.primary, borderTop: `1px solid ${T.borderLight}`, borderBottom: `1px solid ${T.borderLight}`, padding: "32px 48px" }}>
+      <section className="section-social-proof" style={{ background: T.primary, borderTop: `1px solid ${T.borderLight}`, borderBottom: `1px solid ${T.borderLight}`, padding: "32px 48px" }}>
         <Reveal>
-          <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div className="social-proof-bar" style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <span style={{ fontSize: 12, color: T.textMuted, textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 500, flexShrink: 0 }}>
               Empresas que operam com a JUST
             </span>
-            <div style={{ display: "flex", gap: 40, alignItems: "center" }}>
+            <div className="social-logos" style={{ display: "flex", gap: 40, alignItems: "center" }}>
               {["eFleet", "ViaSoftPay", "SmartVale", "KPI", "FaithPay"].map((n) => (
                 <span key={n} style={{ fontSize: 16, fontWeight: 700, color: "rgba(242,244,248,0.25)", letterSpacing: "0.01em", transition: "color 0.3s" }}>{n}</span>
               ))}
@@ -2278,7 +2476,7 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== DE > PARA (Comparison) ===== */}
-      <section style={{ background: T.primary, padding: "120px 48px" }}>
+      <section className="section-depara" style={{ background: T.primary, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           {/* Section header */}
           <Reveal>
@@ -2296,7 +2494,7 @@ function HomePage({ setPage }) {
           </Reveal>
 
           {/* Column labels */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 52px 1fr", gap: 0, marginBottom: 14, padding: "0 4px" }}>
+          <div className="depara-labels" style={{ display: "grid", gridTemplateColumns: "1fr 52px 1fr", gap: 0, marginBottom: 14, padding: "0 4px" }}>
             <div>
               <span style={{
                 display: "inline-flex", alignItems: "center", gap: 7,
@@ -2323,7 +2521,7 @@ function HomePage({ setPage }) {
           </div>
 
           {/* Comparison rows */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <div className="depara-row" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {comparisons.map((row, i) => (
               <Reveal key={i} delay={i * 0.06}>
                 <div
@@ -2401,7 +2599,7 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== PRODUCTS BENTO GRID ===== */}
-      <section style={{ background: T.primary, padding: "120px 48px" }}>
+      <section className="section-products" style={{ background: T.primary, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionTitle tag="Produtos" title={"Modulos prontos para cada\nvertical do seu negocio."} subtitle="Cada produto opera de forma independente ou combinada. White-label completo." />
 
@@ -2519,7 +2717,7 @@ function HomePage({ setPage }) {
 
       
       {/* ===== CARD ARRANGEMENTS ===== */}
-      <section style={{ background: T.darkAlt, padding: "120px 48px" }}>
+      <section className="section-cards" style={{ background: T.darkAlt, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionTitle tag="Arranjos de cartao" title={<>Bandeirado ou Private Label?<br /><span style={{ background: "linear-gradient(135deg, #f45546, #FF7675)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Voce escolhe.</span></>} subtitle="Operamos com arranjo aberto (bandeirado), fechado (private label) ou hibrido. A decisao e estrategica e nos ajudamos voce a tomar." center />
 
@@ -2716,7 +2914,7 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== PROCESS ===== */}
-      <section style={{ background: T.darkAlt, padding: "120px 48px" }}>
+      <section className="section-process" style={{ background: T.darkAlt, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 72 }}>
             <Reveal>
@@ -2927,7 +3125,7 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== METRICS ===== */}
-      <section style={{ background: T.primary, padding: "80px 48px", borderTop: `1px solid rgba(255,255,255,0.04)`, borderBottom: `1px solid rgba(255,255,255,0.04)` }}>
+      <section className="section-metrics" style={{ background: T.primary, padding: "80px 48px", borderTop: `1px solid rgba(255,255,255,0.04)`, borderBottom: `1px solid rgba(255,255,255,0.04)` }}>
         <Reveal>
           <div className="metrics-grid" style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0 }}>
             <div className="metric-item" style={{ textAlign: "center", padding: "32px 24px", position: "relative" }}>
@@ -2959,7 +3157,7 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== CASES PREVIEW ===== */}
-      <section style={{ background: T.darkAlt, padding: "120px 48px" }}>
+      <section className="section-cases" style={{ background: T.darkAlt, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <Reveal>
@@ -3046,7 +3244,7 @@ function HomePage({ setPage }) {
       </section>
 
       {/* ===== CTA FINAL ===== */}
-      <section style={{ background: `linear-gradient(160deg, ${T.darkAlt}, ${T.secondary})`, padding: "120px 48px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+      <section className="section-cta" style={{ background: `linear-gradient(160deg, ${T.darkAlt}, ${T.secondary})`, padding: "120px 48px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 600, height: 600, background: "radial-gradient(circle, rgba(244,85,70,0.06), transparent)", borderRadius: "50%", filter: "blur(80px)" }} />
         <div style={{ position: "relative", zIndex: 2 }}>
           <Reveal>
@@ -3413,7 +3611,25 @@ export default function App() {
         ::selection { background: rgba(244,85,70,0.3); }
         input:focus, textarea:focus, select:focus { border-color: ${T.cta} !important; }
         button:focus { outline: none; }
-      `}</style>
+      
+@media (max-width: 900px) {
+  .depara-row {
+    grid-template-columns: 1fr 36px 1fr !important;
+    gap: 0 !important;
+  }
+}
+@media (max-width: 520px) {
+  .depara-row {
+    grid-template-columns: 1fr 28px 1fr !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-grid > div:last-child {
+    display: none !important;
+  }
+}
+`}</style>
       <Header page={page} setPage={setPage} />
       <main>{render()}</main>
       <Footer setPage={setPage} />
