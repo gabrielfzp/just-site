@@ -1337,7 +1337,180 @@ function EcosystemAnimation() {
           </g>
         ))}
       </svg>
-      <style>{`@keyframes ecosDash { to { stroke-dashoffset: -80; } }`}</style>
+      <style>{`@keyframes ecosDash { to { stroke-dashoffset: -80; } 
+
+/* ===== PROCESS TIMELINE ===== */
+.process-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.process-timeline::before {
+  content: '';
+  position: absolute;
+  left: 39px;
+  top: 40px;
+  bottom: 40px;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(244,85,70,0.4), rgba(108,92,231,0.4) 33%, rgba(0,184,148,0.4) 66%, rgba(39,174,96,0.4));
+}
+.process-step {
+  display: grid;
+  grid-template-columns: 80px 1fr 340px;
+  gap: 32px;
+  align-items: start;
+  padding: 36px 0;
+  position: relative;
+}
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+.step-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 3;
+}
+.process-step:hover .step-number {
+  transform: scale(1.08);
+}
+.step-content {
+  padding-top: 8px;
+}
+.step-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f2f4f8;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.step-desc {
+  font-size: 15px;
+  color: rgba(242,244,248,0.45);
+  line-height: 1.7;
+  margin-bottom: 18px;
+  max-width: 420px;
+}
+.step-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.step-tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+.step-visual {
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  overflow: hidden;
+  padding: 24px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.process-step:hover .step-visual {
+  border-color: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.03);
+}
+.discovery-visual { display: flex; flex-direction: column; gap: 10px; }
+.disc-question { display: flex; align-items: center; gap: 10px; }
+.disc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.disc-bar { height: 8px; border-radius: 4px; opacity: 0.15; }
+.disc-answer { margin-left: 18px; display: flex; gap: 6px; }
+.disc-pill { height: 24px; border-radius: 6px; font-size: 10px; font-weight: 600; padding: 0 10px; display: flex; align-items: center; }
+.arq-visual { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.arq-block {
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: transform 0.3s ease;
+}
+.process-step:hover .arq-block { transform: scale(1.03); }
+.arq-block-ready { border: 1px solid rgba(0,184,148,0.3); background: rgba(0,184,148,0.08); color: rgba(0,184,148,0.7); }
+.arq-block-config { border: 1px solid rgba(108,92,231,0.3); background: rgba(108,92,231,0.08); color: rgba(108,92,231,0.7); }
+.arq-progress { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
+.arq-bar-bg { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.06); overflow: hidden; }
+.arq-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #00B894, #55EFC4); width: 75%; }
+.arq-label { font-size: 11px; font-weight: 600; color: rgba(0,184,148,0.7); white-space: nowrap; }
+.int-visual { display: flex; flex-direction: column; gap: 8px; }
+.int-row { display: flex; align-items: center; gap: 8px; }
+.int-node { padding: 6px 12px; border-radius: 8px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+.int-node-just { background: rgba(244,85,70,0.1); border: 1px solid rgba(244,85,70,0.25); color: rgba(244,85,70,0.8); }
+.int-node-provider { background: rgba(108,92,231,0.08); border: 1px solid rgba(108,92,231,0.2); color: rgba(108,92,231,0.7); }
+.int-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); position: relative; }
+.int-line::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid rgba(255,255,255,0.15);
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+.int-status { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+.int-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #00B894; animation: procStatusPulse 2s ease infinite; }
+@keyframes procStatusPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,184,148,0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(0,184,148,0); }
+}
+.int-status-text { font-size: 10px; font-weight: 500; color: rgba(0,184,148,0.6); }
+.op-visual { display: flex; flex-direction: column; gap: 10px; }
+.op-topbar { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.op-dot { width: 6px; height: 6px; border-radius: 50%; }
+.op-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.op-metric { padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
+.op-metric-label { font-size: 9px; font-weight: 500; color: rgba(242,244,248,0.35); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.op-metric-value { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+.op-status-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; background: rgba(39,174,96,0.06); border: 1px solid rgba(39,174,96,0.15); }
+.op-status-dot { width: 8px; height: 8px; border-radius: 50%; background: #27AE60; animation: procStatusPulse 2s ease infinite; }
+.op-status-text { font-size: 11px; font-weight: 600; color: rgba(39,174,96,0.8); }
+.process-step + .process-step { border-top: 1px solid rgba(255,255,255,0.03); }
+.process-summary {
+  margin-top: 56px;
+  padding: 28px 36px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(244,85,70,0.04), rgba(108,92,231,0.04));
+  border: 1px solid rgba(255,255,255,0.06);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 0;
+}
+.summary-item { display: flex; align-items: center; gap: 12px; justify-content: center; padding: 0 16px; }
+.summary-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.summary-text { font-size: 14px; color: rgba(242,244,248,0.5); line-height: 1.4; }
+.summary-text strong { color: rgba(242,244,248,0.85); font-weight: 600; display: block; }
+.summary-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.06); }
+}`}</style>
     </div>
   );
 }
@@ -1950,12 +2123,7 @@ function HomePage({ setPage }) {
     },
   ];
 
-  const steps = [
-    { n: "01", t: "Discovery", d: "Entendemos o modelo de negocio e os requisitos. Sem isso, nao comecamos." },
-    { n: "02", t: "Arquitetura", d: "Configuramos os modulos sobre nossa stack. 70-80% ja esta pronto." },
-    { n: "03", t: "Integracao", d: "Conectamos BaaS, adquirentes e parceiros. Voce acompanha cada sprint." },
-    { n: "04", t: "Operacao", d: "Produto no ar com monitoramento, suporte e evolucao continua." },
-  ];
+  // steps data removed - now inline in Process timeline section
 
   return (
     <div>
@@ -2477,19 +2645,218 @@ function HomePage({ setPage }) {
 
       {/* ===== PROCESS ===== */}
       <section style={{ background: T.darkAlt, padding: "120px 48px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <SectionTitle tag="Como funciona" title={"Da configuracao ao produto no ar.\nSem surpresas."} center />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
-            {steps.map((s, i) => (
-              <Reveal key={i} delay={i * 0.12}>
-                <div style={{ textAlign: "center", position: "relative" }}>
-                  <div style={{ width: 48, height: 48, borderRadius: 12, background: `${T.cta}12`, border: `1px solid ${T.cta}20`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", fontSize: 18, fontWeight: 700, color: T.cta }}>{s.n}</div>
-                  <h3 style={{ fontSize: 17, fontWeight: 700, color: T.textLight, margin: "0 0 8px" }}>{s.t}</h3>
-                  <p style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.6 }}>{s.d}</p>
-                </div>
-              </Reveal>
-            ))}
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 72 }}>
+            <Reveal>
+              <Tag>Como funciona</Tag>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 style={{ fontSize: 44, fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.025em", color: T.textLight }}>
+                Do briefing ao produto no ar.<br /><span style={{ background: "linear-gradient(135deg, #f45546, #FF7675)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Sem surpresas.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p style={{ fontSize: 17, color: T.textMutedLight, lineHeight: 1.6, marginTop: 16, maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>
+                Um processo estruturado que ja entregou 18+ fintechs. Cada etapa tem escopo, prazo e entregavel claro.
+              </p>
+            </Reveal>
           </div>
+
+          <div className="process-timeline">
+
+            {/* Step 1: Discovery */}
+            <Reveal delay={0.1}>
+              <div className="process-step">
+                <div className="step-indicator">
+                  <div className="step-number" style={{ background: "#1a1120", border: "1.5px solid rgba(244,85,70,0.35)", color: "#f45546", boxShadow: "inset 0 0 12px rgba(244,85,70,0.08)" }}>01</div>
+                </div>
+                <div className="step-content">
+                  <h3 className="step-title">Discovery e diagnostico</h3>
+                  <p className="step-desc">Mapeamos o modelo de negocio, fluxos financeiros, integradores necessarios e regras de operacao. Sem esse alinhamento, nao avancamos.</p>
+                  <div className="step-details">
+                    <span className="step-tag" style={{ background: "rgba(244,85,70,0.06)", color: "rgba(244,85,70,0.6)" }}>Modelo de negocio</span>
+                    <span className="step-tag" style={{ background: "rgba(244,85,70,0.06)", color: "rgba(244,85,70,0.6)" }}>Requisitos tecnicos</span>
+                    <span className="step-tag" style={{ background: "rgba(244,85,70,0.06)", color: "rgba(244,85,70,0.6)" }}>Cronograma</span>
+                  </div>
+                </div>
+                <div className="step-visual" style={{ background: "linear-gradient(160deg, rgba(244,85,70,0.03), transparent)" }}>
+                  <div className="discovery-visual">
+                    <div className="disc-question">
+                      <div className="disc-dot" style={{ background: "rgba(244,85,70,0.5)" }} />
+                      <div className="disc-bar" style={{ width: "65%", background: "#f45546" }} />
+                    </div>
+                    <div className="disc-answer">
+                      <div className="disc-pill" style={{ background: "rgba(244,85,70,0.08)", border: "1px solid rgba(244,85,70,0.2)", color: "rgba(244,85,70,0.7)" }}>Beneficios</div>
+                      <div className="disc-pill" style={{ background: "rgba(108,92,231,0.08)", border: "1px solid rgba(108,92,231,0.2)", color: "rgba(108,92,231,0.7)" }}>Hibrido</div>
+                    </div>
+                    <div className="disc-question">
+                      <div className="disc-dot" style={{ background: "rgba(244,85,70,0.5)" }} />
+                      <div className="disc-bar" style={{ width: "80%", background: "#f45546" }} />
+                    </div>
+                    <div className="disc-answer">
+                      <div className="disc-pill" style={{ background: "rgba(0,184,148,0.08)", border: "1px solid rgba(0,184,148,0.2)", color: "rgba(0,184,148,0.7)" }}>Swap (BaaS)</div>
+                      <div className="disc-pill" style={{ background: "rgba(0,184,148,0.08)", border: "1px solid rgba(0,184,148,0.2)", color: "rgba(0,184,148,0.7)" }}>Sitef</div>
+                    </div>
+                    <div className="disc-question">
+                      <div className="disc-dot" style={{ background: "rgba(244,85,70,0.5)" }} />
+                      <div className="disc-bar" style={{ width: "50%", background: "#f45546" }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Step 2: Arquitetura */}
+            <Reveal delay={0.2}>
+              <div className="process-step">
+                <div className="step-indicator">
+                  <div className="step-number" style={{ background: "#120f22", border: "1.5px solid rgba(108,92,231,0.35)", color: "#6C5CE7", boxShadow: "inset 0 0 12px rgba(108,92,231,0.08)" }}>02</div>
+                </div>
+                <div className="step-content">
+                  <h3 className="step-title">Arquitetura e configuracao</h3>
+                  <p className="step-desc">Ativamos os modulos da nossa stack que se encaixam no projeto. 70-80% da tecnologia ja esta pronta. O resto e configuracao, nao construcao.</p>
+                  <div className="step-details">
+                    <span className="step-tag" style={{ background: "rgba(108,92,231,0.06)", color: "rgba(108,92,231,0.6)" }}>Modulos ativados</span>
+                    <span className="step-tag" style={{ background: "rgba(108,92,231,0.06)", color: "rgba(108,92,231,0.6)" }}>White-label</span>
+                    <span className="step-tag" style={{ background: "rgba(108,92,231,0.06)", color: "rgba(108,92,231,0.6)" }}>Regras de negocio</span>
+                  </div>
+                </div>
+                <div className="step-visual" style={{ background: "linear-gradient(160deg, rgba(108,92,231,0.03), transparent)" }}>
+                  <div className="arq-visual">
+                    <div className="arq-block arq-block-ready">Core</div>
+                    <div className="arq-block arq-block-ready">Cartoes</div>
+                    <div className="arq-block arq-block-ready">Auth</div>
+                    <div className="arq-block arq-block-ready">Regras</div>
+                    <div className="arq-block arq-block-config">Custom</div>
+                    <div className="arq-block arq-block-ready">App</div>
+                  </div>
+                  <div className="arq-progress">
+                    <div className="arq-bar-bg"><div className="arq-bar-fill" /></div>
+                    <span className="arq-label">75% pronto</span>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Step 3: Integracao */}
+            <Reveal delay={0.3}>
+              <div className="process-step">
+                <div className="step-indicator">
+                  <div className="step-number" style={{ background: "#0c1620", border: "1.5px solid rgba(0,184,148,0.35)", color: "#00B894", boxShadow: "inset 0 0 12px rgba(0,184,148,0.08)" }}>03</div>
+                </div>
+                <div className="step-content">
+                  <h3 className="step-title">Integracao e homologacao</h3>
+                  <p className="step-desc">Conectamos BaaS, credenciadoras e parceiros. Cada sprint tem entrega visivel. Voce acompanha em tempo real pelo nosso painel.</p>
+                  <div className="step-details">
+                    <span className="step-tag" style={{ background: "rgba(0,184,148,0.06)", color: "rgba(0,184,148,0.6)" }}>BaaS conectado</span>
+                    <span className="step-tag" style={{ background: "rgba(0,184,148,0.06)", color: "rgba(0,184,148,0.6)" }}>Testes E2E</span>
+                    <span className="step-tag" style={{ background: "rgba(0,184,148,0.06)", color: "rgba(0,184,148,0.6)" }}>Homologacao</span>
+                  </div>
+                </div>
+                <div className="step-visual" style={{ background: "linear-gradient(160deg, rgba(0,184,148,0.03), transparent)" }}>
+                  <div className="int-visual">
+                    <div className="int-row">
+                      <div className="int-node int-node-just">JUST Core</div>
+                      <div className="int-line" />
+                      <div className="int-node int-node-provider">Swap</div>
+                    </div>
+                    <div className="int-row">
+                      <div className="int-node int-node-just">Autorizador</div>
+                      <div className="int-line" />
+                      <div className="int-node int-node-provider">Sitef</div>
+                    </div>
+                    <div className="int-row">
+                      <div className="int-node int-node-just">Gateway</div>
+                      <div className="int-line" />
+                      <div className="int-node int-node-provider">Rede Compras</div>
+                    </div>
+                    <div className="int-status">
+                      <div className="int-status-dot" />
+                      <span className="int-status-text">3/3 integracoes ativas</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Step 4: Operacao */}
+            <Reveal delay={0.4}>
+              <div className="process-step">
+                <div className="step-indicator">
+                  <div className="step-number" style={{ background: "#0e1820", border: "1.5px solid rgba(39,174,96,0.35)", color: "#27AE60", boxShadow: "inset 0 0 12px rgba(39,174,96,0.08)" }}>04</div>
+                </div>
+                <div className="step-content">
+                  <h3 className="step-title">Go-live e evolucao</h3>
+                  <p className="step-desc">Produto no ar com monitoramento 24/7, suporte dedicado e roadmap de evolucao. Nao entregamos e sumimos.</p>
+                  <div className="step-details">
+                    <span className="step-tag" style={{ background: "rgba(39,174,96,0.06)", color: "rgba(39,174,96,0.6)" }}>Monitoramento</span>
+                    <span className="step-tag" style={{ background: "rgba(39,174,96,0.06)", color: "rgba(39,174,96,0.6)" }}>Suporte</span>
+                    <span className="step-tag" style={{ background: "rgba(39,174,96,0.06)", color: "rgba(39,174,96,0.6)" }}>Evolucao</span>
+                  </div>
+                </div>
+                <div className="step-visual" style={{ background: "linear-gradient(160deg, rgba(39,174,96,0.03), transparent)" }}>
+                  <div className="op-visual">
+                    <div className="op-topbar">
+                      <div className="op-dot" style={{ background: "#27AE60" }} />
+                      <div className="op-dot" style={{ background: "rgba(255,255,255,0.15)" }} />
+                      <div className="op-dot" style={{ background: "rgba(255,255,255,0.15)" }} />
+                    </div>
+                    <div className="op-metrics">
+                      <div className="op-metric">
+                        <div className="op-metric-label">TPV mensal</div>
+                        <div className="op-metric-value" style={{ color: "#27AE60" }}>R$2.4M</div>
+                      </div>
+                      <div className="op-metric">
+                        <div className="op-metric-label">Uptime</div>
+                        <div className="op-metric-value" style={{ color: "rgba(242,244,248,0.7)" }}>99.9%</div>
+                      </div>
+                    </div>
+                    <div className="op-status-bar">
+                      <div className="op-status-dot" />
+                      <span className="op-status-text">Todos os servicos operacionais</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+          </div>
+
+          {/* Summary bar */}
+          <Reveal delay={0.5}>
+            <div className="process-summary">
+              <div className="summary-item">
+                <div className="summary-icon" style={{ background: "rgba(244,85,70,0.08)", border: "1px solid rgba(244,85,70,0.15)" }}>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#f45546" strokeWidth="1.5" /><path d="M9 5v4l3 2" stroke="#f45546" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                </div>
+                <div className="summary-text">
+                  <strong>~90 dias do kick-off ao go-live</strong>
+                  Produto padrao, sem customizacoes complexas
+                </div>
+              </div>
+              <div className="summary-divider" />
+              <div className="summary-item">
+                <div className="summary-icon" style={{ background: "rgba(0,184,148,0.08)", border: "1px solid rgba(0,184,148,0.15)" }}>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9.5l4 4 8-8" stroke="#00B894" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
+                <div className="summary-text">
+                  <strong>70-80% da stack ja pronta</strong>
+                  Configuracao, nao construcao do zero
+                </div>
+              </div>
+              <div className="summary-divider" />
+              <div className="summary-item">
+                <div className="summary-icon" style={{ background: "rgba(108,92,231,0.08)", border: "1px solid rgba(108,92,231,0.15)" }}>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v14M2 9h14" stroke="#6C5CE7" strokeWidth="1.8" strokeLinecap="round" /></svg>
+                </div>
+                <div className="summary-text">
+                  <strong>Sprints com entrega visivel</strong>
+                  Voce acompanha cada etapa
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
         </div>
       </section>
 
