@@ -1491,7 +1491,11 @@ function HeroOrbital() {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
-  .hybrid-card-stack {
+  .hybrid-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .hybrid-visual {
     display: none !important;
   }
 
