@@ -1588,12 +1588,17 @@ function HeroOrbital() {
     font-size: 15px !important;
   }
 
-  .section-social-proof { padding: 20px 16px !important; }
+  .section-social-proof { padding: 24px 16px !important; }
   .social-logos {
-    gap: 14px !important;
+    gap: 20px 24px !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, auto) !important;
+    justify-content: center !important;
+    justify-items: center !important;
+    align-items: center !important;
   }
   .social-logos img {
-    height: 18px !important;
+    height: 24px !important;
   }
 
   .section-depara,
@@ -2527,14 +2532,14 @@ function HomePage({ setPage }) {
               Ecossistema e parceiros
             </div>
             <div className="social-logos" style={{ display: "flex", gap: 40, alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/abfintechs.png`} alt="ABFintechs" style={{ height: 22, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
-              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/abstartups.png`} alt="ABStartups" style={{ height: 26, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itaú" style={{ height: 34, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
-              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/aws-partner.png`} alt="AWS Partner" style={{ height: 30, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/fiserv.png`} alt="Fiserv" style={{ height: 22, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/linx.png`} alt="Linx" style={{ height: 24, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/swap.svg`} alt="Swap" style={{ height: 22, width: "auto", opacity: 0.3, filter: "invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/evertec.svg`} alt="Evertec" style={{ height: 22, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/abfintechs.png`} alt="ABFintechs" style={{ height: 32, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/abstartups.png`} alt="ABStartups" style={{ height: 38, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itaú" style={{ height: 48, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/aws-partner.png`} alt="AWS Partner" style={{ height: 42, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/fiserv.png`} alt="Fiserv" style={{ height: 32, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-colored" src={`${import.meta.env.BASE_URL}logos/linx.png`} alt="Linx" style={{ height: 34, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/swap.svg`} alt="Swap" style={{ height: 32, width: "auto", opacity: 0.3, filter: "invert(1)", transition: "opacity 0.3s" }} />
+              <img className="partner-logo logo-white" src={`${import.meta.env.BASE_URL}logos/evertec.svg`} alt="Evertec" style={{ height: 32, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
             </div>
           </div>
         </Reveal>
