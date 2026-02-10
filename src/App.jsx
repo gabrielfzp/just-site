@@ -2395,7 +2395,7 @@ function Footer({ setPage }) {
         </div>
         <div>
           <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>Contato</h4>
-          <span style={{ ...fl, cursor: "default" }}>contato@justto.com.br</span>
+          <span style={{ ...fl, cursor: "default" }}>contato@wearejust.it</span>
           <span style={{ ...fl, cursor: "default" }}>Sao Paulo, SP</span>
           <span style={{ ...fl, cursor: "default" }}>LinkedIn</span>
         </div>
