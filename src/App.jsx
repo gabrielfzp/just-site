@@ -155,6 +155,25 @@ function useCounter(end, duration = 2000, start = false) {
 }
 
 // ========================================
+// ERROR BOUNDARY (debug)
+// ========================================
+class ErrorBoundary extends React.Component {
+  constructor(props) { super(props); this.state = { hasError: false, error: null }; }
+  static getDerivedStateFromError(error) { return { hasError: true, error }; }
+  componentDidCatch(error, info) { console.error("ErrorBoundary caught:", error, info); }
+  render() {
+    if (this.state.hasError) {
+      return React.createElement("div", { style: { padding: 40, color: "#f45546", background: "#0a0c1f", minHeight: "100vh" } },
+        React.createElement("h2", null, "Component Error"),
+        React.createElement("pre", { style: { whiteSpace: "pre-wrap", color: "#ff6b6b" } }, String(this.state.error)),
+        React.createElement("pre", { style: { whiteSpace: "pre-wrap", color: "#aaa", marginTop: 16 } }, this.state.error && this.state.error.stack)
+      );
+    }
+    return this.props.children;
+  }
+}
+
+// ========================================
 // ANIMATION
 // ========================================
 function Reveal({ children, delay = 0, direction = "up", style = {} }) {
@@ -3993,7 +4012,7 @@ export default function App() {
   const render = () => {
     if (page === "home") return <HomePage setPage={setPage} />;
     if (page === "sobre") return <SobrePage setPage={setPage} />;
-    if (page === "stack") return <StackPage setPage={setPage} />;
+    if (page === "stack") return <ErrorBoundary><StackPage setPage={setPage} /></ErrorBoundary>;
     if (page === "cases") return <CasesPage setPage={setPage} />;
     if (page === "contato") return <ContatoPage />;
     if (SOL[page]) return <SolutionPage setPage={setPage} config={SOL[page]} />;
