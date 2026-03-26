@@ -3860,7 +3860,50 @@ function CasesPage({ setPage }) {
 
 function ContatoPage() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const [openFaq, setOpenFaq] = useState(null);
+  const formRef = useRef(null);
+  const [form, setForm] = useState({ nome: "", email: "", empresa: "", telefone: "", produto: "", projeto: "" });
+
+  const handleChange = (field) => (e) => setForm((prev) => ({ ...prev, [field]: e.target.value }));
+
+  const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL || "";
+
+  const handleSubmit = async () => {
+    setError("");
+    if (!form.nome || !form.email || !form.empresa || !form.produto) {
+      setError("Preencha todos os campos obrigatorios.");
+      return;
+    }
+    if (!APPS_SCRIPT_URL) {
+      setError("Formulario nao configurado. Entre em contato pelo email.");
+      return;
+    }
+    setSending(true);
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: form.nome,
+          email: form.email,
+          empresa: form.empresa,
+          telefone: form.telefone || "Nao informado",
+          produto: form.produto,
+          projeto: form.projeto || "Nao informado",
+        }),
+      });
+      setSent(true);
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setError("Erro ao enviar. Tente novamente ou entre em contato pelo email contato@wearejust.it");
+    } finally {
+      setSending(false);
+    }
+  };
+
   const faqs = [
     { q: "Quanto tempo leva?", a: "Produtos padrao: 30-90 dias. Complexos: 3-6 meses. Sempre abaixo de 12-24 meses do mercado." },
     { q: "Preciso ter licenca bancaria?", a: "Nao. Nossos produtos operam sobre BaaS licenciados." },
@@ -3877,27 +3920,30 @@ function ContatoPage() {
         <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 60 }}>
           {!sent ? (
             <Reveal>
-              <div>
+              <div ref={formRef}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-                  {[{ l: "Nome *", t: "text" }, { l: "Email corporativo *", t: "email" }, { l: "Empresa *", t: "text" }, { l: "Telefone", t: "tel" }].map((f, i) => (
+                  {[{ l: "Nome *", t: "text", k: "nome" }, { l: "Email corporativo *", t: "email", k: "email" }, { l: "Empresa *", t: "text", k: "empresa" }, { l: "Telefone", t: "tel", k: "telefone" }].map((f, i) => (
                     <div key={i}>
                       <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>{f.l}</label>
-                      <input type={f.t} style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14, outline: "none" }} />
+                      <input type={f.t} value={form[f.k]} onChange={handleChange(f.k)} style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14, outline: "none" }} />
                     </div>
                   ))}
                 </div>
                 <div style={{ marginBottom: 16 }}>
                   <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>Produto de interesse *</label>
-                  <select style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14 }}>
-                    <option>Selecione</option>
-                    {["JUST Benefits", "JUST Fleet", "JUST Banking", "JUST Expense", "JUST Credit", "JUST Custom", "Ainda nao sei"].map(o => <option key={o}>{o}</option>)}
+                  <select value={form.produto} onChange={handleChange("produto")} style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14 }}>
+                    <option value="">Selecione</option>
+                    {["JUST Benefits", "JUST Fleet", "JUST Banking", "JUST Expense", "JUST Credit", "JUST Custom", "Ainda nao sei"].map(o => <option key={o} value={o}>{o}</option>)}
                   </select>
                 </div>
                 <div style={{ marginBottom: 20 }}>
                   <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>Sobre o projeto</label>
-                  <textarea rows={3} placeholder="Quantos usuarios? Prazo? Cenario atual?" style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14, resize: "vertical", outline: "none" }} />
+                  <textarea rows={3} value={form.projeto} onChange={handleChange("projeto")} placeholder="Quantos usuarios? Prazo? Cenario atual?" style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14, resize: "vertical", outline: "none" }} />
                 </div>
-                <Btn onClick={() => setSent(true)} style={{ width: "100%" }}>Enviar mensagem</Btn>
+                {error && <div style={{ color: "#ff6b6b", fontSize: 13, marginBottom: 12, padding: "8px 12px", background: "rgba(255,107,107,0.08)", borderRadius: 6 }}>{error}</div>}
+                <Btn onClick={handleSubmit} disabled={sending} style={{ width: "100%", opacity: sending ? 0.7 : 1, cursor: sending ? "wait" : "pointer" }}>
+                  {sending ? "Enviando..." : "Enviar mensagem"}
+                </Btn>
               </div>
             </Reveal>
           ) : (
