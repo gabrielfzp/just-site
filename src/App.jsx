@@ -3868,7 +3868,7 @@ function ContatoPage() {
 
   const handleChange = (field) => (e) => setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-  const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL || "";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwD8MtpjGIBxJH9LbWmHYBDYC9LlORnY8RVRn5MOPJ-AgXDT7dgBOM98iRt8gzQ-FNh/exec";
 
   const handleSubmit = async () => {
     setError("");
