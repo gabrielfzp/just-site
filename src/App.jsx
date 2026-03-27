@@ -2352,6 +2352,7 @@ function Header({ page, setPage }) {
             </div>
           )}
         </div>
+        <button style={lnk("home")} onClick={() => nav("home")}>Home</button>
         <button style={lnk("stack")} onClick={() => nav("stack")}>Tecnologia</button>
         <button style={lnk("cases")} onClick={() => nav("cases")}>Cases</button>
         <button style={lnk("sobre")} onClick={() => nav("sobre")}>Sobre</button>
