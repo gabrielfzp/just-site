@@ -1,16 +1,6 @@
 // =============================================================
 // Google Apps Script - Formulario de Contato JUST
-// =============================================================
-// COMO USAR:
-// 1. Acesse https://script.google.com com a conta Google Workspace da JUST
-// 2. Crie um novo projeto (+ Novo Projeto)
-// 3. Cole este codigo no editor (substitua o Code.gs padrao)
-// 4. Clique em "Implantar" > "Nova implantacao"
-// 5. Tipo: "App da Web"
-// 6. Executar como: "Eu" (sua conta)
-// 7. Quem tem acesso: "Qualquer pessoa"
-// 8. Clique em "Implantar" e copie a URL gerada
-// 9. Coloque a URL no .env do site: VITE_APPS_SCRIPT_URL=<url_copiada>
+// Versao 2: usa GmailApp (cota maior) + logging detalhado
 // =============================================================
 
 function doPost(e) {
@@ -26,16 +16,6 @@ function doPost(e) {
 
     var assunto = "Novo contato pelo site: " + nome + " - " + empresa;
 
-    var corpo = "Novo lead recebido pelo formulario do site JUST:\n\n"
-      + "Nome: " + nome + "\n"
-      + "Email: " + email + "\n"
-      + "Empresa: " + empresa + "\n"
-      + "Telefone: " + telefone + "\n"
-      + "Produto de interesse: " + produto + "\n"
-      + "Sobre o projeto: " + projeto + "\n\n"
-      + "---\n"
-      + "Enviado automaticamente pelo formulario wearejust.it";
-
     var corpoHtml = "<div style='font-family: Arial, sans-serif; max-width: 600px;'>"
       + "<h2 style='color: #0f112b; border-bottom: 2px solid #f45546; padding-bottom: 10px;'>Novo contato pelo site</h2>"
       + "<table style='width: 100%; border-collapse: collapse;'>"
@@ -49,25 +29,31 @@ function doPost(e) {
       + "<p style='margin-top: 20px; font-size: 12px; color: #999;'>Enviado automaticamente pelo formulario wearejust.it</p>"
       + "</div>";
 
-    MailApp.sendEmail({
-      to: "contato@wearejust.it",
-      subject: assunto,
-      body: corpo,
-      htmlBody: corpoHtml,
-      replyTo: email,
-      name: "JUST Site"
-    });
+    // Log para debug
+    Logger.log("Tentando enviar email para: contato@wearejust.it, CC: gabriel.fzp@gmail.com");
+    Logger.log("Cota MailApp restante: " + MailApp.getRemainingDailyQuota());
 
-    // Opcional: registrar em uma planilha Google Sheets
-    // Descomente as linhas abaixo e substitua o ID da planilha
-    // var sheet = SpreadsheetApp.openById("SEU_SHEET_ID").getActiveSheet();
-    // sheet.appendRow([new Date(), nome, email, empresa, telefone, produto, projeto]);
+    // Usa GmailApp que tem cota maior no Workspace
+    GmailApp.sendEmail(
+      "contato@wearejust.it",
+      assunto,
+      "Novo lead: " + nome + " - " + empresa + " - " + email,
+      {
+        htmlBody: corpoHtml,
+        cc: "gabriel.fzp@gmail.com",
+        replyTo: email,
+        name: "JUST Site"
+      }
+    );
+
+    Logger.log("Email enviado com sucesso!");
 
     return ContentService
       .createTextOutput(JSON.stringify({ status: "ok" }))
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
+    Logger.log("ERRO ao enviar: " + error.toString());
     return ContentService
       .createTextOutput(JSON.stringify({ status: "error", message: error.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -78,4 +64,18 @@ function doGet(e) {
   return ContentService
     .createTextOutput(JSON.stringify({ status: "ok", message: "JUST contact form endpoint is active." }))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function verificarCota() {
+  Logger.log("Cota MailApp restante: " + MailApp.getRemainingDailyQuota());
+}
+
+function testeManual() {
+  GmailApp.sendEmail(
+    "gabriel.fzp@gmail.com",
+    "Teste GmailApp - JUST Site",
+    "Se voce recebeu isso, o GmailApp funciona.",
+    { name: "JUST Site" }
+  );
+  Logger.log("Teste enviado!");
 }
