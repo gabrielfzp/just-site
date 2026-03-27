@@ -2325,6 +2325,7 @@ function Header({ page, setPage }) {
         <JustLogo height={36} />
       </div>
       <nav style={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <button style={lnk("home")} onClick={() => nav("home")}>Home</button>
         <div style={{ position: "relative" }} onMouseEnter={() => setDropOpen(true)} onMouseLeave={() => setDropOpen(false)}>
           <button style={lnk("solucoes")}>Produtos &#9662;</button>
           {dropOpen && (
@@ -2352,7 +2353,6 @@ function Header({ page, setPage }) {
             </div>
           )}
         </div>
-        <button style={lnk("home")} onClick={() => nav("home")}>Home</button>
         <button style={lnk("stack")} onClick={() => nav("stack")}>Tecnologia</button>
         <button style={lnk("cases")} onClick={() => nav("cases")}>Cases</button>
         <button style={lnk("sobre")} onClick={() => nav("sobre")}>Sobre</button>
