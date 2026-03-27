@@ -3862,7 +3862,6 @@ function ContatoPage() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
-  const [openFaq, setOpenFaq] = useState(null);
   const formRef = useRef(null);
   const [form, setForm] = useState({ nome: "", email: "", empresa: "", telefone: "", produto: "", projeto: "" });
 
@@ -3904,12 +3903,6 @@ function ContatoPage() {
     }
   };
 
-  const faqs = [
-    { q: "Quanto tempo leva?", a: "Produtos padrao: 30-90 dias. Complexos: 3-6 meses. Sempre abaixo de 12-24 meses do mercado." },
-    { q: "Preciso ter licenca bancaria?", a: "Nao. Nossos produtos operam sobre BaaS licenciados." },
-    { q: "Qual o investimento?", a: "Projetos partem de R$20k/mes. Depende do escopo." },
-    { q: "E apos o go-live?", a: "Sustentacao continua. Monitoramos, evoluimos e respondemos incidentes." },
-  ];
   return (
     <div>
       <section style={{ background: `linear-gradient(160deg, ${T.primary}, ${T.darkAlt})`, padding: "170px 48px 80px", textAlign: "center" }}>
@@ -3969,19 +3962,6 @@ function ContatoPage() {
               ))}
             </div>
           </Reveal>
-        </div>
-      </section>
-      <section style={{ background: T.darkAlt, padding: "80px 48px" }}>
-        <div style={{ maxWidth: 600, margin: "0 auto" }}>
-          <h2 style={{ fontSize: 28, fontWeight: 700, color: T.textLight, marginBottom: 28, textAlign: "center" }}>Perguntas frequentes</h2>
-          {faqs.map((f, i) => (
-            <div key={i} style={{ borderBottom: `1px solid ${T.borderLight}`, marginBottom: 8 }}>
-              <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", padding: "14px 0", background: "none", border: "none", cursor: "pointer", color: T.textLight, fontSize: 15, fontWeight: 500, textAlign: "left" }}>
-                {f.q} <span style={{ transform: openFaq === i ? "rotate(180deg)" : "none", transition: "0.3s" }}>&#9662;</span>
-              </button>
-              {openFaq === i && <p style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.6, padding: "0 0 14px" }}>{f.a}</p>}
-            </div>
-          ))}
         </div>
       </section>
     </div>
