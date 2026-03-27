@@ -3868,7 +3868,7 @@ function ContatoPage() {
 
   const handleChange = (field) => (e) => setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwD8MtpjGIBxJH9LbWmHYBDYC9LlORnY8RVRn5MOPJ-AgXDT7dgBOM98iRt8gzQ-FNh/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJYv9kn-XdIosgb7awl5cXLnjE-XT1fWe-5XlVWq5KAVnf6Ol4UwPG_pCnspPoZ9Q0/exec";
 
   const handleSubmit = async () => {
     setError("");
