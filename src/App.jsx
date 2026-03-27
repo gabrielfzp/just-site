@@ -2440,7 +2440,7 @@ function HomePage({ setPage }) {
     },
     {
       sem: { title: "Tecnologia que nao escala", desc: "Funciona com 1.000 usuarios. Quebra com 50.000." },
-      com: { title: "Escala comprovada", desc: "R$900M+ processados, 500k+ usuarios. Infraestrutura testada em producao." },
+      com: { title: "Escala comprovada", desc: "R$4bi+ processados, 500k+ usuarios. Infraestrutura testada em producao." },
     },
     {
       sem: { title: "White-labels genericos", desc: "Produto de prateleira com cara de template. Mesma experiencia pra todo mundo." },
@@ -3367,7 +3367,7 @@ function SobrePage({ setPage }) {
     { y: "2022", t: "Stack propria", d: "Stack proprietaria atinge 70% de reuso. Velocidade de entrega se torna diferencial." },
     { y: "2023", t: "Escala", d: "10+ clientes ativos. R$500M+ em processamento anual." },
     { y: "2024", t: "Validacao", d: "ViaSoftPay em 45 dias. NPS 76. Modelo de produto-plataforma validado." },
-    { y: "2025", t: "Expansao", d: "18+ clientes. 40k+ usuarios. R$35.9M TPV mensal." },
+    { y: "2025", t: "Expansao", d: "15 clientes. 30M+ de transacoes processadas. 500k+ usuarios. R$4bi TPV processados." },
   ];
   return (
     <div>
@@ -3824,10 +3824,10 @@ function CasesPage({ setPage }) {
       </section>
       <section style={{ background: T.primary, padding: "80px 48px", borderBottom: `1px solid ${T.borderLight}` }}>
         <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
-          <Metric prefix="R$" value={35.9} suffix="M" label="TPV mensal" />
-          <Metric value={40955} suffix="+" label="Usuarios" delay={0.08} />
-          <Metric value={18} suffix="+" label="Clientes" delay={0.16} />
-          <Metric prefix="NPS " value={76} suffix="" label="Satisfacao" delay={0.24} />
+          <Metric prefix="R$" value={4} suffix="bi+" label="TPV processado" />
+          <Metric value={30} suffix="M+" label="Transacoes processadas" delay={0.08} />
+          <Metric value={500} suffix="k+" label="Usuarios" delay={0.16} />
+          <Metric value={15} suffix="+" label="Clientes" delay={0.24} />
         </div>
       </section>
       <section style={{ background: T.primary, padding: "100px 48px" }}>
