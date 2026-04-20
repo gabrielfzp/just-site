@@ -1,0 +1,27 @@
+# ======================================================================
+# Site JUST - Override Traefik
+# ======================================================================
+# Conecta o site ao proxy central (rede `just-infra`):
+#   http://sitejust.localhost  → Vite dev server (React SPA)
+#
+# Uso:
+#   docker compose -f docker-compose.yml -f docker-compose.traefik.yml up
+# ======================================================================
+
+services:
+  web:
+    networks:
+      - sitejust-net
+      - just-infra
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=just-infra"
+      - "traefik.http.routers.sitejust-web.rule=Host(`sitejust.localhost`)"
+      - "traefik.http.routers.sitejust-web.entrypoints=web"
+      - "traefik.http.routers.sitejust-web.service=sitejust-web"
+      - "traefik.http.services.sitejust-web.loadbalancer.server.port=5175"
+
+networks:
+  just-infra:
+    external: true
+    name: just-infra

@@ -1,0 +1,39 @@
+name: sitejust
+
+# ======================================================================
+# Site JUST (marketing) - compose base (standalone)
+# ======================================================================
+# SPA React 19 + Vite 7 + React Router 7. Sem backend, sem DB.
+# Roda só o Vite dev server.
+#
+# Uso (dev local puro):
+#   docker compose up --build
+#
+# Uso (com Traefik + subdomínio sitejust.localhost):
+#   docker compose -f docker-compose.yml -f docker-compose.traefik.yml up
+# ======================================================================
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: sitejust-web
+    restart: unless-stopped
+    environment:
+      VITE_PORT: 5175
+    # Sem binding host por padrão: acesso via Traefik.
+    # Pra rodar standalone sem Traefik, descomente:
+    # ports:
+    #   - "5175:5175"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./index.html:/app/index.html
+      - ./vite.config.js:/app/vite.config.js
+    networks:
+      - sitejust-net
+
+networks:
+  sitejust-net:
+    driver: bridge

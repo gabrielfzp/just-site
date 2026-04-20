@@ -1,0 +1,15 @@
+# Dockerfile.dev - Site JUST (Vite + React 19)
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 5175
+
+# --host 0.0.0.0 é obrigatório pra Vite responder fora do container.
+# Porta 5175 pra bater com start-dev.mjs (já usada no dev local do host).
+CMD ["npx", "vite", "--host", "0.0.0.0", "--port", "5175"]
