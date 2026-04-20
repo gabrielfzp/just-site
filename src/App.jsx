@@ -1,4 +1,593 @@
 import React, { useState, useEffect, useRef } from "react";
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
+
+// ========================================
+// I18N — Language Context & Translations
+// ========================================
+const LangContext = React.createContext({ lang: "pt-BR", setLang: () => {} });
+const useLang = () => React.useContext(LangContext);
+
+const T18N = {
+  "pt-BR": {
+    nav: {
+      home: "Home", products: "Produtos", technology: "Tecnologia",
+      cases: "Cases", about: "Sobre", contact: "Fale Conosco",
+    },
+    footer: {
+      tagline: "Plataforma de produtos financeiros digitais. Tecnologia pronta para operar, escalar e evoluir.",
+      productsLabel: "Produtos", companyLabel: "Empresa", contactLabel: "Contato",
+      ecosystem: "Ecossistema e associações", techPartners: "Parceiros tecnológicos",
+      legal: "A JUST atua exclusivamente como provedora de tecnologia e não realiza atividades privativas de instituições financeiras. Todos os serviços financeiros são operados por parceiros devidamente autorizados pelo Banco Central do Brasil.",
+      rights: "© 2026 JUST. Todos os direitos reservados.", privacy: "Política de Privacidade",
+    },
+    home: {
+      heroTag: "Plataforma de produtos financeiros",
+      heroLine1: "Sua fintech.", heroLine2: "Pronta para operar",
+      heroLine3: "em semanas, não meses.",
+      heroSubtitle: "Plataformas financeiras completas, com tecnologia modular e integrações prontas para escalar.",
+      step1: "Configure", step2: "Personalize", step3: "Lance",
+      cta1: "Fale com um especialista", cta2: "Ver cases",
+      ecosystemLabel: "Ecossistema e parceiros",
+      deparaTag: "Por que a JUST",
+      deparaTitle: "O que muda quando você\nopera com a gente.",
+      deparaWithout: "Sem a JUST", deparaWith: "Com a JUST",
+      productsTag: "Produtos",
+      productsTitle: "Módulos prontos para cada\nvertical do seu negócio.",
+      productsSubtitle: "Cada produto opera de forma independente ou combinada. White-label completo.",
+      cardsTag: "Arranjos de cartão",
+      cardsTitle: "Bandeirado ou Private Label?", cardsGradient: "Você escolhe.",
+      cardsSubtitle: "Operamos com arranjo aberto (bandeirado), fechado (private label) ou híbrido. A decisão é estratégica e nós ajudamos você a tomar.",
+      cardsOpenLabel: "Arranjo Aberto", cardsOpenTitle: "Cartão Bandeirado",
+      cardsClosedLabel: "Arranjo Fechado", cardsClosedTitle: "Cartão Private Label",
+      cardsOr: "ou",
+      cardsPioneer: "Pioneiros no Brasil",
+      cardsHybridTitle: "Por que escolher um\nse você pode ter ", cardsHybridGradient: "os dois?",
+      cardsHybridDesc: "Somos pioneiros no Brasil em operar o modelo híbrido: arranjo aberto e fechado na mesma plataforma, com experiência unificada. Você decide quais usuários usam bandeirado e quais usam private label.",
+      processTag: "Como funciona",
+      processTitle: "Do briefing ao produto no ar.", processGradient: "Sem surpresas.",
+      processSubtitle: "Um processo estruturado que já entregou 18+ fintechs. Cada etapa tem escopo, prazo e entregável claro.",
+      process1Title: "Discovery e diagnóstico",
+      process1Desc: "Mapeamos o modelo de negócio, fluxos financeiros, integradores necessários e regras de operação. Sem esse alinhamento, não avançamos.",
+      process2Title: "Arquitetura e configuração",
+      process2Desc: "Ativamos os módulos da nossa stack que se encaixam no projeto. 70-80% da tecnologia já está pronta. O resto é configuração, não construção.",
+      process3Title: "Integração e homologação",
+      process3Desc: "Conectamos BaaS, credenciadoras e parceiros. Cada sprint tem entrega visível. Você acompanha em tempo real pelo nosso painel.",
+      process4Title: "Go-live e evolução",
+      process4Desc: "Produto no ar com monitoramento 24/7, suporte dedicado e roadmap de evolução. Não entregamos e sumimos.",
+      summary1: "~90 dias do kick-off ao go-live", summary1sub: "Produto padrão, sem customizações complexas",
+      summary2: "70-80% da stack ja pronta", summary2sub: "Configuração, não construção do zero",
+      summary3: "Sprints com entrega visível", summary3sub: "Você acompanha cada etapa",
+      metricsTPV: "TPV processado", metricsTX: "Transações processadas",
+      metricsUsers: "Usuários", metricsClients: "Clientes",
+      casesTag: "Cases", casesTitle: "Resultados reais. Fintechs em produção.",
+      casesSubtitle: "Conheça alguns dos produtos que construímos e operamos com nossos parceiros.",
+      ctaFinalTitle: "Pronto para ter sua própria fintech?",
+      ctaFinalSubtitle: "Converse com nosso time e veja como nossos produtos se aplicam ao seu negócio.",
+      ctaFinalBtn: "Agendar uma conversa",
+      comparisons: [
+        { sem: { title: "12-24 meses para lançar", desc: "Projetos longos, estouro de prazo e budget. Produto chega tarde ao mercado." }, com: { title: "Produto no ar em semanas", desc: "Stack com 70-80% de reuso. Go-live em semanas, não anos." } },
+        { sem: { title: "Lock-in com um único provedor", desc: "Preso a um BaaS ou adquirente. Sem flexibilidade para mudar ou negociar." }, com: { title: "Multi-provider, sem lock-in", desc: "Arquitetura multi-BaaS e multi-adquirente. Troque sem reescrever." } },
+        { sem: { title: "Complexidade regulatória", desc: "Tempo e dinheiro gastos com compliance bancário ao invés de produto." }, com: { title: "Regulatório resolvido", desc: "Operamos sobre BaaS regulados. Com isso nosso time pode se focar 100% no desenvolvimento do seu produto." } },
+        { sem: { title: "Tecnologia que não escala", desc: "Funciona com 1.000 usuários. Quebra com 50.000." }, com: { title: "Escala comprovada", desc: "R$900M+ processados, 500k+ usuários. Infraestrutura testada em produção." } },
+        { sem: { title: "White-labels genéricos", desc: "Produto de prateleira com cara de template. Mesma experiência pra todo mundo." }, com: { title: "Produtos customizados de verdade", desc: "Jornada, regras e visual desenhados pro seu negócio. Ninguém sabe que somos nós." } },
+        { sem: { title: "Time sem experiência no segmento", desc: "Desenvolvedores generalistas aprendendo fintech do zero. Curva longa e cara." }, com: { title: "Time especialista no segmento", desc: "+5 anos construindo fintechs. Benefícios, frotas, banking, despesas. Já passamos por isso." } },
+      ],
+      cardsOpenFeatures: ["Aceitação ampla em toda rede credenciada", "Mastercard, Visa ou Elo", "Ideal para benefícios e banking com capilaridade", "Regras de MCC e controle por categoria"],
+      cardsClosedFeatures: ["Rede própria de aceitação, controle total", "Sua marca no cartão, sem bandeira de terceiro", "Ideal para frotas, vales e ecossistemas fechados", "Autorizador próprio com regras em tempo real"],
+      hybridFeatures: [
+        { bold: "Bandeirado para uso geral", text: " com aceitação em toda rede credenciada Mastercard/Visa" },
+        { bold: "Private label para rede própria", text: " com regras específicas e controle total do ecossistema" },
+        { bold: "Dois meios de uso,", text: " uma experiência unificada para o seu usuário" },
+      ],
+    },
+    products: {
+      beneficios: { name: "JUST Benefits", desc: "Arranjo aberto, fechado ou híbrido. Múltiplos saldos com regras customizáveis e controle total.", headerDesc: "Benefícios flexíveis com arranjo customizável" },
+      frotas: { name: "JUST Fleet", desc: "Abastecimento, pedágio, manutenção. Controle financeiro por veículo com regras em tempo real.", headerDesc: "Controle financeiro completo por veículo" },
+      banking: { name: "JUST Banking", desc: "Conta digital, cartão, PIX, transferências. Banking completo e white-label sobre BaaS.", headerDesc: "Conta, cartão e PIX white-label" },
+      despesas: { name: "JUST Expense", desc: "Cartões corporativos com políticas de uso, limites e conciliação automática.", headerDesc: "Cartões corporativos com políticas inteligentes" },
+      antecipacao: { name: "JUST Credit", desc: "Private label, antecipação e recebíveis. Produtos de crédito white-label integrados ao seu negócio.", headerDesc: "Produtos de crédito white-label" },
+      "sob-demanda": { name: "JUST Custom", desc: "Produto que não cabe em prateleira? Arquitetamos e construímos sob medida.", headerDesc: "Produtos financeiros sob medida" },
+      sentinel: { name: "JUST Sentinel", desc: "Detecção de fraude em tempo real e risk scoring para autorização de cartões.", headerDesc: "Antifraude AI-native em tempo real" },
+    },
+    sobre: {
+      tag: "Quem somos", h1: "Criada por experts",
+      intro: "A JUST nasceu em 2020 para resolver um problema simples e recorrente no mercado financeiro: promessas que não viram produto. Construímos fintechs para quem cansou de esperar.",
+      tesesTag: "Nossa tese", tesesTitle: "Execução acima\nde promessa.",
+      tesesP1: "Acreditamos que o maior gargalo da indústria não é ideia, nem tecnologia. É execução.",
+      tesesP2: "Muitos projetos falham porque tentam recriar um banco inteiro a cada novo produto, assumindo complexidades regulatórias e técnicas que não agregam valor à jornada do cliente.",
+      tesesP3: "A JUST segue outro caminho. Trabalhamos sobre estruturas de BaaS robustas e consolidadas, eliminamos o peso regulatório e focamos 100% no produto, na experiência do usuário e na operação financeira.",
+      principiosTag: "Como pensamos", principiosTitle: "Princípios que guiam\ncada decisão.",
+      p1Title: "Produto, não promessa", p1Desc: "Não vendemos roadmaps ou protótipos. Entregamos plataformas em produção, operando desde o dia 1. Produto financeiro só existe quando está no ar.",
+      p2Title: "Estrutura gera velocidade", p2Desc: "Stack proprietária com 70-80% de reuso entre projetos. Módulos prontos, governança definida. Fintechs completas em meses, não anos.",
+      p3Title: "Parceiro estratégico", p3Desc: "Atuamos como braço tecnológico do negócio. Assumimos responsabilidade pelo produto e tomamos decisões com base no que precisa funcionar.",
+      trajetoriaTag: "Trajetória", trajetoriaTitle: "Do primeiro produto\não ecossistema.",
+      liderancaTag: "Liderança", liderancaTitle: "Experiência que sustenta\na entrega.",
+      commitment: "Nosso compromisso", commitmentTitle: "Fintechs podem ser construidas em meses, não em anos.",
+      commitmentDesc: "Sem reinvenção de roda. Sem burocracia desnecessária. Sem promessas vazias. Plataformas financeiras completas para quem precisa operar rápido, com solidez técnica e foco total no negócio. Esse é o nosso compromisso desde 2020.",
+      cta: "Quer conhecer nossos produtos?", ctaBtn: "Fale com nosso time",
+      timeline: [
+        { y: "2020", t: "Fundação", d: "Gabriel Pires funda a JUST com um princípio claro: produto financeiro só existe quando está operando." },
+        { y: "2021", t: "Primeiros clientes", d: "Início das operações com eFleet e primeiros projetos de benefícios e gestão de frotas." },
+        { y: "2022", t: "Stack própria", d: "Stack proprietária atinge 70% de reuso entre projetos. Velocidade de entrega se torna diferencial competitivo." },
+        { y: "2023", t: "Escala", d: "10+ clientes ativos. R$500M+ em processamento anual. Modelo de plataforma validado pelo mercado." },
+        { y: "2024", t: "Validação", d: "ViaSoftPay do zero a produção em 45 dias. NPS 76. Entrada em novos nichos: banking, despesas, crédito." },
+        { y: "2025", t: "Expansão", d: "18+ clientes ativos. 40k+ usuários. R$900M+ TPV processado. Operação consolidada em múltiplas verticais." },
+      ],
+    },
+    cases: {
+      tag: "Cases", h1: "Resultados reais. Fintechs em produção.",
+      tpvLabel: "TPV processado", txLabel: "Transações processadas",
+      usersLabel: "Usuários", clientsLabel: "Clientes",
+      cta: "Quer resultados parecidos?", ctaBtn: "Agendar uma reunião",
+      casesList: [
+        { tag: "Benefícios", name: "ViaSoftPay", headline: "Do zero à produção em 45 dias", items: ["45 dias do início ao go-live", "100k+ usuários ativos", "R$500M+ processamento anual", "NPS 100"] },
+        { tag: "Frotas", name: "eFleet", headline: "5+ anos de parceria, 10+ módulos", items: ["5+ anos de parceria contínua", "10+ módulos em produção", "R$500M+ processamento anual"] },
+        { tag: "Arranjo Híbrido", name: "SmartVale", headline: "Primeiro arranjo híbrido do portfolio", items: ["Arranjo híbrido em produção", "Fechado + aberto integrados", "Regras customizadas por saldo"] },
+        { tag: "Benefícios + Crédito", name: "KPI", headline: "266% de crescimento em transações", items: ["266% crescimento", "Benefícios + crédito integrados", "Produto combinado único"] },
+      ],
+    },
+    contato: {
+      h1: "Vamos construir sua fintech.", subtitle: "Nosso time retorna em ate 24h uteis.",
+      nameLabel: "Nome *", emailLabel: "Email corporativo *",
+      companyLabel: "Empresa *", phoneLabel: "Telefone",
+      productLabel: "Produto de interesse *", productPlaceholder: "Selecione",
+      projectLabel: "Sobre o projeto", projectPlaceholder: "Quantos usuários? Prazo? Cenário atual?",
+      submitBtn: "Enviar mensagem", sendingBtn: "Enviando...",
+      successTitle: "Mensagem enviada!", successMsg: "Retornamos em ate 24h uteis.",
+      errorRequired: "Preencha todos os campos obrigatórios.",
+      errorSend: "Erro ao enviar. Tente novamente ou entre em contato pelo email contato@wearejust.it",
+      emailLabel2: "Email", whatsappLabel: "WhatsApp",
+      locationLabel: "Localização", hoursLabel: "Horário", hours: "Seg-Sex, 9h-18h",
+      faqTitle: "Perguntas frequentes",
+      faqs: [
+        { q: "Quais tipos de cartões a JUST desenvolve?", a: "A JUST nasceu com forte atuação em arranjos fechados (cartões private label), onde operamos tecnologias próprias de processamento. Hoje, também desenvolvemos produtos integrados a arranjos abertos, trabalhando com emissores regulados de Visa, Mastercard e Elo. Isso nos permite criar arquiteturas híbridas, orquestrando múltiplos provedores de pagamento, emissores e componentes de processamento, sempre de acordo com o modelo de negócio e o nível de complexidade do projeto. Não estamos limitados a um único arranjo ou fornecedor. Projetamos a melhor combinação técnica e regulatória para cada caso." },
+        { q: "A JUST vende licenças de white label?", a: "Não vendemos licenças de white label no modelo tradicional. Acreditamos que cada negócio possui identidade, estratégia e regras próprias. Por isso, tratamos cada projeto de forma individualizada, mesmo partindo de uma base tecnológica comum. Utilizamos componentes e frameworks já consolidados para acelerar o início do projeto, mas cada solução evolui com regras de negócio, fluxos, integrações e experiências específicas, alinhadas à realidade do cliente. Na prática, entregamos plataformas sob medida, não produtos genéricos customizados." },
+        { q: "A JUST é uma entidade regulada pelo Banco Central do Brasil?", a: "Não. A JUST é uma provedora de tecnologia. Atuamos no desenvolvimento de plataformas para empresas que podem ou não estar inseridas em ambientes regulados pelo Banco Central do Brasil, dependendo do tipo de produto. Algumas soluções, como Benefícios Flexíveis, não exigem regulação bancária. Outras, como Despesas Corporativas, contas de pagamento ou emissão em arranjos abertos, podem exigir. Nesses casos, trabalhamos em conjunto com parceiros regulados, responsáveis pela carga regulatória, enquanto a JUST desenvolve e integra toda a camada tecnológica, garantindo que o produto final esteja em conformidade com as normas aplicáveis." },
+        { q: "A JUST é uma software house?", a: "Sim, mas não apenas isso. Somos especialistas em plataformas de meios de pagamento, porém atuamos como parceiros estratégicos dos nossos clientes. Nosso trabalho vai além do desenvolvimento técnico e inclui: apoio na definição do modelo de negócio, arquitetura de produto e diferenciação competitiva, construção da plataforma tecnológica, e suporte à operação e evolução contínua do produto. Nosso foco é viabilizar negócios financeiros sustentáveis, não apenas entregar código." },
+        { q: "Quero criar uma fintech, mas não sei por onde começar. A JUST consegue ajudar?", a: "Sim. Além da área de desenvolvimento, contamos com a JUST Consulting, uma unidade focada em apoiar empresas desde as fases iniciais do projeto. Auxiliamos em ideação e validação do modelo de negócio, definição do produto financeiro, avaliação regulatória e estrutural, e planejamento da execução técnica. O objetivo é reduzir erros comuns, acelerar decisões críticas e construir um produto viável desde o início." },
+        { q: "A JUST assume risco regulatório ou financeiro da operação?", a: "Não. A JUST é responsável pela camada tecnológica. O risco regulatório e financeiro permanece com o cliente e, quando aplicável, com os parceiros regulados envolvidos na operação. Nosso papel é garantir que a tecnologia suporte corretamente as exigências regulatórias definidas para o produto." },
+        { q: "Em quanto tempo meu produto pode ir ao ar?", a: "O prazo varia conforme o nível de complexidade, integrações e exigências regulatórias. Projetos mais simples podem ser lançados em poucos meses. Projetos mais complexos exigem fases adicionais de arquitetura, homologação e testes. Preferimos definir prazos realistas desde o início, priorizando segurança, estabilidade e sustentabilidade da operação." },
+      ],
+    },
+    stack: {
+      tag: "Tecnologia",
+      h1: "A base técnica que sustenta produtos financeiros em produção.",
+      subtitle: "Todo produto financeiro sólido começa por uma fundação técnica bem definida. A JUST constrói essa base para garantir segurança, escala e evolução contínua.",
+      platformTag: "Plataforma", platformTitle: "Componentes da plataforma.",
+      platformSubtitle: "Cada componente foi construído para operar de forma independente e integrada. Seu produto. Suas regras. Sem gambiarras.",
+      integrationsTag: "Integrações", integrationsTitle: "Multi-provider por design.",
+      integrationsSubtitle: "Nenhum produto financeiro deve depender de um único fornecedor. O produto continua o mesmo. Os fornecedores podem mudar.",
+      securityTag: "Segurança", securityTitle: "Segurança como processo, não como feature.",
+      securitySubtitle: "Produtos financeiros não podem falhar em produção. Nossa arquitetura parte desse princípio.",
+      cta: "Quer entender como se aplica ao seu caso?", ctaBtn: "Fale com nosso time técnico",
+      secHighlightLabels: ["Recorrente com retest formal", "Partner com infra dedicada", "Compliance implementado", "Mobile Top 10 aplicado"],
+      secCards: [
+        { title: "Defense in Depth", desc: "Proteção em camadas: WAF em borda, API Gateway com rate limiting, autenticação JWT, isolamento de rede via VPC." },
+        { title: "PCI-Aware Architecture", desc: "Arquitetura desenhada com consciência dos padrões PCI DSS. Dados sensíveis sob custodia da instituicao financeira regulada." },
+        { title: "AWS Infrastructure", desc: "VPC isolada, subnets privadas, criptografia KMS, TLS 1.3, RDS Multi-AZ com backups diarios." },
+        { title: "Monitoramento 24/7", desc: "Dashboards Grafana em tempo real. Logs centralizados com retenção para auditoria. Alertas automáticos." },
+        { title: "Pen Test Recorrente", desc: "Testes de intrusão Gray/White Box com ciclo semestral. Retest formal de vulnerabilidades críticas e altas." },
+        { title: "Mobile Security (OWASP)", desc: "Runtime hardening: detecção de root/jáilbreak, SSL Pinning, detecção de proxy/MITM. Confianca minima no cliente." },
+      ],
+      mpSwapBold: "Troque de provider sem impacto no produto.",
+      mpSwapText: " A camada de abstração da JUST isola seu produto das dependências de fornecedores. Migre, adicione ou remova providers em produção.",
+    },
+    solution: {
+      modelsTitle: "Modelos de operação", capabilitiesTitle: "Capacidades",
+      ctaTitle: "Quer entender como funciona?", ctaBtn: "Agendar uma conversa",
+    },
+    privacy: {
+      tag: "Privacidade",
+      h1: "Política de Privacidade",
+      subtitle: "Como a JUST trata dados pessoais em seus canais digitais, comerciais e de relacionamento.",
+      updatedLabel: "Última atualização",
+      updatedAt: "20 de abril de 2026",
+      introTitle: "Compromisso com transparência",
+      intro: [
+            "Esta Política de Privacidade explica, de forma objetiva, como a JUST coleta, utiliza, armazena, compartilha e protege dados pessoais relacionados ao uso deste site, aos formulários de contato e às interações comerciais com nosso time.",
+        "A JUST atua como provedora de tecnologia para plataformas financeiras digitais. Dependendo do projeto, também podemos tratar dados em nome de clientes e parceiros, conforme contratos específicos. Esta política cobre principalmente os dados tratados diretamente pela JUST em seus próprios canais."
+      ],
+      sections: [
+        {
+          title: "1. Dados que podemos coletar",
+          body: [
+            "Dados de identificação e contato, como nome, email corporativo, telefone, empresa, cargo e mensagens enviadas por formulários, email, WhatsApp, LinkedIn ou outros canais.",
+            "Dados profissionais e de negócio compartilhados durante conversas comerciais, como produto de interesse, tamanho da operação, necessidades técnicas e contexto do projeto.",
+            "Dados técnicos e de navegação, como endereço IP, identificadores de dispositivo, navegador, sistema operacional, páginas acessadas, origem de acesso, data, horário e informações coletadas por cookies ou tecnologias semelhantes.",
+            "Não solicitamos dados pessoais sensíveis em nossos formulários. Caso você envie esse tipo de informação espontaneamente, poderemos desconsidera-la, exclui-la ou trata-la apenas quando houver base legal adequada."
+          ]
+        },
+        {
+          title: "2. Para que usamos os dados",
+          body: [
+            "Responder solicitações de contato, agendar conversas, qualificar oportunidades e conduzir relações comerciais ou pré-contratuais.",
+            "Entender o interesse em nossos produtos, preparar propostas, demonstrações e materiais técnicos adequados ao contexto informado.",
+            "Operar, medir, proteger e melhorar o site, nossos canais digitais e a experiência de navegação.",
+            "Enviar comunicações institucionais, comerciais ou técnicas relacionadas a JUST, sempre observando preferências, opt-out e requisitos legais aplicáveis.",
+            "Cumprir obrigações legais, regulacionais, contratuais, auditorias, requisições de autoridades e exercício regular de direitos."
+          ]
+        },
+        {
+          title: "3. Bases legais",
+          body: [
+            "Tratamos dados pessoais com base nas hipóteses previstas na legislação aplicável, incluindo execução de contrato ou procedimentos preliminares, cumprimento de obrigação legal ou regulatória, legítimo interesse, consentimento quando necessário e exercício regular de direitos.",
+            "Quando utilizarmos legítimo interesse, buscamos avaliar a proporcionalidade do tratamento e adotar medidas para reduzir impactos indevidos aos titulares."
+          ]
+        },
+        {
+          title: "4. Cookies e tecnologias semelhantes",
+          body: [
+            "Podemos utilizar cookies essenciais para funcionamento do site e tecnologias de medição ou analytics para entender desempenho, origem de acesso e interações com as páginas.",
+            "Você pode bloquear, apagar ou gerenciar cookies nas configurações do seu navegador. Algumas funcionalidades podem ficar indisponíveis ou menos eficientes se cookies essenciais forem desativados."
+          ]
+        },
+        {
+          title: "5. Compartilhamento de dados",
+          body: [
+            "Podemos compartilhar dados com fornecedores de tecnologia, hospedagem, segurança, analytics, CRM, comunicação, automação, atendimento e outras ferramentas necessárias para operar nossos canais.",
+            "Também poderemos compartilhar informações com parceiros de negócio, consultores, auditores, autoridades públicas ou terceiros quando isso for necessário para cumprir obrigações legais, proteger direitos, responder solicitações ou viabilizar uma interacao solicitada por você.",
+            "Quando terceiros tratarem dados em nosso nome, buscamos estabelecer obrigações de confidencialidade, segurança e uso compatível com as finalidades informadas."
+          ]
+        },
+        {
+          title: "6. Transferencias internacionais",
+          body: [
+            "Alguns fornecedores ou sistemas utilizados pela JUST podem armazenar ou processar dados fora do Brasil. Nesses casos, adotamos medidas compatíveis com a legislação aplicável para proteger os dados transferidos."
+          ]
+        },
+        {
+          title: "7. Retenção e descarte",
+          body: [
+            "Mantemos dados pessoais pelo tempo necessário para cumprir as finalidades descritas nesta política, atender obrigações legais ou regulatórias, preservar registros comerciais e exercer direitos em processos administrativos, judiciais ou arbitrais.",
+            "Quando os dados deixarem de ser necessários, poderemos elimina-los, anonimiza-los ou mante-los apenas quando houver base legal para conservação."
+          ]
+        },
+        {
+          title: "8. Direitos dos titulares",
+          body: [
+            "Nos termos da LGPD, você pode solicitar confirmação de tratamento, acesso, correção, anonimização, bloqueio ou eliminação de dados, portabilidade quando aplicável, informações sobre compartilhamento, revisão de decisões automatizadas quando existentes, oposição ao tratamento e revogação de consentimento.",
+            "Para exercer seus direitos, envie uma solicitação para contato@wearejust.it. Podemos solicitar informações adicionais para confirmar sua identidade e proteger seus dados."
+          ]
+        },
+        {
+          title: "9. Segurança da informação",
+          body: [
+            "Adotamos medidas técnicas e organizacionais para proteger dados pessoais contra acessos não autorizados, perda, alteração, divulgação indevida ou tratamento inadequado.",
+            "Apesar dos nossos esforços, nenhum ambiente digital é completamente imune a riscos. Caso identifiquemos incidente relevante envolvendo dados pessoais, avaliaremos as medidas cabíveis e as comunicações exigidas pela legislação."
+          ]
+        },
+        {
+          title: "10. Alterações nesta política",
+          body: [
+            "Podemos atualizar esta Política de Privacidade para refletir mudanças legais, técnicas, operacionais ou comerciais. A versão vigente será sempre a publicada nesta página, com a data de última atualização."
+          ]
+        }
+      ],
+      contactTitle: "Canal de privacidade",
+      contactText: "Para dúvidas sobre esta política ou solicitações relacionadas aos seus dados pessoais, fale com a JUST pelo email abaixo.",
+      contactEmail: "contato@wearejust.it"
+    },
+    sentinel: {
+      metaTitle: "Sentinel — Antifraude em tempo real | JUST",
+      metaDesc: "Sentinel é a camada antifraude da JUST: risk scoring em tempo real para autorização de cartões, com modelos proprietários treinados em 6M+ transações.",
+      heroTag: "Em desenvolvimento — Lançamento Q1.26", heroAiTag: "AI-Powered",
+      h1: "Proteção inteligente em cada transação",
+      heroSubtitle: "Sentinel é a camada de inteligência antifraude da JUST: risk scoring em tempo real em cada autorização de cartão, com latência inferior a 100ms e modelos proprietários treinados sobre milhões de transações reais.",
+      heroCta: "Quero conhecer o Sentinel",
+      whatTitle: "Antifraude construído para a infraestrutura JUST",
+      whatText: "Nascido como parte da plataforma modular da JUST, o Sentinel analisa cada autorização de cartão em tempo real, identificando padrões de risco antes que a transação seja aprovada. Diferente de soluções genéricas de mercado, o Sentinel é treinado continuamente sobre o dataset proprietário de transações da plataforma JUST, entregando precisão específica para os contextos de uso dos nossos clientes.",
+      benefitsTitle: "Por que escolher o Sentinel",
+      b1Title: "Decisão em menos de 100ms",
+      b1Desc: "Inferência acelerada por GPU integrada ao fluxo transacional, sem adicionar latência perceptível ao usuário final.",
+      b2Title: "Modelos treinados com dados reais",
+      b2Desc: "Dataset proprietário com mais de 6 milhões de transações reais, com reentreinamento contínuo para adaptação a novos padrões de fraude.",
+      b3Title: "Redução de chargebacks",
+      b3Desc: "Identificação precoce de transações suspeitas reduz perdas por fraude e melhora indicadores de aprovação junto às bandeiras.",
+      b4Title: "Integrado ao core da JUST",
+      b4Desc: "Sem necessidade de contratar fornecedores externos: Sentinel já nasce conectado à plataforma de processamento e backoffice financeiro da JUST.",
+      techTitle: "Construido sobre infraestrutura de ponta",
+      techSubtitle: "Sentinel combina o melhor da engenharia de pagamentos com tecnologia de inteligência artificial de última geração.",
+      techBullets: ["Inferência em GPU NVIDIA (G5, P4d) na AWS", "Modelos de deep learning e gradient boosting", "Pipelines de reentreinamento contínuo", "Arquitetura event-driven integrada ao core transacional", "Exposição via API REST para parceiros e emissores"],
+      forWhoTitle: "Construido para quem processa pagamentos em escala",
+      forWhoItems: ["Emissores de cartão corporativo e de benefícios", "Fintechs de despesas corporativas e frotas", "Programas BaaS que precisam de proteção adicional sobre a autorização", "Redes varejistas com private label", "Qualquer operação com volume relevante de transações em cartão"],
+      statusTitle: "Onde o Sentinel está agora",
+      statusText: "Sentinel está em fase final de desenvolvimento, com lançamento previsto para Q1.26. Clientes atuais da plataforma JUST terão acesso preferencial na fase de lançamento. Entre em contato para conhecer a roadmap detalhada e discutir casos de uso específicos.",
+      statusCta: "Quero estar na primeira onda",
+      ctaFinal: "Transforme o risco em inteligência. Fale com nosso time.",
+      ctaFinalBtn: "Falar com especialista",
+    },
+  },
+  "en": {
+    nav: {
+      home: "Home", products: "Products", technology: "Technology",
+      cases: "Cases", about: "About", contact: "Contact Us",
+    },
+    footer: {
+      tagline: "Digital financial product platform. Technology ready to operate, scale and evolve.",
+      productsLabel: "Products", companyLabel: "Company", contactLabel: "Contact",
+      ecosystem: "Ecosystem & associations", techPartners: "Technology partners",
+      legal: "JUST operates exclusively as a technology provider and does not perform activities exclusive to financial institutions. All financial services are operated by partners duly authorized by the Central Bank of Brazil.",
+      rights: "© 2026 JUST. All rights reserved.", privacy: "Privacy Policy",
+    },
+    home: {
+      heroTag: "Financial product platform",
+      heroLine1: "Your fintech.", heroLine2: "Ready to operate",
+      heroLine3: "in weeks, not months.",
+      heroSubtitle: "Complete financial platforms, with modular technology and integrations ready to scale.",
+      step1: "Configure", step2: "Customize", step3: "Launch",
+      cta1: "Talk to a specialist", cta2: "View cases",
+      ecosystemLabel: "Ecosystem & partners",
+      deparaTag: "Why JUST",
+      deparaTitle: "What changes when you\nbuild with us.",
+      deparaWithout: "Without JUST", deparaWith: "With JUST",
+      productsTag: "Products",
+      productsTitle: "Ready-made modules for each\nvertical of your business.",
+      productsSubtitle: "Each product operates independently or combined. Full white-label.",
+      cardsTag: "Card arrangements",
+      cardsTitle: "Branded or Private Label?", cardsGradient: "You choose.",
+      cardsSubtitle: "We operate with open arrangement (branded), closed (private label) or hybrid. The decision is strategic and we help you make it.",
+      cardsOpenLabel: "Open Arrangement", cardsOpenTitle: "Branded Card",
+      cardsClosedLabel: "Closed Arrangement", cardsClosedTitle: "Private Label Card",
+      cardsOr: "or",
+      cardsPioneer: "Pioneers in Brazil",
+      cardsHybridTitle: "Why choose one\nwhen you can have ", cardsHybridGradient: "both?",
+      cardsHybridDesc: "We are pioneers in Brazil in operating the hybrid model: open and closed arrangement on the same platform, with a unified experience. You decide which users use branded and which use private label.",
+      processTag: "How it works",
+      processTitle: "From briefing to live product.", processGradient: "No surprises.",
+      processSubtitle: "A structured process that has already delivered 18+ fintechs. Each stage has clear scope, deadline and deliverables.",
+      process1Title: "Discovery & diagnosis",
+      process1Desc: "We map the business model, financial flows, required integrations and operating rules. Without this alignment, we don't proceed.",
+      process2Title: "Architecture & configuration",
+      process2Desc: "We activate the modules from our stack that fit the project. 70-80% of the technology is already ready. The rest is configuration, not construction.",
+      process3Title: "Integration & certification",
+      process3Desc: "We connect BaaS, acquirers and partners. Each sprint has visible delivery. You follow along in real time via our dashboard.",
+      process4Title: "Go-live & evolution",
+      process4Desc: "Product live with 24/7 monitoring, dedicated support and evolution roadmap. We don't deliver and disappear.",
+      summary1: "~90 days from kick-off to go-live", summary1sub: "Standard product, no complex customizations",
+      summary2: "70-80% of the stack already ready", summary2sub: "Configuration, not building from scratch",
+      summary3: "Sprints with visible delivery", summary3sub: "You track every step",
+      metricsTPV: "Processed TPV", metricsTX: "Transactions processed",
+      metricsUsers: "Users", metricsClients: "Clients",
+      casesTag: "Cases", casesTitle: "Real results. Fintechs in production.",
+      casesSubtitle: "Discover some of the products we built and operate with our partners.",
+      ctaFinalTitle: "Ready to have your own fintech?",
+      ctaFinalSubtitle: "Talk to our team and see how our products apply to your business.",
+      ctaFinalBtn: "Schedule a call",
+      comparisons: [
+        { sem: { title: "12-24 months to launch", desc: "Long projects, blown deadlines and budgets. Product arrives late to market." }, com: { title: "Product live in weeks", desc: "Stack with 70-80% reuse. Go-live in weeks, not years." } },
+        { sem: { title: "Lock-in with a single provider", desc: "Stuck with one BaaS or acquirer. No flexibility to switch or negotiate." }, com: { title: "Multi-provider, no lock-in", desc: "Multi-BaaS and multi-acquirer architecture. Switch without rewriting." } },
+        { sem: { title: "Regulatory complexity", desc: "Time and money spent on banking compliance instead of product." }, com: { title: "Regulatory solved", desc: "We operate on regulated BaaS. Our team can focus 100% on building your product." } },
+        { sem: { title: "Technology that doesn't scale", desc: "Works with 1,000 users. Breaks with 50,000." }, com: { title: "Proven scale", desc: "R$900M+ processed, 500k+ users. Infrastructure tested in production." } },
+        { sem: { title: "Generic white-labels", desc: "Off-the-shelf product that looks like a template. Same experience for everyone." }, com: { title: "Truly custom products", desc: "Journey, rules and design tailored to your business. Nobody knows it's us." } },
+        { sem: { title: "Team without segment experience", desc: "Generalist developers learning fintech from scratch. Long and expensive learning curve." }, com: { title: "Segment specialist team", desc: "5+ years building fintechs. Benefits, fleets, banking, expenses. We've been through it." } },
+      ],
+      cardsOpenFeatures: ["Wide acceptance across the entire credentialed network", "Mastercard, Visa or Elo", "Ideal for benefits and banking with capillarity", "MCC rules and category-level control"],
+      cardsClosedFeatures: ["Own acceptance network, full control", "Your brand on the card, no third-party flag", "Ideal for fleets, vouchers and closed ecosystems", "Own authorizer with real-time rules"],
+      hybridFeatures: [
+        { bold: "Branded for general use", text: " with acceptance across the entire Mastercard/Visa credentialed network" },
+        { bold: "Private label for own network", text: " with specific rules and full ecosystem control" },
+        { bold: "Two payment modes,", text: " one unified experience for your user" },
+      ],
+    },
+    products: {
+      beneficios: { name: "JUST Benefits", desc: "Open, closed or hybrid arrangement. Multiple balances with customizable rules and full control.", headerDesc: "Flexible benefits with customizable arrangement" },
+      frotas: { name: "JUST Fleet", desc: "Fuel, tolls, maintenance. Financial control per vehicle with real-time rules.", headerDesc: "Complete financial control per vehicle" },
+      banking: { name: "JUST Banking", desc: "Digital account, card, PIX, transfers. Complete white-label banking on BaaS.", headerDesc: "Account, card and PIX white-label" },
+      despesas: { name: "JUST Expense", desc: "Corporate cards with usage policies, limits and automatic reconciliation.", headerDesc: "Corporate cards with smart policies" },
+      antecipacao: { name: "JUST Credit", desc: "Private label, payroll advance and receivables. White-label credit products integrated into your business.", headerDesc: "White-label credit products" },
+      "sob-demanda": { name: "JUST Custom", desc: "Product that doesn't fit off the shelf? We architect and build it to order.", headerDesc: "Custom financial products" },
+      sentinel: { name: "JUST Sentinel", desc: "Real-time fraud detection and risk scoring for card authorization.", headerDesc: "AI-native real-time fraud detection" },
+    },
+    sobre: {
+      tag: "Who we are", h1: "Built by experts",
+      intro: "JUST was founded in 2020 to solve a simple, recurring problem in the financial market: promises that never became products. We build fintechs for those tired of waiting.",
+      tesesTag: "Our thesis", tesesTitle: "Execution above\npromise.",
+      tesesP1: "We believe the biggest bottleneck in the industry is not ideas, nor technology. It's execution.",
+      tesesP2: "Many projects fail because they try to recreate an entire bank for each new product, taking on regulatory and technical complexities that add no value to the customer journey.",
+      tesesP3: "JUST takes a different path. We work on robust, consolidated BaaS structures, eliminate regulatory burden and focus 100% on the product, user experience and financial operation.",
+      principiosTag: "How we think", principiosTitle: "Principles that guide\nevery decision.",
+      p1Title: "Product, not promise", p1Desc: "We don't sell roadmaps or prototypes. We deliver platforms in production, operating from day 1. A financial product only exists when it's live.",
+      p2Title: "Structure generates speed", p2Desc: "Proprietary stack with 70-80% reuse across projects. Ready modules, defined governance. Complete fintechs in months, not years.",
+      p3Title: "Strategic partner", p3Desc: "We act as the technological arm of the business. We take responsibility for the product and make decisions based on what needs to work.",
+      trajetoriaTag: "Journey", trajetoriaTitle: "From first product\nto ecosystem.",
+      liderancaTag: "Leadership", liderancaTitle: "Experience that sustains\ndelivery.",
+      commitment: "Our commitment", commitmentTitle: "Fintechs can be built in months, not years.",
+      commitmentDesc: "No wheel reinvention. No unnecessary bureaucracy. No empty promises. Complete financial platforms for those who need to operate fast, with technical solidity and full business focus. That's our commitment since 2020.",
+      cta: "Want to know our products?", ctaBtn: "Talk to our team",
+      timeline: [
+        { y: "2020", t: "Foundation", d: "Gabriel Pires founds JUST with a clear principle: a financial product only exists when it is operating." },
+        { y: "2021", t: "First clients", d: "Operations begin with eFleet and first benefits and fleet management projects." },
+        { y: "2022", t: "Proprietary stack", d: "Proprietary stack reaches 70% reuse across projects. Delivery speed becomes a competitive differentiator." },
+        { y: "2023", t: "Scale", d: "10+ active clients. R$500M+ in annual processing. Platform model validated by the market." },
+        { y: "2024", t: "Validation", d: "ViaSoftPay from zero to production in 45 days. NPS 76. Entry into new niches: banking, expenses, credit." },
+        { y: "2025", t: "Expansion", d: "18+ active clients. 40k+ users. R$900M+ TPV processed. Operations consolidated across multiple verticals." },
+      ],
+    },
+    cases: {
+      tag: "Cases", h1: "Real results. Fintechs in production.",
+      tpvLabel: "Processed TPV", txLabel: "Transactions processed",
+      usersLabel: "Users", clientsLabel: "Clients",
+      cta: "Want similar results?", ctaBtn: "Schedule a meeting",
+      casesList: [
+        { tag: "Benefits", name: "ViaSoftPay", headline: "From zero to production in 45 days", items: ["45 days from start to go-live", "100k+ active users", "R$500M+ annual processing", "NPS 100"] },
+        { tag: "Fleet", name: "eFleet", headline: "5+ years of partnership, 10+ modules", items: ["5+ years of ongoing partnership", "10+ modules in production", "R$500M+ annual processing"] },
+        { tag: "Hybrid Arrangement", name: "SmartVale", headline: "First hybrid arrangement in the portfolio", items: ["Hybrid arrangement in production", "Closed + open integrated", "Custom rules per balance"] },
+        { tag: "Benefits + Credit", name: "KPI", headline: "266% growth in transactions", items: ["266% growth", "Benefits + credit integrated", "Unique combined product"] },
+      ],
+    },
+    contato: {
+      h1: "Let's build your fintech.", subtitle: "Our team responds within 24 business hours.",
+      nameLabel: "Name *", emailLabel: "Corporate email *",
+      companyLabel: "Company *", phoneLabel: "Phone",
+      productLabel: "Product of interest *", productPlaceholder: "Select",
+      projectLabel: "About the project", projectPlaceholder: "How many users? Timeline? Current scenário?",
+      submitBtn: "Send message", sendingBtn: "Sending...",
+      successTitle: "Message sent!", successMsg: "We'll respond within 24 business hours.",
+      errorRequired: "Please fill in all required fields.",
+      errorSend: "Error sending. Please try again or contact us at contato@wearejust.it",
+      emailLabel2: "Email", whatsappLabel: "WhatsApp",
+      locationLabel: "Location", hoursLabel: "Business hours", hours: "Mon-Fri, 9am-6pm",
+      faqTitle: "Frequently asked questions",
+      faqs: [
+        { q: "What types of cards does JUST develop?", a: "JUST was built with a strong focus on closed arrangements (private label cards), where we operate our own processing technologies. Today, we also develop products integrated with open arrangements, working with regulated issuers of Visa, Mastercard and Elo. This allows us to create hybrid architectures, orchestrating multiple payment providers, issuers and processing components, always according to the business model and complexity level of the project. We are not limited to a single arrangement or vendor. We design the best technical and regulatory combination for each case." },
+        { q: "Does JUST sell white label licenses?", a: "We do not sell white label licenses in the traditional model. We believe each business has its own identity, strategy and rules. We therefore treat each project individually, even when starting from a common technology base. We use consolidated components and frameworks to accelerate project start, but each solution evolves with specific business rules, flows, integrations and experiences aligned to the client's reality. In practice, we deliver tailored platforms, not generic customized products." },
+        { q: "Is JUST a regulated entity by the Central Bank of Brazil?", a: "No. JUST is a technology provider. We operate in developing platforms for companies that may or may not be in environments regulated by the Central Bank of Brazil, depending on the product type. Some solutions, such as Flexible Benefits, do not require banking regulation. Others, such as Corporate Expenses, payment accounts or issuance in open arrangements, may require it. In these cases, we work together with regulated partners responsible for the regulatory burden, while JUST develops and integrates the entire technology layer, ensuring the final product complies with applicable regulations." },
+        { q: "Is JUST a software house?", a: "Yes, but not only that. We are specialists in payment platform solutions, but we act as strategic partners for our clients. Our work goes beyond technical development and includes: support in defining the business model, product architecture and competitive differentiation, building the technology platform, and supporting the operation and continuous evolution of the product. Our focus is to enable sustainable financial businesses, not just deliver code." },
+        { q: "I want to create a fintech but don't know where to start. Can JUST help?", a: "Yes. In addition to our development area, we have JUST Consulting, a unit focused on supporting companies from the initial phases of the project. We assist with ideation and business model validation, financial product definition, regulatory and structural assessment, and technical execution planning. The goal is to reduce common mistakes, accelerate critical decisions and build a viable product from the start." },
+        { q: "Does JUST take on regulatory or financial risk of the operation?", a: "No. JUST is responsible for the technology layer. Regulatory and financial risk remains with the client and, where applicable, with the regulated partners involved in the operation. Our role is to ensure that the technology correctly supports the regulatory requirements defined for the product." },
+        { q: "How long before my product can go live?", a: "The timeline varies according to the level of complexity, integrations and regulatory requirements. Simpler projects can be launched in a few months. More complex projects require additional phases of architecture, certification and testing. We prefer to set realistic timelines from the start, prioritizing safety, stability and operational sustainability." },
+      ],
+    },
+    stack: {
+      tag: "Technology",
+      h1: "The technical foundation behind financial products in production.",
+      subtitle: "Every solid financial product starts with a well-defined technical foundation. JUST builds this foundation to ensure security, scale and continuous evolution.",
+      platformTag: "Platform", platformTitle: "Platform components.",
+      platformSubtitle: "Each component was built to operate independently and integrated. Your product. Your rules. No workarounds.",
+      integrationsTag: "Integrations", integrationsTitle: "Multi-provider by design.",
+      integrationsSubtitle: "No financial product should depend on a single vendor. The product stays the same. The vendors can change.",
+      securityTag: "Security", securityTitle: "Security as a process, not a feature.",
+      securitySubtitle: "Financial products cannot fail in production. Our architecture starts from this principle.",
+      cta: "Want to understand how it applies to your case?", ctaBtn: "Talk to our technical team",
+      secHighlightLabels: ["Recurring with formal retest", "Partner with dedicated infra", "Compliance implemented", "Mobile Top 10 applied"],
+      secCards: [
+        { title: "Defense in Depth", desc: "Layered protection: edge WAF, API Gateway with rate limiting, JWT authentication, network isolation via VPC." },
+        { title: "PCI-Aware Architecture", desc: "Architecture designed with PCI DSS standards awareness. Sensitive data under custody of the regulated financial institution." },
+        { title: "AWS Infrastructure", desc: "Isolated VPC, private subnets, KMS encryption, TLS 1.3, Multi-AZ RDS with daily backups." },
+        { title: "24/7 Monitoring", desc: "Real-time Grafana dashboards. Centralized logs with audit retention. Automated alerts." },
+        { title: "Recurring Pen Test", desc: "Gray/White Box penetration testing with semi-annual cycle. Formal retest of critical and high vulnerabilities." },
+        { title: "Mobile Security (OWASP)", desc: "Runtime hardening: root/jáilbreak detection, SSL Pinning, proxy/MITM detection. Minimum trust in the client." },
+      ],
+      mpSwapBold: "Switch providers without impacting the product.",
+      mpSwapText: " JUST's abstraction layer isolates your product from vendor dependencies. Migrate, add or remove providers in production.",
+    },
+    solution: {
+      modelsTitle: "Operating models", capabilitiesTitle: "Capabilities",
+      ctaTitle: "Want to understand how it works?", ctaBtn: "Schedule a call",
+    },
+    privacy: {
+      tag: "Privacy",
+      h1: "Privacy Policy",
+      subtitle: "How JUST handles personal data across its digital, commercial and relationship channels.",
+      updatedLabel: "Last updated",
+      updatedAt: "April 20, 2026",
+      introTitle: "Commitment to transparency",
+      intro: [
+        "This Privacy Policy explains, in an objective way, how JUST collects, uses, stores, shares and protects personal data related to the use of this website, contact forms and commercial interactions with our team.",
+        "JUST operates as a technology provider for digital financial platforms. Depending on the project, we may also process data on behalf of clients and partners under specific contracts. This policy mainly covers data processed directly by JUST in its own channels."
+      ],
+      sections: [
+        {
+          title: "1. Data we may collect",
+          body: [
+            "Identification and contact data, such as name, corporate email, phone number, company, job title and messages sent through forms, email, WhatsApp, LinkedIn or other channels.",
+            "Professional and business data shared during commercial conversations, such as product of interest, operation size, technical needs and project context.",
+            "Technical and browsing data, such as IP address, device identifiers, browser, operating system, accessed pages, traffic source, date, time and information collected by cookies or similar technologies.",
+            "We do not request sensitive personal data in our forms. If you voluntarily submit this type of information, we may disregard it, delete it or process it only when there is an apprópriate legal basis."
+          ]
+        },
+        {
+          title: "2. How we use data",
+          body: [
+            "Respond to contact requests, schedule conversations, qualify opportunities and conduct commercial or pre-contractual relationships.",
+            "Understand interest in our products and prepare proposals, demos and technical materials suited to the context provided.",
+            "Operate, measure, protect and improve the website, our digital channels and the browsing experience.",
+            "Send institutional, commercial or technical communications related to JUST, while respecting preferences, opt-out options and applicable legal requirements.",
+            "Comply with legal, regulatory and contractual obligations, audits, authority requests and the regular exercise of rights."
+          ]
+        },
+        {
+          title: "3. Legal bases",
+          body: [
+            "We process personal data based on the legal grounds provided by applicable law, including contract performance or preliminary procedures, compliance with legal or regulatory obligations, legitimate interest, consent when required and regular exercise of rights.",
+            "When we rely on legitimate interest, we seek to assess proportionality and adopt measures to reduce undue impact on data subjects."
+          ]
+        },
+        {
+          title: "4. Cookies and similar technologies",
+          body: [
+            "We may use essential cookies for website operation and measurement or analytics technologies to understand performance, traffic source and interactions with pages.",
+            "You can block, delete or manage cookies in your browser settings. Some features may become unavailable or less efficient if essential cookies are disabled."
+          ]
+        },
+        {
+          title: "5. Data sharing",
+          body: [
+            "We may share data with technology, hosting, security, analytics, CRM, communication, automation, support and other providers needed to operate our channels.",
+            "We may also share information with business partners, consultants, auditors, public authorities or third parties when necessary to comply with legal obligations, protect rights, respond to requests or enable an interaction requested by you.",
+            "When third parties process data on our behalf, we seek to establish confidentiality, security and use obligations compatible with the purposes described."
+          ]
+        },
+        {
+          title: "6. International transfers",
+          body: [
+            "Some providers or systems used by JUST may store or process data outside Brazil. In these cases, we adopt measures compatible with applicable law to protect the transferred data."
+          ]
+        },
+        {
+          title: "7. Retention and deletion",
+          body: [
+            "We keep personal data for as long as needed to fulfill the purposes described in this policy, meet legal or regulatory obligations, preserve commercial records and exercise rights in administrative, judicial or arbitration proceedings.",
+            "When data is no longer necessary, we may delete it, anonymize it or keep it only when there is a legal basis for retention."
+          ]
+        },
+        {
+          title: "8. Data subject rights",
+          body: [
+            "Under the LGPD, you may request confirmation of processing, access, correction, anonymization, blocking or deletion of data, portability where applicable, information about sharing, review of automated decisions when they exist, objection to processing and withdrawal of consent.",
+            "To exercise your rights, send a request to contato@wearejust.it. We may ask for additional information to confirm your identity and protect your data."
+          ]
+        },
+        {
+          title: "9. Information security",
+          body: [
+            "We adopt technical and organizational measures to protect personal data against unauthorized access, loss, alteration, improper disclosure or inadequate processing.",
+            "Despite our efforts, no digital environment is completely free of risks. If we identify a relevant incident involving personal data, we will assess the apprópriate measures and communications required by law."
+          ]
+        },
+        {
+          title: "10. Changes to this policy",
+          body: [
+            "We may update this Privacy Policy to reflect legal, technical, operational or commercial changes. The current version will always be the one published on this page, with the last updated date."
+          ]
+        }
+      ],
+      contactTitle: "Privacy channel",
+      contactText: "For questions about this policy or requests related to your personal data, contact JUST through the email below.",
+      contactEmail: "contato@wearejust.it"
+    },
+    sentinel: {
+      metaTitle: "Sentinel — Real-time fraud detection | JUST",
+      metaDesc: "Sentinel is JUST's anti-fraud layer: real-time risk scoring for card authorization, with proprietary models trained on 6M+ transactions.",
+      heroTag: "In development — Q1.26 Launch", heroAiTag: "AI-Powered",
+      h1: "Intelligent protection in every transaction",
+      heroSubtitle: "Sentinel is JUST's anti-fraud intelligence layer: real-time risk scoring on every card authorization, with sub-100ms latency and proprietary models trained on millions of real transactions.",
+      heroCta: "I want to know Sentinel",
+      whatTitle: "Anti-fraud built for JUST infrastructure",
+      whatText: "Born as part of JUST's modular platform, Sentinel analyzes each card authorization in real time, identifying risk patterns before the transaction is approved. Unlike generic market solutions, Sentinel is continuously trained on JUST's proprietary transaction dataset, delivering precision specific to our clients' use cases.",
+      benefitsTitle: "Why choose Sentinel",
+      b1Title: "Decision in under 100ms",
+      b1Desc: "GPU-accelerated inference integrated into the transactional flow, without adding perceptible latency for the end user.",
+      b2Title: "Models trained on real data",
+      b2Desc: "Proprietary dataset with over 6 million real transactions, with continuous retraining to adapt to new fraud patterns.",
+      b3Title: "Chargeback reduction",
+      b3Desc: "Early identification of suspicious transactions reduces fraud losses and improves approval indicators with card networks.",
+      b4Title: "Integrated into JUST's core",
+      b4Desc: "No need to hire external vendors: Sentinel is born connected to JUST's processing platform and financial backoffice.",
+      techTitle: "Built on cutting-edge infrastructure",
+      techSubtitle: "Sentinel combines the best of payments engineering with state-of-the-art artificial intelligence technology.",
+      techBullets: ["GPU inference on NVIDIA (G5, P4d) on AWS", "Deep learning and gradient boosting models", "Continuous retraining pipelines", "Event-driven architecture integrated into the transactional core", "REST API exposure for partners and issuers"],
+      forWhoTitle: "Built for those who process payments at scale",
+      forWhoItems: ["Corporate card and benefits card issuers", "Corporate expense and fleet management fintechs", "BaaS programs needing additional protection on authorization", "Retail networks with private label", "Any operation with relevant card transaction volume"],
+      statusTitle: "Where Sentinel is now",
+      statusText: "Sentinel is in its final development phase, with launch scheduled for Q1.26. Current JUST platform clients will have preferential access at launch. Contact us to learn about the detailed roadmap and discuss specific use cases.",
+      statusCta: "I want to be in the first wave",
+      ctaFinal: "Turn risk into intelligence. Talk to our team.",
+      ctaFinalBtn: "Talk to a specialist",
+    },
+  },
+};
+
 
 // ========================================
 // DESIGN TOKENS
@@ -27,6 +616,7 @@ const PRODUCT_COLORS = {
   despesas: { accent: "#E17055", gradient: "linear-gradient(135deg, #E17055, #fab1a0)", label: "Expense" },
   antecipacao: { accent: "#FDCB6E", gradient: "linear-gradient(135deg, #D4A017, #FDCB6E)", label: "Credit" },
   "sob-demanda": { accent: "#636E72", gradient: "linear-gradient(135deg, #636E72, #b2bec3)", label: "Custom" },
+  sentinel: { accent: "#00CEC9", gradient: "linear-gradient(135deg, #00B2B2, #81ECEC)", label: "Sentinel" },
 };
 
 // Logo asset (file reference from /public)
@@ -88,6 +678,14 @@ const PRODUCT_ICON_PATHS = {
       <path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z"
         stroke={c} strokeWidth="2" fill="none" opacity="0.9" strokeLinejoin="round"/>
       <circle cx="22" cy="22" r="3" stroke={cl} strokeWidth="1.5" fill="none" opacity="0.5"/>
+    </svg>
+  ),
+  sentinel: (c, cl) => (
+    <svg viewBox="0 0 44 44" fill="none">
+      <path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke={c} strokeWidth="2" fill="none" opacity="0.9" strokeLinejoin="round"/>
+      <path d="M16 22l4 4 8-8" stroke={cl} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
+      <circle cx="22" cy="22" r="2.5" stroke={c} strokeWidth="1.2" fill="none" opacity="0.3"/>
+      <path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke={c} strokeWidth="1.2" strokeLinecap="round" opacity="0.35"/>
     </svg>
   ),
 };
@@ -258,12 +856,12 @@ function Metric({ prefix = "", value, suffix = "", label, delay = 0 }) {
 // HERO ORBITAL VISUAL
 // ========================================
 const HERO_ORBITAL_NODES = [
-  { key: "beneficios", label: "Benefits", top: "12%", left: "8%", animName: "nodeFloat1", dur: "6s", delay: "0s", posClass: "pos-left", tooltipName: "JUST Benefits", tooltipDesc: "Arranjo aberto, fechado ou hibrido. Multiplos saldos com regras customizaveis e controle total.", tooltipColor: "#A29BFE", barGrad: "linear-gradient(90deg,#6C5CE7,#A29BFE)" },
-  { key: "frotas", label: "Fleet", top: "4%", right: "12%", animName: "nodeFloat2", dur: "7s", delay: "0.5s", posClass: "pos-right", tooltipName: "JUST Fleet", tooltipDesc: "Abastecimento, pedagio, manutencao. Controle financeiro por veiculo com regras em tempo real.", tooltipColor: "#55EFC4", barGrad: "linear-gradient(90deg,#00B894,#55EFC4)" },
-  { key: "banking", label: "Banking", top: "40%", right: "0%", animName: "nodeFloat3", dur: "5.5s", delay: "1s", posClass: "pos-right", tooltipName: "JUST Banking", tooltipDesc: "Conta digital, cartao, PIX, transferencias. Banking completo e white-label sobre BaaS.", tooltipColor: "#74B9FF", barGrad: "linear-gradient(90deg,#0984E3,#74B9FF)" },
-  { key: "despesas", label: "Expense", top: "45%", left: "0%", animName: "nodeFloat4", dur: "6.5s", delay: "1.5s", posClass: "pos-left", tooltipName: "JUST Expense", tooltipDesc: "Cartoes corporativos com politicas de uso, limites e conciliacao automatica.", tooltipColor: "#FAB1A0", barGrad: "linear-gradient(90deg,#E17055,#FAB1A0)" },
-  { key: "antecipacao", label: "Credit", bottom: "6%", left: "14%", animName: "nodeFloat5", dur: "5s", delay: "2s", posClass: "pos-top", tooltipName: "JUST Credit", tooltipDesc: "Private label, antecipacao e recebiveis. Produtos de credito white-label integrados ao seu negocio.", tooltipColor: "#FFEAA7", barGrad: "linear-gradient(90deg,#D4A017,#FDCB6E)" },
-  { key: "sob-demanda", label: "Custom", bottom: "2%", right: "10%", animName: "nodeFloat6", dur: "7s", delay: "0.8s", posClass: "pos-top pos-right", tooltipName: "JUST Custom", tooltipDesc: "Produto que nao cabe em prateleira? Arquitetamos e construimos sob medida.", tooltipColor: "#B2BEC3", barGrad: "linear-gradient(90deg,#636E72,#B2BEC3)" },
+  { key: "beneficios", top: "12%", left: "8%", animName: "nodeFloat1", dur: "6s", delay: "0s", posClass: "pos-left", tooltipColor: "#A29BFE", barGrad: "linear-gradient(90deg,#6C5CE7,#A29BFE)" },
+  { key: "frotas", top: "4%", right: "12%", animName: "nodeFloat2", dur: "7s", delay: "0.5s", posClass: "pos-right", tooltipColor: "#55EFC4", barGrad: "linear-gradient(90deg,#00B894,#55EFC4)" },
+  { key: "banking", top: "40%", right: "0%", animName: "nodeFloat3", dur: "5.5s", delay: "1s", posClass: "pos-right", tooltipColor: "#74B9FF", barGrad: "linear-gradient(90deg,#0984E3,#74B9FF)" },
+  { key: "despesas", top: "45%", left: "0%", animName: "nodeFloat4", dur: "6.5s", delay: "1.5s", posClass: "pos-left", tooltipColor: "#FAB1A0", barGrad: "linear-gradient(90deg,#E17055,#FAB1A0)" },
+  { key: "antecipacao", bottom: "6%", left: "14%", animName: "nodeFloat5", dur: "5s", delay: "2s", posClass: "pos-top", tooltipColor: "#FFEAA7", barGrad: "linear-gradient(90deg,#D4A017,#FDCB6E)" },
+  { key: "sob-demanda", bottom: "2%", right: "10%", animName: "nodeFloat6", dur: "7s", delay: "0.8s", posClass: "pos-top pos-right", tooltipColor: "#B2BEC3", barGrad: "linear-gradient(90deg,#636E72,#B2BEC3)" },
 ];
 
 const HERO_SVG_ICONS = {
@@ -324,7 +922,7 @@ const HERO_SVG_ICONS = {
   ),
 };
 
-function HeroOrbital() {
+function HeroOrbital({ trProd }) {
   return (
     <div id="orbitalWrapper" className="orbital-wrapper" style={{ position: "relative", width: "100%", height: 520, display: "flex", alignItems: "center", justifyContent: "center" }}>
       {/* Orbital rings */}
@@ -415,10 +1013,10 @@ function HeroOrbital() {
               fontSize: 11, fontWeight: 600, letterSpacing: "0.5px",
               color: "rgba(255,255,255,0.45)", textAlign: "center",
               whiteSpace: "nowrap", transition: "all 0.3s",
-            }}>{node.label}</span>
+            }}>{trProd[node.key]?.name?.replace("JUST ", "")}</span>
             <div className="node-tooltip">
-              <div className="tooltip-name" style={{ color: node.tooltipColor }}>{node.tooltipName}</div>
-              <div className="tooltip-desc">{node.tooltipDesc}</div>
+              <div className="tooltip-name" style={{ color: node.tooltipColor }}>{trProd[node.key]?.name}</div>
+              <div className="tooltip-desc">{trProd[node.key]?.desc}</div>
               <div className="tooltip-bar" style={{ background: node.barGrad }} />
             </div>
           </div>
@@ -2081,8 +2679,8 @@ const mockupText = (w, h = 5, color, op = "18") => ({
 
 function BeneficiosMockup({ color }) {
   const cats = [
-    { name: "Alimentacao", pct: 78, val: "R$ 780" },
-    { name: "Refeicao", pct: 45, val: "R$ 450" },
+    { name: "Alimentação", pct: 78, val: "R$ 780" },
+    { name: "Refeição", pct: 45, val: "R$ 450" },
     { name: "Mobilidade", pct: 92, val: "R$ 230" },
     { name: "Cultura", pct: 30, val: "R$ 150" },
   ];
@@ -2209,7 +2807,7 @@ function BankingMockup({ color }) {
             <div style={{ fontSize: 6, color: `${color}45` }}>Conta Digital</div>
             <div style={{ fontSize: 18, fontWeight: 800, color: color, margin: "2px 0", letterSpacing: "-0.02em" }}>R$ 45.230,00</div>
             <div style={{ display: "flex", gap: 4, marginTop: 4 }}>
-              {["PIX", "TED", "Boleto", "Cartao"].map((a) => (
+              {["PIX", "TED", "Boleto", "Cartão"].map((a) => (
                 <div key={a} style={{ flex: 1, padding: "4px 0", borderRadius: 4, background: `${color}12`, textAlign: "center", fontSize: 6, color: `${color}60`, fontWeight: 600 }}>{a}</div>
               ))}
             </div>
@@ -2240,7 +2838,7 @@ function BankingMockup({ color }) {
             <div style={{ position: "absolute", bottom: 10, right: 12, fontSize: 8, fontWeight: 800, color: `${color}50` }}>VISA</div>
           </div>
           <div style={{ ...mockupCard(color), textAlign: "center" }}>
-            <div style={{ fontSize: 6, color: `${color}40` }}>Limite disponivel</div>
+            <div style={{ fontSize: 6, color: `${color}40` }}>Limite disponível</div>
             <div style={{ fontSize: 11, fontWeight: 700, color: color }}>R$ 25.000</div>
             <div style={{ height: 3, background: `${color}10`, borderRadius: 2, marginTop: 4 }}>
               <div style={{ height: "100%", width: "62%", background: `${color}50`, borderRadius: 2 }} />
@@ -2297,7 +2895,7 @@ function DespesasMockup({ color }) {
         <div style={{ flex: 0.8 }}>
           <div style={{ ...mockupCard(color), marginBottom: 8 }}>
             <div style={{ fontSize: 7, color: `${color}45`, fontWeight: 600, marginBottom: 6 }}>GASTOS POR CATEGORIA</div>
-            {[{ n: "SaaS", p: 35 }, { n: "Viagens", p: 25 }, { n: "Marketing", p: 20 }, { n: "Escritorio", p: 12 }, { n: "Outros", p: 8 }].map((c, i) => (
+            {[{ n: "SaaS", p: 35 }, { n: "Viagens", p: 25 }, { n: "Marketing", p: 20 }, { n: "Escritório", p: 12 }, { n: "Outros", p: 8 }].map((c, i) => (
               <div key={i} style={{ marginBottom: 4 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 1 }}>
                   <span style={{ fontSize: 6, color: `${color}50` }}>{c.n}</span>
@@ -2310,9 +2908,9 @@ function DespesasMockup({ color }) {
             ))}
           </div>
           <div style={{ ...mockupCard(color), textAlign: "center", padding: 10 }}>
-            <div style={{ fontSize: 6, color: `${color}35` }}>Politica ativa</div>
+            <div style={{ fontSize: 6, color: `${color}35` }}>Política ativa</div>
             <div style={{ fontSize: 8, fontWeight: 700, color: `${color}60` }}>Nivel 3</div>
-            <div style={{ fontSize: 5, color: `${color}30`, marginTop: 2 }}>Aprovacao &gt; R$500</div>
+            <div style={{ fontSize: 5, color: `${color}30`, marginTop: 2 }}>Aprovação &gt; R$500</div>
           </div>
         </div>
       </div>
@@ -2330,9 +2928,9 @@ function AntecipacaoMockup({ color }) {
       <div style={{ padding: "34px 16px 12px", display: "flex", gap: 12 }}>
         <div style={{ flex: 1, textAlign: "center" }}>
           <div style={{ ...mockupCard(color), background: `linear-gradient(135deg, ${color}14, ${color}08)`, padding: "14px 12px", marginBottom: 10 }}>
-            <div style={{ fontSize: 6, color: `${color}45` }}>Limite de credito disponivel</div>
+            <div style={{ fontSize: 6, color: `${color}45` }}>Limite de crédito disponível</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: color, margin: "4px 0", letterSpacing: "-0.02em" }}>R$ 3.200,00</div>
-            <div style={{ fontSize: 6, color: `${color}35` }}>Aprovado | Vigencia ativa</div>
+            <div style={{ fontSize: 6, color: `${color}35` }}>Aprovado | Vigência ativa</div>
             <div style={{ height: 4, background: `${color}10`, borderRadius: 3, margin: "8px 0 4px" }}>
               <div style={{ height: "100%", width: "40%", background: `linear-gradient(90deg, ${color}50, ${color}80)`, borderRadius: 3 }} />
             </div>
@@ -2476,10 +3074,12 @@ function ProductMockup({ color, label, style = {}, productKey = null }) {
 // ========================================
 // HEADER
 // ========================================
-function Header({ page, setPage }) {
+function Header({ page, setPage, lang }) {
+  const { setLang } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [dropOpen, setDropOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const tr = T18N[lang] || T18N["pt-BR"];
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", h);
@@ -2489,13 +3089,28 @@ function Header({ page, setPage }) {
   const lnk = (p) => ({ color: page === p ? T.cta : "rgba(242,244,248,0.8)", fontSize: 14, fontWeight: 500, cursor: "pointer", background: "none", border: "none", padding: "8px 14px", transition: "color 0.2s" });
 
   const solucoes = [
-    { key: "beneficios", label: "JUST Benefits", desc: "Beneficios flexiveis com arranjo customizavel", color: PRODUCT_COLORS.beneficios.accent },
-    { key: "frotas", label: "JUST Fleet", desc: "Controle financeiro completo por veiculo", color: PRODUCT_COLORS.frotas.accent },
-    { key: "banking", label: "JUST Banking", desc: "Conta, cartao e PIX white-label", color: PRODUCT_COLORS.banking.accent },
-    { key: "despesas", label: "JUST Expense", desc: "Cartoes corporativos com politicas inteligentes", color: PRODUCT_COLORS.despesas.accent },
-    { key: "antecipacao", label: "JUST Credit", desc: "Produtos de credito white-label", color: PRODUCT_COLORS.antecipacao.accent },
-    { key: "sob-demanda", label: "JUST Custom", desc: "Produtos financeiros sob medida", color: PRODUCT_COLORS["sob-demanda"].accent },
+    { key: "beneficios", label: tr.products.beneficios.name, desc: tr.products.beneficios.headerDesc, color: PRODUCT_COLORS.beneficios.accent },
+    { key: "frotas", label: tr.products.frotas.name, desc: tr.products.frotas.headerDesc, color: PRODUCT_COLORS.frotas.accent },
+    { key: "banking", label: tr.products.banking.name, desc: tr.products.banking.headerDesc, color: PRODUCT_COLORS.banking.accent },
+    { key: "despesas", label: tr.products.despesas.name, desc: tr.products.despesas.headerDesc, color: PRODUCT_COLORS.despesas.accent },
+    { key: "antecipacao", label: tr.products.antecipacao.name, desc: tr.products.antecipacao.headerDesc, color: PRODUCT_COLORS.antecipacao.accent },
+    { key: "sob-demanda", label: tr.products["sob-demanda"].name, desc: tr.products["sob-demanda"].headerDesc, color: PRODUCT_COLORS["sob-demanda"].accent },
+    { key: "sentinel", label: tr.products.sentinel.name, desc: tr.products.sentinel.headerDesc, color: PRODUCT_COLORS.sentinel.accent },
   ];
+
+  const LangToggle = ({ mobile = false }) => (
+    <div style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: mobile ? 0 : 8 }}>
+      {["pt-BR", "en"].map((l) => (
+        <button key={l} onClick={() => setLang(l)} style={{
+          padding: "5px 10px", borderRadius: 6, fontSize: 11, fontWeight: 700,
+          cursor: "pointer", border: `1px solid ${lang === l ? "rgba(244,85,70,0.4)" : "rgba(255,255,255,0.1)"}`,
+          background: lang === l ? "rgba(244,85,70,0.1)" : "transparent",
+          color: lang === l ? T.cta : "rgba(242,244,248,0.4)",
+          transition: "all 0.2s", letterSpacing: "0.03em",
+        }}>{l === "pt-BR" ? "PT" : "EN"}</button>
+      ))}
+    </div>
+  );
 
   return (
     <>
@@ -2513,9 +3128,9 @@ function Header({ page, setPage }) {
 
       {/* Desktop nav - hidden on mobile via CSS */}
       <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <button style={lnk("home")} onClick={() => nav("home")}>Home</button>
+        <button style={lnk("home")} onClick={() => nav("home")}>{tr.nav.home}</button>
         <div style={{ position: "relative" }} onMouseEnter={() => setDropOpen(true)} onMouseLeave={() => setDropOpen(false)}>
-          <button style={lnk("solucoes")}>Produtos &#9662;</button>
+          <button style={lnk("solucoes")}>{tr.nav.products} &#9662;</button>
           {dropOpen && (
             <div style={{
               position: "absolute", top: "100%", left: -20, background: "rgba(15,17,43,0.98)",
@@ -2541,10 +3156,11 @@ function Header({ page, setPage }) {
             </div>
           )}
         </div>
-        <button style={lnk("stack")} onClick={() => nav("stack")}>Tecnologia</button>
-        <button style={lnk("cases")} onClick={() => nav("cases")}>Cases</button>
-        <button style={lnk("sobre")} onClick={() => nav("sobre")}>Sobre</button>
-        <Btn onClick={() => nav("contato")} size="sm" style={{ marginLeft: 16 }}>Fale Conosco</Btn>
+        <button style={lnk("stack")} onClick={() => nav("stack")}>{tr.nav.technology}</button>
+        <button style={lnk("cases")} onClick={() => nav("cases")}>{tr.nav.cases}</button>
+        <button style={lnk("sobre")} onClick={() => nav("sobre")}>{tr.nav.about}</button>
+        <LangToggle />
+        <Btn onClick={() => nav("contato")} size="sm" style={{ marginLeft: 8 }}>{tr.nav.contact}</Btn>
       </nav>
 
       {/* Mobile hamburger - shown on mobile via CSS */}
@@ -2569,9 +3185,9 @@ function Header({ page, setPage }) {
         zIndex: 99, display: "flex", flexDirection: "column",
         padding: "24px 24px", overflowY: "auto",
       }}>
-        <button onClick={() => nav("home")} style={{ ...lnk("home"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>Home</button>
+        <button onClick={() => nav("home")} style={{ ...lnk("home"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>{tr.nav.home}</button>
         <div style={{ borderTop: `1px solid ${T.borderLight}`, margin: "4px 0" }} />
-        <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(242,244,248,0.3)", textTransform: "uppercase", letterSpacing: "0.06em", padding: "12px 0 4px" }}>Produtos</div>
+        <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(242,244,248,0.3)", textTransform: "uppercase", letterSpacing: "0.06em", padding: "12px 0 4px" }}>{tr.nav.products}</div>
         {solucoes.map((s) => (
           <button key={s.key} onClick={() => nav(s.key)} style={{
             display: "flex", alignItems: "center", gap: 10, width: "100%", textAlign: "left",
@@ -2583,12 +3199,13 @@ function Header({ page, setPage }) {
           </button>
         ))}
         <div style={{ borderTop: `1px solid ${T.borderLight}`, margin: "8px 0" }} />
-        <button onClick={() => nav("stack")} style={{ ...lnk("stack"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>Tecnologia</button>
-        <button onClick={() => nav("cases")} style={{ ...lnk("cases"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>Cases</button>
-        <button onClick={() => nav("sobre")} style={{ ...lnk("sobre"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>Sobre</button>
-        <div style={{ marginTop: 16 }}>
-          <Btn onClick={() => nav("contato")} style={{ width: "100%", textAlign: "center" }}>Fale Conosco</Btn>
+        <button onClick={() => nav("stack")} style={{ ...lnk("stack"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>{tr.nav.technology}</button>
+        <button onClick={() => nav("cases")} style={{ ...lnk("cases"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>{tr.nav.cases}</button>
+        <button onClick={() => nav("sobre")} style={{ ...lnk("sobre"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>{tr.nav.about}</button>
+        <div style={{ marginTop: 16, marginBottom: 8 }}>
+          <Btn onClick={() => nav("contato")} style={{ width: "100%", textAlign: "center" }}>{tr.nav.contact}</Btn>
         </div>
+        <LangToggle mobile />
       </div>
     )}
     </>
@@ -2598,7 +3215,10 @@ function Header({ page, setPage }) {
 // ========================================
 // FOOTER
 // ========================================
-function Footer({ setPage }) {
+function Footer({ setPage, lang }) {
+  const tr = (T18N[lang] || T18N["pt-BR"]).footer;
+  const trProducts = (T18N[lang] || T18N["pt-BR"]).products;
+  const trNav = (T18N[lang] || T18N["pt-BR"]).nav;
   const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
   const fl = { color: "rgba(242,244,248,0.4)", fontSize: 13, cursor: "pointer", background: "none", border: "none", display: "block", lineHeight: 2.4, transition: "color 0.2s" };
   return (
@@ -2609,45 +3229,45 @@ function Footer({ setPage }) {
             <JustLogo height={30} />
           </div>
           <p style={{ fontSize: 13, color: "rgba(242,244,248,0.35)", lineHeight: 1.7, maxWidth: 260 }}>
-            Plataforma de produtos financeiros digitais. Tecnologia pronta para operar, escalar e evoluir.
+            {tr.tagline}
           </p>
         </div>
         <div>
-          <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>Produtos</h4>
-          {[["beneficios","JUST Benefits"],["frotas","JUST Fleet"],["banking","JUST Banking"],["despesas","JUST Expense"],["antecipacao","JUST Credit"],["sob-demanda","JUST Custom"]].map(([k,l]) =>
+          <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>{tr.productsLabel}</h4>
+          {[["beneficios"],["frotas"],["banking"],["despesas"],["antecipacao"],["sob-demanda"],["sentinel"]].map(([k]) =>
             <button key={k} style={{ ...fl, display: "flex", alignItems: "center", gap: 8 }} onClick={() => nav(k)}>
               <ProductIcon productKey={k} size={18} />
-              {l}
+              {trProducts[k]?.name || k}
             </button>
           )}
         </div>
         <div>
-          <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>Empresa</h4>
-          {[["sobre","Sobre"],["cases","Cases"],["stack","Tecnologia"],["contato","Contato"]].map(([k,l]) =>
+          <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>{tr.companyLabel}</h4>
+          {[["sobre", trNav.about],["cases","Cases"],["stack", trNav.technology],["contato", tr.contactLabel]].map(([k,l]) =>
             <button key={k} style={fl} onClick={() => nav(k)}>{l}</button>
           )}
         </div>
         <div>
-          <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>Contato</h4>
+          <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>{tr.contactLabel}</h4>
           <a href="mailto:contato@wearejust.it" style={{ ...fl, textDecoration: "none" }}>contato@wearejust.it</a>
-          <span style={{ ...fl, cursor: "default", lineHeight: 1.6, marginBottom: 8 }}>{"Condominio Praca Capital"}{"\n"}{"Av. Jose Rocha Bomfim, 214 - Edificio Madri"}{"\n"}{"Campinas - SP"}</span>
-          <span style={{ ...fl, cursor: "default", lineHeight: 1.6, marginBottom: 10 }}>{"Cubo Itau"}{"\n"}{"Alameda Vicente Pinzon, 54 - Vila Olimpia"}{"\n"}{"Sao Paulo - SP"}</span>
+          <span style={{ ...fl, cursor: "default", lineHeight: 1.6, marginBottom: 8 }}>{"Condomínio Praça Capital"}{"\n"}{"Av. José Rocha Bomfim, 214 - Edifício Madri"}{"\n"}{"Campinas - SP"}</span>
+          <span style={{ ...fl, cursor: "default", lineHeight: 1.6, marginBottom: 10 }}>{"Cubo Itaú"}{"\n"}{"Alameda Vicente Pinzón, 54 - Vila Olímpia"}{"\n"}{"São Paulo - SP"}</span>
           <a href="https://www.linkedin.com/company/wearejust-it" target="_blank" rel="noopener noreferrer" style={{ ...fl, textDecoration: "none" }}>LinkedIn &rarr;</a>
         </div>
       </div>
       <div style={{ maxWidth: 1200, margin: "40px auto 0", paddingTop: 24, borderTop: "1px solid rgba(255,255,255,0.04)" }}>
         <div style={{ display: "flex", gap: 48, marginBottom: 24, flexWrap: "wrap" }}>
           <div>
-            <p style={{ fontSize: 10, color: "rgba(242,244,248,0.2)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10, fontWeight: 600 }}>Ecossistema e associacoes</p>
+            <p style={{ fontSize: 10, color: "rgba(242,244,248,0.2)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10, fontWeight: 600 }}>{tr.ecosystem}</p>
             <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-              <img src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itau" style={{ height: 24, width: "auto", opacity: 0.2 }} />
+              <img src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itaú" style={{ height: 24, width: "auto", opacity: 0.2 }} />
               <img src={`${import.meta.env.BASE_URL}logos/abfintechs.png`} alt="ABFintechs" style={{ height: 16, width: "auto", opacity: 0.2 }} />
               <img src={`${import.meta.env.BASE_URL}logos/abstartups.png`} alt="ABStartups" style={{ height: 18, width: "auto", opacity: 0.2, filter: "brightness(0) invert(1)" }} />
               <img src={`${import.meta.env.BASE_URL}logos/finscale.svg`} alt="Finscale" style={{ height: 14, width: "auto", opacity: 0.2 }} />
             </div>
           </div>
           <div>
-            <p style={{ fontSize: 10, color: "rgba(242,244,248,0.2)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10, fontWeight: 600 }}>Parceiros tecnologicos</p>
+            <p style={{ fontSize: 10, color: "rgba(242,244,248,0.2)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10, fontWeight: 600 }}>{tr.techPartners}</p>
             <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
               <img src={`${import.meta.env.BASE_URL}logos/aws-partner.png`} alt="AWS" style={{ height: 20, width: "auto", opacity: 0.2, filter: "brightness(0) invert(1)" }} />
               <img src={`${import.meta.env.BASE_URL}logos/swap.svg`} alt="Swap" style={{ height: 16, width: "auto", opacity: 0.2, filter: "invert(1)" }} />
@@ -2657,10 +3277,25 @@ function Footer({ setPage }) {
             </div>
           </div>
         </div>
-        <p style={{ fontSize: 11, color: "rgba(242,244,248,0.18)", lineHeight: 1.7, marginBottom: 24 }}>A JUST atua exclusivamente como provedora de tecnologia e nao realiza atividades privativas de instituicoes financeiras. Todos os servicos financeiros sao operados por parceiros devidamente autorizados pelo Banco Central do Brasil.</p>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <p style={{ fontSize: 12, color: "rgba(242,244,248,0.2)" }}>&copy; 2026 JUST. Todos os direitos reservados.</p>
-          <p style={{ fontSize: 12, color: "rgba(242,244,248,0.2)" }}>Politica de Privacidade</p>
+        <p style={{ fontSize: 11, color: "rgba(242,244,248,0.18)", lineHeight: 1.7, marginBottom: 24 }}>{tr.legal}</p>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
+          <p style={{ fontSize: 12, color: "rgba(242,244,248,0.2)" }}>{tr.rights}</p>
+          <button
+            onClick={() => nav("privacidade")}
+            style={{
+              fontSize: 12,
+              color: "rgba(242,244,248,0.35)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+              textDecoration: "none",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = T.textLight; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(242,244,248,0.35)"; }}
+          >
+            {tr.privacy}
+          </button>
         </div>
       </div>
     </footer>
@@ -2670,46 +3305,23 @@ function Footer({ setPage }) {
 // ========================================
 // HOME PAGE v2 - Platform positioning
 // ========================================
-function HomePage({ setPage }) {
+function HomePage({ setPage, lang }) {
   const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const tr = (T18N[lang] || T18N["pt-BR"]).home;
+  const trProd = (T18N[lang] || T18N["pt-BR"]).products;
 
   // Products with individual identity
   const products = [
-    { key: "beneficios", name: "JUST Benefits", desc: "Arranjo aberto, fechado ou hibrido. Multiplos saldos com regras customizaveis e controle total.", ...PRODUCT_COLORS.beneficios },
-    { key: "frotas", name: "JUST Fleet", desc: "Abastecimento, pedagio, manutencao. Controle financeiro por veiculo com regras em tempo real.", ...PRODUCT_COLORS.frotas },
-    { key: "banking", name: "JUST Banking", desc: "Conta digital, cartao, PIX, transferencias. Banking completo e white-label sobre BaaS.", ...PRODUCT_COLORS.banking },
-    { key: "despesas", name: "JUST Expense", desc: "Cartoes corporativos com politicas de uso, limites e conciliacao automatica.", ...PRODUCT_COLORS.despesas },
-    { key: "antecipacao", name: "JUST Credit", desc: "Private label, antecipacao e recebiveis. Produtos de credito white-label integrados ao seu negocio.", ...PRODUCT_COLORS.antecipacao },
-    { key: "sob-demanda", name: "JUST Custom", desc: "Produto que nao cabe em prateleira? Arquitetamos e construimos sob medida.", ...PRODUCT_COLORS["sob-demanda"] },
+    { key: "beneficios", name: trProd.beneficios.name, desc: trProd.beneficios.desc, ...PRODUCT_COLORS.beneficios },
+    { key: "frotas", name: trProd.frotas.name, desc: trProd.frotas.desc, ...PRODUCT_COLORS.frotas },
+    { key: "banking", name: trProd.banking.name, desc: trProd.banking.desc, ...PRODUCT_COLORS.banking },
+    { key: "despesas", name: trProd.despesas.name, desc: trProd.despesas.desc, ...PRODUCT_COLORS.despesas },
+    { key: "antecipacao", name: trProd.antecipacao.name, desc: trProd.antecipacao.desc, ...PRODUCT_COLORS.antecipacao },
+    { key: "sob-demanda", name: trProd["sob-demanda"].name, desc: trProd["sob-demanda"].desc, ...PRODUCT_COLORS["sob-demanda"] },
   ];
 
   // DE > PARA comparison data
-  const comparisons = [
-    {
-      sem: { title: "12-24 meses para lancar", desc: "Projetos longos, estouro de prazo e budget. Produto chega tarde ao mercado." },
-      com: { title: "Produto no ar em semanas", desc: "Stack com 70-80% de reuso. Go-live em semanas, nao anos." },
-    },
-    {
-      sem: { title: "Lock-in com um unico provedor", desc: "Preso a um BaaS ou adquirente. Sem flexibilidade para mudar ou negociar." },
-      com: { title: "Multi-provider, sem lock-in", desc: "Arquitetura multi-BaaS e multi-adquirente. Troque sem reescrever." },
-    },
-    {
-      sem: { title: "Complexidade regulatoria", desc: "Tempo e dinheiro gastos com compliance bancario ao inves de produto." },
-      com: { title: "Regulatorio resolvido", desc: "Operamos sobre BaaS regulados. Com isso nosso time pode se focar 100% no desenvolvimento do seu produto." },
-    },
-    {
-      sem: { title: "Tecnologia que nao escala", desc: "Funciona com 1.000 usuarios. Quebra com 50.000." },
-      com: { title: "Escala comprovada", desc: "R$900M+ processados, 500k+ usuarios. Infraestrutura testada em producao." },
-    },
-    {
-      sem: { title: "White-labels genericos", desc: "Produto de prateleira com cara de template. Mesma experiencia pra todo mundo." },
-      com: { title: "Produtos customizados de verdade", desc: "Jornada, regras e visual desenhados pro seu negocio. Ninguem sabe que somos nos." },
-    },
-    {
-      sem: { title: "Time sem experiencia no segmento", desc: "Desenvolvedores generalistas aprendendo fintech do zero. Curva longa e cara." },
-      com: { title: "Time especialista no segmento", desc: "+5 anos construindo fintechs. Beneficios, frotas, banking, despesas. Ja passamos por isso." },
-    },
-  ];
+  const comparisons = tr.comparisons;
 
   // SVG icons for DE > PARA (red = sem, green = com)
   const comparisonIcons = [
@@ -2755,19 +3367,19 @@ function HomePage({ setPage }) {
         <div className="hero-grid" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center", position: "relative", zIndex: 2 }}>
           <div>
             <Reveal>
-              <Tag>Plataforma de produtos financeiros</Tag>
+              <Tag>{tr.heroTag}</Tag>
             </Reveal>
             <Reveal delay={0.1}>
               <h1 className="hero-title" style={{ fontSize: 60, fontWeight: 800, color: T.textLight, lineHeight: 1.06, letterSpacing: "-0.035em", margin: "20px 0" }}>
-                Sua fintech.<br />Pronta para operar<br />em <span style={{ background: "linear-gradient(135deg, #6C5CE7, #A29BFE, #74B9FF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>semanas, nao meses.</span>
+                {tr.heroLine1}<br />{tr.heroLine2}<br /><span style={{ background: "linear-gradient(135deg, #6C5CE7, #A29BFE, #74B9FF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{tr.heroLine3}</span>
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
               <p style={{ fontSize: 18, color: T.textMutedLight, lineHeight: 1.6, maxWidth: 480, marginBottom: 36 }}>
-                Plataformas financeiras completas, com tecnologia modular e integracoes prontas para escalar.
+                {tr.heroSubtitle}
               </p>
               <div className="flow-steps-row" style={{ display: "flex", alignItems: "center", gap: 0, marginBottom: 36, flexWrap: "wrap" }}>
-                {[{ num: "1", label: "Configure" }, { num: "2", label: "Personalize" }].map((step, i) => (
+                {[{ num: "1", label: tr.step1 }, { num: "2", label: tr.step2 }].map((step, i) => (
                   <React.Fragment key={step.label}>
                     {i > 0 && (
                       <div className="flow-arrow-icon" style={{ display: "flex", alignItems: "center", padding: "0 6px", color: "rgba(242,244,248,0.15)" }}>
@@ -2822,7 +3434,7 @@ function HomePage({ setPage }) {
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.9)",
                   }}>3</span>
-                  <span className="step-label-text" style={{ fontSize: 15, fontWeight: 700, color: "#fff", letterSpacing: "0.01em", position: "relative", zIndex: 1 }}>Lance</span>
+                  <span className="step-label-text" style={{ fontSize: 15, fontWeight: 700, color: "#fff", letterSpacing: "0.01em", position: "relative", zIndex: 1 }}>{tr.step3}</span>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ position: "relative", zIndex: 1 }}>
                     <path d="M2 12L12 2M12 2H5M12 2v7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -2831,15 +3443,15 @@ function HomePage({ setPage }) {
             </Reveal>
             <Reveal delay={0.4}>
               <div style={{ display: "flex", gap: 12 }}>
-                <Btn onClick={() => nav("contato")}>Fale com um especialista</Btn>
-                <Btn primary={false} onClick={() => nav("cases")}>Ver cases</Btn>
+                <Btn onClick={() => nav("contato")}>{tr.cta1}</Btn>
+                <Btn primary={false} onClick={() => nav("cases")}>{tr.cta2}</Btn>
               </div>
             </Reveal>
           </div>
 
           {/* Hero visual: Orbital product icons */}
           <Reveal delay={0.2} direction="right">
-            <HeroOrbital />
+            <HeroOrbital trProd={trProd} />
           </Reveal>
         </div>
       </section>
@@ -2849,13 +3461,13 @@ function HomePage({ setPage }) {
         <Reveal>
           <div className="social-proof-bar" style={{ maxWidth: 1200, margin: "0 auto" }}>
             <div style={{ textAlign: "center", fontSize: 11, fontWeight: 500, color: "rgba(242,244,248,0.25)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 20 }}>
-              Ecossistema e parceiros
+              {tr.ecosystemLabel}
             </div>
             <div className="social-logos" style={{ display: "flex", gap: 40, alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
               <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/finscale.svg`} alt="Finscale" style={{ height: 28, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
               <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/abfintechs.png`} alt="ABFintechs" style={{ height: 32, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
               <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/abstartups.png`} alt="ABStartups" style={{ height: 38, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itau" style={{ height: 48, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itaú" style={{ height: 48, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
               <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/aws-partner.png`} alt="AWS Partner" style={{ height: 42, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
               <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/fiserv.png`} alt="Fiserv" style={{ height: 32, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
               <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/linx.png`} alt="Linx" style={{ height: 34, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
@@ -2877,9 +3489,9 @@ function HomePage({ setPage }) {
                 fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em",
                 background: "rgba(244,85,70,0.08)", border: "1px solid rgba(244,85,70,0.2)", color: "#f45546",
                 marginBottom: 16,
-              }}>Por que a JUST</span>
+              }}>{tr.deparaTag}</span>
               <h2 style={{ fontSize: 44, fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.025em", color: "#f2f4f8" }}>
-                O que muda quando voce<br />opera com a gente.
+                {tr.deparaTitle.split("\n").map((l, i) => <React.Fragment key={i}>{l}{i === 0 && <br />}</React.Fragment>)}
               </h2>
             </div>
           </Reveal>
@@ -2894,7 +3506,7 @@ function HomePage({ setPage }) {
                 background: "rgba(232,93,74,0.06)", border: "1px solid rgba(232,93,74,0.15)",
               }}>
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.5"/><line x1="4" y1="4" x2="8" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><line x1="8" y1="4" x2="4" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                Sem a JUST
+                {tr.deparaWithout}
               </span>
             </div>
             <div />
@@ -2906,7 +3518,7 @@ function HomePage({ setPage }) {
                 background: "rgba(39,174,96,0.06)", border: "1px solid rgba(39,174,96,0.15)",
               }}>
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.5"/><path d="M4 6l1.5 1.5L8 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                Com a JUST
+                {tr.deparaWith}
               </span>
             </div>
           </div>
@@ -2992,15 +3604,15 @@ function HomePage({ setPage }) {
       {/* ===== PRODUCTS BENTO GRID ===== */}
       <section className="section-products" style={{ background: T.primary, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionTitle tag="Produtos" title={"Modulos prontos para cada\nvertical do seu negocio."} subtitle="Cada produto opera de forma independente ou combinada. White-label completo." />
+          <SectionTitle tag={tr.productsTag} title={tr.productsTitle} subtitle={tr.productsSubtitle} />
 
           <div className="bento-grid">
             {[
-              { key: "beneficios", size: "wide", label: "JUST Benefits", title: "Beneficios flexiveis com\narranjo customizavel", badge: "Arranjo aberto, fechado ou hibrido", color: PRODUCT_COLORS.beneficios.accent, colorLight: "#A29BFE" },
-              { key: "frotas", size: "narrow", label: "JUST Fleet", title: "Controle financeiro\npor veiculo", badge: "Abastecimento + pedagio com integracoes nativas", color: PRODUCT_COLORS.frotas.accent, colorLight: "#55EFC4" },
-              { key: "banking", size: "narrow", label: "JUST Banking", title: "Conta, cartao e PIX\nwhite-label", badge: "Conta + cartao + PIX sobre BaaS regulado", color: PRODUCT_COLORS.banking.accent, colorLight: "#74B9FF" },
-              { key: "despesas", size: "wide", label: "JUST Expense", title: "Cartoes corporativos com\npoliticas inteligentes", badge: "Politicas inteligentes + conciliacao automatica", color: PRODUCT_COLORS.despesas.accent, colorLight: "#FAB1A0" },
-              { key: "antecipacao", size: "wide", label: "JUST Credit", title: "Produtos de credito\nwhite-label", badge: "Private label, antecipacao e recebiveis", color: PRODUCT_COLORS.antecipacao.accent, colorLight: "#FFEAA7" },
+              { key: "beneficios", size: "wide", label: "JUST Benefits", title: "Benefícios flexíveis com\narranjo customizável", badge: "Arranjo aberto, fechado ou híbrido", color: PRODUCT_COLORS.beneficios.accent, colorLight: "#A29BFE" },
+              { key: "frotas", size: "narrow", label: "JUST Fleet", title: "Controle financeiro\npor veículo", badge: "Abastecimento + pedágio com integrações nativas", color: PRODUCT_COLORS.frotas.accent, colorLight: "#55EFC4" },
+              { key: "banking", size: "narrow", label: "JUST Banking", title: "Conta, cartão e PIX\nwhite-label", badge: "Conta + cartão + PIX sobre BaaS regulado", color: PRODUCT_COLORS.banking.accent, colorLight: "#74B9FF" },
+              { key: "despesas", size: "wide", label: "JUST Expense", title: "Cartões corporativos com\npolíticas inteligentes", badge: "Políticas inteligentes + conciliação automática", color: PRODUCT_COLORS.despesas.accent, colorLight: "#FAB1A0" },
+              { key: "antecipacao", size: "wide", label: "JUST Credit", title: "Produtos de crédito\nwhite-label", badge: "Private label, antecipação e recebíveis", color: PRODUCT_COLORS.antecipacao.accent, colorLight: "#FFEAA7" },
               { key: "sob-demanda", size: "narrow", label: "JUST Custom", title: "Produto sob medida?\nConstruimos.", badge: "Sob medida", color: PRODUCT_COLORS["sob-demanda"].accent, colorLight: "#B2BEC3" },
             ].map((card, i) => (
               <Reveal key={card.key} delay={i * 0.06}>
@@ -3110,7 +3722,7 @@ function HomePage({ setPage }) {
       {/* ===== CARD ARRANGEMENTS ===== */}
       <section className="section-cards" style={{ background: T.darkAlt, padding: "120px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionTitle tag="Arranjos de cartao" title={<>Bandeirado ou Private Label?<br /><span style={{ background: "linear-gradient(135deg, #f45546, #FF7675)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Voce escolhe.</span></>} subtitle="Operamos com arranjo aberto (bandeirado), fechado (private label) ou hibrido. A decisao e estrategica e nos ajudamos voce a tomar." center />
+          <SectionTitle tag={tr.cardsTag} title={<>{tr.cardsTitle}<br /><span style={{ background: "linear-gradient(135deg, #f45546, #FF7675)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{tr.cardsGradient}</span></>} subtitle={tr.cardsSubtitle} center />
 
           <div className="cards-grid">
             {/* LEFT: Bandeirado */}
@@ -3138,11 +3750,11 @@ function HomePage({ setPage }) {
                 <div className="card-info">
                   <div className="card-type-label" style={{ color: "#6C5CE7" }}>
                     <span className="dot" style={{ background: "#6C5CE7" }} />
-                    Arranjo Aberto
+                    {tr.cardsOpenLabel}
                   </div>
-                  <h3>Cartao Bandeirado</h3>
+                  <h3>{tr.cardsOpenTitle}</h3>
                   <ul className="features-list">
-                    {["Aceitacao ampla em toda rede credenciada", "Mastercard, Visa ou Elo", "Ideal para beneficios e banking com capilaridade", "Regras de MCC e controle por categoria"].map((f, i) => (
+                    {tr.cardsOpenFeatures.map((f, i) => (
                       <li key={i}>
                         <span className="check" style={{ background: "rgba(108,92,231,0.1)", border: "1px solid rgba(108,92,231,0.25)" }}>
                           <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2.5 5l2 2 3.5-3.5" stroke="#6C5CE7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -3158,7 +3770,7 @@ function HomePage({ setPage }) {
             {/* Center divider */}
             <div className="center-divider">
               <div className="divider-line" />
-              <div className="divider-badge">ou</div>
+              <div className="divider-badge">{tr.cardsOr}</div>
               <div className="divider-line" />
             </div>
 
@@ -3191,11 +3803,11 @@ function HomePage({ setPage }) {
                 <div className="card-info">
                   <div className="card-type-label" style={{ color: "#00B894" }}>
                     <span className="dot" style={{ background: "#00B894" }} />
-                    Arranjo Fechado
+                    {tr.cardsClosedLabel}
                   </div>
-                  <h3>Cartao Private Label</h3>
+                  <h3>{tr.cardsClosedTitle}</h3>
                   <ul className="features-list">
-                    {["Rede propria de aceitacao, controle total", "Sua marca no cartao, sem bandeira de terceiro", "Ideal para frotas, vales e ecossistemas fechados", "Autorizador proprio com regras em tempo real"].map((f, i) => (
+                    {tr.cardsClosedFeatures.map((f, i) => (
                       <li key={i}>
                         <span className="check" style={{ background: "rgba(0,184,148,0.1)", border: "1px solid rgba(0,184,148,0.25)" }}>
                           <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2.5 5l2 2 3.5-3.5" stroke="#00B894" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -3217,33 +3829,25 @@ function HomePage({ setPage }) {
                   <div className="hybrid-content">
                     <div className="hybrid-exclusive-tag">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.76 3.57L13 5.27l-3 2.93.71 4.13L7 10.27l-3.71 2.06.71-4.13-3-2.93 4.24-.7L7 1z" fill="#f45546" opacity="0.9"/></svg>
-                      Pioneiros no Brasil
+                      {tr.cardsPioneer}
                     </div>
                     <h3 className="hybrid-title">
-                      Por que escolher um<br />se voce pode ter <span className="gradient-text">os dois?</span>
+                      {tr.cardsHybridTitle.split("\n").map((l, i) => <React.Fragment key={i}>{l}{i === 0 && <br />}</React.Fragment>)}<span className="gradient-text">{tr.cardsHybridGradient}</span>
                     </h3>
                     <p className="hybrid-description">
-                      Somos pioneiros no Brasil em operar o modelo hibrido: arranjo aberto e fechado na mesma plataforma, com experiencia unificada. Voce decide quais usuarios usam bandeirado e quais usam private label.
+                      {tr.cardsHybridDesc}
                     </p>
                     <div className="hybrid-features">
-                      <div className="hybrid-feature">
-                        <div className="hybrid-feature-icon purple">
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2v8" stroke="#6C5CE7" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                      {tr.hybridFeatures.map((hf, i) => (
+                        <div key={i} className="hybrid-feature">
+                          <div className={`hybrid-feature-icon ${["purple","green","red"][i]}`}>
+                            {i === 0 && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2v8" stroke="#6C5CE7" strokeWidth="1.5" strokeLinecap="round"/></svg>}
+                            {i === 1 && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2v8" stroke="#00B894" strokeWidth="1.5" strokeLinecap="round"/></svg>}
+                            {i === 2 && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#f45546" strokeWidth="1.5" strokeLinecap="round"/></svg>}
+                          </div>
+                          <span className="hybrid-feature-text"><strong>{hf.bold}</strong>{hf.text}</span>
                         </div>
-                        <span className="hybrid-feature-text"><strong>Bandeirado para uso geral</strong> com aceitacao em toda rede credenciada Mastercard/Visa</span>
-                      </div>
-                      <div className="hybrid-feature">
-                        <div className="hybrid-feature-icon green">
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2v8" stroke="#00B894" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                        </div>
-                        <span className="hybrid-feature-text"><strong>Private label para rede propria</strong> com regras especificas e controle total do ecossistema</span>
-                      </div>
-                      <div className="hybrid-feature">
-                        <div className="hybrid-feature-icon red">
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#f45546" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                        </div>
-                        <span className="hybrid-feature-text"><strong>Dois meios de uso,</strong> uma experiencia unificada para o seu usuario</span>
-                      </div>
+                      ))}
                     </div>
                   </div>
 
@@ -3309,16 +3913,16 @@ function HomePage({ setPage }) {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 72 }}>
             <Reveal>
-              <Tag>Como funciona</Tag>
+              <Tag>{tr.processTag}</Tag>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 style={{ fontSize: 44, fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.025em", color: T.textLight }}>
-                Do briefing ao produto no ar.<br /><span style={{ background: "linear-gradient(135deg, #f45546, #FF7675)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Sem surpresas.</span>
+                {tr.processTitle}<br /><span style={{ background: "linear-gradient(135deg, #f45546, #FF7675)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{tr.processGradient}</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <p style={{ fontSize: 17, color: T.textMutedLight, lineHeight: 1.6, marginTop: 16, maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>
-                Um processo estruturado que ja entregou 18+ fintechs. Cada etapa tem escopo, prazo e entregavel claro.
+                {tr.processSubtitle}
               </p>
             </Reveal>
           </div>
@@ -3332,11 +3936,11 @@ function HomePage({ setPage }) {
                   <div className="step-number" style={{ background: "#1a1120", border: "1.5px solid rgba(244,85,70,0.35)", color: "#f45546", boxShadow: "inset 0 0 12px rgba(244,85,70,0.08)" }}>01</div>
                 </div>
                 <div className="step-content">
-                  <h3 className="step-title">Discovery e diagnostico</h3>
-                  <p className="step-desc">Mapeamos o modelo de negocio, fluxos financeiros, integradores necessarios e regras de operacao. Sem esse alinhamento, nao avancamos.</p>
+                  <h3 className="step-title">{tr.process1Title}</h3>
+                  <p className="step-desc">{tr.process1Desc}</p>
                   <div className="step-details">
                     <span className="step-tag" style={{ background: "rgba(244,85,70,0.06)", color: "rgba(244,85,70,0.6)" }}>Modelo de negocio</span>
-                    <span className="step-tag" style={{ background: "rgba(244,85,70,0.06)", color: "rgba(244,85,70,0.6)" }}>Requisitos tecnicos</span>
+                    <span className="step-tag" style={{ background: "rgba(244,85,70,0.06)", color: "rgba(244,85,70,0.6)" }}>Requisitos técnicos</span>
                     <span className="step-tag" style={{ background: "rgba(244,85,70,0.06)", color: "rgba(244,85,70,0.6)" }}>Cronograma</span>
                   </div>
                 </div>
@@ -3347,8 +3951,8 @@ function HomePage({ setPage }) {
                       <div className="disc-bar" style={{ width: "65%", background: "#f45546" }} />
                     </div>
                     <div className="disc-answer">
-                      <div className="disc-pill" style={{ background: "rgba(244,85,70,0.08)", border: "1px solid rgba(244,85,70,0.2)", color: "rgba(244,85,70,0.7)" }}>Beneficios</div>
-                      <div className="disc-pill" style={{ background: "rgba(108,92,231,0.08)", border: "1px solid rgba(108,92,231,0.2)", color: "rgba(108,92,231,0.7)" }}>Hibrido</div>
+                      <div className="disc-pill" style={{ background: "rgba(244,85,70,0.08)", border: "1px solid rgba(244,85,70,0.2)", color: "rgba(244,85,70,0.7)" }}>Benefícios</div>
+                      <div className="disc-pill" style={{ background: "rgba(108,92,231,0.08)", border: "1px solid rgba(108,92,231,0.2)", color: "rgba(108,92,231,0.7)" }}>Híbrido</div>
                     </div>
                     <div className="disc-question">
                       <div className="disc-dot" style={{ background: "rgba(244,85,70,0.5)" }} />
@@ -3372,8 +3976,8 @@ function HomePage({ setPage }) {
                   <div className="step-number" style={{ background: "#120f22", border: "1.5px solid rgba(108,92,231,0.35)", color: "#6C5CE7", boxShadow: "inset 0 0 12px rgba(108,92,231,0.08)" }}>02</div>
                 </div>
                 <div className="step-content">
-                  <h3 className="step-title">Arquitetura e configuracao</h3>
-                  <p className="step-desc">Ativamos os modulos da nossa stack que se encaixam no projeto. 70-80% da tecnologia ja esta pronta. O resto e configuracao, nao construcao.</p>
+                  <h3 className="step-title">{tr.process2Title}</h3>
+                  <p className="step-desc">{tr.process2Desc}</p>
                   <div className="step-details">
                     <span className="step-tag" style={{ background: "rgba(108,92,231,0.06)", color: "rgba(108,92,231,0.6)" }}>Modulos ativados</span>
                     <span className="step-tag" style={{ background: "rgba(108,92,231,0.06)", color: "rgba(108,92,231,0.6)" }}>White-label</span>
@@ -3383,7 +3987,7 @@ function HomePage({ setPage }) {
                 <div className="step-visual" style={{ background: "linear-gradient(160deg, rgba(108,92,231,0.03), transparent)" }}>
                   <div className="arq-visual">
                     <div className="arq-block arq-block-ready">Core</div>
-                    <div className="arq-block arq-block-ready">Cartoes</div>
+                    <div className="arq-block arq-block-ready">Cartões</div>
                     <div className="arq-block arq-block-ready">Auth</div>
                     <div className="arq-block arq-block-ready">Regras</div>
                     <div className="arq-block arq-block-config">Custom</div>
@@ -3402,12 +4006,12 @@ function HomePage({ setPage }) {
                   <div className="step-number" style={{ background: "#0c1620", border: "1.5px solid rgba(0,184,148,0.35)", color: "#00B894", boxShadow: "inset 0 0 12px rgba(0,184,148,0.08)" }}>03</div>
                 </div>
                 <div className="step-content">
-                  <h3 className="step-title">Integracao e homologacao</h3>
-                  <p className="step-desc">Conectamos BaaS, credenciadoras e parceiros. Cada sprint tem entrega visivel. Voce acompanha em tempo real pelo nosso painel.</p>
+                  <h3 className="step-title">{tr.process3Title}</h3>
+                  <p className="step-desc">{tr.process3Desc}</p>
                   <div className="step-details">
                     <span className="step-tag" style={{ background: "rgba(0,184,148,0.06)", color: "rgba(0,184,148,0.6)" }}>BaaS conectado</span>
                     <span className="step-tag" style={{ background: "rgba(0,184,148,0.06)", color: "rgba(0,184,148,0.6)" }}>Testes E2E</span>
-                    <span className="step-tag" style={{ background: "rgba(0,184,148,0.06)", color: "rgba(0,184,148,0.6)" }}>Homologacao</span>
+                    <span className="step-tag" style={{ background: "rgba(0,184,148,0.06)", color: "rgba(0,184,148,0.6)" }}>Homologação</span>
                   </div>
                 </div>
                 <div className="step-visual" style={{ background: "linear-gradient(160deg, rgba(0,184,148,0.03), transparent)" }}>
@@ -3441,12 +4045,12 @@ function HomePage({ setPage }) {
                   <div className="step-number" style={{ background: "#0e1820", border: "1.5px solid rgba(39,174,96,0.35)", color: "#27AE60", boxShadow: "inset 0 0 12px rgba(39,174,96,0.08)" }}>04</div>
                 </div>
                 <div className="step-content">
-                  <h3 className="step-title">Go-live e evolucao</h3>
-                  <p className="step-desc">Produto no ar com monitoramento 24/7, suporte dedicado e roadmap de evolucao. Nao entregamos e sumimos.</p>
+                  <h3 className="step-title">{tr.process4Title}</h3>
+                  <p className="step-desc">{tr.process4Desc}</p>
                   <div className="step-details">
                     <span className="step-tag" style={{ background: "rgba(39,174,96,0.06)", color: "rgba(39,174,96,0.6)" }}>Monitoramento</span>
                     <span className="step-tag" style={{ background: "rgba(39,174,96,0.06)", color: "rgba(39,174,96,0.6)" }}>Suporte</span>
-                    <span className="step-tag" style={{ background: "rgba(39,174,96,0.06)", color: "rgba(39,174,96,0.6)" }}>Evolucao</span>
+                    <span className="step-tag" style={{ background: "rgba(39,174,96,0.06)", color: "rgba(39,174,96,0.6)" }}>Evolução</span>
                   </div>
                 </div>
                 <div className="step-visual" style={{ background: "linear-gradient(160deg, rgba(39,174,96,0.03), transparent)" }}>
@@ -3485,8 +4089,8 @@ function HomePage({ setPage }) {
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#f45546" strokeWidth="1.5" /><path d="M9 5v4l3 2" stroke="#f45546" strokeWidth="1.5" strokeLinecap="round" /></svg>
                 </div>
                 <div className="summary-text">
-                  <strong>~90 dias do kick-off ao go-live</strong>
-                  Produto padrao, sem customizacoes complexas
+                  <strong>{tr.summary1}</strong>
+                  {tr.summary1sub}
                 </div>
               </div>
               <div className="summary-divider" />
@@ -3495,8 +4099,8 @@ function HomePage({ setPage }) {
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9.5l4 4 8-8" stroke="#00B894" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
                 <div className="summary-text">
-                  <strong>70-80% da stack ja pronta</strong>
-                  Configuracao, nao construcao do zero
+                  <strong>{tr.summary2}</strong>
+                  {tr.summary2sub}
                 </div>
               </div>
               <div className="summary-divider" />
@@ -3505,8 +4109,8 @@ function HomePage({ setPage }) {
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v14M2 9h14" stroke="#6C5CE7" strokeWidth="1.8" strokeLinecap="round" /></svg>
                 </div>
                 <div className="summary-text">
-                  <strong>Sprints com entrega visivel</strong>
-                  Voce acompanha cada etapa
+                  <strong>{tr.summary3}</strong>
+                  {tr.summary3sub}
                 </div>
               </div>
             </div>
@@ -3523,25 +4127,25 @@ function HomePage({ setPage }) {
               <div style={{ fontSize: 42, fontWeight: 800, letterSpacing: "-0.03em", color: "rgba(242,244,248,0.85)", lineHeight: 1, marginBottom: 10 }}>
                 <span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginRight: 2 }}>R$</span>4<span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginLeft: 2 }}>bi+</span>
               </div>
-              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>TPV processado</div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>{tr.metricsTPV}</div>
             </div>
             <div className="metric-item" style={{ textAlign: "center", padding: "32px 24px", position: "relative", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
               <div style={{ fontSize: 42, fontWeight: 800, letterSpacing: "-0.03em", color: "rgba(242,244,248,0.85)", lineHeight: 1, marginBottom: 10 }}>
                 30<span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginLeft: 2 }}>M+</span>
               </div>
-              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>Transacoes processadas</div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>{tr.metricsTX}</div>
             </div>
             <div className="metric-item" style={{ textAlign: "center", padding: "32px 24px", position: "relative", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
               <div style={{ fontSize: 42, fontWeight: 800, letterSpacing: "-0.03em", color: "rgba(242,244,248,0.85)", lineHeight: 1, marginBottom: 10 }}>
                 500<span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginLeft: 2 }}>k+</span>
               </div>
-              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>Usuarios</div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>{tr.metricsUsers}</div>
             </div>
             <div className="metric-item" style={{ textAlign: "center", padding: "32px 24px", position: "relative", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
               <div style={{ fontSize: 42, fontWeight: 800, letterSpacing: "-0.03em", color: "rgba(242,244,248,0.85)", lineHeight: 1, marginBottom: 10 }}>
                 15<span style={{ fontSize: 24, fontWeight: 600, color: "rgba(242,244,248,0.4)", marginLeft: 2 }}>+</span>
               </div>
-              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>Clientes</div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,244,248,0.3)", letterSpacing: "0.03em" }}>{tr.metricsClients}</div>
             </div>
           </div>
         </Reveal>
@@ -3552,16 +4156,16 @@ function HomePage({ setPage }) {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <Reveal>
-              <Tag>Cases</Tag>
+              <Tag>{tr.casesTag}</Tag>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 style={{ fontSize: 44, fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.025em", color: T.textLight }}>
-                Resultados reais. Fintechs em producao.
+                {tr.casesTitle}
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <p style={{ fontSize: 17, color: T.textMutedLight, lineHeight: 1.6, marginTop: 16, maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>
-                Conheca alguns dos produtos que construimos e operamos com nossos parceiros.
+                {tr.casesSubtitle}
               </p>
             </Reveal>
           </div>
@@ -3587,11 +4191,11 @@ function HomePage({ setPage }) {
                     </span>
                   </div>
                   <p className="case-name">eFleet</p>
-                  <h3 className="case-headline">Gestao de Frota com abastecimento e pagamento de pedagio</h3>
+                  <h3 className="case-headline">Gestão de Frota com abastecimento e pagamento de pedágio</h3>
                   <div className="case-metrics">
                     <span className="case-metric" style={{ background: "rgba(0,184,148,0.06)", color: "#00B894" }}>5+ anos de parceria</span>
                     <span className="case-metric" style={{ background: "rgba(0,184,148,0.06)", color: "#00B894" }}>R$250M+ processamento/ano</span>
-                    <span className="case-metric" style={{ background: "rgba(0,184,148,0.06)", color: "#00B894" }}>10+ modulos integrados</span>
+                    <span className="case-metric" style={{ background: "rgba(0,184,148,0.06)", color: "#00B894" }}>10+ módulos integrados</span>
                   </div>
                 </div>
               </div>
@@ -3620,9 +4224,9 @@ function HomePage({ setPage }) {
                     </span>
                   </div>
                   <p className="case-name">Viasoft Pay</p>
-                  <h3 className="case-headline">Beneficios e Despesas Corporativas com Arranjo Hibrido</h3>
+                  <h3 className="case-headline">Benefícios e Despesas Corporativas com Arranjo Híbrido</h3>
                   <div className="case-metrics">
-                    <span className="case-metric" style={{ background: "rgba(108,92,231,0.06)", color: "#6C5CE7" }}>100k+ usuarios</span>
+                    <span className="case-metric" style={{ background: "rgba(108,92,231,0.06)", color: "#6C5CE7" }}>100k+ usuários</span>
                     <span className="case-metric" style={{ background: "rgba(108,92,231,0.06)", color: "#6C5CE7" }}>R$500M+ processamento/ano</span>
                     <span className="case-metric" style={{ background: "rgba(108,92,231,0.06)", color: "#6C5CE7" }}>45 dias zero-to-production</span>
                   </div>
@@ -3639,15 +4243,15 @@ function HomePage({ setPage }) {
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 600, height: 600, background: "radial-gradient(circle, rgba(244,85,70,0.06), transparent)", borderRadius: "50%", filter: "blur(80px)" }} />
         <div style={{ position: "relative", zIndex: 2 }}>
           <Reveal>
-            <h2 style={{ fontSize: 44, fontWeight: 700, color: T.textLight, marginBottom: 16, letterSpacing: "-0.02em" }}>Pronto para ter sua propria fintech?</h2>
+            <h2 style={{ fontSize: 44, fontWeight: 700, color: T.textLight, marginBottom: 16, letterSpacing: "-0.02em" }}>{tr.ctaFinalTitle}</h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p style={{ fontSize: 17, color: T.textMutedLight, maxWidth: 480, margin: "0 auto 36px" }}>
-              Converse com nosso time e veja como nossos produtos se aplicam ao seu negocio.
+              {tr.ctaFinalSubtitle}
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <Btn onClick={() => nav("contato")} size="lg">Agendar uma conversa</Btn>
+            <Btn onClick={() => nav("contato")} size="lg">{tr.ctaFinalBtn}</Btn>
           </Reveal>
         </div>
       </section>
@@ -3658,45 +4262,39 @@ function HomePage({ setPage }) {
 // ========================================
 // SOBRE PAGE
 // ========================================
-function SobrePage({ setPage }) {
+function SobrePage({ setPage, lang }) {
   const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const timeline = [
-    { y: "2020", t: "Fundacao", d: "Gabriel Pires funda a JUST com um principio claro: produto financeiro so existe quando esta operando." },
-    { y: "2021", t: "Primeiros clientes", d: "Inicio das operacoes com eFleet e primeiros projetos de beneficios e gestao de frotas." },
-    { y: "2022", t: "Stack propria", d: "Stack proprietaria atinge 70% de reuso entre projetos. Velocidade de entrega se torna diferencial competitivo." },
-    { y: "2023", t: "Escala", d: "10+ clientes ativos. R$500M+ em processamento anual. Modelo de plataforma validado pelo mercado." },
-    { y: "2024", t: "Validacao", d: "ViaSoftPay do zero a producao em 45 dias. NPS 76. Entrada em novos nichos: banking, despesas, credito." },
-    { y: "2025", t: "Expansao", d: "18+ clientes ativos. 40k+ usuarios. R$900M+ TPV processado. Operacao consolidada em multiplas verticais." },
-  ];
+  const tr = (T18N[lang] || T18N["pt-BR"]).sobre;
+  const timeline = tr.timeline;
   return (
     <div>
       <section style={{ background: `linear-gradient(160deg, ${T.primary}, ${T.darkAlt}, ${T.secondary})`, padding: "170px 48px 100px", textAlign: "center" }}>
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
-          <Reveal><Tag>Quem somos</Tag></Reveal>
-          <Reveal delay={0.1}><h1 style={{ fontSize: 48, fontWeight: 700, color: T.textLight, lineHeight: 1.1, margin: "16px 0" }}>Criada por experts</h1></Reveal>
-          <Reveal delay={0.2}><p style={{ fontSize: 18, color: T.textMutedLight, lineHeight: 1.6 }}>A JUST nasceu em 2020 para resolver um problema simples e recorrente no mercado financeiro: promessas que nao viram produto. Construimos fintechs para quem cansou de esperar.</p></Reveal>
+          <Reveal><Tag>{tr.tag}</Tag></Reveal>
+          <Reveal delay={0.1}><h1 style={{ fontSize: 48, fontWeight: 700, color: T.textLight, lineHeight: 1.1, margin: "16px 0" }}>{tr.h1}</h1></Reveal>
+          <Reveal delay={0.2}><p style={{ fontSize: 18, color: T.textMutedLight, lineHeight: 1.6 }}>{tr.intro}</p></Reveal>
         </div>
       </section>
       <section style={{ background: T.primary, padding: "120px 48px" }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <SectionTitle tag="Nossa tese" title={"Execucao acima\nde promessa."} center />
+          <SectionTitle tag={tr.tesesTag} title={tr.tesesTitle} center />
           <Reveal>
             <div style={{ maxWidth: 700, margin: "0 auto" }}>
-              <p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75, marginBottom: 20 }}>Acreditamos que o maior gargalo da industria nao e ideia, nem tecnologia. E execucao.</p>
-              <p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75, marginBottom: 20 }}>Muitos projetos falham porque tentam recriar um banco inteiro a cada novo produto, assumindo complexidades regulatorias e tecnicas que nao agregam valor a jornada do cliente.</p>
-              <p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75 }}>A JUST segue outro caminho. Trabalhamos sobre estruturas de BaaS robustas e consolidadas, eliminamos o peso regulatorio e focamos 100% no produto, na experiencia do usuario e na operacao financeira.</p>
+              <p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75, marginBottom: 20 }}>{tr.tesesP1}</p>
+              <p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75, marginBottom: 20 }}>{tr.tesesP2}</p>
+              <p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75 }}>{tr.tesesP3}</p>
             </div>
           </Reveal>
         </div>
       </section>
       <section style={{ background: T.darkAlt, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <SectionTitle tag="Como pensamos" title={"Principios que guiam\ncada decisao."} center />
+          <SectionTitle tag={tr.principiosTag} title={tr.principiosTitle} center />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
             {[
-              { t: "Produto, nao promessa", d: "Nao vendemos roadmaps ou prototipos. Entregamos plataformas em producao, operando desde o dia 1. Produto financeiro so existe quando esta no ar." },
-              { t: "Estrutura gera velocidade", d: "Stack proprietaria com 70-80% de reuso entre projetos. Modulos prontos, governanca definida. Fintechs completas em meses, nao anos." },
-              { t: "Parceiro estrategico", d: "Atuamos como braco tecnologico do negocio. Assumimos responsabilidade pelo produto e tomamos decisoes com base no que precisa funcionar." },
+              { t: tr.p1Title, d: tr.p1Desc },
+              { t: tr.p2Title, d: tr.p2Desc },
+              { t: tr.p3Title, d: tr.p3Desc },
             ].map((p, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <div style={{ padding: 32, borderRadius: 14, background: "rgba(255,255,255,0.025)", border: `1px solid ${T.borderLight}` }}>
@@ -3710,7 +4308,7 @@ function SobrePage({ setPage }) {
       </section>
       <section style={{ background: T.primary, padding: "120px 48px" }}>
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
-          <SectionTitle tag="Trajetoria" title={"Do primeiro produto\nao ecossistema."} center />
+          <SectionTitle tag={tr.trajetoriaTag} title={tr.trajetoriaTitle} center />
           <div style={{ position: "relative", paddingLeft: 40 }}>
             <div style={{ position: "absolute", left: 11, top: 0, bottom: 0, width: 2, background: `linear-gradient(to bottom, ${T.cta}60, ${T.secondary}40)` }} />
             {timeline.map((t, i) => (
@@ -3728,37 +4326,37 @@ function SobrePage({ setPage }) {
       </section>
       <section style={{ background: T.primary, padding: "100px 48px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <SectionTitle tag="Lideranca" title={"Experiencia que sustenta\na entrega."} />
+          <SectionTitle tag={tr.liderancaTag} title={tr.liderancaTitle} />
           <Reveal>
             <div className="about-founder">
               <div className="about-avatar">GP</div>
               <div>
                 <h3 style={{ fontSize: 22, fontWeight: 700, color: T.textLight, marginBottom: 4 }}>Gabriel Pires</h3>
                 <span style={{ fontSize: 13, color: T.cta, fontWeight: 600, letterSpacing: "0.03em" }}>Founder & CEO</span>
-                <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.75, marginTop: 16 }}>Mais de 15 anos de experiencia na criacao de produtos financeiros, com atuacao em projetos nacionais e internacionais. Liderou times responsaveis por plataformas que hoje atendem milhoes de usuarios em producao.</p>
-                <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.75, marginTop: 10 }}>Essa experiencia pratica molda a forma como a JUST trabalha: foco em entrega, precisao tecnica e responsabilidade sobre o que vai para o ar.</p>
+                <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.75, marginTop: 16 }}>Mais de 15 anos de experiência na criação de produtos financeiros, com atuação em projetos nacionais e internacionais. Liderou times responsáveis por plataformas que hoje atendem milhões de usuários em produção.</p>
+                <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.75, marginTop: 10 }}>Essa experiência prática molda a forma como a JUST trabalha: foco em entrega, precisão técnica e responsabilidade sobre o que vai para o ar.</p>
               </div>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div className="about-team-card">
               <h3 style={{ fontSize: 20, fontWeight: 700, color: T.textLight, marginBottom: 14 }}>Um time orientado a resultado</h3>
-              <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.75, marginBottom: 12 }}>~20 profissionais com experiencia real em meios de pagamento, banking e plataformas financeiras digitais. 100% remoto, com estrutura enxuta e foco total em entrega.</p>
-              <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.75 }}>Nao somos um time de experimentacao. Somos um time de execucao. Trabalhamos proximos ao cliente, assumindo responsabilidade pelo produto e tomando decisoes com base no que precisa funcionar.</p>
+              <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.75, marginBottom: 12 }}>~20 profissionais com experiência real em meios de pagamento, banking e plataformas financeiras digitais. 100% remoto, com estrutura enxuta e foco total em entrega.</p>
+              <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.75 }}>Não somos um time de experimentação. Somos um time de execução. Trabalhamos próximos ao cliente, assumindo responsabilidade pelo produto e tomando decisões com base no que precisa funcionar.</p>
             </div>
           </Reveal>
         </div>
       </section>
       <section style={{ background: T.darkAlt, padding: "100px 48px", textAlign: "center" }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
-          <Reveal><h3 style={{ fontSize: 13, color: T.cta, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>Nosso compromisso</h3></Reveal>
-          <Reveal delay={0.1}><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, lineHeight: 1.15, marginBottom: 20 }}>Fintechs podem ser construidas em meses, nao em anos.</h2></Reveal>
-          <Reveal delay={0.2}><p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75 }}>Sem reinvencao de roda. Sem burocracia desnecessaria. Sem promessas vazias. Plataformas financeiras completas para quem precisa operar rapido, com solidez tecnica e foco total no negocio. Esse e o nosso compromisso desde 2020.</p></Reveal>
+          <Reveal><h3 style={{ fontSize: 13, color: T.cta, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>{tr.commitment}</h3></Reveal>
+          <Reveal delay={0.1}><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, lineHeight: 1.15, marginBottom: 20 }}>{tr.commitmentTitle}</h2></Reveal>
+          <Reveal delay={0.2}><p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75 }}>{tr.commitmentDesc}</p></Reveal>
         </div>
       </section>
       <section style={{ background: `linear-gradient(135deg, ${T.primary}, ${T.secondary})`, padding: "100px 48px", textAlign: "center" }}>
-        <Reveal><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, marginBottom: 24 }}>Quer conhecer nossos produtos?</h2></Reveal>
-        <Reveal delay={0.1}><Btn onClick={() => nav("contato")}>Fale com nosso time</Btn></Reveal>
+        <Reveal><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, marginBottom: 24 }}>{tr.cta}</h2></Reveal>
+        <Reveal delay={0.1}><Btn onClick={() => nav("contato")}>{tr.ctaBtn}</Btn></Reveal>
       </section>
     </div>
   );
@@ -3768,16 +4366,17 @@ function SobrePage({ setPage }) {
 // STACK, CASES, CONTATO, SOLUTION pages
 // (Keeping same structure as v1 but with updated tokens and product colors)
 // ========================================
-function StackPage({ setPage }) {
+function StackPage({ setPage, lang }) {
   const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const tr = (T18N[lang] || T18N["pt-BR"]).stack;
   const [tab, setTab] = useState(0);
   const tabs = [
-    { t: "Core Financeiro", hint: "Processamento proprio", icon: "core", d: "Core proprietario, modular e escalavel. Controle total sobre fluxos financeiros, regras de negocio e operacao. O controle do core reduz risco, aumenta previsibilidade e acelera decisoes.", tags: ["Autorizador proprio","Ledger financeiro","Split de pagamentos","Conciliacao unificada","Multi-tenant","Processamento ISO 8583"], visual: [{n:"Autorizador",c:"#f45546",bg:"rgba(244,85,70,0.1)",bc:"rgba(244,85,70,0.2)"},{n:"Ledger",c:"#55efc4",bg:"rgba(0,184,148,0.08)",bc:"rgba(0,184,148,0.15)"},{n:"Split",c:"#74b9ff",bg:"rgba(9,132,227,0.08)",bc:"rgba(9,132,227,0.15)"},{n:"Conciliacao",c:"#a29bfe",bg:"rgba(108,92,231,0.08)",bc:"rgba(108,92,231,0.15)"}] },
-    { t: "Multi BaaS", hint: "Sem lock-in", icon: "baas", d: "Arquitetura que suporta multiplos provedores simultaneamente. Failover automatico, sem lock-in, migracao sem impacto. Nenhum produto financeiro deve depender de um unico fornecedor.", tags: ["Multi-provider","Failover automatico","Hot-swap","Migracao zero-downtime"], visual: [{n:"Provider A",c:"#1abc9c",bg:"rgba(26,188,156,0.08)",bc:"rgba(26,188,156,0.15)"},{n:"Provider B",c:"#1abc9c",bg:"rgba(26,188,156,0.08)",bc:"rgba(26,188,156,0.15)"},{n:"Fallback",c:"#FDCB6E",bg:"rgba(253,203,110,0.08)",bc:"rgba(253,203,110,0.15)"}] },
-    { t: "Arranjo Fechado", hint: "Rede propria", icon: "closed", d: "Processamento em circuito fechado. Rede propria de captura, taxas customizadas, controle total sobre regras de aceite e independencia operacional.", tags: ["Rede propria","Taxas customizadas","Regras de aceite","TEF/POS/QR","RFID/NFC"], visual: [{n:"Captura",c:"#6C5CE7",bg:"rgba(108,92,231,0.08)",bc:"rgba(108,92,231,0.15)"},{n:"Autorizador",c:"#f45546",bg:"rgba(244,85,70,0.1)",bc:"rgba(244,85,70,0.2)"},{n:"Liquidacao",c:"#55efc4",bg:"rgba(0,184,148,0.08)",bc:"rgba(0,184,148,0.15)"}] },
-    { t: "Gateway", hint: "Roteamento inteligente", icon: "gateway", d: "Roteamento inteligente entre adquirentes, retentativas, split de pagamentos e conciliacao unificada. Maximize aprovacao, minimize custos.", tags: ["Smart routing","Retentativas","Split payments","Conciliacao"], visual: [{n:"Transacao",c:"#74b9ff",bg:"rgba(9,132,227,0.08)",bc:"rgba(9,132,227,0.15)"},{n:"Router",c:"#f45546",bg:"rgba(244,85,70,0.1)",bc:"rgba(244,85,70,0.2)"},{n:"Acquirer A",c:"#1abc9c",bg:"rgba(26,188,156,0.08)",bc:"rgba(26,188,156,0.15)"},{n:"Acquirer B",c:"#1abc9c",bg:"rgba(26,188,156,0.08)",bc:"rgba(26,188,156,0.15)"}] },
-    { t: "Motor de Regras", hint: "Regras configuraveis", icon: "rules", d: "Regras financeiras configuraveis: limites, politicas de uso, compliance, fluxos de aprovacao e prevencao a fraude. Sem codigo, sem deploy.", tags: ["Limites dinamicos","Politicas de uso","Compliance","Anti-fraude","Zero-code"], visual: [{n:"Evento",c:"#74b9ff",bg:"rgba(9,132,227,0.08)",bc:"rgba(9,132,227,0.15)"},{n:"Regras",c:"#FDCB6E",bg:"rgba(253,203,110,0.08)",bc:"rgba(253,203,110,0.15)"},{n:"Acao",c:"#55efc4",bg:"rgba(0,184,148,0.08)",bc:"rgba(0,184,148,0.15)"}] },
-    { t: "Apps & Backoffice", hint: "White-label completo", icon: "apps", d: "Apps nativos white-label + painel administrativo unificado. Gestao de usuarios, cartoes, movimentacoes e relatorios. Sua marca, sua experiencia.", tags: ["App iOS/Android","Portal web","Backoffice","White-label","Push notifications"], visual: [{n:"App Mobile",c:"#E17055",bg:"rgba(225,112,85,0.08)",bc:"rgba(225,112,85,0.15)"},{n:"Portal",c:"#a29bfe",bg:"rgba(108,92,231,0.08)",bc:"rgba(108,92,231,0.15)"},{n:"Admin",c:"#74b9ff",bg:"rgba(9,132,227,0.08)",bc:"rgba(9,132,227,0.15)"}] },
+    { t: "Core Financeiro", hint: "Processamento próprio", icon: "core", d: "Core proprietário, modular e escalável. Controle total sobre fluxos financeiros, regras de negócio e operação. O controle do core reduz risco, aumenta previsibilidade e acelera decisões.", tags: ["Autorizador próprio","Ledger financeiro","Split de pagamentos","Conciliação unificada","Multi-tenant","Processamento ISO 8583"], visual: [{n:"Autorizador",c:"#f45546",bg:"rgba(244,85,70,0.1)",bc:"rgba(244,85,70,0.2)"},{n:"Ledger",c:"#55efc4",bg:"rgba(0,184,148,0.08)",bc:"rgba(0,184,148,0.15)"},{n:"Split",c:"#74b9ff",bg:"rgba(9,132,227,0.08)",bc:"rgba(9,132,227,0.15)"},{n:"Conciliação",c:"#a29bfe",bg:"rgba(108,92,231,0.08)",bc:"rgba(108,92,231,0.15)"}] },
+    { t: "Multi BaaS", hint: "Sem lock-in", icon: "baas", d: "Arquitetura que suporta múltiplos provedores simultaneamente. Failover automático, sem lock-in, migracao sem impacto. Nenhum produto financeiro deve depender de um único fornecedor.", tags: ["Multi-provider","Failover automático","Hot-swap","Migracao zero-downtime"], visual: [{n:"Provider A",c:"#1abc9c",bg:"rgba(26,188,156,0.08)",bc:"rgba(26,188,156,0.15)"},{n:"Provider B",c:"#1abc9c",bg:"rgba(26,188,156,0.08)",bc:"rgba(26,188,156,0.15)"},{n:"Fallback",c:"#FDCB6E",bg:"rgba(253,203,110,0.08)",bc:"rgba(253,203,110,0.15)"}] },
+    { t: "Arranjo Fechado", hint: "Rede própria", icon: "closed", d: "Processamento em circuito fechado. Rede própria de captura, taxas customizadas, controle total sobre regras de aceite e independência operacional.", tags: ["Rede própria","Taxas customizadas","Regras de aceite","TEF/POS/QR","RFID/NFC"], visual: [{n:"Captura",c:"#6C5CE7",bg:"rgba(108,92,231,0.08)",bc:"rgba(108,92,231,0.15)"},{n:"Autorizador",c:"#f45546",bg:"rgba(244,85,70,0.1)",bc:"rgba(244,85,70,0.2)"},{n:"Liquidação",c:"#55efc4",bg:"rgba(0,184,148,0.08)",bc:"rgba(0,184,148,0.15)"}] },
+    { t: "Gateway", hint: "Roteamento inteligente", icon: "gateway", d: "Roteamento inteligente entre adquirentes, retentativas, split de pagamentos e conciliação unificada. Maximize aprovação, minimize custos.", tags: ["Smart routing","Retentativas","Split payments","Conciliação"], visual: [{n:"Transação",c:"#74b9ff",bg:"rgba(9,132,227,0.08)",bc:"rgba(9,132,227,0.15)"},{n:"Router",c:"#f45546",bg:"rgba(244,85,70,0.1)",bc:"rgba(244,85,70,0.2)"},{n:"Acquirer A",c:"#1abc9c",bg:"rgba(26,188,156,0.08)",bc:"rgba(26,188,156,0.15)"},{n:"Acquirer B",c:"#1abc9c",bg:"rgba(26,188,156,0.08)",bc:"rgba(26,188,156,0.15)"}] },
+    { t: "Motor de Regras", hint: "Regras configuráveis", icon: "rules", d: "Regras financeiras configuráveis: limites, políticas de uso, compliance, fluxos de aprovação e prevenção a fraude. Sem código, sem deploy.", tags: ["Limites dinâmicos","Políticas de uso","Compliance","Anti-fraude","Zero-code"], visual: [{n:"Evento",c:"#74b9ff",bg:"rgba(9,132,227,0.08)",bc:"rgba(9,132,227,0.15)"},{n:"Regras",c:"#FDCB6E",bg:"rgba(253,203,110,0.08)",bc:"rgba(253,203,110,0.15)"},{n:"Ação",c:"#55efc4",bg:"rgba(0,184,148,0.08)",bc:"rgba(0,184,148,0.15)"}] },
+    { t: "Apps & Backoffice", hint: "White-label completo", icon: "apps", d: "Apps nativos white-label + painel administrativo unificado. Gestão de usuários, cartões, movimentações e relatórios. Sua marca, sua experiência.", tags: ["App iOS/Android","Portal web","Backoffice","White-label","Push notifications"], visual: [{n:"App Mobile",c:"#E17055",bg:"rgba(225,112,85,0.08)",bc:"rgba(225,112,85,0.15)"},{n:"Portal",c:"#a29bfe",bg:"rgba(108,92,231,0.08)",bc:"rgba(108,92,231,0.15)"},{n:"Admin",c:"#74b9ff",bg:"rgba(9,132,227,0.08)",bc:"rgba(9,132,227,0.15)"}] },
   ];
   const tabIcons = {
     core: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f45546" strokeWidth="2"><rect x="2" y="3" width="20" height="18" rx="3"/><path d="M8 7h8M8 11h5"/></svg>,
@@ -3789,12 +4388,12 @@ function StackPage({ setPage }) {
   };
   const tabColors = { core: "rgba(244,85,70,0.1)", baas: "rgba(26,188,156,0.1)", closed: "rgba(108,92,231,0.1)", gateway: "rgba(9,132,227,0.1)", rules: "rgba(253,203,110,0.1)", apps: "rgba(225,112,85,0.1)" };
   const products = [
-    { name: "Benefits", cls: "b", desc: "Cartoes de beneficios: VA, VR, VT, mobilidade e multibeneficios" },
-    { name: "Fleet", cls: "f", desc: "Gestao de combustivel, pedagio, manutencao e controle de frotas" },
-    { name: "Banking", cls: "k", desc: "Conta digital, cartao, PIX, transferencias e servicos financeiros" },
-    { name: "Expenses", cls: "e", desc: "Despesas corporativas, cartao corporativo e prestacao de contas" },
-    { name: "Credit", cls: "c", desc: "Antecipacao salarial, credito consignado e recebiveis" },
-    { name: "Custom", cls: "x", desc: "Produtos financeiros sob medida para o seu negocio" },
+    { name: "Benefits", cls: "b", desc: "Cartões de benefícios: VA, VR, VT, mobilidade e multibenefícios" },
+    { name: "Fleet", cls: "f", desc: "Gestão de combustível, pedágio, manutenção e controle de frotas" },
+    { name: "Banking", cls: "k", desc: "Conta digital, cartão, PIX, transferências e serviços financeiros" },
+    { name: "Expenses", cls: "e", desc: "Despesas corporativas, cartão corporativo e prestação de contas" },
+    { name: "Credit", cls: "c", desc: "Antecipação salarial, crédito consignado e recebíveis" },
+    { name: "Custom", cls: "x", desc: "Produtos financeiros sob medida para o seu negócio" },
   ];
 
   return (
@@ -3972,9 +4571,9 @@ function StackPage({ setPage }) {
       <section style={{ background: `linear-gradient(160deg, ${T.primary}, #151a2d, ${T.secondary})`, padding: "150px 48px 80px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 60, alignItems: "center" }}>
           <div>
-            <Reveal><Tag>Tecnologia</Tag></Reveal>
-            <Reveal delay={0.1}><h1 style={{ fontSize: 44, fontWeight: 700, color: T.textLight, lineHeight: 1.1, marginBottom: 16 }}>A base tecnica que sustenta produtos financeiros em producao.</h1></Reveal>
-            <Reveal delay={0.2}><p style={{ fontSize: 17, color: T.textMutedLight, lineHeight: 1.6 }}>Todo produto financeiro solido comeca por uma fundacao tecnica bem definida. A JUST constroi essa base para garantir seguranca, escala e evolucao continua.</p></Reveal>
+            <Reveal><Tag>{tr.tag}</Tag></Reveal>
+            <Reveal delay={0.1}><h1 style={{ fontSize: 44, fontWeight: 700, color: T.textLight, lineHeight: 1.1, marginBottom: 16 }}>{tr.h1}</h1></Reveal>
+            <Reveal delay={0.2}><p style={{ fontSize: 17, color: T.textMutedLight, lineHeight: 1.6 }}>{tr.subtitle}</p></Reveal>
           </div>
           <Reveal delay={0.3}>
             <div className="hero-arch">
@@ -4018,7 +4617,7 @@ function StackPage({ setPage }) {
                 <div className="ha-box prov">Acquirers</div>
                 <div className="ha-box prov">Compliance</div>
               </div>
-              <div className="ha-bottom">App + Plataformas de Gestao Web &mdash; powered by JUST</div>
+              <div className="ha-bottom">App + Plataformas de Gestão Web &mdash; powered by JUST</div>
             </div>
           </Reveal>
         </div>
@@ -4027,7 +4626,7 @@ function StackPage({ setPage }) {
       {/* ===== VERTICAL TABS - COMPONENTES ===== */}
       <section style={{ background: T.darkAlt, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <SectionTitle tag="Plataforma" title="Componentes da plataforma." center subtitle="Cada componente foi construido para operar de forma independente e integrada. Seu produto. Suas regras. Sem gambiarras." />
+          <SectionTitle tag={tr.platformTag} title={tr.platformTitle} center subtitle={tr.platformSubtitle} />
           <div className="vtabs-layout">
             <div className="vtabs-nav">
               {tabs.map((t, i) => (
@@ -4059,7 +4658,7 @@ function StackPage({ setPage }) {
       {/* ===== MULTI-PROVIDER BY DESIGN ===== */}
       <section style={{ background: T.primary, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <SectionTitle tag="Integracoes" title="Multi-provider por design." center subtitle="Nenhum produto financeiro deve depender de um unico fornecedor. O produto continua o mesmo. Os fornecedores podem mudar." />
+          <SectionTitle tag={tr.integrationsTag} title={tr.integrationsTitle} center subtitle={tr.integrationsSubtitle} />
           <div className="mp-diagram">
             <div className="mp-product-row">
               <div className="mp-product-box">
@@ -4083,13 +4682,13 @@ function StackPage({ setPage }) {
             </div>
             <div className="mp-providers-row">
               <div className="mp-prov-card"><div className="mp-prov-category">BaaS</div><div className="mp-prov-list"><div className="mp-prov-badge baas"><span className="mp-dot"/> Conta Digital</div><div className="mp-prov-badge baas"><span className="mp-dot"/> PIX & Transferencias</div><div className="mp-prov-badge baas"><span className="mp-dot"/> KYC & Onboarding</div><div className="mp-prov-badge more">+ outros servicos</div></div></div>
-              <div className="mp-prov-card"><div className="mp-prov-category">CaaS & Bins Sponsor</div><div className="mp-prov-list"><div className="mp-prov-badge acq"><span className="mp-dot"/> Emissao de Cartoes</div><div className="mp-prov-badge acq"><span className="mp-dot"/> BIN Sponsorship</div><div className="mp-prov-badge acq"><span className="mp-dot"/> Tokenizacao</div><div className="mp-prov-badge more">+ arranjo aberto/fechado</div></div></div>
+              <div className="mp-prov-card"><div className="mp-prov-category">CaaS & Bins Sponsor</div><div className="mp-prov-list"><div className="mp-prov-badge acq"><span className="mp-dot"/> Emissão de Cartões</div><div className="mp-prov-badge acq"><span className="mp-dot"/> BIN Sponsorship</div><div className="mp-prov-badge acq"><span className="mp-dot"/> Tokenização</div><div className="mp-prov-badge more">+ arranjo aberto/fechado</div></div></div>
               <div className="mp-prov-card"><div className="mp-prov-category">Acquirers & Captura</div><div className="mp-prov-list"><div className="mp-prov-badge cap"><span className="mp-dot"/> TEF / POS</div><div className="mp-prov-badge cap"><span className="mp-dot"/> QR Code</div><div className="mp-prov-badge cap"><span className="mp-dot"/> App Pay</div><div className="mp-prov-badge cap"><span className="mp-dot"/> RFID / NFC</div></div></div>
               <div className="mp-prov-card"><div className="mp-prov-category">Compliance</div><div className="mp-prov-list"><div className="mp-prov-badge proto"><span className="mp-dot"/> LGPD</div><div className="mp-prov-badge proto"><span className="mp-dot"/> PCI-Aware</div><div className="mp-prov-badge proto"><span className="mp-dot"/> AML / KYC</div><div className="mp-prov-badge proto"><span className="mp-dot"/> Auditoria</div></div></div>
             </div>
             <div className="mp-swap-indicator">
               <div className="mp-swap-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#55efc4" strokeWidth="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M14 14l7 7M3 8V3h5M10 10L3 3"/></svg></div>
-              <div className="mp-swap-text"><strong>Troque de provider sem impacto no produto.</strong> A camada de abstracao da JUST isola seu produto das dependencias de fornecedores. Migre, adicione ou remova providers em producao.</div>
+              <div className="mp-swap-text"><strong>{tr.mpSwapBold}</strong>{tr.mpSwapText}</div>
             </div>
           </div>
         </div>
@@ -4098,80 +4697,64 @@ function StackPage({ setPage }) {
       {/* ===== SEGURANCA ===== */}
       <section style={{ background: T.darkAlt, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <SectionTitle tag="Seguranca" title="Seguranca como processo, nao como feature." center subtitle="Produtos financeiros nao podem falhar em producao. Nossa arquitetura parte desse principio." />
+          <SectionTitle tag={tr.securityTag} title={tr.securityTitle} center subtitle={tr.securitySubtitle} />
           <div className="sec-highlight">
-            <div><div className="sec-stat-value">Pen Test</div><div className="sec-stat-label">Recorrente com retest formal</div></div>
-            <div><div className="sec-stat-value">AWS</div><div className="sec-stat-label">Partner com infra dedicada</div></div>
-            <div><div className="sec-stat-value">LGPD</div><div className="sec-stat-label">Compliance implementado</div></div>
-            <div><div className="sec-stat-value">OWASP</div><div className="sec-stat-label">Mobile Top 10 aplicado</div></div>
+            {[["Pen Test", "AWS", "LGPD", "OWASP"], tr.secHighlightLabels].reduce((_, __, ___, arr) => arr[0].map((val, i) => (
+              <div key={i}><div className="sec-stat-value">{val}</div><div className="sec-stat-label">{arr[1][i]}</div></div>
+            )))}
           </div>
           <div className="security-grid">
-            <div className="sec-card">
-              <div className="sec-icon" style={{ background: "rgba(0,184,148,0.1)" }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#55efc4" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-              <h4>Defense in Depth</h4>
-              <p>Protecao em camadas: WAF em borda, API Gateway com rate limiting, autenticacao JWT, isolamento de rede via VPC.</p>
-            </div>
-            <div className="sec-card">
-              <div className="sec-icon" style={{ background: "rgba(108,92,231,0.1)" }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a29bfe" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-              <h4>PCI-Aware Architecture</h4>
-              <p>Arquitetura desenhada com consciencia dos padroes PCI DSS. Dados sensiveis sob custodia da instituicao financeira regulada.</p>
-            </div>
-            <div className="sec-card">
-              <div className="sec-icon" style={{ background: "rgba(9,132,227,0.1)" }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#74b9ff" strokeWidth="2"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div>
-              <h4>AWS Infrastructure</h4>
-              <p>VPC isolada, subnets privadas, criptografia KMS, TLS 1.3, RDS Multi-AZ com backups diarios.</p>
-            </div>
-            <div className="sec-card">
-              <div className="sec-icon" style={{ background: "rgba(244,85,70,0.1)" }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f45546" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
-              <h4>Monitoramento 24/7</h4>
-              <p>Dashboards Grafana em tempo real. Logs centralizados com retencao para auditoria. Alertas automaticos.</p>
-            </div>
-            <div className="sec-card">
-              <div className="sec-icon" style={{ background: "rgba(253,203,110,0.1)" }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FDCB6E" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
-              <h4>Pen Test Recorrente</h4>
-              <p>Testes de intrusao Gray/White Box com ciclo semestral. Retest formal de vulnerabilidades criticas e altas.</p>
-            </div>
-            <div className="sec-card">
-              <div className="sec-icon" style={{ background: "rgba(225,112,85,0.1)" }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E17055" strokeWidth="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
-              <h4>Mobile Security (OWASP)</h4>
-              <p>Runtime hardening: deteccao de root/jailbreak, SSL Pinning, deteccao de proxy/MITM. Confianca minima no cliente.</p>
-            </div>
+            {tr.secCards.map((card, i) => {
+              const icons = [
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#55efc4" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>,
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a29bfe" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>,
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#74b9ff" strokeWidth="2"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>,
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f45546" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FDCB6E" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg>,
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E17055" strokeWidth="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>,
+              ];
+              const bgColors = ["rgba(0,184,148,0.1)","rgba(108,92,231,0.1)","rgba(9,132,227,0.1)","rgba(244,85,70,0.1)","rgba(253,203,110,0.1)","rgba(225,112,85,0.1)"];
+              return (
+                <div key={i} className="sec-card">
+                  <div className="sec-icon" style={{ background: bgColors[i] }}>{icons[i]}</div>
+                  <h4>{card.title}</h4>
+                  <p>{card.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ===== CTA ===== */}
       <section style={{ background: `linear-gradient(135deg, ${T.primary}, ${T.secondary})`, padding: "100px 48px", textAlign: "center" }}>
-        <Reveal><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, marginBottom: 24 }}>Quer entender como se aplica ao seu caso?</h2></Reveal>
-        <Reveal delay={0.1}><Btn onClick={() => nav("contato")}>Fale com nosso time tecnico</Btn></Reveal>
+        <Reveal><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, marginBottom: 24 }}>{tr.cta}</h2></Reveal>
+        <Reveal delay={0.1}><Btn onClick={() => nav("contato")}>{tr.ctaBtn}</Btn></Reveal>
       </section>
     </div>
   );
 }
 
 
-function CasesPage({ setPage }) {
+function CasesPage({ setPage, lang }) {
   const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const cases = [
-    { tag: "Beneficios", name: "ViaSoftPay", headline: "Do zero a producao em 45 dias", items: ["45 dias do inicio ao go-live", "100k+ usuarios ativos", "R$500M+ processamento anual", "NPS 100"], color: PRODUCT_COLORS.beneficios.accent },
-    { tag: "Frotas", name: "eFleet", headline: "5+ anos de parceria, 10+ modulos", items: ["5+ anos de parceria continua", "10+ modulos em producao", "R$500M+ processamento anual"], color: PRODUCT_COLORS.frotas.accent },
-    { tag: "Arranjo Hibrido", name: "SmartVale", headline: "Primeiro arranjo hibrido do portfolio", items: ["Arranjo hibrido em producao", "Fechado + aberto integrados", "Regras customizadas por saldo"], color: PRODUCT_COLORS.beneficios.accent },
-    { tag: "Beneficios + Credito", name: "KPI", headline: "266% de crescimento em transacoes", items: ["266% crescimento", "Beneficios + credito integrados", "Produto combinado unico"], color: PRODUCT_COLORS.antecipacao.accent },
-  ];
+  const tr = (T18N[lang] || T18N["pt-BR"]).cases;
+  const CASE_COLORS = [PRODUCT_COLORS.beneficios.accent, PRODUCT_COLORS.frotas.accent, PRODUCT_COLORS.beneficios.accent, PRODUCT_COLORS.antecipacao.accent];
+  const cases = tr.casesList.map((c, i) => ({ ...c, color: CASE_COLORS[i] }));
   return (
     <div>
       <section style={{ background: `linear-gradient(160deg, ${T.primary}, ${T.darkAlt}, ${T.secondary})`, padding: "170px 48px 100px", textAlign: "center" }}>
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
-          <Reveal><Tag>Cases</Tag></Reveal>
-          <Reveal delay={0.1}><h1 style={{ fontSize: 48, fontWeight: 700, color: T.textLight, lineHeight: 1.1, margin: "16px 0" }}>Resultados reais. Fintechs em producao.</h1></Reveal>
+          <Reveal><Tag>{tr.tag}</Tag></Reveal>
+          <Reveal delay={0.1}><h1 style={{ fontSize: 48, fontWeight: 700, color: T.textLight, lineHeight: 1.1, margin: "16px 0" }}>{tr.h1}</h1></Reveal>
         </div>
       </section>
       <section style={{ background: T.primary, padding: "80px 48px", borderBottom: `1px solid ${T.borderLight}` }}>
         <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
-          <Metric prefix="R$" value={4} suffix="bi+" label="TPV processado" />
-          <Metric value={30} suffix="M+" label="Transacoes processadas" delay={0.08} />
-          <Metric value={500} suffix="k+" label="Usuarios" delay={0.16} />
-          <Metric value={15} suffix="+" label="Clientes" delay={0.24} />
+          <Metric prefix="R$" value={4} suffix="bi+" label={tr.tpvLabel} />
+          <Metric value={30} suffix="M+" label={tr.txLabel} delay={0.08} />
+          <Metric value={500} suffix="k+" label={tr.usersLabel} delay={0.16} />
+          <Metric value={15} suffix="+" label={tr.clientsLabel} delay={0.24} />
         </div>
       </section>
       <section style={{ background: T.primary, padding: "100px 48px" }}>
@@ -4195,14 +4778,15 @@ function CasesPage({ setPage }) {
         </div>
       </section>
       <section style={{ background: `linear-gradient(135deg, ${T.primary}, ${T.secondary})`, padding: "100px 48px", textAlign: "center" }}>
-        <Reveal><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, marginBottom: 24 }}>Quer resultados parecidos?</h2></Reveal>
-        <Reveal delay={0.1}><Btn onClick={() => nav("contato")}>Agendar uma reuniao</Btn></Reveal>
+        <Reveal><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, marginBottom: 24 }}>{tr.cta}</h2></Reveal>
+        <Reveal delay={0.1}><Btn onClick={() => nav("contato")}>{tr.ctaBtn}</Btn></Reveal>
       </section>
     </div>
   );
 }
 
-function ContatoPage() {
+function ContatoPage({ lang }) {
+  const tr = (T18N[lang] || T18N["pt-BR"]).contato;
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -4214,7 +4798,7 @@ function ContatoPage() {
   const handleSubmit = async () => {
     setError("");
     if (!form.nome || !form.email || !form.empresa || !form.produto) {
-      setError("Preencha todos os campos obrigatorios.");
+      setError(tr.errorRequired);
       return;
     }
     setSending(true);
@@ -4227,35 +4811,27 @@ function ContatoPage() {
           nome: form.nome,
           email: form.email,
           empresa: form.empresa,
-          telefone: form.telefone || "Nao informado",
+          telefone: form.telefone || "Não informado",
           produto: form.produto,
-          projeto: form.projeto || "Nao informado",
+          projeto: form.projeto || "Não informado",
         }),
       });
       setSent(true);
     } catch (err) {
       console.error("Form submission error:", err);
-      setError("Erro ao enviar. Tente novamente ou entre em contato pelo email contato@wearejust.it");
+      setError(tr.errorSend);
     } finally {
       setSending(false);
     }
   };
 
   const [openFaq, setOpenFaq] = useState(null);
-  const faqs = [
-    { q: "Quais tipos de cartoes a JUST desenvolve?", a: "A JUST nasceu com forte atuacao em arranjos fechados (cartoes private label), onde operamos tecnologias proprias de processamento. Hoje, tambem desenvolvemos produtos integrados a arranjos abertos, trabalhando com emissores regulados de Visa, Mastercard e Elo. Isso nos permite criar arquiteturas hibridas, orquestrando multiplos provedores de pagamento, emissores e componentes de processamento, sempre de acordo com o modelo de negocio e o nivel de complexidade do projeto. Nao estamos limitados a um unico arranjo ou fornecedor. Projetamos a melhor combinacao tecnica e regulatoria para cada caso." },
-    { q: "A JUST vende licencas de white label?", a: "Nao vendemos licencas de white label no modelo tradicional. Acreditamos que cada negocio possui identidade, estrategia e regras proprias. Por isso, tratamos cada projeto de forma individualizada, mesmo partindo de uma base tecnologica comum. Utilizamos componentes e frameworks ja consolidados para acelerar o inicio do projeto, mas cada solucao evolui com regras de negocio, fluxos, integracoes e experiencias especificas, alinhadas a realidade do cliente. Na pratica, entregamos plataformas sob medida, nao produtos genericos customizados." },
-    { q: "A JUST e uma entidade regulada pelo Banco Central do Brasil?", a: "Nao. A JUST e uma provedora de tecnologia. Atuamos no desenvolvimento de plataformas para empresas que podem ou nao estar inseridas em ambientes regulados pelo Banco Central do Brasil, dependendo do tipo de produto. Algumas solucoes, como Beneficios Flexiveis, nao exigem regulacao bancaria. Outras, como Despesas Corporativas, contas de pagamento ou emissao em arranjos abertos, podem exigir. Nesses casos, trabalhamos em conjunto com parceiros regulados, responsaveis pela carga regulatoria, enquanto a JUST desenvolve e integra toda a camada tecnologica, garantindo que o produto final esteja em conformidade com as normas aplicaveis." },
-    { q: "A JUST e uma software house?", a: "Sim, mas nao apenas isso. Somos especialistas em plataformas de meios de pagamento, porem atuamos como parceiros estrategicos dos nossos clientes. Nosso trabalho vai alem do desenvolvimento tecnico e inclui: apoio na definicao do modelo de negocio, arquitetura de produto e diferenciacao competitiva, construcao da plataforma tecnologica, e suporte a operacao e evolucao continua do produto. Nosso foco e viabilizar negocios financeiros sustentaveis, nao apenas entregar codigo." },
-    { q: "Quero criar uma fintech, mas nao sei por onde comecar. A JUST consegue ajudar?", a: "Sim. Alem da area de desenvolvimento, contamos com a JUST Consulting, uma unidade focada em apoiar empresas desde as fases iniciais do projeto. Auxiliamos em ideacao e validacao do modelo de negocio, definicao do produto financeiro, avaliacao regulatoria e estrutural, e planejamento da execucao tecnica. O objetivo e reduzir erros comuns, acelerar decisoes criticas e construir um produto viavel desde o inicio." },
-    { q: "A JUST assume risco regulatorio ou financeiro da operacao?", a: "Nao. A JUST e responsavel pela camada tecnologica. O risco regulatorio e financeiro permanece com o cliente e, quando aplicavel, com os parceiros regulados envolvidos na operacao. Nosso papel e garantir que a tecnologia suporte corretamente as exigencias regulatorias definidas para o produto." },
-    { q: "Em quanto tempo meu produto pode ir ao ar?", a: "O prazo varia conforme o nivel de complexidade, integracoes e exigencias regulatorias. Projetos mais simples podem ser lancados em poucos meses. Projetos mais complexos exigem fases adicionais de arquitetura, homologacao e testes. Preferimos definir prazos realistas desde o inicio, priorizando seguranca, estabilidade e sustentabilidade da operacao." },
-  ];
+  const faqs = tr.faqs;
   return (
     <div>
       <section style={{ background: `linear-gradient(160deg, ${T.primary}, ${T.darkAlt})`, padding: "170px 48px 80px", textAlign: "center" }}>
-        <Reveal><h1 style={{ fontSize: 44, fontWeight: 700, color: T.textLight, marginBottom: 12 }}>Vamos construir sua fintech.</h1></Reveal>
-        <Reveal delay={0.1}><p style={{ fontSize: 17, color: T.textMutedLight }}>Nosso time retorna em ate 24h uteis.</p></Reveal>
+        <Reveal><h1 style={{ fontSize: 44, fontWeight: 700, color: T.textLight, marginBottom: 12 }}>{tr.h1}</h1></Reveal>
+        <Reveal delay={0.1}><p style={{ fontSize: 17, color: T.textMutedLight }}>{tr.subtitle}</p></Reveal>
       </section>
       <section style={{ background: T.primary, padding: "80px 48px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 60 }}>
@@ -4263,7 +4839,7 @@ function ContatoPage() {
             <Reveal>
               <div>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-                  {[{ l: "Nome *", t: "text", k: "nome" }, { l: "Email corporativo *", t: "email", k: "email" }, { l: "Empresa *", t: "text", k: "empresa" }, { l: "Telefone", t: "tel", k: "telefone" }].map((f, i) => (
+                  {[{ l: tr.nameLabel, t: "text", k: "nome" }, { l: tr.emailLabel, t: "email", k: "email" }, { l: tr.companyLabel, t: "text", k: "empresa" }, { l: tr.phoneLabel, t: "tel", k: "telefone" }].map((f, i) => (
                     <div key={i}>
                       <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>{f.l}</label>
                       <input type={f.t} value={form[f.k]} onChange={handleChange(f.k)} style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14, outline: "none" }} />
@@ -4271,30 +4847,30 @@ function ContatoPage() {
                   ))}
                 </div>
                 <div style={{ marginBottom: 16 }}>
-                  <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>Produto de interesse *</label>
+                  <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>{tr.productLabel}</label>
                   <select value={form.produto} onChange={handleChange("produto")} style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14 }}>
-                    <option value="">Selecione</option>
-                    {["JUST Benefits", "JUST Fleet", "JUST Banking", "JUST Expense", "JUST Credit", "JUST Custom", "Ainda nao sei"].map(o => <option key={o} value={o}>{o}</option>)}
+                    <option value="">{tr.productPlaceholder}</option>
+                    {["JUST Benefits", "JUST Fleet", "JUST Banking", "JUST Expense", "JUST Credit", "JUST Custom", "Ainda não sei"].map(o => <option key={o} value={o}>{o}</option>)}
                   </select>
                 </div>
                 <div style={{ marginBottom: 20 }}>
-                  <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>Sobre o projeto</label>
-                  <textarea rows={3} value={form.projeto} onChange={handleChange("projeto")} placeholder="Quantos usuarios? Prazo? Cenario atual?" style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14, resize: "vertical", outline: "none" }} />
+                  <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>{tr.projectLabel}</label>
+                  <textarea rows={3} value={form.projeto} onChange={handleChange("projeto")} placeholder={tr.projectPlaceholder} style={{ width: "100%", padding: "11px 14px", borderRadius: 8, border: `1px solid ${T.borderLight}`, background: "rgba(255,255,255,0.04)", color: T.textLight, fontSize: 14, resize: "vertical", outline: "none" }} />
                 </div>
                 {error && <p style={{ color: T.cta, fontSize: 13, marginBottom: 12 }}>{error}</p>}
-                <Btn onClick={handleSubmit} disabled={sending} style={{ width: "100%", opacity: sending ? 0.7 : 1, cursor: sending ? "wait" : "pointer" }}>{sending ? "Enviando..." : "Enviar mensagem"}</Btn>
+                <Btn onClick={handleSubmit} disabled={sending} style={{ width: "100%", opacity: sending ? 0.7 : 1, cursor: sending ? "wait" : "pointer" }}>{sending ? tr.sendingBtn : tr.submitBtn}</Btn>
               </div>
             </Reveal>
           ) : (
             <Reveal><div style={{ textAlign: "center", padding: "60px 0" }}>
               <div style={{ width: 56, height: 56, borderRadius: "50%", background: `${T.cta}15`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", fontSize: 28, color: T.cta }}>&#10003;</div>
-              <h3 style={{ fontSize: 22, fontWeight: 700, color: T.textLight, marginBottom: 8 }}>Mensagem enviada!</h3>
-              <p style={{ fontSize: 15, color: T.textMuted }}>Retornamos em ate 24h uteis.</p>
+              <h3 style={{ fontSize: 22, fontWeight: 700, color: T.textLight, marginBottom: 8 }}>{tr.successTitle}</h3>
+              <p style={{ fontSize: 15, color: T.textMuted }}>{tr.successMsg}</p>
             </div></Reveal>
           )}
           <Reveal delay={0.15} direction="right">
             <div style={{ paddingTop: 8 }}>
-              {[{ l: "Email", v: "contato@wearejust.it" }, { l: "WhatsApp", v: "+55 11 97187-4759", href: "https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." }, { l: "Localizacao", v: "Sao Paulo, SP" }, { l: "Horario", v: "Seg-Sex, 9h-18h" }].map((info) => (
+              {[{ l: tr.emailLabel2, v: "contato@wearejust.it" }, { l: tr.whatsappLabel, v: "+55 11 97187-4759", href: "https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." }, { l: tr.locationLabel, v: "São Paulo, SP" }, { l: tr.hoursLabel, v: tr.hours }].map((info) => (
                 <div key={info.l} style={{ marginBottom: 24 }}>
                   <div style={{ fontSize: 11, color: T.textMuted, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 4, fontWeight: 600 }}>{info.l}</div>
                   {info.href ? (
@@ -4312,7 +4888,7 @@ function ContatoPage() {
       </section>
       <section style={{ background: T.darkAlt, padding: "80px 48px" }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
-          <h2 style={{ fontSize: 28, fontWeight: 700, color: T.textLight, marginBottom: 28, textAlign: "center" }}>Perguntas frequentes</h2>
+          <h2 style={{ fontSize: 28, fontWeight: 700, color: T.textLight, marginBottom: 28, textAlign: "center" }}>{tr.faqTitle}</h2>
           {faqs.map((f, i) => (
             <div key={i} style={{ borderBottom: `1px solid ${T.borderLight}`, marginBottom: 8 }}>
               <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", padding: "14px 0", background: "none", border: "none", cursor: "pointer", color: T.textLight, fontSize: 15, fontWeight: 500, textAlign: "left" }}>
@@ -4327,8 +4903,101 @@ function ContatoPage() {
   );
 }
 
-function SolutionPage({ setPage, config }) {
+function PrivacyPage({ lang }) {
+  const tr = (T18N[lang] || T18N["pt-BR"]).privacy;
+  return (
+    <div>
+      <section style={{ background: `linear-gradient(160deg, ${T.primary}, ${T.darkAlt}, ${T.secondary})`, padding: "170px 48px 92px" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <Reveal><Tag>{tr.tag}</Tag></Reveal>
+          <Reveal delay={0.1}>
+            <h1 style={{ fontSize: 52, fontWeight: 700, color: T.textLight, lineHeight: 1.08, margin: "16px 0 18px", letterSpacing: "-0.025em" }}>
+              {tr.h1}
+            </h1>
+          </Reveal>
+          <Reveal delay={0.18}>
+            <p style={{ fontSize: 18, color: T.textMutedLight, lineHeight: 1.65, maxWidth: 720 }}>
+              {tr.subtitle}
+            </p>
+          </Reveal>
+          <Reveal delay={0.26}>
+            <div style={{
+              display: "inline-flex",
+              gap: 10,
+              alignItems: "center",
+              marginTop: 26,
+              padding: "10px 14px",
+              borderRadius: 8,
+              border: `1px solid ${T.borderLight}`,
+              background: "rgba(255,255,255,0.035)",
+              color: T.textMutedLight,
+              fontSize: 13,
+            }}>
+              <span style={{ color: "rgba(242,244,248,0.4)" }}>{tr.updatedLabel}</span>
+              <span style={{ width: 4, height: 4, borderRadius: "50%", background: T.cta }} />
+              <strong style={{ color: T.textLight, fontWeight: 600 }}>{tr.updatedAt}</strong>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section style={{ background: T.bgOffwhite, padding: "88px 48px" }}>
+        <div className="privacy-grid" style={{ maxWidth: 1080, margin: "0 auto", display: "grid", gridTemplateColumns: "280px minmax(0, 1fr)", gap: 56, alignItems: "start" }}>
+          <aside className="privacy-aside" style={{ position: "sticky", top: 110 }}>
+            <div style={{ padding: 28, borderRadius: 8, background: "#fff", border: "1px solid rgba(15,17,43,0.08)" }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: T.primary, marginBottom: 12 }}>{tr.introTitle}</h2>
+              <p style={{ fontSize: 14, color: "rgba(15,17,43,0.62)", lineHeight: 1.7, marginBottom: 20 }}>{tr.intro[0]}</p>
+              <div style={{ height: 1, background: "rgba(15,17,43,0.08)", marginBottom: 20 }} />
+              <p style={{ fontSize: 12, color: "rgba(15,17,43,0.45)", lineHeight: 1.6 }}>
+                {tr.updatedLabel}: {tr.updatedAt}
+              </p>
+            </div>
+          </aside>
+
+          <article style={{ minWidth: 0 }}>
+            <Reveal>
+              <div style={{ padding: 36, borderRadius: 8, background: "#fff", border: "1px solid rgba(15,17,43,0.08)", marginBottom: 18 }}>
+                <p style={{ fontSize: 16, color: "rgba(15,17,43,0.72)", lineHeight: 1.8, marginBottom: 18 }}>{tr.intro[0]}</p>
+                <p style={{ fontSize: 16, color: "rgba(15,17,43,0.72)", lineHeight: 1.8 }}>{tr.intro[1]}</p>
+              </div>
+            </Reveal>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              {tr.sections.map((section, i) => (
+                <Reveal key={section.title} delay={Math.min(i * 0.03, 0.18)}>
+                  <section style={{ padding: 36, borderRadius: 8, background: "#fff", border: "1px solid rgba(15,17,43,0.08)" }}>
+                    <h2 style={{ fontSize: 22, fontWeight: 700, color: T.primary, lineHeight: 1.25, marginBottom: 18 }}>{section.title}</h2>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                      {section.body.map((paragraph) => (
+                        <p key={paragraph} style={{ fontSize: 15, color: "rgba(15,17,43,0.68)", lineHeight: 1.75 }}>
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </section>
+                </Reveal>
+              ))}
+            </div>
+
+            <Reveal>
+              <section style={{ marginTop: 18, padding: 36, borderRadius: 8, background: T.primary, border: `1px solid ${T.borderLight}` }}>
+                <h2 style={{ fontSize: 24, fontWeight: 700, color: T.textLight, marginBottom: 12 }}>{tr.contactTitle}</h2>
+                <p style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.7, maxWidth: 640, marginBottom: 18 }}>{tr.contactText}</p>
+                <a href={`mailto:${tr.contactEmail}`} style={{ color: T.cta, fontSize: 16, fontWeight: 700, textDecoration: "none" }}>
+                  {tr.contactEmail}
+                </a>
+              </section>
+            </Reveal>
+          </article>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function SolutionPage({ setPage, config, lang }) {
   const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const tr = (T18N[lang] || T18N["pt-BR"]).solution;
   const pc = PRODUCT_COLORS[config.key] || PRODUCT_COLORS.beneficios;
   return (
     <div>
@@ -4341,7 +5010,7 @@ function SolutionPage({ setPage, config }) {
             </div></Reveal>
             <Reveal delay={0.1}><h1 style={{ fontSize: 44, fontWeight: 700, color: T.textLight, lineHeight: 1.1, marginBottom: 16 }}>{config.title}</h1></Reveal>
             <Reveal delay={0.2}><p style={{ fontSize: 17, color: T.textMutedLight, lineHeight: 1.6, marginBottom: 32 }}>{config.subtitle}</p></Reveal>
-            <Reveal delay={0.3}><Btn onClick={() => nav("contato")}>Falar com especialista</Btn></Reveal>
+            <Reveal delay={0.3}><Btn onClick={() => nav("contato")}>{tr.ctaBtn}</Btn></Reveal>
           </div>
           <Reveal delay={0.2} direction="right">
             <ProductMockup color={pc.accent} label={pc.label} productKey={config.key} style={{ maxWidth: 500 }} />
@@ -4350,7 +5019,7 @@ function SolutionPage({ setPage, config }) {
       </section>
       <section style={{ background: T.primary, padding: "100px 48px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <SectionTitle title="Modelos de operacao" center />
+          <SectionTitle title={tr.modelsTitle} center />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
             {[config.model1, config.model2].map((m, i) => (
               <Reveal key={i} delay={i * 0.1}>
@@ -4365,7 +5034,7 @@ function SolutionPage({ setPage, config }) {
       </section>
       <section style={{ background: T.darkAlt, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <SectionTitle title="Capacidades" center />
+          <SectionTitle title={tr.capabilitiesTitle} center />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
             {config.capabilities.map((c, i) => (
               <Reveal key={i} delay={i * 0.06}>
@@ -4378,8 +5047,196 @@ function SolutionPage({ setPage, config }) {
         </div>
       </section>
       <section style={{ background: `linear-gradient(135deg, ${T.primary}, ${T.secondary})`, padding: "100px 48px", textAlign: "center" }}>
-        <Reveal><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, marginBottom: 24 }}>Quer entender como funciona?</h2></Reveal>
-        <Reveal delay={0.1}><Btn onClick={() => nav("contato")}>Agendar uma conversa</Btn></Reveal>
+        <Reveal><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, marginBottom: 24 }}>{tr.ctaTitle}</h2></Reveal>
+        <Reveal delay={0.1}><Btn onClick={() => nav("contato")}>{tr.ctaBtn}</Btn></Reveal>
+      </section>
+    </div>
+  );
+}
+
+// ========================================
+// SENTINEL PAGE
+// ========================================
+function SentinelPage({ setPage, lang }) {
+  const tr = (T18N[lang] || T18N["pt-BR"]).sentinel;
+  const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const pc = PRODUCT_COLORS.sentinel;
+
+  const benefits = [
+    { title: tr.b1Title, desc: tr.b1Desc, icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={pc.accent} strokeWidth="1.8"/><path d="M12 7v5l3 2" stroke={pc.accent} strokeWidth="1.8" strokeLinecap="round"/><circle cx="12" cy="12" r="1.5" fill={pc.accent} opacity="0.4"/></svg>
+    )},
+    { title: tr.b2Title, desc: tr.b2Desc, icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="10" ry="5" stroke={pc.accent} strokeWidth="1.8"/><ellipse cx="12" cy="12" rx="10" ry="5" stroke={pc.accent} strokeWidth="1.8" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="5" stroke={pc.accent} strokeWidth="1.8" transform="rotate(120 12 12)"/><circle cx="12" cy="12" r="2" fill={pc.accent} opacity="0.6"/></svg>
+    )},
+    { title: tr.b3Title, desc: tr.b3Desc, icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 17l4-4 3 3 7-9 4 4" stroke={pc.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M3 20h18" stroke={pc.accent} strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/></svg>
+    )},
+    { title: tr.b4Title, desc: tr.b4Desc, icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke={pc.accent} strokeWidth="1.8"/><path d="M9 12l2 2 4-4" stroke={pc.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M3 9h18" stroke={pc.accent} strokeWidth="1.2" opacity="0.3"/></svg>
+    )},
+  ];
+
+  const techIcons = [
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke={pc.accent} strokeWidth="1.8"/><path d="M8 12h2l2-4 2 8 2-4h2" stroke={pc.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke={pc.accent} strokeWidth="1.8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" stroke={pc.accent} strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/></svg>,
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="17 1 21 5 17 9" stroke={pc.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M3 11V9a4 4 0 0 1 4-4h14" stroke={pc.accent} strokeWidth="1.8" strokeLinecap="round"/><polyline points="7 23 3 19 7 15" stroke={pc.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M21 13v2a4 4 0 0 1-4 4H3" stroke={pc.accent} strokeWidth="1.8" strokeLinecap="round" opacity="0.6"/></svg>,
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke={pc.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke={pc.accent} strokeWidth="1.8" strokeLinecap="round"/></svg>,
+  ];
+
+  return (
+    <div>
+      {/* ===== HERO ===== */}
+      <section style={{ background: `linear-gradient(160deg, #060910, ${T.primary} 50%, #0a1515)`, padding: "170px 48px 100px", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: "20%", right: "8%", width: 500, height: 500, background: `radial-gradient(circle, ${pc.accent}08, transparent 70%)`, borderRadius: "50%", filter: "blur(80px)" }} />
+        <div style={{ position: "absolute", bottom: "10%", left: "5%", width: 400, height: 400, background: `radial-gradient(circle, ${pc.accent}05, transparent 70%)`, borderRadius: "50%", filter: "blur(60px)" }} />
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center", position: "relative", zIndex: 2 }}>
+          <div>
+            <Reveal>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 14px", borderRadius: 100, fontSize: 11, fontWeight: 700, background: `${pc.accent}15`, border: `1px solid ${pc.accent}30`, color: pc.accent, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke={pc.accent} strokeWidth="1.2"/><circle cx="5" cy="5" r="1.5" fill={pc.accent}/></svg>
+                  {tr.heroTag}
+                </span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 12px", borderRadius: 100, fontSize: 10, fontWeight: 700, background: "rgba(108,92,231,0.1)", border: "1px solid rgba(108,92,231,0.25)", color: "#a29bfe", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="2" fill="#a29bfe" opacity="0.7"/><path d="M6 1v2M6 9v2M1 6h2M9 6h2" stroke="#a29bfe" strokeWidth="1.2" strokeLinecap="round" opacity="0.5"/></svg>
+                  {tr.heroAiTag}
+                </span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h1 style={{ fontSize: 48, fontWeight: 800, color: T.textLight, lineHeight: 1.05, letterSpacing: "-0.03em", marginBottom: 20 }}>
+                <span style={{ background: `linear-gradient(135deg, #fff, ${pc.accent})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{tr.h1}</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p style={{ fontSize: 17, color: T.textMutedLight, lineHeight: 1.65, marginBottom: 36, maxWidth: 480 }}>{tr.heroSubtitle}</p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <Btn onClick={() => nav("contato")} size="lg">{tr.heroCta}</Btn>
+            </Reveal>
+          </div>
+          <Reveal delay={0.2} direction="right">
+            <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 380 }}>
+              {/* Shield visual */}
+              <div style={{ position: "relative", width: 280, height: 320 }}>
+                <svg viewBox="0 0 280 320" fill="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+                  <path d="M140 20L40 60v80c0 80 50 140 100 160 50-20 100-80 100-160V60L140 20z" stroke={pc.accent} strokeWidth="1.5" fill={`${pc.accent}05`} opacity="0.8" strokeLinejoin="round"/>
+                  <path d="M140 40L60 72v68c0 65 40 112 80 130 40-18 80-65 80-130V72L140 40z" stroke={pc.accent} strokeWidth="1" fill={`${pc.accent}08`} opacity="0.5" strokeLinejoin="round"/>
+                </svg>
+                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, paddingTop: 20 }}>
+                  <ProductIcon productKey="sentinel" size={64} showCard />
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8, width: "100%", padding: "0 40px" }}>
+                    {[
+                      { label: "< 100ms", color: pc.accent },
+                      { label: "6M+ Transações", color: "#a29bfe" },
+                      { label: "GPU NVIDIA", color: "#74b9ff" },
+                    ].map((item, i) => (
+                      <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 12px", borderRadius: 8, background: "rgba(0,0,0,0.3)", border: `1px solid ${item.color}20` }}>
+                        <div style={{ width: 6, height: 6, borderRadius: "50%", background: item.color, flexShrink: 0 }} />
+                        <span style={{ fontSize: 12, fontWeight: 600, color: item.color }}>{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ===== O QUE E ===== */}
+      <section style={{ background: T.primary, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
+          <Reveal><SectionTitle tag={lang === "en" ? "What it is" : "O que é"} title={tr.whatTitle} center /></Reveal>
+          <Reveal delay={0.1}><p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75 }}>{tr.whatText}</p></Reveal>
+        </div>
+      </section>
+
+      {/* ===== BENEFICIOS ===== */}
+      <section style={{ background: T.darkAlt, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <SectionTitle title={tr.benefitsTitle} center />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
+            {benefits.map((b, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div style={{ padding: "32px", borderRadius: 16, background: `${pc.accent}05`, border: `1px solid ${pc.accent}12`, display: "flex", gap: 20, alignItems: "flex-start" }}>
+                  <div style={{ width: 48, height: 48, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", background: `${pc.accent}10`, border: `1px solid ${pc.accent}20`, flexShrink: 0 }}>
+                    {b.icon}
+                  </div>
+                  <div>
+                    <h3 style={{ fontSize: 17, fontWeight: 700, color: T.textLight, marginBottom: 8, lineHeight: 1.3 }}>{b.title}</h3>
+                    <p style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.65 }}>{b.desc}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TECNOLOGIA ===== */}
+      <section style={{ background: T.primary, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <SectionTitle title={tr.techTitle} subtitle={tr.techSubtitle} center />
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {tr.techBullets.map((bullet, i) => (
+              <Reveal key={i} delay={i * 0.07}>
+                <div style={{ display: "flex", alignItems: "center", gap: 16, padding: "16px 24px", borderRadius: 12, background: "rgba(255,255,255,0.02)", border: `1px solid ${pc.accent}12` }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", background: `${pc.accent}08`, border: `1px solid ${pc.accent}15`, flexShrink: 0 }}>
+                    {techIcons[i]}
+                  </div>
+                  <span style={{ fontSize: 15, fontWeight: 500, color: T.textLight }}>{bullet}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PARA QUEM E ===== */}
+      <section style={{ background: T.darkAlt, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <SectionTitle title={tr.forWhoTitle} center />
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {tr.forWhoItems.map((item, i) => (
+              <Reveal key={i} delay={i * 0.06}>
+                <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "16px 24px", borderRadius: 12, background: "rgba(255,255,255,0.02)", border: `1px solid rgba(255,255,255,0.05)` }}>
+                  <div style={{ width: 28, height: 28, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: `${pc.accent}10`, border: `1px solid ${pc.accent}20`, flexShrink: 0 }}>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke={pc.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </div>
+                  <span style={{ fontSize: 15, color: T.textMutedLight, lineHeight: 1.5 }}>{item}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== STATUS / ROADMAP ===== */}
+      <section style={{ background: T.primary, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 700, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ padding: 40, borderRadius: 20, background: `linear-gradient(135deg, ${pc.accent}06, ${pc.accent}02)`, border: `1px solid ${pc.accent}20` }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: pc.accent, boxShadow: `0 0 12px ${pc.accent}60` }} />
+                <h2 style={{ fontSize: 24, fontWeight: 700, color: T.textLight }}>{tr.statusTitle}</h2>
+              </div>
+              <p style={{ fontSize: 16, color: T.textMutedLight, lineHeight: 1.75, marginBottom: 28 }}>{tr.statusText}</p>
+              <Btn onClick={() => nav("contato")} primary>{tr.statusCta}</Btn>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ===== CTA FINAL ===== */}
+      <section style={{ background: `linear-gradient(135deg, ${T.darkAlt}, #0a1515)`, padding: "100px 48px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 600, height: 400, background: `radial-gradient(circle, ${pc.accent}07, transparent)`, borderRadius: "50%", filter: "blur(80px)" }} />
+        <div style={{ position: "relative", zIndex: 2 }}>
+          <Reveal><h2 style={{ fontSize: 40, fontWeight: 700, color: T.textLight, marginBottom: 16, letterSpacing: "-0.02em" }}>{tr.ctaFinal}</h2></Reveal>
+          <Reveal delay={0.1}><Btn onClick={() => nav("contato")} size="lg">{tr.ctaFinalBtn}</Btn></Reveal>
+        </div>
       </section>
     </div>
   );
@@ -4389,38 +5246,84 @@ function SolutionPage({ setPage, config }) {
 // SOLUTIONS CONFIG
 // ========================================
 const SOL = {
-  beneficios: { key: "beneficios", title: "JUST Benefits: beneficios flexiveis construidos para operar em escala", subtitle: "Arranjo aberto, fechado ou hibrido. Multiplos saldos com regras customizaveis e controle total.", model1: { title: "Arranjo aberto", desc: "Aceitacao ampla, bandeiras tradicionais, escala e capilaridade." }, model2: { title: "Arranjo fechado", desc: "Processamento proprio, ecossistemas controlados, governanca total." }, capabilities: ["Multiplos saldos", "Regras customizaveis", "Controle de uso", "Compliance", "Conciliacao", "Escala"] },
-  frotas: { key: "frotas", title: "JUST Fleet: gestao de frotas com controle financeiro real", subtitle: "Abastecimento, pedagio, manutencao. Tudo em um unico produto financeiro.", model1: { title: "Rede aberta", desc: "Postos e fornecedores com ampla aceitacao nacional." }, model2: { title: "Rede propria", desc: "Credenciados especificos, controle e governanca total." }, capabilities: ["Controle por veiculo", "Regras em tempo real", "Despesas por tipo", "Monitoramento", "Conciliacao", "Escala"] },
-  banking: { key: "banking", title: "JUST Banking: banking digital white-label pronto para operar", subtitle: "Conta, cartao, PIX, transferencias. Integrado com BaaS.", model1: { title: "Banking completo", desc: "Conta digital, cartao, PIX, transferencias, boletos." }, model2: { title: "Banking embarcado", desc: "Funcionalidades bancarias integradas ao produto existente." }, capabilities: ["Conta digital", "Cartao", "PIX", "Transferencias", "Credito", "White-label"] },
-  despesas: { key: "despesas", title: "JUST Expense: despesas corporativas com controle total", subtitle: "Cartoes corporativos com politicas, limites e conciliacao.", model1: { title: "Arranjo aberto", desc: "Flexibilidade e ampla aceitacao para equipes distribuidas." }, model2: { title: "Arranjo fechado", desc: "Regras rigidas e controle operacional maximo." }, capabilities: ["Cartoes", "Politicas", "Limites", "Real-time", "Conciliacao", "Relatorios"] },
-  antecipacao: { key: "antecipacao", title: "JUST Credit: produtos de credito white-label", subtitle: "Private label, antecipacao e recebiveis integrados ao seu negocio.", model1: { title: "Private label", desc: "Cartao proprio com regras customizaveis e rede controlada." }, model2: { title: "Credito (CCB)", desc: "Emissao de CCB, credito em conta, operacao regulada." }, capabilities: ["Private label", "Antecipacao", "Recebiveis", "Limites", "Compliance", "Escala"] },
-  "sob-demanda": { key: "sob-demanda", title: "JUST Custom: projetos sob demanda, do zero a operacao", subtitle: "Produto que nao cabe em prateleira? Arquitetamos sob medida.", model1: { title: "Custom", desc: "Cada componente desenhado para o cenario unico." }, model2: { title: "Hibrido", desc: "Combinacao de arranjo aberto e fechado." }, capabilities: ["Arquitetura", "Multi-provider", "Hibrido", "Go-live rapido", "Evolucao", "Diagnostico"] },
+  beneficios: { key: "beneficios", title: "JUST Benefits: benefícios flexíveis construídos para operar em escala", subtitle: "Arranjo aberto, fechado ou híbrido. Múltiplos saldos com regras customizáveis e controle total.", model1: { title: "Arranjo aberto", desc: "Aceitação ampla, bandeiras tradicionais, escala e capilaridade." }, model2: { title: "Arranjo fechado", desc: "Processamento próprio, ecossistemas controlados, governança total." }, capabilities: ["Múltiplos saldos", "Regras customizáveis", "Controle de uso", "Compliance", "Conciliação", "Escala"] },
+  frotas: { key: "frotas", title: "JUST Fleet: gestão de frotas com controle financeiro real", subtitle: "Abastecimento, pedágio, manutenção. Tudo em um único produto financeiro.", model1: { title: "Rede aberta", desc: "Postos e fornecedores com ampla aceitação nacional." }, model2: { title: "Rede própria", desc: "Credenciados específicos, controle e governança total." }, capabilities: ["Controle por veículo", "Regras em tempo real", "Despesas por tipo", "Monitoramento", "Conciliação", "Escala"] },
+  banking: { key: "banking", title: "JUST Banking: banking digital white-label pronto para operar", subtitle: "Conta, cartão, PIX, transferências. Integrado com BaaS.", model1: { title: "Banking completo", desc: "Conta digital, cartão, PIX, transferências, boletos." }, model2: { title: "Banking embarcado", desc: "Funcionalidades bancárias integradas ao produto existente." }, capabilities: ["Conta digital", "Cartão", "PIX", "Transferências", "Crédito", "White-label"] },
+  despesas: { key: "despesas", title: "JUST Expense: despesas corporativas com controle total", subtitle: "Cartões corporativos com políticas, limites e conciliação.", model1: { title: "Arranjo aberto", desc: "Flexibilidade e ampla aceitação para equipes distribuídas." }, model2: { title: "Arranjo fechado", desc: "Regras rígidas e controle operacional máximo." }, capabilities: ["Cartões", "Políticas", "Limites", "Real-time", "Conciliação", "Relatórios"] },
+  antecipacao: { key: "antecipacao", title: "JUST Credit: produtos de crédito white-label", subtitle: "Private label, antecipação e recebíveis integrados ao seu negócio.", model1: { title: "Private label", desc: "Cartão próprio com regras customizáveis e rede controlada." }, model2: { title: "Crédito (CCB)", desc: "Emissão de CCB, crédito em conta, operação regulada." }, capabilities: ["Private label", "Antecipação", "Recebíveis", "Limites", "Compliance", "Escala"] },
+  "sob-demanda": { key: "sob-demanda", title: "JUST Custom: projetos sob demanda, do zero à operação", subtitle: "Produto que não cabe em prateleira? Arquitetamos sob medida.", model1: { title: "Custom", desc: "Cada componente desenhado para o cenário único." }, model2: { title: "Híbrido", desc: "Combinação de arranjo aberto e fechado." }, capabilities: ["Arquitetura", "Multi-provider", "Híbrido", "Go-live rápido", "Evolução", "Diagnóstico"] },
 };
 
 // ========================================
 // MAIN APP
 // ========================================
-export default function App() {
-  const [page, setPage] = useState("home");
-  const render = () => {
-    if (page === "home") return <HomePage setPage={setPage} />;
-    if (page === "sobre") return <SobrePage setPage={setPage} />;
-    if (page === "stack") return <ErrorBoundary><StackPage setPage={setPage} /></ErrorBoundary>;
-    if (page === "cases") return <CasesPage setPage={setPage} />;
-    if (page === "contato") return <ContatoPage />;
-    if (SOL[page]) return <SolutionPage setPage={setPage} config={SOL[page]} />;
-    return <HomePage setPage={setPage} />;
+function AppContent() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [lang, setLang] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("lang") || localStorage.getItem("just-lang") || "pt-BR";
+  });
+
+  const changeLang = (newLang) => {
+    setLang(newLang);
+    localStorage.setItem("just-lang", newLang);
+    const params = new URLSearchParams(location.search);
+    if (newLang !== "pt-BR") { params.set("lang", newLang); } else { params.delete("lang"); }
+    const qs = params.toString();
+    navigate(location.pathname + (qs ? "?" + qs : ""), { replace: true });
   };
+
+  const setPage = (p) => {
+    const qs = new URLSearchParams(location.search).toString();
+    const target = (p === "home" ? "/" : `/${p}`) + (qs ? "?" + qs : "");
+    navigate(target);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const page = location.pathname.replace(/^\//, "") || "home";
+
+  useEffect(() => {
+    const tr = T18N[lang] || T18N["pt-BR"];
+    const titles = {
+      home: lang === "en" ? "JUST | Financial Product Platform" : "JUST | Plataforma de Produtos Financeiros",
+      sobre: (tr.sobre?.h1 || "Sobre") + " | JUST",
+      stack: "Tecnologia | JUST",
+      cases: "Cases | JUST",
+      contato: lang === "en" ? "Contact | JUST" : "Contato | JUST",
+      privacidade: lang === "en" ? "Privacy Policy | JUST" : "Política de Privacidade | JUST",
+      sentinel: tr.sentinel?.metaTitle || "Sentinel | JUST",
+    };
+    document.title = titles[page] || "JUST";
+    const desc = document.querySelector("meta[name='description']");
+    if (desc && page === "sentinel") desc.setAttribute("content", tr.sentinel?.metaDesc || "");
+    if (desc && page === "privacidade") desc.setAttribute("content", lang === "en" ? "JUST Privacy Policy." : "Política de Privacidade da JUST.");
+  }, [page, lang]);
+
+  const render = () => {
+    if (page === "home") return <HomePage setPage={setPage} lang={lang} />;
+    if (page === "sobre") return <SobrePage setPage={setPage} lang={lang} />;
+    if (page === "stack") return <ErrorBoundary><StackPage setPage={setPage} lang={lang} /></ErrorBoundary>;
+    if (page === "cases") return <CasesPage setPage={setPage} lang={lang} />;
+    if (page === "contato") return <ContatoPage lang={lang} />;
+    if (page === "privacidade") return <PrivacyPage lang={lang} />;
+    if (page === "sentinel") return <SentinelPage setPage={setPage} lang={lang} />;
+    if (SOL[page]) return <SolutionPage setPage={setPage} config={SOL[page]} lang={lang} />;
+    return <HomePage setPage={setPage} lang={lang} />;
+  };
+
   return (
-    <div style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", background: T.primary, minHeight: "100vh", WebkitFontSmoothing: "antialiased" }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { overflow-x: hidden; width: 100%; }
-        ::selection { background: rgba(244,85,70,0.3); }
-        input:focus, textarea:focus, select:focus { border-color: ${T.cta} !important; }
-        button:focus { outline: none; }
-      
+    <LangContext.Provider value={{ lang, setLang: changeLang }}>
+      <div style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", background: T.primary, minHeight: "100vh", WebkitFontSmoothing: "antialiased" }}>
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          html, body { overflow-x: hidden; width: 100%; }
+          ::selection { background: rgba(244,85,70,0.3); }
+          input:focus, textarea:focus, select:focus { border-color: ${T.cta} !important; }
+          button:focus { outline: none; }
+
 @media (max-width: 900px) {
   .desktop-nav { display: none !important; }
   .mobile-menu-btn { display: flex !important; }
@@ -4435,38 +5338,52 @@ export default function App() {
     grid-template-columns: 1fr 28px 1fr !important;
   }
 }
-
 @media (max-width: 900px) {
   .hero-grid > div:last-child {
     display: none !important;
   }
+  .privacy-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .privacy-aside {
+    position: static !important;
+  }
+}
+`}</style>
+        <Header page={page} setPage={setPage} lang={lang} />
+        <main>{render()}</main>
+        <Footer setPage={setPage} lang={lang} />
+        {page !== "contato" && (
+          <a
+            href="https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Fale conosco pelo WhatsApp"
+            style={{
+              position: "fixed", bottom: 24, right: 24, width: 48, height: 48,
+              borderRadius: "50%", background: "#25D366", display: "flex",
+              alignItems: "center", justifyContent: "center", boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+              zIndex: 1000, transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              textDecoration: "none",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.08)"; e.currentTarget.style.boxShadow = "0 6px 24px rgba(37,211,102,0.35)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.25)"; }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+        )}
+      </div>
+    </LangContext.Provider>
+  );
 }
 
-`}</style>
-      <Header page={page} setPage={setPage} />
-      <main>{render()}</main>
-      <Footer setPage={setPage} />
-      {page !== "contato" && (
-        <a
-          href="https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Fale conosco pelo WhatsApp"
-          style={{
-            position: "fixed", bottom: 24, right: 24, width: 48, height: 48,
-            borderRadius: "50%", background: "#25D366", display: "flex",
-            alignItems: "center", justifyContent: "center", boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
-            zIndex: 1000, transition: "transform 0.2s ease, box-shadow 0.2s ease",
-            textDecoration: "none",
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.08)"; e.currentTarget.style.boxShadow = "0 6px 24px rgba(37,211,102,0.35)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.25)"; }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-        </a>
-      )}
-    </div>
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
