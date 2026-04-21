@@ -2,7 +2,7 @@ const env = import.meta.env || {};
 
 const GA4_ID = env.VITE_GA4_ID || "";
 const PLAUSIBLE_DOMAIN = env.VITE_PLAUSIBLE_DOMAIN || "";
-const PLAUSIBLE_SRC = env.VITE_PLAUSIBLE_SRC || "https://plausible.io/js/script.js";
+const PLAUSIBLE_SRC = env.VITE_PLAUSIBLE_SRC || "https://plausible.io/js/pa-tnQg-2tE0DrOZj9nGuskh.js";
 
 const LLM_REFERRERS = [
   "chatgpt.com",
@@ -17,6 +17,7 @@ const LLM_REFERRERS = [
 
 let analyticsReady = false;
 let llmReferralTracked = false;
+let plausibleFirstPageViewSkipped = false;
 
 function canUseBrowser() {
   return typeof window !== "undefined" && typeof document !== "undefined";
@@ -31,6 +32,21 @@ function appendScript(id, attrs) {
     else if (value) script.setAttribute(key, value);
   });
   document.head.appendChild(script);
+}
+
+function hasScriptWithSrc(src) {
+  if (!canUseBrowser() || !src) return false;
+  return Array.from(document.scripts).some((script) => script.src === src);
+}
+
+function setupPlausibleQueue() {
+  window.plausible = window.plausible || function plausibleFallback() {
+    window.plausible.q = window.plausible.q || [];
+    window.plausible.q.push(arguments);
+  };
+  window.plausible.init = window.plausible.init || function plausibleInit(options) {
+    window.plausible.o = options || {};
+  };
 }
 
 function normalizePath(path) {
@@ -49,14 +65,13 @@ export function initAnalytics() {
   if (!canUseBrowser() || analyticsReady) return;
   analyticsReady = true;
 
-  if (PLAUSIBLE_DOMAIN) {
-    window.plausible = window.plausible || function plausibleFallback(...args) {
-      window.plausible.q = window.plausible.q || [];
-      window.plausible.q.push(args);
-    };
-    appendScript("plausible-script", {
+  if (PLAUSIBLE_SRC || PLAUSIBLE_DOMAIN) {
+    setupPlausibleQueue();
+    window.plausible.init();
+
+    if (!hasScriptWithSrc(PLAUSIBLE_SRC)) appendScript("plausible-script", {
       defer: true,
-      "data-domain": PLAUSIBLE_DOMAIN,
+      "data-domain": PLAUSIBLE_DOMAIN || undefined,
       src: PLAUSIBLE_SRC,
     });
   }
@@ -95,7 +110,12 @@ export function trackPageView(path, title) {
   const pageTitle = title || document.title;
 
   if (typeof window.plausible === "function") {
-    window.plausible("pageview", { u: pageUrl });
+    const hasStaticSnippet = hasScriptWithSrc(PLAUSIBLE_SRC);
+    if (hasStaticSnippet && !plausibleFirstPageViewSkipped) {
+      plausibleFirstPageViewSkipped = true;
+    } else {
+      window.plausible("pageview", { u: pageUrl });
+    }
   }
 
   if (typeof window.gtag === "function" && GA4_ID) {

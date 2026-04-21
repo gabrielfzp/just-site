@@ -35,7 +35,7 @@ Medir descoberta, tráfego e conversão da Central de Conteúdos da JUST em trê
 O site suporta GA4 e Plausible ao mesmo tempo.
 
 - GA4: preencher `VITE_GA4_ID`.
-- Plausible: preencher `VITE_PLAUSIBLE_DOMAIN`.
+- Plausible: o snippet de `wearejust.it` já está no `<head>` do site. Se o Plausible gerar outro script, atualizar `VITE_PLAUSIBLE_SRC` e o snippet em `index.html`.
 
 Eventos implementados:
 

@@ -50,7 +50,7 @@ Variáveis:
 
 - `VITE_GA4_ID`: Measurement ID do GA4, exemplo `G-XXXXXXXXXX`.
 - `VITE_PLAUSIBLE_DOMAIN`: domínio no Plausible, exemplo `wearejust.it`.
-- `VITE_PLAUSIBLE_SRC`: script do Plausible. Use o padrão se não houver proxy próprio.
+- `VITE_PLAUSIBLE_SRC`: script do Plausible. O site já usa o script dedicado fornecido pelo Plausible para `wearejust.it`.
 - `VITE_GOOGLE_SITE_VERIFICATION`: token da meta tag do Google Search Console.
 - `VITE_BING_SITE_VERIFICATION`: token da meta tag do Bing Webmaster.
 
