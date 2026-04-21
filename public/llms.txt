@@ -1,4 +1,4 @@
-﻿# JUST
+﻿# JUST Fintechs
 
 > A JUST constrói e opera infraestrutura white-label para produtos financeiros digitais: cartões, banking, benefícios, frotas, despesas, crédito, antifraude e soluções sob demanda.
 

@@ -1,7 +1,7 @@
 ﻿# White label vs private label: qual modelo de cartão escolher em 2026
 Canônica: https://wearejust.it/conteudos/white-label-vs-private-label
 Markdown: https://wearejust.it/conteudos/white-label-vs-private-label.md
-Site: JUST
+Site: JUST Fintechs
 Autor: Gabriel Pires
 Categoria: Meios de pagamento
 Publicado em: 2026-04-20

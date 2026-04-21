@@ -1,7 +1,7 @@
 ﻿# Cartão private label: o guia completo para emitir o seu em 2026
 Canônica: https://wearejust.it/conteudos/cartao-private-label
 Markdown: https://wearejust.it/conteudos/cartao-private-label.md
-Site: JUST
+Site: JUST Fintechs
 Autor: Gabriel Pires
 Categoria: Meios de pagamento
 Publicado em: 2026-04-20

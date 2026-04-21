@@ -1,7 +1,7 @@
 ﻿# Cartão bandeirado: o que é, como funciona e quais existem no Brasil
 Canônica: https://wearejust.it/conteudos/cartao-bandeirado-o-que-e
 Markdown: https://wearejust.it/conteudos/cartao-bandeirado-o-que-e.md
-Site: JUST
+Site: JUST Fintechs
 Autor: Gabriel Pires
 Categoria: Meios de pagamento
 Publicado em: 2026-04-20

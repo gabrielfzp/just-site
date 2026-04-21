@@ -1,7 +1,7 @@
 ﻿# Diferença entre cartão corporativo e empresarial: o que realmente muda
 Canônica: https://wearejust.it/conteudos/diferenca-cartao-corporativo-empresarial
 Markdown: https://wearejust.it/conteudos/diferenca-cartao-corporativo-empresarial.md
-Site: JUST
+Site: JUST Fintechs
 Autor: Gabriel Pires
 Categoria: Gestão de gastos PJ
 Publicado em: 2026-04-20

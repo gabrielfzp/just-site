@@ -1,4 +1,4 @@
-import { DEFAULT_IMAGE, SITE_DESCRIPTION, SITE_KNOWS_ABOUT, SITE_NAME, SITE_SAME_AS, SITE_URL } from "../site/seo.js";
+import { DEFAULT_IMAGE, SITE_BRAND_NAME, SITE_DESCRIPTION, SITE_KNOWS_ABOUT, SITE_NAME, SITE_SAME_AS, SITE_URL } from "../site/seo.js";
 
 export function buildArticleUrl(article) {
   return `${SITE_URL}/conteudos/${article.slug}`;
@@ -20,7 +20,7 @@ export function buildArticleSchema(article) {
     publisher: {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
-      name: SITE_NAME,
+      name: SITE_BRAND_NAME,
       logo: { "@type": "ImageObject", url: DEFAULT_IMAGE },
     },
     articleSection: article.category?.name,

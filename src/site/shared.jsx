@@ -16,7 +16,7 @@ export const T18N = {
       tagline: "Plataforma de produtos financeiros digitais. Tecnologia pronta para operar, escalar e evoluir.",
       productsLabel: "Produtos", companyLabel: "Empresa", contactLabel: "Contato",
       ecosystem: "Ecossistema e associações", techPartners: "Parceiros tecnológicos",
-      legal: "A JUST atua exclusivamente como provedora de tecnologia e não realiza atividades privativas de instituições financeiras. Todos os serviços financeiros são operados por parceiros devidamente autorizados pelo Banco Central do Brasil.",
+      legal: "A JUST desenvolve e integra a tecnologia que viabiliza produtos financeiros digitais. Quando o projeto envolve serviços regulados, a operação financeira é realizada por instituições parceiras autorizadas, conforme o desenho regulatório aplicável.",
       rights: "© 2026 JUST. Todos os direitos reservados.", privacy: "Política de Privacidade",
     },
     home: {
@@ -305,7 +305,7 @@ export const T18N = {
       tagline: "Digital financial product platform. Technology ready to operate, scale and evolve.",
       productsLabel: "Products", companyLabel: "Company", contactLabel: "Contact",
       ecosystem: "Ecosystem & associations", techPartners: "Technology partners",
-      legal: "JUST operates exclusively as a technology provider and does not perform activities exclusive to financial institutions. All financial services are operated by partners duly authorized by the Central Bank of Brazil.",
+      legal: "JUST builds and integrates the technology that enables digital financial products. When a project involves regulated services, the financial operation is handled by authorized partner institutions according to the applicable regulatory design.",
       rights: "© 2026 JUST. All rights reserved.", privacy: "Privacy Policy",
     },
     home: {

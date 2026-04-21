@@ -1,5 +1,6 @@
 export const SITE_URL = "https://wearejust.it";
-export const SITE_NAME = "JUST";
+export const SITE_BRAND_NAME = "JUST";
+export const SITE_NAME = "JUST Fintechs";
 export const SITE_DESCRIPTION = "A JUST constrói e opera infraestrutura white-label para produtos financeiros digitais: cartões, banking, benefícios, frotas, despesas, crédito, antifraude e soluções sob demanda.";
 export const DEFAULT_IMAGE = `${SITE_URL}/logo-just.png`;
 export const SITE_SAME_AS = [
@@ -26,12 +27,12 @@ export const PAGE_SEO = {
   home: {
     path: "/",
     title: {
-      "pt-BR": "JUST | Plataforma de Produtos Financeiros White-Label",
-      en: "JUST | White-Label Financial Product Platform",
+      "pt-BR": "JUST Fintechs | Plataforma de Produtos Financeiros",
+      en: "JUST Fintechs | Financial Product Platform",
     },
     description: {
-      "pt-BR": "A JUST constrói e opera produtos financeiros digitais white-label para empresas: benefícios, frotas, banking, despesas, crédito e soluções sob demanda.",
-      en: "JUST builds and operates white-label digital financial products for companies: benefits, fleet, banking, expenses, credit and custom solutions.",
+      "pt-BR": "Crie e opere sua fintech com a JUST: tecnologia white-label para cartões, banking, benefícios, frotas, despesas, crédito e soluções sob demanda.",
+      en: "Create and operate your fintech with JUST: white-label technology for cards, banking, benefits, fleet, expenses, credit and custom solutions.",
     },
   },
   sobre: {
@@ -205,7 +206,7 @@ function buildJsonLd({ title, description, canonical, path, route }) {
     {
       "@type": "Organization",
       "@id": organizationId,
-      name: SITE_NAME,
+      name: SITE_BRAND_NAME,
       url: SITE_URL,
       logo: DEFAULT_IMAGE,
       description: SITE_DESCRIPTION,
@@ -217,6 +218,7 @@ function buildJsonLd({ title, description, canonical, path, route }) {
       "@type": "WebSite",
       "@id": websiteId,
       name: SITE_NAME,
+      alternateName: [SITE_BRAND_NAME, "wearejust.it"],
       url: SITE_URL,
       publisher: { "@id": organizationId },
       inLanguage: "pt-BR",
