@@ -55,7 +55,9 @@ export default function HomePage({ setPage, lang }) {
         <div className="hero-grid" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center", position: "relative", zIndex: 2 }}>
           <div>
             <Reveal>
-              <Tag>{tr.heroTag}</Tag>
+              <div className="hero-eyebrow">
+                <Tag>{tr.heroTag}</Tag>
+              </div>
             </Reveal>
             <Reveal delay={0.1}>
               <h1 className="hero-title" style={{ fontSize: 60, fontWeight: 800, color: T.textLight, lineHeight: 1.06, letterSpacing: "-0.035em", margin: "20px 0" }}>
@@ -130,7 +132,7 @@ export default function HomePage({ setPage, lang }) {
               </div>
             </Reveal>
             <Reveal delay={0.4}>
-              <div style={{ display: "flex", gap: 12 }}>
+              <div className="hero-cta-row" style={{ display: "flex", gap: 12 }}>
                 <Btn onClick={() => nav("contato")}>{tr.cta1}</Btn>
                 <Btn primary={false} onClick={() => nav("cases")}>{tr.cta2}</Btn>
               </div>

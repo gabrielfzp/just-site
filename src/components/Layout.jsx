@@ -167,9 +167,9 @@ export function Footer({ setPage, lang }) {
   const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
   const fl = { color: "rgba(242,244,248,0.4)", fontSize: 13, cursor: "pointer", background: "none", border: "none", display: "block", lineHeight: 2.4, transition: "color 0.2s" };
   return (
-    <footer style={{ background: T.footerBg, padding: "80px 48px 40px", borderTop: `1px solid ${T.borderLight}` }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48 }}>
-        <div>
+    <footer className="site-footer" style={{ background: T.footerBg, padding: "80px 48px 40px", borderTop: `1px solid ${T.borderLight}` }}>
+      <div className="site-footer-main" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48 }}>
+        <div className="site-footer-brand">
           <div style={{ marginBottom: 20 }}>
             <JustLogo height={30} />
           </div>
@@ -177,7 +177,7 @@ export function Footer({ setPage, lang }) {
             {tr.tagline}
           </p>
         </div>
-        <div>
+        <div className="site-footer-products">
           <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>{tr.productsLabel}</h4>
           {[["beneficios"],["frotas"],["banking"],["despesas"],["antecipacao"],["sob-demanda"],["sentinel"]].map(([k]) =>
             <button key={k} style={{ ...fl, display: "flex", alignItems: "center", gap: 8 }} onClick={() => nav(k)}>
@@ -186,13 +186,13 @@ export function Footer({ setPage, lang }) {
             </button>
           )}
         </div>
-        <div>
+        <div className="site-footer-company">
           <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>{tr.companyLabel}</h4>
           {[["sobre", trNav.about],["cases","Cases"],["stack", trNav.technology],["conteudos", trNav.content],["contato", tr.contactLabel]].map(([k,l]) =>
             <button key={k} style={fl} onClick={() => nav(k)}>{l}</button>
           )}
         </div>
-        <div>
+        <div className="site-footer-contact">
           <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>{tr.contactLabel}</h4>
           <a href="mailto:contato@wearejust.it" style={{ ...fl, textDecoration: "none" }}>contato@wearejust.it</a>
           <span style={{ ...fl, cursor: "default", lineHeight: 1.6, marginBottom: 8 }}>{"Condomínio Praça Capital"}{"\n"}{"Av. José Rocha Bomfim, 214 - Edifício Madri"}{"\n"}{"Campinas - SP"}</span>
@@ -200,20 +200,20 @@ export function Footer({ setPage, lang }) {
           <a href="https://www.linkedin.com/company/wearejust-it" target="_blank" rel="noopener noreferrer" style={{ ...fl, textDecoration: "none" }}>LinkedIn &rarr;</a>
         </div>
       </div>
-      <div style={{ maxWidth: 1200, margin: "40px auto 0", paddingTop: 24, borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-        <div style={{ display: "flex", gap: 48, marginBottom: 24, flexWrap: "wrap" }}>
-          <div>
+      <div className="site-footer-bottom" style={{ maxWidth: 1200, margin: "40px auto 0", paddingTop: 24, borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+        <div className="site-footer-partners" style={{ display: "flex", gap: 48, marginBottom: 24, flexWrap: "wrap" }}>
+          <div className="site-footer-partner-group">
             <p style={{ fontSize: 10, color: "rgba(242,244,248,0.2)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10, fontWeight: 600 }}>{tr.ecosystem}</p>
-            <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
+            <div className="site-footer-partner-logos" style={{ display: "flex", gap: 20, alignItems: "center" }}>
               <img src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itaú" style={{ height: 24, width: "auto", opacity: 0.2 }} />
               <img src={`${import.meta.env.BASE_URL}logos/abfintechs.png`} alt="ABFintechs" style={{ height: 16, width: "auto", opacity: 0.2 }} />
               <img src={`${import.meta.env.BASE_URL}logos/abstartups.png`} alt="ABStartups" style={{ height: 18, width: "auto", opacity: 0.2, filter: "brightness(0) invert(1)" }} />
               <img src={`${import.meta.env.BASE_URL}logos/finscale.svg`} alt="Finscale" style={{ height: 14, width: "auto", opacity: 0.2 }} />
             </div>
           </div>
-          <div>
+          <div className="site-footer-partner-group">
             <p style={{ fontSize: 10, color: "rgba(242,244,248,0.2)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10, fontWeight: 600 }}>{tr.techPartners}</p>
-            <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
+            <div className="site-footer-partner-logos" style={{ display: "flex", gap: 20, alignItems: "center" }}>
               <img src={`${import.meta.env.BASE_URL}logos/aws-partner.png`} alt="AWS" style={{ height: 20, width: "auto", opacity: 0.2, filter: "brightness(0) invert(1)" }} />
               <img src={`${import.meta.env.BASE_URL}logos/swap.svg`} alt="Swap" style={{ height: 16, width: "auto", opacity: 0.2, filter: "invert(1)" }} />
               <img src={`${import.meta.env.BASE_URL}logos/evertec.svg`} alt="Evertec" style={{ height: 16, width: "auto", opacity: 0.2 }} />
@@ -223,7 +223,7 @@ export function Footer({ setPage, lang }) {
           </div>
         </div>
         <p style={{ fontSize: 11, color: "rgba(242,244,248,0.18)", lineHeight: 1.7, marginBottom: 24 }}>{tr.legal}</p>
-        <div style={{ display: "flex", justifyContent: "space-between", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
+        <div className="site-footer-bottom-row" style={{ display: "flex", justifyContent: "space-between", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
           <p style={{ fontSize: 12, color: "rgba(242,244,248,0.2)" }}>{tr.rights}</p>
           <button
             onClick={() => nav("privacidade")}
