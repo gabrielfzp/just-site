@@ -16,7 +16,7 @@ export const T18N = {
       tagline: "Crie sua fintech com tecnologia white-label pronta para operar, escalar e evoluir.",
       productsLabel: "Produtos", companyLabel: "Empresa", contactLabel: "Contato",
       ecosystem: "Ecossistema e associações", techPartners: "Parceiros tecnológicos",
-      legal: "Plataformas white-label para cartões, banking, benefícios, frotas, despesas, crédito e soluções financeiras sob demanda.",
+      legal: "A JUST atua exclusivamente como provedora de tecnologia e não realiza atividades privativas de instituições financeiras. Todos os serviços financeiros são operados por parceiros devidamente autorizados pelo Banco Central do Brasil.",
       rights: "© 2026 JUST. Todos os direitos reservados.", privacy: "Política de Privacidade",
     },
     home: {
@@ -305,7 +305,7 @@ export const T18N = {
       tagline: "Launch your fintech with white-label technology ready to operate, scale and evolve.",
       productsLabel: "Products", companyLabel: "Company", contactLabel: "Contact",
       ecosystem: "Ecosystem & associations", techPartners: "Technology partners",
-      legal: "White-label platforms for cards, banking, benefits, fleet, expenses, credit and custom financial solutions.",
+      legal: "JUST operates exclusively as a technology provider and does not perform activities exclusive to financial institutions. All financial services are operated by partners duly authorized by the Central Bank of Brazil.",
       rights: "© 2026 JUST. All rights reserved.", privacy: "Privacy Policy",
     },
     home: {
