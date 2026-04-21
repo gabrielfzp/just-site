@@ -13,10 +13,10 @@ export const T18N = {
       cases: "Cases", content: "Conteúdos", about: "Sobre", contact: "Fale Conosco",
     },
     footer: {
-      tagline: "Plataforma de produtos financeiros digitais. Tecnologia pronta para operar, escalar e evoluir.",
+      tagline: "Crie sua fintech com tecnologia white-label pronta para operar, escalar e evoluir.",
       productsLabel: "Produtos", companyLabel: "Empresa", contactLabel: "Contato",
       ecosystem: "Ecossistema e associações", techPartners: "Parceiros tecnológicos",
-      legal: "A JUST desenvolve e integra a tecnologia que viabiliza produtos financeiros digitais. Quando o projeto envolve serviços regulados, a operação financeira é realizada por instituições parceiras autorizadas, conforme o desenho regulatório aplicável.",
+      legal: "Plataformas white-label para cartões, banking, benefícios, frotas, despesas, crédito e soluções financeiras sob demanda.",
       rights: "© 2026 JUST. Todos os direitos reservados.", privacy: "Política de Privacidade",
     },
     home: {
@@ -302,10 +302,10 @@ export const T18N = {
       cases: "Cases", content: "Content", about: "About", contact: "Contact Us",
     },
     footer: {
-      tagline: "Digital financial product platform. Technology ready to operate, scale and evolve.",
+      tagline: "Launch your fintech with white-label technology ready to operate, scale and evolve.",
       productsLabel: "Products", companyLabel: "Company", contactLabel: "Contact",
       ecosystem: "Ecosystem & associations", techPartners: "Technology partners",
-      legal: "JUST builds and integrates the technology that enables digital financial products. When a project involves regulated services, the financial operation is handled by authorized partner institutions according to the applicable regulatory design.",
+      legal: "White-label platforms for cards, banking, benefits, fleet, expenses, credit and custom financial solutions.",
       rights: "© 2026 JUST. All rights reserved.", privacy: "Privacy Policy",
     },
     home: {

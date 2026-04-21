@@ -1,7 +1,7 @@
 export const SITE_URL = "https://wearejust.it";
 export const SITE_BRAND_NAME = "JUST";
 export const SITE_NAME = "JUST Fintechs";
-export const SITE_DESCRIPTION = "A JUST constrói e opera infraestrutura white-label para produtos financeiros digitais: cartões, banking, benefícios, frotas, despesas, crédito, antifraude e soluções sob demanda.";
+export const SITE_DESCRIPTION = "Crie sua fintech com a JUST: plataformas white-label para cartões, banking, benefícios, frotas, despesas e crédito, prontas para operar em escala.";
 export const DEFAULT_IMAGE = `${SITE_URL}/logo-just.png`;
 export const SITE_SAME_AS = [
   "https://www.linkedin.com/company/wearejust-it",
@@ -31,8 +31,8 @@ export const PAGE_SEO = {
       en: "JUST Fintechs | Financial Product Platform",
     },
     description: {
-      "pt-BR": "Crie e opere sua fintech com a JUST: tecnologia white-label para cartões, banking, benefícios, frotas, despesas, crédito e soluções sob demanda.",
-      en: "Create and operate your fintech with JUST: white-label technology for cards, banking, benefits, fleet, expenses, credit and custom solutions.",
+      "pt-BR": SITE_DESCRIPTION,
+      en: "Launch your fintech with JUST: white-label platforms for cards, banking, benefits, fleet, expenses and credit, ready to operate at scale.",
     },
   },
   sobre: {
