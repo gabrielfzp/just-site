@@ -1,0 +1,219 @@
+---
+title: "Cartão bandeirado: o que é, como funciona e quais existem no Brasil"
+seoTitle: "Cartão bandeirado: o que é e como funciona"
+description: "O que é cartão bandeirado, como funciona a autorização, quem são as bandeiras no Brasil e qual a diferença para o não-bandeirado. Guia técnico simples."
+answer: "Cartão bandeirado é o cartão que carrega uma bandeira como Visa, Mastercard, Elo ou Amex e trafega em um arranjo de pagamento aberto. A bandeira não é o banco emissor: ela conecta emissor, adquirente e estabelecimento para permitir aceitação ampla."
+slug: "cartao-bandeirado-o-que-e"
+category: "meios-de-pagamento"
+cluster: "private-label"
+type: "satellite"
+author: "gabriel-pires"
+publishedAt: "2026-04-20"
+updatedAt: "2026-04-20"
+readingTime: 8
+featured: false
+ogImage: "/og/cartao-bandeirado-o-que-e.png"
+tags:
+  - cartão-bandeirado
+  - bandeiras
+  - Visa
+  - Mastercard
+  - Elo
+  - arranjo-aberto
+  - BaaS
+sources:
+  - label: "Planalto - Lei 12.865/2013"
+    url: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12865.htm"
+  - label: "Banco Central do Brasil - Arranjos de pagamentos integrantes do SPB"
+    url: "https://www.bcb.gov.br/estabilidadefinanceira/arranjosintegrantesspb"
+  - label: "Banco Central do Brasil - Perguntas frequentes sobre arranjos de pagamento"
+    url: "https://www.bcb.gov.br/meubc/faqs/s/arranjo-de-pagamentos"
+faqs:
+  - q: "O que significa cartão bandeirado?"
+    a: "É um cartão que carrega o logo de uma bandeira, como Visa, Mastercard, Elo, Amex, Hipercard ou Cabal, e trafega pelo arranjo de pagamento aberto dessa bandeira. A bandeira conecta o banco emissor e o adquirente que atende o estabelecimento, permitindo aceitação ampla."
+  - q: "Qual a diferença entre bandeira e banco emissor?"
+    a: "Bandeira é a rede, como Visa ou Mastercard. Banco emissor é quem deu o cartão e cobra do portador, como Itaú ou Nubank. No mesmo cartão aparecem os dois nomes porque são papéis diferentes: o emissor dá o crédito e o plástico, a bandeira garante o trilho de aceitação."
+  - q: "Quais são as principais bandeiras no Brasil?"
+    a: "Visa e Mastercard lideram em aceitação global e nacional. Elo é a principal bandeira brasileira, resultado de joint venture entre Banco do Brasil, Bradesco e Caixa. Hipercard é do Itaú. American Express atende nicho premium. Cabal atua no cooperativismo de crédito."
+  - q: "Todo cartão de crédito é bandeirado?"
+    a: "Não. Existem cartões de crédito sem bandeira, chamados private label, que funcionam só na rede do emissor, como Pernambucanas, Renner e Riachuelo. São cartões de crédito operados em arranjo fechado, sob a Lei 12.865/2013, mas sem Visa ou Mastercard envolvidas."
+  - q: "É possível emitir cartão sem bandeira?"
+    a: "Sim. O private label é exatamente isso: cartão sem bandeira, aceito só na rede do próprio emissor, sem fees de bandeira e sem MDR em transações internas. Em troca, a aceitação é restrita. Para programas de fidelização de base engajada, costuma ser vantajoso."
+  - q: "Quanto custa para uma empresa licenciar uma bandeira?"
+    a: "Varia por bandeira, categoria e volume esperado. Há fees iniciais de certificação e fees recorrentes por cartão ativo e por transação. Empresas não-bancárias normalmente acessam bandeira via BaaS licenciada em vez de contratar direto com a bandeira."
+  - q: "Como uma fintech consegue emitir cartão bandeirado?"
+    a: "Há dois caminhos. O primeiro é virar IP autorizada pelo BACEN e licenciar a bandeira diretamente, processo que leva meses e custa centenas de milhares de reais. O segundo, mais comum, é contratar uma BaaS que já é emissora e licenciada."
+  - q: "Cartão bandeirado é o mesmo que cartão de crédito?"
+    a: "Não. Bandeirado significa que o cartão tem bandeira e trafega em arranjo aberto, mas ele pode ser de crédito, débito, pré-pago ou múltiplos saldos. O mais comum no imaginário popular é o crédito bandeirado, mas a lógica do arranjo aberto vale para todas as funções."
+---
+
+## Resposta direta: cartão bandeirado em uma frase
+
+Cartão bandeirado é aquele que carrega a marca de uma bandeira como Visa, Mastercard ou Elo, operando dentro de um arranjo de pagamento aberto. A bandeira é a rede que conecta o banco emissor do cartão ao estabelecimento que aceita. No Brasil, cartões bandeirados seguem a Lei 12.865/2013 e a regulação do Banco Central sobre arranjos abertos.
+
+Se você leu essa frase e reparou que "bandeira" e "banco emissor" são coisas diferentes, você já está à frente da maioria dos artigos sobre o tema. Essa confusão é quase universal, e vou voltar a ela.
+
+## O que é um cartão bandeirado
+
+### A bandeira é quem conecta emissor e adquirente
+
+A bandeira (Visa, Mastercard, Elo, Amex) não emite cartão. Ela opera uma rede. Essa rede define regras de aceitação, roteia transações entre bancos, cobra fees de participantes, gerencia disputas de chargeback e oferece programas comerciais (benefícios, seguros, milhagem). Quando você vê o logo Visa no seu cartão, está vendo a rede por onde a sua transação trafega, não quem te deu o cartão.
+
+### Quem emite o cartão é o banco ou a IP
+
+O emissor é quem te deu o plástico (ou o virtual). No Brasil, emissores precisam ser bancos autorizados pelo Banco Central ou Instituições de Pagamento (IPs) com licença apropriada, e precisam estar licenciados pela bandeira. Itaú, Bradesco, Nubank, C6, PicPay são emissores. O emissor aprova o crédito, emite o cartão, cobra do portador e carrega a relação com o cliente.
+
+### Quem aceita é o estabelecimento via adquirente
+
+Do outro lado, o adquirente é quem atende o lojista. Cielo, Stone, Rede, Getnet são adquirentes. Quando você passa o cartão na maquininha, é o adquirente que captura a transação, conversa com a bandeira, recebe a autorização do emissor e, depois do ciclo financeiro, paga o lojista o valor da venda descontado o MDR.
+
+Resumindo a confusão mais comum: Nubank não é bandeira, Nubank é emissor. Visa não é banco, Visa é rede. Os dois nomes aparecem no mesmo cartão porque são dois papéis diferentes no mesmo arranjo.
+
+## Como funciona uma transação com cartão bandeirado
+
+### Os 4 atores do arranjo aberto
+
+Toda transação bandeirada envolve quatro atores:
+
+- Portador do cartão
+- Emissor (banco ou IP)
+- Bandeira (rede)
+- Adquirente (quem atende o estabelecimento)
+
+O estabelecimento em si e a processadora (que pode estar dentro do emissor ou do adquirente) também participam, mas o esqueleto conceitual são esses quatro. Esse modelo com quatro partes é a razão pela qual o arranjo se chama "aberto". Muitos emissores, muitos adquirentes, muitos estabelecimentos, todos conectados pela bandeira.
+
+<figure>
+  <img
+    src="/conteudos/cartao-bandeirado-o-que-e/fluxo-cartao-bandeirado.png"
+    alt="Fluxo de autorização de uma transação com cartão bandeirado"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption>No arranjo aberto, a bandeira roteia a transação entre adquirente e emissor. Esse trilho é o que permite aceitação ampla.</figcaption>
+</figure>
+
+### Fluxo em 5 etapas, da autorização à cobrança
+
+**1. Autorização.** Você passa o cartão. O POS envia a requisição ao adquirente, que encaminha à bandeira, que roteia ao emissor. O emissor checa limite, saldo, regras antifraude e score transacional, e devolve aprovação ou recusa em milissegundos. Tudo isso acontece antes de você guardar o cartão na carteira.
+
+**2. Captura.** Ao final do dia (ou em tempo real, dependendo do adquirente), o estabelecimento "captura" as vendas autorizadas. A captura formaliza a venda do ponto de vista financeiro.
+
+**3. Clearing.** A bandeira compila as transações capturadas e calcula posições financeiras entre emissores e adquirentes. Essa é a fase de compensação.
+
+**4. Settlement.** O dinheiro muda de mãos. O adquirente paga o estabelecimento (dentro do prazo contratado, geralmente D+30 no Brasil para crédito à vista, exceto se o lojista antecipa). O emissor paga o que deve à bandeira e aos adquirentes. A bandeira fica com o fee dela.
+
+**5. Cobrança.** No crédito, o portador recebe a fatura no ciclo seguinte e paga o emissor. No débito, o saldo já foi debitado da conta no momento da autorização. No pré-pago, o saldo foi consumido no momento da compra.
+
+### O papel do ISO 8583
+
+No fundo técnico de tudo isso vive o ISO 8583, o padrão internacional de mensageria financeira que descreve como adquirentes, bandeiras e emissores trocam mensagens de autorização. É o protocolo que carrega número do cartão, valor, estabelecimento, código de resposta. Saber que ele existe é suficiente para a maioria dos leitores. Quem vai construir produto vai esbarrar com o ISO 8583 cedo ou tarde, em geral no primeiro dia de integração com processadora.
+
+## Principais bandeiras de cartão no Brasil
+
+### Internacionais: Visa, Mastercard, American Express
+
+Visa e Mastercard são as duas bandeiras globais com maior aceitação no país. Ambas cobrem praticamente qualquer estabelecimento que aceita cartão. Amex tem aceitação menor (principalmente em estabelecimentos de ticket mais alto e em algumas categorias), historicamente com fees de bandeira mais elevados e público tradicionalmente premium.
+
+### Nacionais e regionais: Elo, Hipercard, Cabal
+
+Elo é bandeira brasileira, resultado de uma joint venture entre Banco do Brasil, Bradesco e Caixa. Tem aceitação ampla no Brasil e aceitação parcial no exterior via parcerias. Hipercard nasceu regional (Nordeste) e hoje é bandeira do Itaú, com aceitação forte em varejo brasileiro. Cabal é bandeira ligada ao cooperativismo de crédito, com presença relevante em cooperativas e suas redes de aceitação.
+
+### Marcas que não são bandeiras
+
+Aqui a confusão volta. Nubank, Itaú, Bradesco, Santander, C6, PicPay não são bandeiras. São emissores. O cartão deles vem bandeirado por Visa, Mastercard, Elo ou outra. Pernambucanas, Renner e Riachuelo também não são bandeiras. São emissores de cartões private label, sem bandeira, aceitos só na própria rede. Se você quer entender a fundo esse outro modelo, veja o [guia de cartão private label](/conteudos/cartao-private-label) ou [entenda white label vs private label](/conteudos/white-label-vs-private-label).
+
+## Cartão bandeirado vs não-bandeirado
+
+Resumo em tabela, para quem quer comparar rápido:
+
+| Dimensão | Bandeirado | Não-bandeirado (private label) |
+|---|---|---|
+| Aceitação | Ampla, milhões de POS | Restrita à rede do emissor |
+| Custo de licenciamento | Sim, fees de bandeira | Zero |
+| MDR pago | Padrão de mercado | Zero em on-us |
+| Dado do portador | Compartilhado entre emissor e banco parceiro | 100% do emissor |
+| Risco de fraude | Bandeira participa na resolução | Emissor arca integralmente |
+| Regulação | Arranjo aberto, Lei 12.865/13 | Arranjo fechado, Lei 12.865/13 |
+
+A diferença prática é simples. Bandeirado troca margem por alcance. Não-bandeirado troca alcance por margem e controle.
+
+## Tipos de cartão bandeirado
+
+Bandeirado não é sinônimo de crédito. Existem quatro tipos principais:
+
+- Débito, que debita na hora do saldo da conta
+- Crédito, com fatura mensal
+- Pré-pago, com saldo carregado antes do uso
+- Múltiplos saldos, usado em benefícios corporativos, com bolsos separados no mesmo cartão (alimentação, refeição, mobilidade, cultura)
+
+Todos podem ser bandeirados, todos podem ou não incluir funcionalidades adicionais dependendo do desenho do programa e da bandeira escolhida.
+
+## Quem pode emitir cartão bandeirado no Brasil
+
+### Bancos tradicionais e IPs autorizadas
+
+Bancos autorizados pelo BACEN (Itaú, Bradesco, Santander e os novos do digital como Nubank, C6, PicPay) emitem cartões bandeirados diretamente. Instituições de Pagamento com autorização adequada também podem emitir. Em todos os casos, o emissor precisa ser licenciado pela bandeira que vai estampar o cartão.
+
+### Quando uma empresa emite via BaaS
+
+Uma empresa não-bancária (varejo, fintech, insurtech, healthtech, edtech) normalmente não quer virar banco ou IP só para ter um cartão com a marca dela. O caminho usual é contratar uma BaaS licenciada, que já é emissora e já tem licenças de bandeira. A marca no plástico é do cliente, a licença regulatória é da BaaS parceira. Esse é o modelo de white label bandeirado. O [JUST Banking como BaaS](/banking) opera nessa configuração.
+
+### Licenciamento junto à bandeira
+
+A bandeira exige licenciamento formal do emissor. Isso envolve fees recorrentes, certificações técnicas (PCI-DSS, integração com os sistemas da bandeira), compromissos operacionais de antifraude e atendimento, e adesão às regras de uso da marca. Os fees variam por bandeira e por categoria de programa. Em linhas gerais, Amex tende a cobrar mais que Mastercard e Visa, Elo costuma ser competitiva no mercado brasileiro.
+
+Quer emitir um cartão bandeirado com a sua marca? [Conheça o JUST Banking](/banking).
+
+## Vantagens e limitações do cartão bandeirado
+
+Vantagens:
+
+- Aceitação universal, dentro do país e, no caso das internacionais, fora também
+- Reconhecimento imediato de marca (Visa, Mastercard, Elo são logos familiares)
+- Ecossistema maduro (antifraude compartilhado, regras claras de chargeback, split de pagamento)
+- Acesso a benefícios da bandeira (seguros, assistência, programas de pontos)
+
+Limitações:
+
+- Custo recorrente de fees e royalties da bandeira
+- Dependência de certificações e regras operacionais da bandeira
+- MDR em toda transação, mesmo dentro da mesma rede (não existe on-us de graça em bandeirado)
+- Menos controle sobre o dado do portador, já que parte do fluxo passa por banco e bandeira parceiros
+
+A escolha entre bandeirar ou não bandeirar depende do caso de uso. Se o produto precisa de aceitação ampla, bandeirar é quase obrigatório. Se o produto vive dentro de uma rede controlada, não bandeirar pode ser mais barato e mais estratégico. Essa decisão foi o tema do nosso artigo sobre [JUST Credit](/antecipacao) e da discussão do cluster inteiro, sustentado pela [nossa stack tecnológica](/stack).
+
+## Perguntas frequentes
+
+**1. O que significa cartão bandeirado?**
+
+É um cartão que carrega o logo de uma bandeira (Visa, Mastercard, Elo, Amex, Hipercard, Cabal) e trafega pelo arranjo de pagamento aberto dessa bandeira. A bandeira é a rede que conecta o banco emissor e o adquirente que atende o estabelecimento, permitindo aceitação ampla.
+
+**2. Qual a diferença entre bandeira e banco emissor?**
+
+Bandeira é a rede (Visa, Mastercard). Banco emissor é quem te deu o cartão e cobra de você (Itaú, Nubank). No mesmo cartão aparecem os dois nomes porque são dois papéis diferentes: o emissor dá o crédito e o plástico, a bandeira garante o trilho de aceitação.
+
+**3. Quais são as principais bandeiras no Brasil?**
+
+Visa e Mastercard lideram em aceitação global e nacional. Elo é a principal bandeira brasileira, resultado de joint venture entre Banco do Brasil, Bradesco e Caixa. Hipercard é do Itaú. American Express atende nicho premium. Cabal atua no cooperativismo de crédito. As cinco primeiras cobrem a maior parte do mercado.
+
+**4. Todo cartão de crédito é bandeirado?**
+
+Não. Existem cartões de crédito sem bandeira, chamados private label, que funcionam só na rede do emissor (Pernambucanas, Renner, Riachuelo). São cartões de crédito operados em arranjo fechado, sob a mesma Lei 12.865/2013, mas sem Visa ou Mastercard envolvidas.
+
+**5. É possível emitir cartão sem bandeira?**
+
+Sim. O private label é exatamente isso. Cartão sem bandeira, aceito só na rede do próprio emissor, sem fees de bandeira, sem MDR em transações internas. Em troca, a aceitação é restrita. Para programas de fidelização de base engajada, costuma ser vantajoso.
+
+**6. Quanto custa para uma empresa licenciar uma bandeira?**
+
+Varia por bandeira, por categoria e por volume esperado. Há fees iniciais de certificação e fees recorrentes por cartão ativo e por transação. Amex tende a cobrar mais, Visa e Mastercard ficam no meio, Elo costuma ser competitiva no Brasil. Empresas não-bancárias normalmente acessam bandeira via BaaS licenciada em vez de contratar direto.
+
+**7. Como uma fintech consegue emitir cartão bandeirado?**
+
+Dois caminhos. O primeiro é virar IP autorizada pelo BACEN e licenciar a bandeira diretamente, processo que leva de 8 a 18 meses e custa centenas de milhares de reais. O segundo, mais comum, é contratar uma BaaS que já é emissora e licenciada. A fintech usa a licença da parceira e lança em meses.
+
+**8. Cartão bandeirado é o mesmo que cartão de crédito?**
+
+Não. Bandeirado significa que o cartão tem bandeira e trafega em arranjo aberto, mas pode ser de crédito, débito, pré-pago ou múltiplos saldos. O mais comum no imaginário popular é o crédito bandeirado, mas a lógica do arranjo aberto vale para todas as funções.
+
+A JUST opera como BaaS, emissora e processadora. Se você quer estruturar um programa próprio, [fala com o time](/contato).

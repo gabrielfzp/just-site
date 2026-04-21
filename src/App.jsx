@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { BrowserRouter, useNavigate, useLocation } from "react-router-dom";
-import { ErrorBoundary, LangContext, T } from "./site/shared.jsx";
+import { CONTENT_T, ErrorBoundary, LangContext, T } from "./site/shared.jsx";
 import { applySeo, getSeo } from "./site/seo.js";
 import { Header, Footer } from "./components/Layout.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -12,6 +12,11 @@ import PrivacyPage from "./pages/PrivacyPage.jsx";
 import SolutionPage from "./pages/SolutionPage.jsx";
 import SentinelPage from "./pages/SentinelPage.jsx";
 import { SOL } from "./data/solutions.js";
+
+const ConteudosPage = lazy(() => import("./pages/ConteudosPage.jsx"));
+const ArticlePage = lazy(() => import("./pages/ArticlePage.jsx"));
+const CategoriaPage = lazy(() => import("./pages/CategoriaPage.jsx"));
+const AutorPage = lazy(() => import("./pages/AutorPage.jsx"));
 
 // MAIN APP
 // ========================================
@@ -40,21 +45,28 @@ function AppContent() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const page = location.pathname.replace(/^\//, "") || "home";
+  const routeKey = location.pathname.replace(/^\/+|\/+$/g, "") || "home";
+  const segments = routeKey === "home" ? [] : routeKey.split("/");
+  const page = segments[0] || "home";
 
   useEffect(() => {
-    applySeo(getSeo(page, lang));
-  }, [page, lang]);
+    const contentRoute = routeKey === "conteudos" || routeKey.startsWith("conteudos/") || routeKey.startsWith("autores/");
+    if (!contentRoute) applySeo(getSeo(routeKey, lang), lang);
+  }, [routeKey, lang]);
 
   const render = () => {
-    if (page === "home") return <HomePage setPage={setPage} lang={lang} />;
-    if (page === "sobre") return <SobrePage setPage={setPage} lang={lang} />;
-    if (page === "stack") return <ErrorBoundary><StackPage setPage={setPage} lang={lang} /></ErrorBoundary>;
-    if (page === "cases") return <CasesPage setPage={setPage} lang={lang} />;
-    if (page === "contato") return <ContatoPage lang={lang} />;
-    if (page === "privacidade") return <PrivacyPage lang={lang} />;
-    if (page === "sentinel") return <SentinelPage setPage={setPage} lang={lang} />;
-    if (SOL[page]) return <SolutionPage setPage={setPage} config={SOL[page]} lang={lang} />;
+    if (routeKey === "home") return <HomePage setPage={setPage} lang={lang} />;
+    if (routeKey === "sobre") return <SobrePage setPage={setPage} lang={lang} />;
+    if (routeKey === "stack") return <ErrorBoundary><StackPage setPage={setPage} lang={lang} /></ErrorBoundary>;
+    if (routeKey === "cases") return <CasesPage setPage={setPage} lang={lang} />;
+    if (routeKey === "contato") return <ContatoPage lang={lang} />;
+    if (routeKey === "privacidade") return <PrivacyPage lang={lang} />;
+    if (routeKey === "sentinel") return <SentinelPage setPage={setPage} lang={lang} />;
+    if (routeKey === "conteudos") return <ConteudosPage />;
+    if (segments[0] === "conteudos" && segments[1] === "categoria") return <CategoriaPage slug={segments[2]} />;
+    if (segments[0] === "conteudos" && segments[1]) return <ArticlePage slug={segments[1]} />;
+    if (segments[0] === "autores" && segments[1]) return <AutorPage slug={segments[1]} />;
+    if (SOL[routeKey]) return <SolutionPage setPage={setPage} config={SOL[routeKey]} lang={lang} />;
     return <HomePage setPage={setPage} lang={lang} />;
   };
 
@@ -93,10 +105,95 @@ function AppContent() {
   .privacy-aside {
     position: static !important;
   }
+  .article-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .toc-mobile-toggle {
+    display: block !important;
+  }
+  .toc-panel {
+    display: none;
+  }
+}
+.content-article {
+  font-size: 18px;
+  line-height: 1.78;
+}
+.content-article h2 {
+  color: ${CONTENT_T.navy};
+  font-size: 34px;
+  line-height: 1.18;
+  margin: 52px 0 18px;
+  scroll-margin-top: 112px;
+}
+.content-article h3 {
+  color: ${CONTENT_T.navy};
+  font-size: 24px;
+  line-height: 1.25;
+  margin: 36px 0 14px;
+}
+.content-article h2 a,
+.content-article h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.content-article p,
+.content-article li {
+  color: ${CONTENT_T.text};
+}
+.content-article p {
+  margin: 0 0 22px;
+}
+.content-article a {
+  color: ${CONTENT_T.red};
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+.content-article figure {
+  margin: 34px 0;
+}
+.content-article figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid ${CONTENT_T.border};
+  box-shadow: 0 18px 46px rgba(16,36,63,0.08);
+}
+.content-article figcaption {
+  margin-top: 10px;
+  color: ${CONTENT_T.muted};
+  font-size: 13px;
+  line-height: 1.45;
+}
+.content-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.content-article th,
+.content-article td {
+  border: 1px solid ${CONTENT_T.border};
+  padding: 14px 16px;
+  text-align: left;
+}
+.content-article th {
+  color: ${CONTENT_T.navy};
+  background: ${CONTENT_T.surfaceSoft};
+}
+.content-article td {
+  color: ${CONTENT_T.text};
+  background: #ffffff;
 }
 `}</style>
         <Header page={page} setPage={setPage} lang={lang} />
-        <main>{render()}</main>
+        <main>
+          <Suspense fallback={<div style={{ minHeight: "80vh", background: T.primary }} />}>
+            {render()}
+          </Suspense>
+        </main>
         <Footer setPage={setPage} lang={lang} />
         {page !== "contato" && (
           <a

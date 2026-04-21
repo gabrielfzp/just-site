@@ -11,7 +11,7 @@ Spec da implementação da infraestrutura técnica que hospeda a Central de Cont
 | Formato de conteúdo | MDX | Permite `<CTA />`, `<TabelaComparativa />` embutidos. Reuso com tipagem. |
 | Plugin MDX | `@mdx-js/rollup` + `remark-frontmatter` + `remark-gfm` | Padrão Vite + suporte GFM (tabelas, checkboxes) |
 | Frontmatter | `gray-matter` | Parse de YAML |
-| Geração HTML estático | Script `scripts/generate-content-pages.mjs` pós-build | Simetria com o que já existe pra páginas SEO |
+| Geração HTML estático | Script `scripts/generate-seo-pages.mjs` pós-build | Gera HTML SEO institucional e de conteúdo no mesmo fluxo |
 | Busca | `fuse.js` client-side | Até 50 artigos é suficiente. Evita custo de Algolia. |
 | Listagem | `ConteudosPage.jsx` | Novo componente em `src/pages/` |
 | Template | `ArticlePage.jsx` | Novo componente em `src/pages/` |
@@ -61,7 +61,8 @@ just-site/
 │   └── App.jsx                               [UPDATE] adicionar rotas
 │
 ├── scripts/
-│   ├── generate-content-pages.mjs            [NOVO] HTML estático por artigo
+│   ├── generate-seo-pages.mjs                [UPDATE] HTML estático por página, artigo, categoria e autor
+│   ├── generate-article-images.mjs           [NOVO] Imagens internas de artigos
 │   ├── generate-sitemap.mjs                  [NOVO ou UPDATE] incluir conteúdos
 │   ├── generate-og-images.mjs                [NOVO] OG image por artigo
 │   └── notify-search-engines.mjs             [NOVO] IndexNow + GSC ping
@@ -110,7 +111,6 @@ category: "Meios de pagamento"
 cluster: "private-label"
 type: "pillar"
 author: "gabriel-pires"
-reviewer: "a-definir"
 publishedAt: "2026-05-01"
 updatedAt: "2026-05-01"
 readingTime: 14
@@ -152,7 +152,7 @@ Listagem principal. Seções:
 
 Template de artigo. Layout:
 - Breadcrumb (Home > Conteúdos > Categoria > Título)
-- Header: título, categoria, autor, revisor, datas, reading time
+- Header: título, categoria, autor, datas, reading time
 - TOC (sticky desktop, collapsible mobile)
 - Corpo (MDX renderizado)
 - Footer: autor expandido, compartilhamento social
@@ -183,7 +183,7 @@ Cada artigo injeta os schemas relevantes no `<head>` via `applySeo()` existente.
 
 ## 8. Geração de HTML estático
 
-`scripts/generate-content-pages.mjs` roda após `vite build`. Faz:
+`scripts/generate-seo-pages.mjs` roda após `vite build`. Faz:
 
 1. Lê todos `.mdx` em `src/content/articles/`
 2. Para cada artigo:
@@ -300,7 +300,7 @@ Eventos a rastrear (GA4 ou substituto):
 - [ ] Featured article destacado
 
 ### Geração estática
-- [ ] Script `generate-content-pages.mjs` produz HTML por artigo
+- [ ] Script `generate-seo-pages.mjs` produz HTML por artigo
 - [ ] HTML estático tem todas meta tags (validar com view-source)
 - [ ] Deploy no GitHub Pages funciona (rotas SPA via 404.html ou similar)
 
@@ -325,8 +325,8 @@ Eventos a rastrear (GA4 ou substituto):
 
 Fase 1 está concluída quando:
 
-1. Existe uma URL `wearejust.it/conteudos` que lista artigos (mesmo que só com 1 artigo de teste).
-2. Existe uma URL `wearejust.it/conteudos/teste-infra` renderizando artigo MDX completo com HTML estático, meta tags, JSON-LD, OG image.
+1. Existe uma URL `wearejust.it/conteudos` que lista artigos publicados.
+2. Existe uma URL de artigo, como `wearejust.it/conteudos/cartao-private-label`, renderizando MDX completo com HTML estático, meta tags, JSON-LD e OG image.
 3. Rich Results Test do Google valida Article + BreadcrumbList + FAQPage.
 4. Sitemap inclui as novas URLs.
 5. Header e footer linkam pra `/conteudos`.

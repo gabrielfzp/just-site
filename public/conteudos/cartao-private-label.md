@@ -1,0 +1,327 @@
+﻿# Cartão private label: o guia completo para emitir o seu em 2026
+Canônica: https://wearejust.it/conteudos/cartao-private-label
+Markdown: https://wearejust.it/conteudos/cartao-private-label.md
+Site: JUST
+Autor: Gabriel Pires
+Categoria: Meios de pagamento
+Publicado em: 2026-04-20
+Atualizado em: 2026-04-20
+Tags: private-label, cartões, BaaS, varejo, emissão, cooperativas, associações
+## Resposta curta
+Cartão private label é um cartão de pagamento sem bandeira aberta, aceito apenas na rede do próprio emissor. Ele costuma fazer sentido quando a empresa tem base recorrente, quer capturar margem em transações on-us e aceita assumir mais controle operacional, risco de fraude e, quando houver crédito, risco de inadimplência.
+Se você chegou aqui, provavelmente está fazendo uma das três perguntas: vale a pena lançar um cartão próprio? Quanto isso custa de verdade? O BACEN vai deixar? São perguntas boas, e os artigos que dominam a busca no Google hoje respondem mal as três. Sobram adjetivos, faltam números.
+
+Este texto é uma tentativa de ser honesto sobre trade-offs. Vamos passar por definição, fluxo técnico, enquadramento regulatório, faixa de custo, vantagens, riscos, seis etapas de implementação e, no final, casos onde private label é sub-explorado: cooperativas, associações, franquias. Escrevi a partir da experiência da JUST como infraestrutura de emissão, processamento e antifraude. Onde faço afirmação de valor, mostro a faixa. Onde não há fonte pública, digo que é estimativa de mercado.
+
+## O que é um cartão private label (e o que não é)
+
+Private label é um cartão de pagamento de uso restrito à rede do próprio emissor. Ele não tem bandeira aberta do tipo Visa ou Mastercard, e opera dentro de um arranjo de pagamento fechado, conforme definido pela Lei 12.865/2013 e pela Resolução BCB 150/2021. Na prática, o cartão funciona dentro do universo da marca que o emitiu: lojas próprias, e-commerce, aplicativo, rede de franqueados. Não funciona no posto de gasolina da esquina nem na farmácia da outra rede.
+
+O exemplo mais conhecido no Brasil é o cartão Pernambucanas, que existe desde antes da maioria das fintechs ter CNPJ. A Renner tem o Meu Cartão Renner (via Realize). A Riachuelo tem Midway. A C&A opera com a Bradescard. São private labels de crédito, que permitem ao varejista vender no crediário próprio e financiar o portador sem depender de bandeira.
+
+### Definição e arranjo de pagamento fechado
+
+No arranjo fechado, o emissor, a processadora e a rede que aceita o cartão pertencem à mesma empresa ou ao mesmo grupo econômico. É o oposto do arranjo aberto, onde Visa ou Mastercard entram como bandeiras e conectam milhares de emissores a milhões de estabelecimentos.
+
+Num arranjo fechado, o ciclo inteiro fica dentro de casa: o varejista emite, processa, autoriza, cobra. Por isso não paga intercâmbio para ninguém. Por isso também assume todo o risco de crédito e fraude. Essa é a troca.
+
+O BACEN publicou a definição oficial de arranjo de pagamento e classifica os tipos no site institucional. Vale consultar a fonte direto quando bater dúvida: <a href="https://www.bcb.gov.br" target="_blank" rel="noopener">BACEN, definição de arranjo de pagamento</a>.
+
+### Private label vs white label vs co-branded vs crediário
+
+Muita gente usa os termos como sinônimos. Não são. A tabela abaixo resume a diferença prática:
+
+| Modelo | Aceitação | Bandeira | Risco de crédito | Dado do portador | Custo típico |
+|---|---|---|---|---|---|
+| Private label | Restrita à rede do emissor | Sem bandeira | Emissor | Emissor | Baixo |
+| White label | Bandeira ampla | Visa, Mastercard, Elo | Banco ou IP emissor | Emissor + banco | Médio |
+| Co-branded | Bandeira ampla | Visa, Mastercard, Elo | Banco parceiro | Compartilhado | Médio a alto |
+| Crediário | Loja física ou digital | Sem cartão plástico | Varejista | Varejista | Muito baixo |
+
+Resumindo em uma frase: private label é cartão da casa, white label é cartão com bandeira vendido com a marca do cliente, co-branded é cartão bandeira que divide marca com um parceiro (tipo LATAM Pass Itaú), e crediário é conta no caderninho, com sofisticação digital ou sem.
+
+## Como funciona um cartão private label na prática
+
+### Os quatro atores
+
+Um arranjo de pagamento tem quatro papéis que precisam existir, mesmo em operação fechada:
+
+- **Emissor**: dono do programa. No private label, normalmente é o próprio varejista ou uma IP contratada em nome dele.
+- **Processadora**: quem gerencia BIN, autorização, captura, clearing, settlement. Roda os padrões técnicos, inclusive ISO 8583 quando a operação cresce e passa a conversar com outros sistemas.
+- **Autorizador**: motor que decide se uma transação é aprovada. Em arranjo fechado, costuma estar dentro da processadora.
+- **Rede aceitadora**: onde o cartão pode ser usado. No private label, é só a rede do próprio emissor.
+
+Em muitos casos, dois ou três desses papéis ficam na mesma empresa. A JUST, por exemplo, atua como emissora e processadora para vários clientes, o que elimina pontos de integração e reduz o time-to-market. Quando o varejista não quer virar Instituição de Pagamento, ele aciona uma BaaS autorizada e herda a licença, o que cobriremos na seção regulatória.
+
+### Fluxo de uma transação, do swipe ao settlement
+
+O cliente passa o cartão no caixa. O PDV manda a requisição para a processadora. A processadora aciona o autorizador. O autorizador verifica saldo ou limite, regras antifraude, score transacional, e devolve aprovação ou recusa. A transação é capturada, entra no batch de clearing, e no settlement os valores são liquidados internamente.
+
+Em arranjo fechado, o settlement é essencialmente uma movimentação contábil entre contas do mesmo grupo. Em arranjo aberto, envolve bandeira, banco emissor, banco adquirente e o sistema de compensação. Por isso o arranjo fechado é mais simples tecnicamente e, geralmente, mais barato por transação. A contrapartida é a aceitação limitada.
+
+![Fluxo de uma transação de cartão private label, do portador ao settlement](/conteudos/cartao-private-label/fluxo-transacao-private-label.png)
+
+_Fluxo simplificado de uma transação private label em arranjo fechado: autorização, processamento e liquidação acontecem dentro do ecossistema do emissor._
+
+### Arranjo fechado, aberto e híbrido
+
+Existem três configurações possíveis:
+
+O arranjo fechado é o clássico private label, uso restrito à rede do emissor. O arranjo aberto é o modelo bandeirado tradicional, aceitação ampla via Visa, Mastercard ou Elo. O arranjo híbrido mistura os dois: o cartão tem um saldo ou função fechada para uso interno (tipo vale-alimentação da empresa X) e, ao mesmo tempo, aceita transações em estabelecimentos externos via bandeira.
+
+O [JUST Benefits para benefícios flexíveis](/beneficios) opera os três formatos dependendo do caso de uso. Benefício fechado dentro da empresa, benefício aberto para a rede de parceiros, ou híbrido para programas que precisam das duas coisas.
+
+## O que diz o BACEN sobre cartões private label
+
+Essa é a parte que ninguém explica direito na internet. Vou tentar explicar sem simplificar demais.
+
+### Lei 12.865/13 e o conceito de arranjo de pagamento
+
+A Lei 12.865/2013 é o marco legal dos arranjos e instituições de pagamento no Brasil. O artigo 6º define arranjo de pagamento como o conjunto de regras e procedimentos que disciplina a prestação de serviço de pagamento ao público. Ou seja, mesmo um cartão que só funciona na sua rede está sujeito à lei, porque é um instrumento de pagamento que transfere valor entre participantes.
+
+A lei não proíbe ninguém de lançar um cartão private label. Ela diz que, a partir de certos limites, o arranjo precisa ser formalmente autorizado pelo Banco Central. Abaixo desses limites, você opera sem autorização específica do arranjo, desde que as regras e a operação sigam a legislação vigente, inclusive sobre prevenção à lavagem de dinheiro (PLD-FT), KYC e proteção de dados (LGPD).
+
+Fonte oficial: <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12865.htm" target="_blank" rel="noopener">Planalto, Lei 12.865/2013</a>.
+
+### Resolução BCB 150/21 e quando o arranjo precisa ser autorizado
+
+A Resolução BCB 150/2021 define os critérios para dispensa ou exigência de autorização de arranjos de pagamento. Em linhas gerais, o arranjo precisa ser autorizado quando ultrapassa algum dos parâmetros: volume anual de transações acima de determinado patamar de valor ou de quantidade, ou base de usuários finais ativos acima de um teto definido.
+
+Os números exatos mudam ao longo do tempo por atos normativos complementares. O que vale guardar é a lógica: operações pequenas ou médias não precisam passar por autorização formal de arranjo. Operações grandes sim. Os thresholds são públicos e consultáveis direto na <a href="https://www.bcb.gov.br" target="_blank" rel="noopener">BCB, Resolução 150/2021</a>. Recomendo consultar a versão vigente antes de tomar decisão de lançamento.
+
+### Quando você precisa ser Instituição de Pagamento (IP) autorizada
+
+Aqui mora uma confusão comum. Emitir um private label não obriga automaticamente o varejista a virar Instituição de Pagamento. Existem dois caminhos:
+
+O primeiro é virar IP, pedir autorização ao BACEN, montar estrutura de compliance, capital mínimo, PLD-FT, auditoria. Custa caro e leva tempo. Faz sentido quando o plano é operar como fintech independente e oferecer serviços de pagamento para terceiros.
+
+O segundo é contratar uma BaaS autorizada. A IP já existe, você é cliente dela. Sua marca fica no cartão, a licença fica na parceira. Essa é a forma como a maioria dos programas de médio porte opera hoje no Brasil. É o que a JUST oferece com [JUST Credit: private label, antecipação e recebíveis](/antecipacao) e com [JUST Banking: banking digital white-label](/banking).
+
+Regra prática: se você não tem ambição de virar fintech de pagamentos, não precisa virar IP. Contrata uma BaaS e foca no programa, não na burocracia.
+
+## Quanto custa emitir um cartão private label
+
+Essa é a seção que os concorrentes não escrevem. Vou mostrar faixas realistas, separadas por CAPEX, OPEX e receitas. São ordens de grandeza de mercado, não cotação. O número real depende de volume, complexidade do produto, integrações e se você vai ou não ter crédito.
+
+![Quadro com principais custos e unit economics de um cartão private label](/conteudos/cartao-private-label/unit-economics-private-label.png)
+
+_Antes do go-live, a decisão precisa fechar em quatro dimensões: CAPEX, OPEX, risco de crédito e volume mínimo para breakeven._
+
+### CAPEX inicial
+
+- **Setup de tecnologia via BaaS**: R$ 30 mil a R$ 150 mil, dependendo do grau de customização. Programa padrão com UX pronta fica no piso. Múltiplos saldos, integrações específicas e regras de negócio exclusivas empurram para o teto.
+- **Setup regulatório via BaaS autorizada**: geralmente incluso ou com taxa entre R$ 0 e R$ 50 mil. A IP já existe, você usa a licença dela.
+- **Setup regulatório caso queira ser IP própria**: de R$ 500 mil a R$ 2 milhões, com 8 a 12 meses de processo. Envolve capital mínimo, estrutura de compliance, auditoria, sistemas obrigatórios de PLD-FT.
+- **Desenho de produto e marca**: R$ 20 mil a R$ 80 mil. Inclui arte do cartão, UX do app, identidade do programa, jornada de cadastro e KYC.
+- **Integrações ERP, POS, e-commerce**: R$ 15 mil a R$ 60 mil. Varia muito com o ERP. SAP custa mais do que um ERP nacional. POS legado custa mais do que POS moderno.
+
+### OPEX recorrente
+
+- **Processamento por transação**: R$ 0,05 a R$ 0,30. Quanto maior o volume, mais baixo o custo unitário.
+- **Antifraude**: 0,5% a 1,5% do GMV transacionado, dependendo do motor e do perfil de risco. Um arranjo fechado tende a ter custo menor do que bandeirado porque o universo de ataque é limitado. Quem usa [Sentinel, nosso motor de antifraude transacional](/sentinel) consegue otimizar essa linha.
+- **Atendimento e call center**: proporcional à base ativa. Regra prática: 1% a 3% dos portadores ativos acionam suporte por mês.
+- **PDD (provisão para devedores duvidosos)**: 3% a 12% do crédito concedido, dependendo do score médio da base. Base com score alto opera no piso, base subprime opera no teto.
+- **Custo de capital**: só aparece se você oferecer crédito. Depende do funding: capital próprio, FIDC, parceria com banco, securitização.
+
+### Receitas possíveis
+
+- **Intercâmbio on-us**: 0,5% a 2%. Em arranjo fechado, você mesmo recebe essa fatia, porque não há bandeira cobrando.
+- **MDR em redes parceiras**: se hibridizar o arranjo, o MDR negociado vira receita também. Variável.
+- **Juros de rotativo ou parcelado**: 8% a 15% ao mês, conforme política de risco e regulação vigente.
+- **Anuidade**: rara em private label de varejo. R$ 0 a R$ 80 por ano quando cobrada.
+- **Float**: ganho financeiro sobre o saldo pré-pago ou sobre o prazo entre transação e liquidação. Depende da estrutura.
+
+### A partir de que volume compensa
+
+A faixa de breakeven de mercado para um private label de crédito gira em torno de 10 mil a 20 mil cartões ativos, ou R$ 50 milhões a R$ 100 milhões por ano em GMV on-us. Abaixo disso, a matemática dos custos fixos pesa demais. Pré-pago tem breakeven mais baixo porque não tem PDD nem custo de capital.
+
+Número importante: esses são referenciais genéricos. Um programa bem desenhado numa base engajada pode virar positivo mais cedo. Um programa solto numa base fria pode nunca virar.
+
+Quer uma estimativa real para o seu caso? [Fale com o time JUST](/contato?assunto=private-label).
+
+## Vantagens reais do private label
+
+### Aumento de ticket médio e recorrência
+
+Cartão próprio com crédito ou benefício dedicado costuma elevar ticket médio e frequência de compra na base ativa. A ABECS publica dados setoriais sobre penetração e uso de cartões que ajudam a calibrar expectativa. O efeito é real, mas é gradativo: não espere dobrar o faturamento no primeiro trimestre.
+
+### Dado do portador e LGPD
+
+Você sabe quem comprou, o que comprou, quando, quanto, com qual frequência. Isso é ouro para CRM, campanha, estoque, pricing. O catch é LGPD. Tratar dado pessoal com base legal válida, minimização, segurança, base legal explícita para marketing. Programa de private label mal desenhado vira passivo em auditoria. Programa bem desenhado vira vantagem competitiva.
+
+### Redução de MDR em transações on-us
+
+Em compra feita com o cartão da casa dentro da casa, você não paga MDR para bandeira nem para adquirente. A economia direta costuma ficar entre 3% e 3,5% do valor da transação, que era o que iria para a adquirência no modelo bandeirado. Em operação com GMV alto, isso é dinheiro real.
+
+### Crédito próprio como alavanca de margem
+
+Se você oferece parcelado sem juros na loja, alguém está bancando o custo. Normalmente, é a adquirente ou a bandeira via antecipação. No private label com crédito próprio, o spread fica com você. Isso muda a P&L do negócio, mas traz responsabilidade: inadimplência também fica com você.
+
+## Desvantagens e riscos que ninguém te conta
+
+### Inadimplência e PDD
+
+Se você concede crédito, você precisa provisionar perdas. Isso é contábil, não opcional. A PDD reduz o resultado antes mesmo do default acontecer. Em base subprime, a PDD pode comer toda a margem do spread. Mitigar com política de risco, scoring, limites conservadores no início, crescimento da base gradual e revisão trimestral.
+
+### Capital imobilizado no crédito concedido
+
+Crédito na rua é caixa fora do balanço. Se o programa cresce rápido, a necessidade de capital cresce junto. Programas que começam com recursos próprios muitas vezes precisam buscar FIDC, securitização ou parceria com banco para não travar crescimento. Dinheiro é combustível, e quanto mais cartões ativos, mais combustível você precisa.
+
+### Fraude transacional em ambiente fechado
+
+A fraude em arranjo fechado é menos volumosa que em bandeirado, mas tem uma característica perversa: quando ela acontece, você arca com 100% do chargeback. Não há bandeira para dividir perda, não há regra de responsabilidade do adquirente. Por isso antifraude em private label precisa ser desenhado para o contexto, com regras específicas para o comportamento de compra da rede.
+
+### Base desengajada e o risco de jogar dinheiro fora
+
+Lançar cartão próprio para uma base que compra duas vezes por ano na sua loja é jogar CAPEX fora. O cartão vira brinde esquecido na carteira. Antes de investir em emissão, vale medir engajamento atual: frequência média, share of wallet, retenção. Se a base não compra recorrente, private label não muda isso. Primeiro resolva engajamento, depois lance cartão.
+
+## Como emitir um cartão private label em 6 etapas
+
+Fluxo que funciona, testado em clientes em operação. Você pode ver alguns [cases de clientes em operação](/cases) para referência.
+
+### 1. Validar hipótese de negócio e volume mínimo
+
+Antes de qualquer coisa técnica, você precisa responder: quantos dos meus clientes ativos vão usar esse cartão? Qual o GMV on-us projetado? Qual o ticket médio esperado? Qual a inadimplência prevista? Sem esses quatro números, o projeto começa torto. Faça o cálculo de breakeven com faixas pessimista, realista e otimista. Se o cenário pessimista já fecha no positivo, vá em frente. Se só o otimista fecha, repense o modelo ou adie.
+
+### 2. Escolher BaaS parceira vs caminho próprio
+
+Critério de decisão objetivo: quer virar fintech de pagamentos ou quer um programa de fidelização com crédito? Se é o segundo, use BaaS. Se é o primeiro, prepare-se para 12 meses de regulação. Avalie a BaaS em cinco dimensões: licença vigente, estabilidade de APIs, time de suporte, flexibilidade de produto, custo transparente. O mais barato na proposta nem sempre é o mais barato em produção.
+
+### 3. Desenhar produto
+
+Pré-pago, crédito, híbrido ou múltiplos saldos. Pré-pago é mais simples, tem breakeven mais baixo, não tem PDD. Crédito traz margem mas traz risco. Híbrido permite cashback e crédito coexistindo. Múltiplos saldos é o que faz sentido em benefícios corporativos, onde alimentação, mobilidade e cultura ficam em bolsos diferentes no mesmo cartão. Escolha em função do caso de uso, não da vaidade do produto.
+
+### 4. Integrar ERP, POS, e-commerce e app
+
+A parte que atrasa projetos. POS legado costuma precisar de firmware novo. ERP precisa receber a autorização em tempo real para dar baixa no estoque. App precisa de SDK para consulta de saldo e extrato. E-commerce precisa de gateway que reconheça o BIN do programa. Mapeie todas as integrações no início, orce com folga, teste em ambiente controlado antes de abrir para portadores reais.
+
+### 5. Piloto com base controlada
+
+60 a 90 dias, entre 500 e 2.000 portadores. KPIs claros: taxa de ativação do cartão, frequência de uso, ticket médio, inadimplência (se crédito), NPS do portador, tempo médio de atendimento, taxa de falha transacional. Se qualquer desses KPIs ficar fora da faixa esperada, segure o go-live. Ajuste antes de escalar. É sempre mais barato corrigir em 1.000 cartões do que em 100 mil.
+
+### 6. Go-live e escala
+
+Critérios de saída do piloto: ativação acima de 60%, taxa de falha transacional abaixo de 0,5%, inadimplência dentro do previsto, NPS positivo. Cumpridos os critérios, abra progressivamente. Não abra para toda a base de uma vez: a escala rápida multiplica problemas operacionais. Curva de crescimento saudável tende a ser logarítmica nos primeiros seis meses, não linear.
+
+A JUST opera o ciclo completo: emissor, processadora e antifraude. [Conheça o JUST Credit](/antecipacao).
+
+## Quando private label NÃO é a resposta
+
+Preciso dizer com todas as letras: nem todo negócio deveria lançar cartão próprio. Três cenários onde a resposta sincera é não:
+
+### Base pequena ou desengajada
+
+Menos de 5 mil clientes engajados é base pequena para sustentar custo fixo de um programa. Base grande mas com baixa recorrência também não funciona. Cartão não conserta falta de engajamento, ele amplifica o engajamento que já existe.
+
+### Ticket médio muito baixo
+
+Ticket médio abaixo de R$ 50 torna difícil absorver o custo transacional do programa. O cálculo simples: se processar uma transação custa R$ 0,15 e o ticket é R$ 30, você gastou 0,5% só em processamento. Some antifraude, atendimento, PDD. A margem some.
+
+### Operação sem time de crédito e compliance
+
+Private label com crédito exige política, scoring, cobrança, recuperação, contábil, LGPD, PLD-FT. Sem time dedicado ou parceiro especializado, o programa vira passivo. Se essa estrutura não existe hoje, considere [JUST Custom, para projetos sob demanda](/sob-demanda) ou comece com pré-pago antes de partir para crédito.
+
+Alternativas quando não é hora do private label: crediário digital integrado ao checkout, cashback via app sem cartão físico, co-branded com banco parceiro. Todas mais baratas, todas mais rápidas de lançar.
+
+## Além do varejo: casos onde private label é sub-explorado
+
+Aqui mora o ponto cego do mercado. A conversa sobre private label quase sempre gira em torno de grande varejo. Mas o modelo funciona em vários outros contextos onde a base é engajada e a recorrência existe. Em alguns deles, a matemática é até mais favorável.
+
+### Cooperativas de crédito e consumo
+
+Sicredi, Unicred, cooperativas regionais. Um cartão da cooperativa, aceito na rede interna de parceiros, com crédito cooperativo e benefícios para cooperados, fecha um ciclo de fidelização que o banco tradicional não consegue replicar. Pré-pago funciona bem em cooperativas menores, crédito faz sentido em cooperativas com estrutura maior.
+
+### Associações de classe e sindicatos
+
+Associações médicas, de advogados, de engenheiros, conselhos regionais. A base já é engajada, tem recorrência anual (contribuição), e quase sempre faz acordo com fornecedores (seguro, educação, bem-estar). Um cartão da associação agrega esses acordos num instrumento único, negociável e com dado rico.
+
+### Franquias e franqueadores
+
+Rede com 50 ou mais unidades tem, por definição, um problema de fidelização cruzada: cliente da unidade A não compra na unidade B. Cartão da rede resolve isso. Cashback entre unidades estimula frequência. Programa de loyalty da marca consolida dados que hoje ficam isolados no POS de cada franqueado.
+
+### Clubes de benefício verticais
+
+Programas corporativos para setores específicos: saúde (médicos, dentistas), educação (professores, estudantes), jurídico, engenharia. O vertical conhece bem o público, tem rede de parceiros específica, e pode desenhar benefício relevante. É o que o [JUST Expense para cartões corporativos](/despesas) viabiliza em vários casos.
+
+Cooperativa, associação ou franquia? [Desenhamos do zero](/sob-demanda).
+
+## Exemplos de cartões private label no Brasil
+
+Para calibrar expectativa com casos reais, alguns programas em operação no país:
+
+- **Pernambucanas**: um dos maiores private labels do Brasil, em operação há décadas, com forte presença no Sudeste e Nordeste.
+- **Renner (Meu Cartão Renner, via Realize)**: private label com crédito, hoje um dos principais centros de receita do grupo.
+- **Riachuelo (Midway)**: estrutura financeira própria da rede, com cartão próprio e outros produtos.
+- **C&A (Bradescard)**: operação em parceria com Bradesco, historicamente relevante em volume.
+- **Magalu**: programa com múltiplas frentes financeiras, integrado ao super-app.
+- **Casas Bahia**: emissor histórico de crediário e cartão próprio no varejo de eletrodomésticos.
+- **Assaí**: programa voltado para o público atacarejo, com benefícios específicos.
+- **Carrefour**: operação com cartão próprio e co-branded, forte no hipermercado.
+- **Condor**: rede do Paraná com programa próprio de relacionamento e pagamento.
+
+Cada um desses programas tem particularidades de estrutura societária (alguns com banco próprio, outros em parceria) e de produto (crédito, co-branded, híbrido). O ponto é que o modelo funciona em escalas diferentes, com desenhos diferentes.
+
+## Matriz de decisão: qual modelo escolher
+
+Tabela prescritiva para ajudar a pensar. Não substitui análise do seu caso específico.
+
+| Se você é... | E quer... | Modelo sugerido |
+|---|---|---|
+| Varejo acima de R$ 100 mi GMV, base engajada | Fidelização e crédito próprio | Private label crédito |
+| Cooperativa ou associação | Experiência própria sem custo de bandeira | Private label pré-pago |
+| Franqueador | Programa de fidelidade e cashback entre unidades | Private label pré-pago com cashback |
+| Fintech vertical | Produto financeiro com marca própria | White label com bandeira |
+| Varejo abaixo de R$ 50 mi GMV | Crédito sem complexidade regulatória | Co-branded ou crediário digital |
+| Operação B2B com compras frequentes | Controle de gasto e visibilidade de dado | Private label corporativo |
+
+Note como fintech vertical e varejo de grande porte não vão no mesmo modelo. A lógica muda. Para fintech, a aceitação ampla é quase sempre parte do valor percebido pelo usuário final, então white label com bandeira ganha. Para varejo com base fiel, a economia de MDR e a fidelização falam mais alto, e o private label ganha.
+
+## Perguntas frequentes sobre cartão private label
+
+**1. O que é um cartão private label?**
+
+É um cartão de pagamento emitido por uma empresa para uso restrito à sua própria rede, operado em arranjo de pagamento fechado conforme a Lei 12.865/2013. Não tem bandeira aberta como Visa ou Mastercard. O emissor, a processadora e a rede aceitadora são do mesmo grupo econômico.
+
+**2. Qual a diferença entre cartão private label, white label e co-branded?**
+
+Private label é cartão da casa, sem bandeira, aceito só na rede do emissor. White label é cartão com bandeira Visa ou Mastercard, vendido com a marca do cliente. Co-branded é cartão bandeirado que divide marca entre emissor e parceiro, com aceitação ampla. Cada modelo tem custo, risco e alcance diferentes.
+
+**3. Preciso ser banco ou ter autorização do BACEN para emitir um cartão private label?**
+
+Depende do volume. Operações abaixo dos thresholds da Resolução BCB 150/2021 não exigem autorização formal do arranjo. Acima disso, sim. O emissor não precisa virar Instituição de Pagamento se contratar uma BaaS autorizada. A BaaS emprestar a licença é prática comum no mercado brasileiro.
+
+**4. Quanto custa lançar um cartão private label?**
+
+Faixa típica de CAPEX via BaaS fica entre R$ 50 mil e R$ 300 mil, a depender de customização e integrações. OPEX mensal depende de volume transacionado, antifraude e PDD. Ser IP própria custa de R$ 500 mil a R$ 2 milhões, com 8 a 12 meses de regulação.
+
+**5. Em quanto tempo um cartão private label entra em operação?**
+
+Via BaaS, entre 3 e 6 meses do briefing ao piloto, dependendo de integrações. Caminho próprio, passando por autorização como IP, leva de 12 a 18 meses. Programas pré-pagos simples, com integrações leves, conseguem ir ao ar em 90 dias.
+
+**6. Cartão private label pode ser de crédito, pré-pago ou débito?**
+
+Pode ser de crédito ou pré-pago. Débito puro em arranjo fechado é raro no Brasil porque não há vantagem técnica sobre pré-pago. A combinação mais comum é pré-pago com ou sem cashback, ou crédito com limite rotativo. Híbridos com múltiplos saldos existem e são comuns em benefícios.
+
+**7. Como funciona a cobrança em um cartão private label?**
+
+No crédito, o portador recebe fatura mensal com compras parceladas ou à vista, podendo pagar total ou parcial. No pré-pago, o portador carrega saldo antes de usar. A cobrança fica dentro do ecossistema do emissor, o que simplifica conciliação e reduz custos de adquirência.
+
+**8. Quais são os riscos do cartão private label para o lojista?**
+
+Inadimplência e PDD no modelo de crédito, capital imobilizado no crédito concedido, fraude transacional com 100% do chargeback a cargo do emissor, e o risco de investir em programa para uma base que não é engajada o suficiente para sustentá-lo.
+
+**9. Cartão private label serve para pequeno varejo ou só para grandes redes?**
+
+Serve para quem tem base ativa e recorrente, independente do tamanho da rede. Operações pequenas com nicho fiel podem funcionar. Redes grandes com base fria podem falhar. O que define viabilidade não é tamanho, é engajamento.
+
+**10. Cooperativas e associações podem emitir cartão private label?**
+
+Podem e, em muitos casos, é o formato que melhor se encaixa. A base é engajada, tem recorrência, e a aceitação restrita à rede de parceiros faz sentido do ponto de vista do benefício. Cooperativas de crédito, associações de classe e clubes setoriais são casos onde o modelo é sub-explorado.
+
+---
+
+A JUST é a infraestrutura por trás de cartões private label em operação. Atuamos como emissora, processadora e motor de antifraude, com [nossa stack tecnológica](/stack) conectando ERP, POS, e-commerce e app num único programa. [Conheça o JUST Credit](/antecipacao) ou [fale com o time](/contato).
+## Fontes de referência
+- [Planalto - Lei 12.865/2013](https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12865.htm)
+- [Banco Central do Brasil - Arranjos de pagamento não integrantes do SPB](https://www.bcb.gov.br/estabilidadefinanceira/arranjosnaointegrantesspb)
+- [Banco Central do Brasil - Perguntas frequentes sobre arranjos de pagamento](https://www.bcb.gov.br/meubc/faqs/s/arranjo-de-pagamentos)

@@ -1,16 +1,69 @@
-# React + Vite
+# JUST Site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site institucional da JUST em React 19 + Vite 7.
 
-Currently, two official plugins are available:
+## Desenvolvimento
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Via Docker:
 
-## React Compiler
+```bash
+~/Documents/Claude/infra/scripts/project.sh up sitejust
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Acesse `http://sitejust.localhost`.
 
-## Expanding the ESLint configuration
+Via host direto:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev
+```
+
+Acesse `http://localhost:5175`.
+
+Não rode Docker e host direto ao mesmo tempo, porque ambos usam a porta `5175`.
+
+## Build
+
+```bash
+npm run build
+```
+
+O build gera:
+
+- HTML estático das páginas institucionais.
+- HTML estático da Central de Conteúdos, artigos, categorias e autores.
+- Imagens Open Graph dos artigos.
+- Sitemap atualizado.
+
+## Central de Conteúdos
+
+A Central de Conteúdos SEO fica em `/conteudos` e usa artigos em MDX com frontmatter.
+
+Arquivos principais:
+
+- `src/content/articles/*.mdx`: artigos publicados.
+- `src/content/authors.js`: autores.
+- `src/content/categories.js`: categorias editoriais.
+- `src/content/generated/articles.js`: manifest gerado antes do build.
+- `src/pages/ConteudosPage.jsx`: listagem principal.
+- `src/pages/ArticlePage.jsx`: template de artigo.
+- `scripts/generate-content-manifest.mjs`: gera metadados estáticos dos artigos.
+- `scripts/generate-seo-pages.mjs`: gera HTML SEO das páginas institucionais e de conteúdo.
+- `scripts/generate-article-images.mjs`: gera imagens internas de artigos.
+- `scripts/generate-og-images.mjs`: gera imagens Open Graph 1200x630.
+- `scripts/generate-sitemap.mjs`: atualiza `public/sitemap.xml` e `dist/sitemap.xml`.
+
+Para adicionar artigo:
+
+1. Criar um `.mdx` em `src/content/articles/`.
+2. Preencher frontmatter com `title`, `description`, `slug`, `category`, `author`, `publishedAt`, `updatedAt`, `tags` e `faqs` quando houver.
+3. Rodar `npm run build`.
+4. Conferir `dist/conteudos/[slug]/index.html`, OG image em `public/og/[slug].png` e entrada no sitemap.
+
+## Deploy
+
+```bash
+npm run build
+cp CNAME dist/CNAME
+git push origin HEAD:gh-pages --force
+```

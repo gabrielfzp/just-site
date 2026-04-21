@@ -25,13 +25,25 @@ export function Header({ page, setPage, lang }) {
   const [dropOpen, setDropOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const tr = T18N[lang] || T18N["pt-BR"];
+  const isContentPage = page === "conteudos" || page === "autores" || page.startsWith("conteudos/") || page.startsWith("autores/");
+  const solidHeader = isContentPage || scrolled || mobileOpen;
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
   }, []);
   const nav = (p) => { setPage(p); setDropOpen(false); setMobileOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const lnk = (p) => ({ color: page === p ? T.cta : "rgba(242,244,248,0.8)", fontSize: 14, fontWeight: 500, cursor: "pointer", background: "none", border: "none", padding: "8px 14px", transition: "color 0.2s" });
+  const isActive = (p) => p === "conteudos" ? isContentPage : page === p;
+  const lnk = (p) => ({
+    color: isActive(p) ? T.cta : "rgba(242,244,248,0.8)",
+    fontSize: 14,
+    fontWeight: 500,
+    cursor: "pointer",
+    background: "none",
+    border: "none",
+    padding: "8px 14px",
+    transition: "color 0.2s",
+  });
 
   const solucoes = [
     { key: "beneficios", label: tr.products.beneficios.name, desc: tr.products.beneficios.headerDesc, color: PRODUCT_COLORS.beneficios.accent },
@@ -48,9 +60,9 @@ export function Header({ page, setPage, lang }) {
     <header style={{
       position: "fixed", top: 0, left: 0, right: 0, height: 72, display: "flex", alignItems: "center",
       justifyContent: "space-between", padding: "0 48px",
-      background: scrolled || mobileOpen ? "rgba(15,17,43,0.97)" : "transparent",
-      backdropFilter: scrolled || mobileOpen ? "blur(16px)" : "none",
-      borderBottom: scrolled ? `1px solid ${T.borderLight}` : "1px solid transparent",
+      background: solidHeader ? "rgba(15,17,43,0.97)" : "transparent",
+      backdropFilter: solidHeader ? "blur(16px)" : "none",
+      borderBottom: solidHeader ? `1px solid ${T.borderLight}` : "1px solid transparent",
       transition: "all 0.35s ease", zIndex: 100,
     }}>
       <div style={{ cursor: "pointer", display: "flex", alignItems: "center" }} onClick={() => nav("home")}>
@@ -89,6 +101,7 @@ export function Header({ page, setPage, lang }) {
         </div>
         <button style={lnk("stack")} onClick={() => nav("stack")}>{tr.nav.technology}</button>
         <button style={lnk("cases")} onClick={() => nav("cases")}>{tr.nav.cases}</button>
+        <button style={lnk("conteudos")} onClick={() => nav("conteudos")}>{tr.nav.content}</button>
         <button style={lnk("sobre")} onClick={() => nav("sobre")}>{tr.nav.about}</button>
         <LangToggle lang={lang} setLang={setLang} />
         <Btn onClick={() => nav("contato")} size="sm" style={{ marginLeft: 8 }}>{tr.nav.contact}</Btn>
@@ -132,6 +145,7 @@ export function Header({ page, setPage, lang }) {
         <div style={{ borderTop: `1px solid ${T.borderLight}`, margin: "8px 0" }} />
         <button onClick={() => nav("stack")} style={{ ...lnk("stack"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>{tr.nav.technology}</button>
         <button onClick={() => nav("cases")} style={{ ...lnk("cases"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>{tr.nav.cases}</button>
+        <button onClick={() => nav("conteudos")} style={{ ...lnk("conteudos"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>{tr.nav.content}</button>
         <button onClick={() => nav("sobre")} style={{ ...lnk("sobre"), fontSize: 16, padding: "14px 0", textAlign: "left", width: "100%" }}>{tr.nav.about}</button>
         <div style={{ marginTop: 16, marginBottom: 8 }}>
           <Btn onClick={() => nav("contato")} style={{ width: "100%", textAlign: "center" }}>{tr.nav.contact}</Btn>
@@ -174,7 +188,7 @@ export function Footer({ setPage, lang }) {
         </div>
         <div>
           <h4 style={{ color: "rgba(242,244,248,0.6)", fontSize: 11, fontWeight: 600, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em" }}>{tr.companyLabel}</h4>
-          {[["sobre", trNav.about],["cases","Cases"],["stack", trNav.technology],["contato", tr.contactLabel]].map(([k,l]) =>
+          {[["sobre", trNav.about],["cases","Cases"],["stack", trNav.technology],["conteudos", trNav.content],["contato", tr.contactLabel]].map(([k,l]) =>
             <button key={k} style={fl} onClick={() => nav(k)}>{l}</button>
           )}
         </div>

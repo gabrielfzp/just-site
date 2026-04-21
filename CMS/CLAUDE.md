@@ -39,12 +39,12 @@ Objetivo: construir autoridade temática em meios de pagamento, BaaS, cartões, 
 - Todo conteúdo é em **pt-BR**. Versão em inglês não entra nos primeiros 12 meses.
 - Todo brief segue o template de [`01-strategy/editorial-standards.md`](01-strategy/editorial-standards.md).
 - Toda publicação atualiza o sitemap e dispara ping Google Search Console + IndexNow.
-- Todo artigo tem autor nominal (não "JUST" genérico) e revisor técnico nominal.
+- Todo artigo tem autor nominal (não "JUST" genérico). Validação técnica é interna, sem pessoa pública adicional.
 - Toda decisão de mudança de estratégia entra em [`01-strategy/STRATEGY.md`](01-strategy/STRATEGY.md) na seção "Histórico de decisões".
 
 ## Status atual (atualizar a cada marco)
 
 - **Fase 0 (descoberta e research)**: concluída em 2026-04-20
-- **Fase 1 (infra `/conteudos`)**: pendente
+- **Fase 1 (infra `/conteudos`)**: implementada localmente em 2026-04-20; pendente validação externa Rich Results/deploy
 - **Fase 2 (pilar + 3 satélites do cluster Private Label)**: brief 001 pronto, 002-004 pendentes
 - **Cluster ativo**: Private Label

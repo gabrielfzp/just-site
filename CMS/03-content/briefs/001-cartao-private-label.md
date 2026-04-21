@@ -5,9 +5,8 @@ cluster: private-label
 type: pillar
 termo_alvo: cartão private label
 dificuldade: MÉDIA
-status: ready-to-write
+status: published
 autor: gabriel-pires
-revisor: a-definir
 target_words: 3000-3500
 reading_time_target: 14
 ---
@@ -28,7 +27,6 @@ reading_time_target: 14
 | **Cluster** | private-label |
 | **Tipo** | pillar |
 | **Autor** | Gabriel Pires (CEO) |
-| **Revisor** | a definir (time de produto ou compliance) |
 | **Idioma** | pt-BR |
 | **Reading time alvo** | 14 min |
 | **Tamanho alvo** | 3.000-3.500 palavras |
@@ -382,7 +380,7 @@ Ao entregar o rascunho:
 - [ ] Tom pragmático e direto
 - [ ] Ortografia conforme `editorial-standards.md` (BACEN, BaaS, Pix, etc)
 
-## 14. Checklist pro revisor técnico
+## 14. Checklist de validação técnica interna
 
 - [ ] Lei 12.865/13 citada corretamente
 - [ ] Resolução BCB 150/21 citada corretamente (thresholds atualizados)

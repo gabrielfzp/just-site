@@ -1,6 +1,20 @@
 export const SITE_URL = "https://wearejust.it";
 export const SITE_NAME = "JUST";
+export const SITE_DESCRIPTION = "A JUST constrói e opera infraestrutura white-label para produtos financeiros digitais: cartões, banking, benefícios, frotas, despesas, crédito, antifraude e soluções sob demanda.";
 export const DEFAULT_IMAGE = `${SITE_URL}/logo-just.png`;
+export const SITE_SAME_AS = [
+  "https://www.linkedin.com/company/wearejust-it",
+];
+export const SITE_KNOWS_ABOUT = [
+  "produtos financeiros digitais",
+  "cartões private label",
+  "cartões white label",
+  "banking as a service",
+  "meios de pagamento",
+  "gestão de despesas corporativas",
+  "benefícios flexíveis",
+  "antifraude transacional",
+];
 
 export const PAGE_SEO = {
   home: {
@@ -81,6 +95,11 @@ export const PAGE_SEO = {
     },
     serviceType: "Fraud detection",
   },
+  conteudos: {
+    path: "/conteudos",
+    title: "Conteúdos JUST | Guias sobre produtos financeiros digitais",
+    description: "Guias, análises e materiais técnicos sobre cartões, meios de pagamento, BaaS, benefícios, frotas, antifraude e produtos financeiros white-label.",
+  },
   beneficios: {
     path: "/beneficios",
     title: "JUST Benefits | Benefícios flexíveis white-label",
@@ -152,6 +171,10 @@ function upsertLink(selector, attrs) {
   Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
 }
 
+function removeNode(selector) {
+  document.head.querySelector(selector)?.remove();
+}
+
 function upsertJsonLd(data) {
   let node = document.getElementById("just-jsonld");
   if (!node) {
@@ -173,6 +196,10 @@ function buildJsonLd({ title, description, canonical, path, route }) {
       name: SITE_NAME,
       url: SITE_URL,
       logo: DEFAULT_IMAGE,
+      description: SITE_DESCRIPTION,
+      sameAs: SITE_SAME_AS,
+      knowsAbout: SITE_KNOWS_ABOUT,
+      areaServed: "BR",
     },
     {
       "@type": "WebSite",
@@ -253,7 +280,7 @@ export function applySeo(seo, lang) {
   upsertMeta("meta[name='description']", { name: "description", content: seo.description });
   upsertMeta("meta[name='robots']", { name: "robots", content: seo.robots });
   upsertMeta("meta[property='og:site_name']", { property: "og:site_name", content: SITE_NAME });
-  upsertMeta("meta[property='og:type']", { property: "og:type", content: "website" });
+  upsertMeta("meta[property='og:type']", { property: "og:type", content: seo.type || "website" });
   upsertMeta("meta[property='og:locale']", { property: "og:locale", content: lang === "en" ? "en_US" : "pt_BR" });
   upsertMeta("meta[property='og:title']", { property: "og:title", content: seo.title });
   upsertMeta("meta[property='og:description']", { property: "og:description", content: seo.description });
@@ -266,7 +293,25 @@ export function applySeo(seo, lang) {
   upsertMeta("meta[name='twitter:title']", { name: "twitter:title", content: seo.title });
   upsertMeta("meta[name='twitter:description']", { name: "twitter:description", content: seo.description });
   upsertMeta("meta[name='twitter:image']", { name: "twitter:image", content: seo.image });
+  if (seo.article) {
+    upsertMeta("meta[property='article:published_time']", { property: "article:published_time", content: seo.article.publishedAt });
+    upsertMeta("meta[property='article:modified_time']", { property: "article:modified_time", content: seo.article.updatedAt });
+    upsertMeta("meta[property='article:author']", { property: "article:author", content: seo.article.author?.name || "" });
+    upsertMeta("meta[property='article:section']", { property: "article:section", content: seo.article.category?.name || "" });
+    document.head.querySelectorAll("meta[property='article:tag']").forEach((node) => node.remove());
+    (seo.article.tags || []).forEach((tag) => {
+      const node = document.createElement("meta");
+      node.setAttribute("property", "article:tag");
+      node.setAttribute("content", tag);
+      document.head.appendChild(node);
+    });
+  }
   upsertLink("link[rel='canonical']", { rel: "canonical", href: seo.canonical });
+  if (seo.markdown) {
+    upsertLink("link[rel='alternate'][type='text/markdown']", { rel: "alternate", type: "text/markdown", href: seo.markdown });
+  } else {
+    removeNode("link[rel='alternate'][type='text/markdown']");
+  }
   upsertLink("link[rel='alternate'][hreflang='pt-BR']", { rel: "alternate", hreflang: "pt-BR", href: seo.canonical });
   upsertLink("link[rel='alternate'][hreflang='x-default']", { rel: "alternate", hreflang: "x-default", href: seo.canonical });
   upsertJsonLd(seo.jsonLd);

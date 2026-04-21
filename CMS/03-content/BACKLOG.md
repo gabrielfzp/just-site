@@ -20,15 +20,15 @@ Pipeline ativo de artigos da Central de Conteúdos. Atualizar a cada mudança de
 
 | # | Slug | Tipo | Termo alvo | Dificuldade | Brief | Status |
 |---|---|---|---|---|---|---|
-| 001 | `cartao-private-label` | pillar | cartão private label | MÉDIA | [001](briefs/001-cartao-private-label.md) | ready-to-write |
+| 001 | `cartao-private-label` | pillar | cartão private label | MÉDIA | [001](briefs/001-cartao-private-label.md) | published |
 
 ### Satélites
 
 | # | Slug | Tipo | Termo alvo | Dificuldade | Brief | Status |
 |---|---|---|---|---|---|---|
-| 002 | `white-label-vs-private-label` | satellite | white label vs private label | MÉDIA | pendente | briefing |
-| 003 | `cartao-bandeirado-o-que-e` | satellite | cartão bandeirado | MÉDIA | pendente | briefing |
-| 004 | `diferenca-cartao-corporativo-empresarial` | satellite | diferença cartão corporativo e empresarial | MÉDIA | pendente | briefing |
+| 002 | `white-label-vs-private-label` | satellite | white label vs private label | MÉDIA | [002](briefs/002-white-label-vs-private-label.md) | ready-to-write |
+| 003 | `cartao-bandeirado-o-que-e` | satellite | cartão bandeirado | MÉDIA | [003](briefs/003-cartao-bandeirado-o-que-e.md) | ready-to-write |
+| 004 | `diferenca-cartao-corporativo-empresarial` | satellite | diferença cartão corporativo e empresarial | MÉDIA | [004](briefs/004-diferenca-cartao-corporativo-empresarial.md) | ready-to-write |
 
 ### Ordem de publicação recomendada
 
@@ -63,7 +63,9 @@ Racional: SERP pt-BR contaminada por Portugal, espaço aberto.
 
 ## Publicados
 
-Nenhum ainda.
+| Slug | URL publicada | Publicado em | Cluster | Tipo | Termo inicial | Metadata |
+|---|---|---|---|---|---|---|
+| `cartao-private-label` | `https://wearejust.it/conteudos/cartao-private-label` | 2026-04-20 | private-label | pillar | cartão private label | [metadata](published/cartao-private-label.md) |
 
 Quando publicar, mover pra `03-content/published/[slug].md` com metadata:
 
@@ -97,3 +99,4 @@ initialKeyword: "..."
 - Cluster Private Label escolhido como primeiro. Detalhes em `01-strategy/STRATEGY.md`.
 - Satélites 002, 003, 004 priorizados com base em dificuldade MÉDIA e suporte semântico ao pilar.
 - Ordem de publicação definida: pilar → comparativo → conceitual → decisional.
+- Briefs 002, 003, 004 escritos e movidos para `ready-to-write`. Redator pode puxar qualquer um na ordem recomendada.

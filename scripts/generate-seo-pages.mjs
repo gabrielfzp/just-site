@@ -1,87 +1,92 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { getSeo, SEO_ROUTE_KEYS } from "../src/site/seo.js";
+import { AUTHORS_LIST } from "../src/content/authors.js";
+import { CATEGORIES_LIST } from "../src/content/categories.js";
+import { buildArticleJsonLd, buildArticleUrl } from "../src/lib/schema-builder.js";
+import { DEFAULT_IMAGE, getSeo, SEO_ROUTE_KEYS, SITE_URL } from "../src/site/seo.js";
+import { applyHtmlSeo } from "./html-seo-utils.mjs";
+import { loadContentArticles } from "./load-content.mjs";
 
 const rootDir = fileURLToPath(new URL("..", import.meta.url));
 const distDir = join(rootDir, "dist");
 const baseHtml = await readFile(join(distDir, "index.html"), "utf8");
+const articles = await loadContentArticles();
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
+function writeRoute(path, seo) {
+  const html = applyHtmlSeo(baseHtml, seo);
+  const target = path === "/" ? join(distDir, "index.html") : join(distDir, path.replace(/^\/+/, ""), "index.html");
+  return mkdir(dirname(target), { recursive: true }).then(() => writeFile(target, html));
 }
 
-function escapeAttr(value) {
-  return escapeHtml(value).replaceAll('"', "&quot;");
-}
-
-function replaceOrInsert(html, pattern, replacement) {
-  if (pattern.test(html)) return html.replace(pattern, replacement);
-  return html.replace("</head>", `    ${replacement}\n  </head>`);
-}
-
-function updateMetaName(html, name, content) {
-  const tag = `<meta name="${name}" content="${escapeAttr(content)}" />`;
-  return replaceOrInsert(html, new RegExp(`<meta name="${name}" content="[^"]*"\\s*/?>`), tag);
-}
-
-function updateMetaProperty(html, property, content) {
-  const tag = `<meta property="${property}" content="${escapeAttr(content)}" />`;
-  return replaceOrInsert(html, new RegExp(`<meta property="${property}" content="[^"]*"\\s*/?>`), tag);
-}
-
-function updateCanonical(html, href) {
-  return replaceOrInsert(
-    html,
-    /<link rel="canonical" href="[^"]*"\s*\/?>/,
-    `<link rel="canonical" href="${escapeAttr(href)}" />`,
-  );
-}
-
-function withManagedSeoBlock(html, seo) {
-  const block = [
-    "<!-- JUST route SEO -->",
-    `<link rel="alternate" hreflang="pt-BR" href="${escapeAttr(seo.canonical)}" />`,
-    `<link rel="alternate" hreflang="x-default" href="${escapeAttr(seo.canonical)}" />`,
-    `<script id="just-jsonld" type="application/ld+json">${escapeHtml(JSON.stringify(seo.jsonLd))}</script>`,
-    "<!-- /JUST route SEO -->",
-  ].join("\n    ");
-
-  const blockPattern = /    <!-- JUST route SEO -->[\s\S]*?<!-- \/JUST route SEO -->\n?/;
-  if (blockPattern.test(html)) return html.replace(blockPattern, `    ${block}\n`);
-  return html.replace("</head>", `    ${block}\n  </head>`);
-}
-
-function renderRouteHtml(routeKey) {
+const siteRoutes = SEO_ROUTE_KEYS.map((routeKey) => {
   const seo = getSeo(routeKey, "pt-BR");
-  let html = baseHtml;
+  return writeRoute(seo.path, seo);
+});
 
-  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(seo.title)}</title>`);
-  html = updateMetaName(html, "description", seo.description);
-  html = updateMetaName(html, "robots", seo.robots);
-  html = updateMetaName(html, "twitter:title", seo.title);
-  html = updateMetaName(html, "twitter:description", seo.description);
-  html = updateMetaName(html, "twitter:image", seo.image);
-  html = updateMetaProperty(html, "og:title", seo.title);
-  html = updateMetaProperty(html, "og:description", seo.description);
-  html = updateMetaProperty(html, "og:url", seo.canonical);
-  html = updateMetaProperty(html, "og:image", seo.image);
-  html = updateMetaProperty(html, "og:image:alt", "Logo da JUST");
-  html = updateCanonical(html, seo.canonical);
-  html = withManagedSeoBlock(html, seo);
+const articleRoutes = articles.map((article) => writeRoute(`/conteudos/${article.slug}`, {
+  title: `${article.seoTitle || article.title} | JUST`,
+  description: article.description,
+  canonical: buildArticleUrl(article),
+  markdown: `${buildArticleUrl(article)}.md`,
+  image: `${SITE_URL}${article.ogImage}`,
+  imageAlt: article.title,
+  type: "article",
+  article,
+  robots: "index, follow",
+  jsonLd: buildArticleJsonLd(article),
+}));
 
-  return { html, path: seo.path };
-}
+const categoryRoutes = CATEGORIES_LIST.map((category) => writeRoute(`/conteudos/categoria/${category.slug}`, {
+  title: `${category.name} | Conteúdos JUST`,
+  description: category.description,
+  canonical: `${SITE_URL}/conteudos/categoria/${category.slug}`,
+  image: DEFAULT_IMAGE,
+  imageWidth: "812",
+  imageHeight: "499",
+  imageAlt: "Logo da JUST",
+  robots: "index, follow",
+  jsonLd: {
+    "@context": "https://schema.org",
+    "@graph": [{
+      "@type": "CollectionPage",
+      url: `${SITE_URL}/conteudos/categoria/${category.slug}`,
+      name: category.name,
+      description: category.description,
+      inLanguage: "pt-BR",
+    }],
+  },
+}));
 
-for (const routeKey of SEO_ROUTE_KEYS) {
-  const { html, path } = renderRouteHtml(routeKey);
-  const target = path === "/" ? join(distDir, "index.html") : join(distDir, path.slice(1), "index.html");
+const authorRoutes = AUTHORS_LIST.map((author) => writeRoute(`/autores/${author.slug}`, {
+  title: `${author.name} | Autor JUST`,
+  description: author.bio,
+  canonical: `${SITE_URL}/autores/${author.slug}`,
+  image: author.avatar ? `${SITE_URL}${author.avatar}` : DEFAULT_IMAGE,
+  imageWidth: author.avatar ? "1200" : "812",
+  imageHeight: author.avatar ? "630" : "499",
+  imageAlt: author.name,
+  robots: "index, follow",
+  jsonLd: {
+    "@context": "https://schema.org",
+    "@graph": [{
+      "@type": "ProfilePage",
+      url: `${SITE_URL}/autores/${author.slug}`,
+      name: author.name,
+      description: author.bio,
+      inLanguage: "pt-BR",
+      mainEntity: {
+        "@type": "Person",
+        name: author.name,
+        jobTitle: author.role,
+        description: author.bio,
+        image: author.avatar ? `${SITE_URL}${author.avatar}` : undefined,
+        sameAs: author.linkedin ? [author.linkedin] : [],
+      },
+    }],
+  },
+}));
 
-  await mkdir(dirname(target), { recursive: true });
-  await writeFile(target, html);
-}
+await Promise.all([...siteRoutes, ...articleRoutes, ...categoryRoutes, ...authorRoutes]);
 
-console.log(`Generated SEO HTML for ${SEO_ROUTE_KEYS.length} routes.`);
+console.log(`Generated SEO HTML for ${SEO_ROUTE_KEYS.length} site routes, ${articles.length} article(s), ${CATEGORIES_LIST.length} category pages and ${AUTHORS_LIST.length} author pages.`);

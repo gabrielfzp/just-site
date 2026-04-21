@@ -15,7 +15,6 @@ category: "Meios de pagamento"
 cluster: "private-label"
 type: "pillar"
 author: "gabriel-pires"
-reviewer: "nome-do-revisor"
 publishedAt: "2026-04-20"
 updatedAt: "2026-04-20"
 readingTime: 14
@@ -31,7 +30,6 @@ Campos:
 | `type` | `pillar`, `satellite`, `quick-answer` | Sim |
 | `cluster` | `private-label`, `antifraude`, `frotas`, `beneficios`, `pagamentos`, `baas` | Sim |
 | `author` | slug da pasta `/autores/` | Sim |
-| `reviewer` | nome ou slug (pode ser `null` enquanto definimos) | Sim |
 | `category` | categoria visível na listagem | Sim |
 | `featured` | destaque na home da central | Não (default `false`) |
 
@@ -45,7 +43,7 @@ Todo pilar deve ter:
 4. **Tabelas comparativas** sempre que comparação fizer sentido (mínimo 1).
 5. **Seção "Como fazer" com HowTo schema** se o artigo ensina um processo.
 6. **FAQ final (8-12 perguntas)** com FAQPage schema.
-7. **Autor + revisor** visíveis no topo e rodapé, com link pra `/autores/[slug]`.
+7. **Autor** visível no topo e rodapé, com link pra `/autores/[slug]`.
 8. **CTA final** pra produto da JUST (específico do tema).
 9. **Artigos relacionados** (3 satélites do cluster).
 
@@ -60,7 +58,7 @@ Mais enxuto que o pilar:
 3. **5-8 H2s**
 4. **1 tabela comparativa ou tabela de dados**
 5. **FAQ curto (5-7 perguntas)**
-6. **Autor + revisor**
+6. **Autor nominal**
 7. **1 CTA contextual**
 8. **Link obrigatório pro pilar do cluster**
 
@@ -238,7 +236,7 @@ Antes de fazer merge do PR do artigo:
 - [ ] FAQ com ≥8 perguntas (pilar) ou ≥5 (satélite)
 - [ ] Tabela comparativa presente
 - [ ] Links internos pro pilar do cluster e pra ≥1 página de produto
-- [ ] Autor + revisor configurados
+- [ ] Autor configurado
 - [ ] OG image gerada e commitada
 - [ ] Schema JSON-LD validado (Rich Results Test)
 - [ ] Meta description testada no preview SERP

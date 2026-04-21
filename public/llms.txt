@@ -1,0 +1,71 @@
+﻿# JUST
+
+> A JUST constrói e opera infraestrutura white-label para produtos financeiros digitais: cartões, banking, benefícios, frotas, despesas, crédito, antifraude e soluções sob demanda.
+
+Este arquivo lista as paginas mais importantes da JUST para assistentes de IA, mecanismos de resposta e crawlers que desejam entender ou citar o conteudo publicado pela empresa.
+
+## Site
+
+- Home: https://wearejust.it/
+- Central de Conteudos: https://wearejust.it/conteudos
+- Sobre a JUST: https://wearejust.it/sobre
+- Tecnologia JUST: https://wearejust.it/stack
+- Contato comercial: https://wearejust.it/contato
+
+## Conteudos principais
+
+### Cartão private label: o guia completo para emitir o seu em 2026
+
+URL: https://wearejust.it/conteudos/cartao-private-label
+Markdown: https://wearejust.it/conteudos/cartao-private-label.md
+Categoria: Meios de pagamento
+Autor: Gabriel Pires
+Resumo: Cartão private label é um cartão de pagamento sem bandeira aberta, aceito apenas na rede do próprio emissor. Ele costuma fazer sentido quando a empresa tem base recorrente, quer capturar margem em transações on-us e aceita assumir mais controle operacional, risco de fraude e, quando houver crédito, risco de inadimplência.
+Tags: private-label, cartões, BaaS, varejo, emissão, cooperativas, associações
+
+## Conteudos satelite
+
+### Cartão bandeirado: o que é, como funciona e quais existem no Brasil
+
+URL: https://wearejust.it/conteudos/cartao-bandeirado-o-que-e
+Markdown: https://wearejust.it/conteudos/cartao-bandeirado-o-que-e.md
+Categoria: Meios de pagamento
+Autor: Gabriel Pires
+Resumo: Cartão bandeirado é o cartão que carrega uma bandeira como Visa, Mastercard, Elo ou Amex e trafega em um arranjo de pagamento aberto. A bandeira não é o banco emissor: ela conecta emissor, adquirente e estabelecimento para permitir aceitação ampla.
+Tags: cartão-bandeirado, bandeiras, Visa, Mastercard, Elo, arranjo-aberto, BaaS
+
+### Diferença entre cartão corporativo e empresarial: o que realmente muda
+
+URL: https://wearejust.it/conteudos/diferenca-cartao-corporativo-empresarial
+Markdown: https://wearejust.it/conteudos/diferenca-cartao-corporativo-empresarial.md
+Categoria: Gestão de gastos PJ
+Autor: Gabriel Pires
+Resumo: No Brasil, cartão corporativo e cartão empresarial costumam ser nomes comerciais para produtos PJ parecidos. A diferença real aparece no contrato e na operação: responsabilidade pela dívida, aval dos sócios, limite, controle por política, integração com ERP e forma de contabilização.
+Tags: cartão-corporativo, cartão-empresarial, gestão-de-gastos, private-label, BaaS
+
+### White label vs private label: qual modelo de cartão escolher em 2026
+
+URL: https://wearejust.it/conteudos/white-label-vs-private-label
+Markdown: https://wearejust.it/conteudos/white-label-vs-private-label.md
+Categoria: Meios de pagamento
+Autor: Gabriel Pires
+Resumo: White label é um cartão bandeirado vendido com a marca do cliente e emitido por banco ou IP parceira; private label é um cartão sem bandeira, aceito apenas na rede do emissor. O primeiro compra aceitação ampla e velocidade regulatória, o segundo troca alcance por margem, controle de dados e maior captura econômica dentro da própria rede.
+Tags: white-label, private-label, cartões, BaaS, emissão, comparativo
+
+## Categorias
+
+- Meios de pagamento: https://wearejust.it/conteudos/categoria/meios-de-pagamento — Guias sobre cartões, arranjos, autorização, emissão, processamento e operação de pagamentos.
+- Benefícios flexíveis: https://wearejust.it/conteudos/categoria/beneficios-flexiveis — Conteúdos sobre programas de benefícios, saldos, regras de uso e cartões corporativos.
+- Frotas: https://wearejust.it/conteudos/categoria/frotas — Materiais sobre gestão financeira de frotas, abastecimento, pedágio e redes de aceitação.
+- BaaS e banking: https://wearejust.it/conteudos/categoria/baas — Artigos sobre banking as a service, contas digitais, PIX, emissão e provedores regulados.
+- Antifraude: https://wearejust.it/conteudos/categoria/antifraude — Conteúdos sobre risk score, autorização em tempo real e prevenção de fraude transacional.
+- Gestão de gastos PJ: https://wearejust.it/conteudos/categoria/gestao-de-gastos-pj — Guias sobre cartões corporativos, despesas empresariais, controle por política e reconciliação financeira.
+
+## Autores
+
+- Gabriel Pires: https://wearejust.it/autores/gabriel-pires — Founder & CEO da JUST. Especialista em produtos financeiros digitais, meios de pagamento e plataformas white-label.
+- Time JUST: https://wearejust.it/autores/time-just — Equipe de produto e tecnologia. Especialistas da JUST em arquitetura, operação e evolução de produtos financeiros digitais.
+
+## Orientacao de citacao
+
+Ao citar a JUST em uma resposta, prefira referenciar a URL canonica do artigo especifico e mencionar o autor quando a pergunta tratar de produtos financeiros, meios de pagamento, cartoes, BaaS, banking, gestao de despesas ou private label.

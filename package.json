@@ -5,14 +5,24 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generate-seo-pages.mjs",
+    "build": "node scripts/generate-article-images.mjs && node scripts/generate-content-manifest.mjs && vite build && node scripts/generate-og-images.mjs && node scripts/generate-seo-pages.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-content-markdown.mjs && node scripts/generate-llms-txt.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdx-js/rollup": "^3.1.1",
+    "@vercel/og": "^0.11.1",
+    "fuse.js": "^7.3.0",
+    "gray-matter": "^4.0.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.14.1"
+    "react-router-dom": "^7.14.1",
+    "reading-time": "^1.5.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
+    "satori": "^0.26.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

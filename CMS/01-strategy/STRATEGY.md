@@ -16,7 +16,7 @@ A JUST não precisa de um blog. Precisa de uma **central de conteúdo** que cons
 3. **Intenção comercial próxima**: prioriza termos de fundo/meio de funil onde o leitor está avaliando soluções BaaS B2B.
 4. **Proprietário antes de CMS**: tudo vive no repo do site. Sanity, Ghost ou outro CMS só entra depois de 15-30 artigos publicados.
 5. **pt-BR only por 12 meses**: mercado BR é o foco. SEO técnico em inglês sem budget é guerra perdida.
-6. **E-E-A-T com nomes reais**: autor e revisor nominais com página `/autores/[slug]`, não "JUST" genérico.
+6. **E-E-A-T com nomes reais**: autor nominal com página `/autores/[slug]`, não "JUST" genérico.
 
 ## 2. Clusters
 
@@ -155,7 +155,7 @@ Medir a cada 30 dias via Google Search Console e GA4.
 - **Copiar estrutura de concorrente**. Vencer é preencher o gap deles, não espelhar.
 - **CTA comercial no topo do artigo**. CTAs só após valor entregue.
 - **Ranquear pra termos do Tier F**. Queima recurso. Aparecer neles é consequência da autoridade, não alvo direto.
-- **Publicar sem revisor técnico nominal**. Em YMYL fintech, autoridade importa.
+- **Publicar sem autor nominal**. Em YMYL fintech, autoridade importa.
 - **Esquecer do `dateModified`**. Google valoriza conteúdo atualizado.
 - **Não atualizar sitemap/IndexNow/GSC após publicar**. Indexação em dias vs semanas.
 
@@ -167,7 +167,7 @@ Medir a cada 30 dias via Google Search Console e GA4.
 **Fluxo de produção**:
 1. Brief no `03-content/briefs/` aprovado pelo Gabriel
 2. Redator escreve rascunho em markdown
-3. Revisor técnico valida precisão
+3. Validação técnica interna antes da publicação, sem pessoa pública adicional
 4. Dev publica (ou agente que cuida do repo)
 5. Sitemap + IndexNow + GSC ping automáticos no build
 6. Artigo entra em `03-content/published/` com metadata
@@ -175,8 +175,8 @@ Medir a cada 30 dias via Google Search Console e GA4.
 
 **Papéis**:
 - **Autor pilares**: Gabriel (CEO)
-- **Autor satélites**: redator técnico com revisor nominal
-- **Revisor técnico**: a definir (time de produto ou compliance)
+- **Autor satélites**: redator técnico nominal ou Gabriel
+- **Validação técnica interna**: time de produto ou compliance, sem página pública adicional
 - **Dev/publisher**: qualquer dev ou agente autorizado
 
 ## 9. Histórico de decisões

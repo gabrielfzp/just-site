@@ -29,6 +29,12 @@ src/
 │   └── solutions.js         # SOL — config dos 6 produtos (título, subtitle, models,
 │                            # capabilities) usado por SolutionPage e SentinelPage
 │
+├── content/
+│   ├── articles/            # Artigos MDX da Central de Conteúdos
+│   ├── authors.js           # Autores nominais
+│   ├── categories.js        # Categorias editoriais
+│   └── generated/articles.js # Manifest gerado antes do build
+│
 ├── components/
 │   └── Layout.jsx           # Header (nav, LangToggle, mobile menu) + Footer
 │                            # Importa de shared.jsx e recebe lang/setLang via props
@@ -41,7 +47,11 @@ src/
     ├── CasesPage.jsx         # Cases com métricas e cards
     ├── SobrePage.jsx         # Sobre: tese, princípios, timeline, liderança
     ├── ContatoPage.jsx       # Formulário (Google Apps Script) + FAQ
-    └── PrivacyPage.jsx       # Política de privacidade
+    ├── PrivacyPage.jsx       # Política de privacidade
+    ├── ConteudosPage.jsx     # Central de Conteúdos
+    ├── ArticlePage.jsx       # Template de artigo MDX
+    ├── CategoriaPage.jsx     # Listagem por categoria
+    └── AutorPage.jsx         # Perfil de autor
 ```
 
 ## Páginas e Rotas
@@ -55,6 +65,10 @@ src/
 | `/contato` | `ContatoPage` | `contato` |
 | `/sentinel` | `SentinelPage` | `sentinel` |
 | `/privacidade` | `PrivacyPage` | `privacy` |
+| `/conteudos` | `ConteudosPage` | `conteudos` |
+| `/conteudos/:slug` | `ArticlePage` | artigo |
+| `/conteudos/categoria/:slug` | `CategoriaPage` | categoria |
+| `/autores/:slug` | `AutorPage` | autor |
 
 ## Padrão i18n
 Todo texto visível vive no objeto `T18N` em `src/site/shared.jsx`.
@@ -82,6 +96,32 @@ npm run dev
 ```
 
 > **Gotcha de porta**: nunca rodar container e `npm run dev` ao mesmo tempo — ambos querem a porta 5175. Escolha um ou outro. Para usar Docker, derruba o processo nativo primeiro.
+
+## Central de Conteúdos
+
+A Central de Conteúdos SEO está documentada em `CMS/` e publicada em `/conteudos`.
+
+Padrões técnicos:
+- Artigos ficam em `src/content/articles/*.mdx`.
+- Metadados vivem no frontmatter do artigo.
+- Autores vivem em `src/content/authors.js`.
+- Categorias vivem em `src/content/categories.js`.
+- Antes do build, `scripts/generate-content-manifest.mjs` gera `src/content/generated/articles.js`.
+- Após o build, scripts geram imagens OG, HTML estático por rota de conteúdo e sitemap.
+
+Ao criar ou alterar artigos, rode:
+
+```bash
+npm run build
+```
+
+URLs esperadas:
+- `/conteudos`
+- `/conteudos/[slug]`
+- `/conteudos/categoria/[slug]`
+- `/autores/[slug]`
+
+Regra editorial: conteúdo em pt-BR nos primeiros 12 meses. Não criar versão EN para artigos ainda.
 
 ## Deploy para GitHub Pages
 ```bash

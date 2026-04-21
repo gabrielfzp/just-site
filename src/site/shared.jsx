@@ -10,7 +10,7 @@ export const T18N = {
   "pt-BR": {
     nav: {
       home: "Home", products: "Produtos", technology: "Tecnologia",
-      cases: "Cases", about: "Sobre", contact: "Fale Conosco",
+      cases: "Cases", content: "Conteúdos", about: "Sobre", contact: "Fale Conosco",
     },
     footer: {
       tagline: "Plataforma de produtos financeiros digitais. Tecnologia pronta para operar, escalar e evoluir.",
@@ -299,7 +299,7 @@ export const T18N = {
   "en": {
     nav: {
       home: "Home", products: "Products", technology: "Technology",
-      cases: "Cases", about: "About", contact: "Contact Us",
+      cases: "Cases", content: "Content", about: "About", contact: "Contact Us",
     },
     footer: {
       tagline: "Digital financial product platform. Technology ready to operate, scale and evolve.",
@@ -605,6 +605,22 @@ export const T = {
   borderHover: "rgba(255,255,255,0.18)",
   darkAlt: "#141736",
   footerBg: "#0a0c1e",
+};
+
+export const CONTENT_T = {
+  bg: "#ffffff",
+  band: "#f6f8fb",
+  surface: "#ffffff",
+  surfaceSoft: "#f8fafc",
+  surfaceWarm: "#fff7f5",
+  navy: "#10243f",
+  navySoft: "#18365a",
+  text: "#273347",
+  muted: "#647084",
+  mutedStrong: "#45556c",
+  border: "#dbe3ee",
+  borderStrong: "#c7d3e3",
+  red: "#f45546",
 };
 
 // Product identity colors (cada vertical com cor propria)
