@@ -34,6 +34,38 @@ O build gera:
 - HTML estático da Central de Conteúdos, artigos, categorias e autores.
 - Imagens Open Graph dos artigos.
 - Sitemap atualizado.
+- `llms.txt` e versões Markdown dos artigos.
+
+## SEO, Analytics e LLMO
+
+O site tem suporte opcional a GA4, Plausible, verificações de Search Console/Bing e eventos de conversão.
+
+Crie um `.env` local a partir de `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+Variáveis:
+
+- `VITE_GA4_ID`: Measurement ID do GA4, exemplo `G-XXXXXXXXXX`.
+- `VITE_PLAUSIBLE_DOMAIN`: domínio no Plausible, exemplo `wearejust.it`.
+- `VITE_PLAUSIBLE_SRC`: script do Plausible. Use o padrão se não houver proxy próprio.
+- `VITE_GOOGLE_SITE_VERIFICATION`: token da meta tag do Google Search Console.
+- `VITE_BING_SITE_VERIFICATION`: token da meta tag do Bing Webmaster.
+
+Eventos enviados quando analytics estiver configurado:
+
+- `contact_page_view`: visita em `/contato`.
+- `contact_cta_click`: clique em CTAs para contato.
+- `contact_form_submit`: envio de formulário.
+- `contact_form_error`: erro no formulário.
+- `whatsapp_click`: clique no WhatsApp.
+- `author_linkedin_click`: clique no LinkedIn do autor.
+- `company_linkedin_click`: clique no LinkedIn da empresa.
+- `article_view`: visualização de artigo.
+- `article_read_progress`: leitura em 25%, 50%, 75% e 100%.
+- `llm_referral`: visita referenciada por ChatGPT, Perplexity, Claude, Gemini, Copilot ou similares.
 
 ## Central de Conteúdos
 

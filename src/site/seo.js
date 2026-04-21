@@ -16,6 +16,12 @@ export const SITE_KNOWS_ABOUT = [
   "antifraude transacional",
 ];
 
+const env = import.meta.env || {};
+const VERIFICATION_META = [
+  { name: "google-site-verification", content: env.VITE_GOOGLE_SITE_VERIFICATION },
+  { name: "msvalidate.01", content: env.VITE_BING_SITE_VERIFICATION },
+].filter((item) => item.content);
+
 export const PAGE_SEO = {
   home: {
     path: "/",
@@ -175,6 +181,12 @@ function removeNode(selector) {
   document.head.querySelector(selector)?.remove();
 }
 
+function applyVerificationMeta() {
+  VERIFICATION_META.forEach((meta) => {
+    upsertMeta(`meta[name='${meta.name}']`, { name: meta.name, content: meta.content });
+  });
+}
+
 function upsertJsonLd(data) {
   let node = document.getElementById("just-jsonld");
   if (!node) {
@@ -293,6 +305,7 @@ export function applySeo(seo, lang) {
   upsertMeta("meta[name='twitter:title']", { name: "twitter:title", content: seo.title });
   upsertMeta("meta[name='twitter:description']", { name: "twitter:description", content: seo.description });
   upsertMeta("meta[name='twitter:image']", { name: "twitter:image", content: seo.image });
+  applyVerificationMeta();
   if (seo.article) {
     upsertMeta("meta[property='article:published_time']", { property: "article:published_time", content: seo.article.publishedAt });
     upsertMeta("meta[property='article:modified_time']", { property: "article:modified_time", content: seo.article.updatedAt });

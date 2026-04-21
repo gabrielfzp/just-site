@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Btn, EcosystemAnimation, HeroOrbital, Metric, ProductIcon, ProductMockup, PRODUCT_COLORS, Reveal, SectionTitle, T, T18N, Tag } from "../site/shared.jsx";
+import { trackEvent } from "../lib/analytics.js";
 
 export default function ContatoPage({ lang }) {
   const tr = (T18N[lang] || T18N["pt-BR"]).contato;
@@ -15,6 +16,7 @@ export default function ContatoPage({ lang }) {
     setError("");
     if (!form.nome || !form.email || !form.empresa || !form.produto) {
       setError(tr.errorRequired);
+      trackEvent("contact_form_error", { reason: "required_fields" });
       return;
     }
     setSending(true);
@@ -33,9 +35,15 @@ export default function ContatoPage({ lang }) {
         }),
       });
       setSent(true);
+      trackEvent("contact_form_submit", {
+        product: form.produto,
+        has_phone: Boolean(form.telefone),
+        has_project: Boolean(form.projeto),
+      });
     } catch (err) {
       console.error("Form submission error:", err);
       setError(tr.errorSend);
+      trackEvent("contact_form_error", { reason: "send_error" });
     } finally {
       setSending(false);
     }
@@ -118,5 +126,4 @@ export default function ContatoPage({ lang }) {
     </div>
   );
 }
-
 

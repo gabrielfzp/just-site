@@ -3,6 +3,7 @@ import { BrowserRouter, useNavigate, useLocation } from "react-router-dom";
 import { CONTENT_T, ErrorBoundary, LangContext, T } from "./site/shared.jsx";
 import { applySeo, getSeo } from "./site/seo.js";
 import { Header, Footer } from "./components/Layout.jsx";
+import { initAnalytics, maybeTrackLlmReferral, trackEvent, trackPageView } from "./lib/analytics.js";
 import HomePage from "./pages/HomePage.jsx";
 import SobrePage from "./pages/SobrePage.jsx";
 import StackPage from "./pages/StackPage.jsx";
@@ -39,6 +40,12 @@ function AppContent() {
   };
 
   const setPage = (p) => {
+    if (p === "contato") {
+      trackEvent("contact_cta_click", {
+        source: "internal_navigation",
+        from_path: location.pathname,
+      });
+    }
     const qs = new URLSearchParams(location.search).toString();
     const target = (p === "home" ? "/" : `/${p}`) + (qs ? "?" + qs : "");
     navigate(target);
@@ -53,6 +60,64 @@ function AppContent() {
     const contentRoute = routeKey === "conteudos" || routeKey.startsWith("conteudos/") || routeKey.startsWith("autores/");
     if (!contentRoute) applySeo(getSeo(routeKey, lang), lang);
   }, [routeKey, lang]);
+
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
+  useEffect(() => {
+    const path = `${location.pathname}${location.search}${location.hash}`;
+    trackPageView(path);
+    maybeTrackLlmReferral(path);
+    if (location.pathname === "/contato") {
+      trackEvent("contact_page_view", { path });
+    }
+  }, [location.pathname, location.search, location.hash]);
+
+  useEffect(() => {
+    const handleTrackedClick = (event) => {
+      const anchor = event.target.closest?.("a[href]");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") || "";
+      const label = anchor.textContent?.trim().slice(0, 80) || anchor.getAttribute("aria-label") || "";
+
+      if (href.includes("wa.me") || href.includes("api.whatsapp.com")) {
+        trackEvent("whatsapp_click", {
+          source: anchor.title || label || "link",
+          from_path: location.pathname,
+        });
+        return;
+      }
+
+      if (href === "/contato" || href.startsWith("/contato?")) {
+        trackEvent("contact_cta_click", {
+          source: label || "link",
+          from_path: location.pathname,
+        });
+        return;
+      }
+
+      if (href.includes("linkedin.com/in/")) {
+        trackEvent("author_linkedin_click", {
+          source: label || "linkedin",
+          from_path: location.pathname,
+          href,
+        });
+        return;
+      }
+
+      if (href.includes("linkedin.com/company/")) {
+        trackEvent("company_linkedin_click", {
+          source: label || "linkedin",
+          from_path: location.pathname,
+          href,
+        });
+      }
+    };
+
+    document.addEventListener("click", handleTrackedClick);
+    return () => document.removeEventListener("click", handleTrackedClick);
+  }, [location.pathname]);
 
   const render = () => {
     if (routeKey === "home") return <HomePage setPage={setPage} lang={lang} />;

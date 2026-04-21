@@ -32,6 +32,19 @@ export function updateCanonical(html, href) {
   );
 }
 
+export function updateVerificationMeta(html) {
+  const verifications = [
+    { name: "google-site-verification", content: process.env.VITE_GOOGLE_SITE_VERIFICATION },
+    { name: "msvalidate.01", content: process.env.VITE_BING_SITE_VERIFICATION },
+  ].filter((item) => item.content);
+
+  let nextHtml = html;
+  verifications.forEach((verification) => {
+    nextHtml = updateMetaName(nextHtml, verification.name, verification.content);
+  });
+  return nextHtml;
+}
+
 export function updateMarkdownAlternate(html, href) {
   const pattern = /<link rel="alternate" type="text\/markdown" href="[^"]*"\s*\/?>/;
   if (!href) return html.replace(new RegExp(`\\s*${pattern.source}`, "g"), "");
@@ -82,6 +95,7 @@ export function applyHtmlSeo(baseHtml, seo) {
     if (tags) html = html.replace("</head>", `${tags}\n  </head>`);
   }
   html = updateCanonical(html, seo.canonical);
+  html = updateVerificationMeta(html);
   html = updateMarkdownAlternate(html, seo.markdown);
   html = withManagedSeoBlock(html, seo);
 

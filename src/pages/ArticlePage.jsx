@@ -9,6 +9,7 @@ import { getArticleBySlug, getRelatedArticles } from "../lib/content-loader.js";
 import { applySeo } from "../site/seo.js";
 import { getArticleSeo } from "../site/content-seo.js";
 import { CONTENT_T, T } from "../site/shared.jsx";
+import { trackEvent } from "../lib/analytics.js";
 
 const mdxComponents = {
   InlineCTA,
@@ -21,6 +22,39 @@ export default function ArticlePage({ slug }) {
 
   useEffect(() => {
     if (article) applySeo(getArticleSeo(article), "pt-BR");
+  }, [article]);
+
+  useEffect(() => {
+    if (!article) return undefined;
+    const trackedMilestones = new Set();
+
+    trackEvent("article_view", {
+      slug: article.slug,
+      cluster: article.cluster,
+      category: article.categorySlug,
+      type: article.type,
+    });
+
+    const handleScroll = () => {
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (documentHeight <= 0) return;
+      const progress = Math.min(100, Math.round((window.scrollY / documentHeight) * 100));
+      [25, 50, 75, 100].forEach((milestone) => {
+        if (progress >= milestone && !trackedMilestones.has(milestone)) {
+          trackedMilestones.add(milestone);
+          trackEvent("article_read_progress", {
+            slug: article.slug,
+            cluster: article.cluster,
+            category: article.categorySlug,
+            milestone,
+          });
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [article]);
 
   if (!article) {
