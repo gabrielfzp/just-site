@@ -140,10 +140,22 @@ function AppContent() {
         <div style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", background: T.primary, minHeight: "100vh", WebkitFontSmoothing: "antialiased" }}>
         <style>{`
           * { margin: 0; padding: 0; box-sizing: border-box; }
-          html, body { overflow-x: hidden; width: 100%; }
+          html, body { overflow-x: hidden; width: 100%; background: #0f112b; }
           ::selection { background: rgba(244,85,70,0.3); }
           input:focus, textarea:focus, select:focus { border-color: ${T.cta} !important; }
           button:focus { outline: none; }
+          .desktop-nav .nav-link:hover { color: ${T.textLight} !important; }
+          .desktop-nav .nav-link-active::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            width: 26px;
+            height: 1px;
+            transform: translateX(-50%);
+            background: ${T.cta};
+            border-radius: 999px;
+          }
 
 @media (max-width: 900px) {
   .desktop-nav { display: none !important; }
@@ -242,6 +254,29 @@ function AppContent() {
   }
   .section-social-proof {
     padding: 28px 24px 40px !important;
+  }
+  .section-why-just {
+    padding: 84px 28px !important;
+  }
+  .why-just-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+  }
+  .just-pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .just-pillar {
+    min-height: auto !important;
+    padding: 30px 0 34px !important;
+    border-right: none !important;
+    border-bottom: 1px solid ${T.borderLight} !important;
+  }
+  .just-pillars-grid > div:last-child .just-pillar {
+    border-bottom: none !important;
+  }
+  .just-pillar h3 {
+    font-size: 34px !important;
   }
   .social-logos {
     display: grid !important;
@@ -368,6 +403,24 @@ function AppContent() {
   }
   .section-social-proof {
     padding: 24px 24px 42px !important;
+  }
+  .section-why-just {
+    padding: 76px 24px !important;
+  }
+  .why-just-title {
+    font-size: clamp(52px, 13.8vw, 59px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.058em !important;
+  }
+  .just-pillar {
+    padding: 28px 0 32px !important;
+  }
+  .just-pillar h3 {
+    font-size: 30px !important;
+    margin-bottom: 18px !important;
+  }
+  .just-pillar p {
+    font-size: 15px !important;
   }
   .social-logos {
     grid-template-columns: repeat(3, minmax(64px, 1fr)) !important;

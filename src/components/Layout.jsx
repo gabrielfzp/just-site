@@ -2,17 +2,23 @@ import { useEffect, useState } from "react";
 import { Btn, JustLogo, ProductIcon, PRODUCT_COLORS, T, T18N, useLang } from "../site/shared.jsx";
 
 function LangToggle({ mobile = false, lang, setLang }) {
+  const optionStyle = (active) => ({
+    padding: 0,
+    border: "none",
+    background: "none",
+    cursor: "pointer",
+    color: active ? T.textLight : "rgba(242,244,248,0.34)",
+    fontSize: mobile ? 13 : 12,
+    fontWeight: 500,
+    letterSpacing: "0.02em",
+    transition: "color 0.2s, opacity 0.2s",
+  });
+
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: mobile ? 0 : 8 }}>
-      {["pt-BR", "en"].map((l) => (
-        <button key={l} onClick={() => setLang(l)} style={{
-          padding: "5px 10px", borderRadius: 6, fontSize: 11, fontWeight: 700,
-          cursor: "pointer", border: `1px solid ${lang === l ? "rgba(244,85,70,0.4)" : "rgba(255,255,255,0.1)"}`,
-          background: lang === l ? "rgba(244,85,70,0.1)" : "transparent",
-          color: lang === l ? T.cta : "rgba(242,244,248,0.4)",
-          transition: "all 0.2s", letterSpacing: "0.03em",
-        }}>{l === "pt-BR" ? "PT" : "EN"}</button>
-      ))}
+    <div style={{ display: "flex", alignItems: "center", gap: 6, marginLeft: mobile ? 0 : 8, color: "rgba(242,244,248,0.44)", fontSize: mobile ? 13 : 12 }}>
+      <button onClick={() => setLang("pt-BR")} style={optionStyle(lang === "pt-BR")}>PT</button>
+      <span style={{ opacity: 0.55 }}>/</span>
+      <button onClick={() => setLang("en")} style={optionStyle(lang === "en")}>EN</button>
     </div>
   );
 }
@@ -33,15 +39,21 @@ export function Header({ page, setPage, lang }) {
     return () => window.removeEventListener("scroll", h);
   }, []);
   const nav = (p) => { setPage(p); setDropOpen(false); setMobileOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const isActive = (p) => p === "conteudos" ? isContentPage : page === p;
+  const productRouteKeys = ["beneficios", "frotas", "banking", "despesas", "antecipacao", "sob-demanda", "sentinel"];
+  const isActive = (p) => {
+    if (p === "conteudos") return isContentPage;
+    if (p === "solucoes") return productRouteKeys.includes(page);
+    return page === p;
+  };
   const lnk = (p) => ({
-    color: isActive(p) ? T.cta : "rgba(242,244,248,0.8)",
+    color: isActive(p) ? T.textLight : "rgba(242,244,248,0.68)",
     fontSize: 14,
     fontWeight: 500,
     cursor: "pointer",
     background: "none",
     border: "none",
     padding: "8px 14px",
+    position: "relative",
     transition: "color 0.2s",
   });
 
@@ -71,9 +83,9 @@ export function Header({ page, setPage, lang }) {
 
       {/* Desktop nav - hidden on mobile via CSS */}
       <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <button style={lnk("home")} onClick={() => nav("home")}>{tr.nav.home}</button>
+        <button className={`nav-link ${isActive("home") ? "nav-link-active" : ""}`} style={lnk("home")} onClick={() => nav("home")}>{tr.nav.home}</button>
         <div style={{ position: "relative" }} onMouseEnter={() => setDropOpen(true)} onMouseLeave={() => setDropOpen(false)}>
-          <button style={lnk("solucoes")}>{tr.nav.products} &#9662;</button>
+          <button className={`nav-link ${isActive("solucoes") ? "nav-link-active" : ""}`} style={lnk("solucoes")}>{tr.nav.products} &#9662;</button>
           {dropOpen && (
             <div style={{
               position: "absolute", top: "100%", left: -20, background: "rgba(15,17,43,0.98)",
@@ -99,10 +111,10 @@ export function Header({ page, setPage, lang }) {
             </div>
           )}
         </div>
-        <button style={lnk("stack")} onClick={() => nav("stack")}>{tr.nav.technology}</button>
-        <button style={lnk("cases")} onClick={() => nav("cases")}>{tr.nav.cases}</button>
-        <button style={lnk("conteudos")} onClick={() => nav("conteudos")}>{tr.nav.content}</button>
-        <button style={lnk("sobre")} onClick={() => nav("sobre")}>{tr.nav.about}</button>
+        <button className={`nav-link ${isActive("stack") ? "nav-link-active" : ""}`} style={lnk("stack")} onClick={() => nav("stack")}>{tr.nav.technology}</button>
+        <button className={`nav-link ${isActive("cases") ? "nav-link-active" : ""}`} style={lnk("cases")} onClick={() => nav("cases")}>{tr.nav.cases}</button>
+        <button className={`nav-link ${isActive("conteudos") ? "nav-link-active" : ""}`} style={lnk("conteudos")} onClick={() => nav("conteudos")}>{tr.nav.content}</button>
+        <button className={`nav-link ${isActive("sobre") ? "nav-link-active" : ""}`} style={lnk("sobre")} onClick={() => nav("sobre")}>{tr.nav.about}</button>
         <LangToggle lang={lang} setLang={setLang} />
         <Btn onClick={() => nav("contato")} size="sm" style={{ marginLeft: 8 }}>{tr.nav.contact}</Btn>
       </nav>
