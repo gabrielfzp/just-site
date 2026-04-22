@@ -203,11 +203,10 @@ function AppContent() {
     display: none !important;
   }
   .section-hero {
-    min-height: 78vh !important;
-    min-height: 78svh !important;
+    min-height: auto !important;
     display: flex !important;
     align-items: flex-start !important;
-    padding: 132px 28px 42px !important;
+    padding: 116px 28px 46px !important;
   }
   .hero-grid {
     grid-template-columns: minmax(0, 1fr) !important;
@@ -217,7 +216,9 @@ function AppContent() {
     align-items: start !important;
   }
   .hero-grid > div:first-child {
+    width: 100% !important;
     max-width: 680px !important;
+    min-width: 0 !important;
     min-height: auto !important;
     display: flex !important;
     flex-direction: column !important;
@@ -234,6 +235,9 @@ function AppContent() {
     line-height: 1.02 !important;
     letter-spacing: -0.055em !important;
     margin: 28px 0 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
   }
   .hero-grid p {
     max-width: 34ch !important;
@@ -362,9 +366,8 @@ function AppContent() {
 }
 @media (max-width: 520px) {
   .section-hero {
-    min-height: 78vh !important;
-    min-height: 78svh !important;
-    padding: 144px 24px 36px !important;
+    min-height: auto !important;
+    padding: 104px 24px 42px !important;
   }
   .hero-grid {
     min-height: auto !important;
@@ -379,10 +382,13 @@ function AppContent() {
     letter-spacing: 0.09em !important;
   }
   .hero-title {
-    font-size: clamp(52px, 13.8vw, 59px) !important;
+    font-size: clamp(38px, 10vw, 42px) !important;
     line-height: 1.03 !important;
     letter-spacing: -0.058em !important;
     margin: 30px 0 22px !important;
+    width: 100% !important;
+    max-width: calc(100vw - 48px) !important;
+    overflow-wrap: break-word !important;
   }
   .hero-grid p {
     font-size: 16px !important;

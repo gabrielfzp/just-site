@@ -2185,7 +2185,7 @@ export function HeroOrbital({ trProd }) {
   header { padding: 0 20px !important; }
 
   /* --- Global section padding --- */
-  .section-hero { padding: 100px 24px 60px !important; }
+  .section-hero { min-height: auto !important; padding: 116px 28px 46px !important; }
   .section-social-proof { padding: 24px 20px !important; }
   .section-depara { padding: 72px 20px !important; }
   .section-products { padding: 72px 20px !important; }
@@ -2200,9 +2200,18 @@ export function HeroOrbital({ trProd }) {
     grid-template-columns: 1fr !important;
     gap: 40px !important;
   }
+  .hero-grid > div:first-child {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
   .hero-title {
-    font-size: 36px !important;
-    line-height: 1.1 !important;
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+    margin: 28px 0 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
   }
   .hero-grid p {
     font-size: 16px !important;
@@ -2399,9 +2408,15 @@ export function HeroOrbital({ trProd }) {
 
 @media (max-width: 520px) {
   /* --- Extra small screens --- */
-  .section-hero { padding: 80px 16px 48px !important; }
+  .section-hero { min-height: auto !important; padding: 104px 24px 42px !important; }
   .hero-title {
-    font-size: 28px !important;
+    font-size: clamp(38px, 10vw, 42px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.058em !important;
+    margin: 30px 0 22px !important;
+    width: 100% !important;
+    max-width: calc(100vw - 48px) !important;
+    overflow-wrap: break-word !important;
   }
   .hero-grid p {
     font-size: 15px !important;

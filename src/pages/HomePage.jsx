@@ -39,7 +39,7 @@ export default function HomePage({ setPage, lang }) {
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <h1 className="hero-title" style={{ fontSize: 60, fontWeight: 800, color: T.textLight, lineHeight: 1.06, letterSpacing: "-0.035em", margin: "20px 0" }}>
+              <h1 className="hero-title" style={{ fontSize: 70, fontWeight: 800, color: T.textLight, lineHeight: 1.06, letterSpacing: "-0.035em", margin: "20px 0" }}>
                 {tr.heroLine1}<br />{tr.heroLine2}<br /><span style={{ color: "rgba(242,244,248,0.68)" }}>{tr.heroLine3}</span>
               </h1>
             </Reveal>
