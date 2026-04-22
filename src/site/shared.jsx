@@ -22,7 +22,7 @@ export const T18N = {
     home: {
       heroTag: "Plataforma de produtos financeiros",
       heroLine1: "Sua fintech.", heroLine2: "Pronta para operar",
-      heroLine3: "em semanas, não meses.",
+      heroLine3: "em semanas, não anos.",
       heroSubtitle: "Plataformas financeiras completas, com tecnologia modular e integrações prontas para escalar.",
       step1: "Configure", step2: "Personalize", step3: "Lance",
       cta1: "Fale com um especialista", cta2: "Ver cases",
@@ -311,7 +311,7 @@ export const T18N = {
     home: {
       heroTag: "Financial product platform",
       heroLine1: "Your fintech.", heroLine2: "Ready to operate",
-      heroLine3: "in weeks, not months.",
+      heroLine3: "in weeks, not years.",
       heroSubtitle: "Complete financial platforms, with modular technology and integrations ready to scale.",
       step1: "Configure", step2: "Customize", step3: "Launch",
       cta1: "Talk to a specialist", cta2: "View cases",
@@ -2173,6 +2173,8 @@ export function HeroOrbital({ trProd }) {
 .about-metric { padding: 24px 12px; text-align: center; }
 .about-metric-value { font-size: 36px; font-weight: 700; color: #f2f4f8; letter-spacing: -0.02em; }
 .about-metric-label { font-size: 12px; color: rgba(242,244,248,0.35); margin-top: 8px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+.hero-title-mobile { display: none; }
+.hero-title-desktop { display: inline; }
 
 
 
@@ -2410,13 +2412,19 @@ export function HeroOrbital({ trProd }) {
   /* --- Extra small screens --- */
   .section-hero { min-height: auto !important; padding: 104px 24px 42px !important; }
   .hero-title {
-    font-size: clamp(38px, 10vw, 42px) !important;
-    line-height: 1.03 !important;
+    font-size: clamp(46px, 12.6vw, 50px) !important;
+    line-height: 0.98 !important;
     letter-spacing: -0.058em !important;
     margin: 30px 0 22px !important;
     width: 100% !important;
     max-width: calc(100vw - 48px) !important;
     overflow-wrap: break-word !important;
+  }
+  .hero-title-desktop {
+    display: none !important;
+  }
+  .hero-title-mobile {
+    display: inline !important;
   }
   .hero-grid p {
     font-size: 15px !important;

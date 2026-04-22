@@ -7,12 +7,15 @@ export default function HomePage({ setPage, lang }) {
   const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
   const tr = (T18N[lang] || T18N["pt-BR"]).home;
   const trProd = (T18N[lang] || T18N["pt-BR"]).products;
+  const heroMobile = lang === "en"
+    ? { line1: "Your fintech.", line2: "Ready to", line3: "operate in", line4: "weeks,", line5: "not years." }
+    : { line1: "Sua fintech.", line2: "Pronta para", line3: "operar em", line4: "semanas,", line5: "não anos." };
   const justPillars = lang === "en" ? [
-    ["01", "Weeks, not months.", "A stack that is 70% to 80% ready and already running in production. You bring the brand, journey and rules. Go live in weeks, not years."],
+    ["01", "Weeks, not years.", "A stack that is 70% to 80% ready and already running in production. You bring the brand, journey and rules. Go live in weeks, not years."],
     ["02", "Freedom by design.", "Multi-provider architecture. Change provider, BaaS partner or business rule without rebuilding the product."],
     ["03", "Your product. Not ours.", "We design the journey, rules and visual layer around your business logic. The code is ours; the product is yours."],
   ] : [
-    ["01", "Semanas, não meses.", "Stack com 70 a 80% pronta e em produção. Você entra com marca, jornada e regras. Go-live em semanas, não anos."],
+    ["01", "Semanas, não anos.", "Stack com 70 a 80% pronta e em produção. Você entra com marca, jornada e regras. Go-live em semanas, não anos."],
     ["02", "Liberdade por design.", "Arquitetura multi-provider. Troque de provedor, BaaS ou regra de negócio, sem reescrever o produto."],
     ["03", "Seu produto. Não o nosso.", "Desenhamos jornada, regras e visual a partir da sua lógica de negócio. O código é nosso; o produto é seu."],
   ];
@@ -40,7 +43,15 @@ export default function HomePage({ setPage, lang }) {
             </Reveal>
             <Reveal delay={0.1}>
               <h1 className="hero-title" style={{ fontSize: 70, fontWeight: 800, color: T.textLight, lineHeight: 1.06, letterSpacing: "-0.035em", margin: "20px 0" }}>
-                {tr.heroLine1}<br />{tr.heroLine2}<br /><span style={{ color: "rgba(242,244,248,0.68)" }}>{tr.heroLine3}</span>
+                <span className="hero-title-desktop">
+                  {tr.heroLine1}<br />{tr.heroLine2}<br /><span style={{ color: "rgba(242,244,248,0.68)" }}>{tr.heroLine3}</span>
+                </span>
+                <span className="hero-title-mobile" aria-hidden="true">
+                  {heroMobile.line1}<br />{heroMobile.line2}<br />
+                  <span>{heroMobile.line3.split(" ")[0]} </span><span style={{ color: "rgba(242,244,248,0.68)" }}>{heroMobile.line3.split(" ").slice(1).join(" ")}</span><br />
+                  <span style={{ color: "rgba(242,244,248,0.68)" }}>{heroMobile.line4}</span><br />
+                  <span style={{ color: "rgba(242,244,248,0.68)" }}>{heroMobile.line5}</span>
+                </span>
               </h1>
             </Reveal>
             <Reveal delay={0.25}>

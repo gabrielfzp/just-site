@@ -156,6 +156,8 @@ function AppContent() {
             background: ${T.cta};
             border-radius: 999px;
           }
+          .hero-title-mobile { display: none; }
+          .hero-title-desktop { display: inline; }
 
 @media (max-width: 900px) {
   .desktop-nav { display: none !important; }
@@ -382,13 +384,19 @@ function AppContent() {
     letter-spacing: 0.09em !important;
   }
   .hero-title {
-    font-size: clamp(38px, 10vw, 42px) !important;
-    line-height: 1.03 !important;
+    font-size: clamp(46px, 12.6vw, 50px) !important;
+    line-height: 0.98 !important;
     letter-spacing: -0.058em !important;
     margin: 30px 0 22px !important;
     width: 100% !important;
     max-width: calc(100vw - 48px) !important;
     overflow-wrap: break-word !important;
+  }
+  .hero-title-desktop {
+    display: none !important;
+  }
+  .hero-title-mobile {
+    display: inline !important;
   }
   .hero-grid p {
     font-size: 16px !important;
