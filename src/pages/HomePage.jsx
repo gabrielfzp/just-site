@@ -194,9 +194,9 @@ export default function HomePage({ setPage, lang }) {
             {[
               { key: "beneficios", size: "wide", label: "JUST Benefits", title: "Benefícios flexíveis com\narranjo customizável", badge: "Arranjo aberto, fechado ou híbrido", color: PRODUCT_COLORS.beneficios.accent, colorLight: "#A29BFE" },
               { key: "frotas", size: "narrow", label: "JUST Fleet", title: "Controle financeiro\npor veículo", badge: "Abastecimento + pedágio com integrações nativas", color: PRODUCT_COLORS.frotas.accent, colorLight: "#55EFC4" },
-              { key: "banking", size: "narrow", label: "JUST Banking", title: "Conta, cartão e PIX\nwhite-label", badge: "Conta + cartão + PIX sobre BaaS regulado", color: PRODUCT_COLORS.banking.accent, colorLight: "#74B9FF" },
+              { key: "banking", size: "narrow", label: "JUST Banking", title: "Conta, cartão e PIX\ncom sua marca", badge: "Conta + cartão + PIX sobre BaaS regulado", color: PRODUCT_COLORS.banking.accent, colorLight: "#74B9FF" },
               { key: "despesas", size: "wide", label: "JUST Expense", title: "Cartões corporativos com\npolíticas inteligentes", badge: "Políticas inteligentes + conciliação automática", color: PRODUCT_COLORS.despesas.accent, colorLight: "#FAB1A0" },
-              { key: "antecipacao", size: "wide", label: "JUST Credit", title: "Produtos de crédito\nwhite-label", badge: "Private label, antecipação e recebíveis", color: PRODUCT_COLORS.antecipacao.accent, colorLight: "#FFEAA7" },
+              { key: "antecipacao", size: "wide", label: "JUST Credit", title: "Produtos de crédito\nsob medida", badge: "Private label, antecipação e recebíveis", color: PRODUCT_COLORS.antecipacao.accent, colorLight: "#FFEAA7" },
               { key: "sob-demanda", size: "narrow", label: "JUST Custom", title: "Produto sob medida?\nConstruimos.", badge: "Sob medida", color: PRODUCT_COLORS["sob-demanda"].accent, colorLight: "#B2BEC3" },
             ].map((card, i) => (
               <Reveal key={card.key} delay={i * 0.06}>
@@ -564,7 +564,7 @@ export default function HomePage({ setPage, lang }) {
                   <p className="step-desc">{tr.process2Desc}</p>
                   <div className="step-details">
                     <span className="step-tag" style={{ background: "rgba(108,92,231,0.06)", color: "rgba(108,92,231,0.6)" }}>Modulos ativados</span>
-                    <span className="step-tag" style={{ background: "rgba(108,92,231,0.06)", color: "rgba(108,92,231,0.6)" }}>White-label</span>
+                    <span className="step-tag" style={{ background: "rgba(108,92,231,0.06)", color: "rgba(108,92,231,0.6)" }}>Sua marca</span>
                     <span className="step-tag" style={{ background: "rgba(108,92,231,0.06)", color: "rgba(108,92,231,0.6)" }}>Regras de negocio</span>
                   </div>
                 </div>

@@ -3,7 +3,7 @@ export const AUTHORS = {
     slug: "gabriel-pires",
     name: "Gabriel Pires",
     role: "Founder & CEO da JUST",
-    bio: "Especialista em produtos financeiros digitais, meios de pagamento e plataformas white-label.",
+    bio: "Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.",
     linkedin: "https://www.linkedin.com/in/gabrielfzp/",
     avatar: "/authors/gabriel-pires.jpeg",
     avatarPosition: "40% 25%",

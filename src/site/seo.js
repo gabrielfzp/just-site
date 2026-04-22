@@ -1,7 +1,7 @@
 export const SITE_URL = "https://wearejust.it";
 export const SITE_BRAND_NAME = "JUST";
 export const SITE_NAME = "JUST Fintechs";
-export const SITE_DESCRIPTION = "Crie sua fintech com a JUST: plataformas white-label para cartões, banking, benefícios, frotas, despesas e crédito, prontas para operar em escala.";
+export const SITE_DESCRIPTION = "Crie sua fintech com a JUST: tecnologia para cartões, banking, benefícios, frotas, despesas e crédito, pronta para operar em escala.";
 export const DEFAULT_IMAGE = `${SITE_URL}/logo-just.png`;
 export const SITE_SAME_AS = [
   "https://www.linkedin.com/company/wearejust-it",
@@ -9,7 +9,7 @@ export const SITE_SAME_AS = [
 export const SITE_KNOWS_ABOUT = [
   "produtos financeiros digitais",
   "cartões private label",
-  "cartões white label",
+  "plataformas financeiras modulares",
   "banking as a service",
   "meios de pagamento",
   "gestão de despesas corporativas",
@@ -32,7 +32,7 @@ export const PAGE_SEO = {
     },
     description: {
       "pt-BR": SITE_DESCRIPTION,
-      en: "Launch your fintech with JUST: white-label platforms for cards, banking, benefits, fleet, expenses and credit, ready to operate at scale.",
+      en: "Launch your fintech with JUST: technology for cards, banking, benefits, fleet, expenses and credit, ready to operate at scale.",
     },
   },
   sobre: {
@@ -64,8 +64,8 @@ export const PAGE_SEO = {
       en: "JUST Cases | Financial products in operation",
     },
     description: {
-      "pt-BR": "Veja cases de produtos financeiros construídos e operados pela JUST em benefícios, frotas, banking, despesas e soluções white-label.",
-      en: "Explore financial products built and operated by JUST across benefits, fleet, banking, expenses and white-label solutions.",
+      "pt-BR": "Veja cases de produtos financeiros construídos e operados pela JUST em benefícios, frotas, banking, despesas e soluções sob demanda.",
+      en: "Explore financial products built and operated by JUST across benefits, fleet, banking, expenses and custom solutions.",
     },
   },
   contato: {
@@ -75,8 +75,8 @@ export const PAGE_SEO = {
       en: "Contact | JUST",
     },
     description: {
-      "pt-BR": "Fale com a JUST para avaliar, desenhar e lançar seu produto financeiro digital white-label com tecnologia modular e operação especializada.",
-      en: "Contact JUST to evaluate, design and launch your white-label digital financial product with modular technology and specialized operations.",
+      "pt-BR": "Fale com a JUST para avaliar, desenhar e lançar seu produto financeiro digital com tecnologia modular e operação especializada.",
+      en: "Contact JUST to evaluate, design and launch your digital financial product with modular technology and specialized operations.",
     },
   },
   privacidade: {
@@ -105,12 +105,12 @@ export const PAGE_SEO = {
   conteudos: {
     path: "/conteudos",
     title: "Conteúdos JUST | Guias sobre produtos financeiros digitais",
-    description: "Guias, análises e materiais técnicos sobre cartões, meios de pagamento, BaaS, benefícios, frotas, antifraude e produtos financeiros white-label.",
+    description: "Guias, análises e materiais técnicos sobre cartões, meios de pagamento, BaaS, benefícios, frotas, antifraude e produtos financeiros digitais.",
   },
   beneficios: {
     path: "/beneficios",
-    title: "JUST Benefits | Benefícios flexíveis white-label",
-    description: "Plataforma white-label para benefícios flexíveis com múltiplos saldos, regras customizáveis, arranjos aberto, fechado ou híbrido e controle operacional.",
+    title: "JUST Benefits | Benefícios flexíveis com sua marca",
+    description: "Plataforma para benefícios flexíveis com múltiplos saldos, regras customizáveis, arranjos aberto, fechado ou híbrido e controle operacional.",
     serviceType: "Employee benefits financial platform",
   },
   frotas: {
@@ -121,9 +121,9 @@ export const PAGE_SEO = {
   },
   banking: {
     path: "/banking",
-    title: "JUST Banking | Banking digital white-label",
-    description: "Banking digital white-label para empresas com conta, cartão, PIX, transferências e funcionalidades bancárias integradas ao seu produto.",
-    serviceType: "White-label banking platform",
+    title: "JUST Banking | Banking digital para empresas",
+    description: "Banking digital para empresas com conta, cartão, PIX, transferências e funcionalidades bancárias integradas ao seu produto.",
+    serviceType: "Digital banking platform",
   },
   despesas: {
     path: "/despesas",
@@ -133,9 +133,9 @@ export const PAGE_SEO = {
   },
   antecipacao: {
     path: "/antecipacao",
-    title: "JUST Credit | Crédito e antecipação white-label",
-    description: "Produtos de crédito white-label, private label, antecipação e recebíveis integrados ao seu negócio com governança e compliance.",
-    serviceType: "White-label credit platform",
+    title: "JUST Credit | Crédito e antecipação",
+    description: "Produtos de crédito, private label, antecipação e recebíveis integrados ao seu negócio com governança e compliance.",
+    serviceType: "Credit platform",
   },
   "sob-demanda": {
     path: "/sob-demanda",

@@ -1,6 +1,6 @@
 ﻿# JUST Fintechs
 
-> Crie sua fintech com a JUST: plataformas white-label para cartões, banking, benefícios, frotas, despesas e crédito, prontas para operar em escala.
+> Crie sua fintech com a JUST: tecnologia para cartões, banking, benefícios, frotas, despesas e crédito, pronta para operar em escala.
 
 Este arquivo lista as paginas mais importantes da JUST para assistentes de IA, mecanismos de resposta e crawlers que desejam entender ou citar o conteudo publicado pela empresa.
 
@@ -63,7 +63,7 @@ Tags: white-label, private-label, cartões, BaaS, emissão, comparativo
 
 ## Autores
 
-- Gabriel Pires: https://wearejust.it/autores/gabriel-pires — Founder & CEO da JUST. Especialista em produtos financeiros digitais, meios de pagamento e plataformas white-label.
+- Gabriel Pires: https://wearejust.it/autores/gabriel-pires — Founder & CEO da JUST. Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.
 - Time JUST: https://wearejust.it/autores/time-just — Equipe de produto e tecnologia. Especialistas da JUST em arquitetura, operação e evolução de produtos financeiros digitais.
 
 ## Orientacao de citacao

@@ -7,7 +7,7 @@ export function ArticleFooter({ article }) {
     <footer style={{ marginTop: 48, paddingTop: 36, borderTop: `1px solid ${CONTENT_T.border}` }}>
       <InlineCTA
         title="Quer aplicar isso no seu produto financeiro?"
-        text="A JUST ajuda empresas a desenhar, construir e operar produtos financeiros white-label com arquitetura modular."
+        text="A JUST ajuda empresas a desenhar, construir e operar produtos financeiros digitais com arquitetura modular."
         href="/contato"
         label="Conversar com especialista"
       />

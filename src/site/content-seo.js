@@ -4,7 +4,7 @@ import { buildArticleJsonLd, buildArticleUrl } from "../lib/schema-builder.js";
 export function getContentHubSeo() {
   return {
     title: "Conteúdos JUST | Guias sobre produtos financeiros digitais",
-    description: "Guias, análises e materiais técnicos sobre cartões, meios de pagamento, BaaS, benefícios, frotas, antifraude e produtos financeiros white-label.",
+    description: "Guias, análises e materiais técnicos sobre cartões, meios de pagamento, BaaS, benefícios, frotas, antifraude e produtos financeiros digitais.",
     canonical: `${SITE_URL}/conteudos`,
     path: "/conteudos",
     robots: "index, follow",
