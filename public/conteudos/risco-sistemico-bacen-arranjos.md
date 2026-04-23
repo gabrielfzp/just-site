@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/risco-sistemico-bacen-arranjos
 Markdown: https://wearejust.it/conteudos/risco-sistemico-bacen-arranjos.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Regulação
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

@@ -3,6 +3,7 @@ brief: 009
 slug: receita-de-float-emissao-cartoes
 cluster: arranjo-aberto
 type: satellite
+author: gabriel-pires
 termo_alvo: receita de float cartão
 title: "Receita de float em emissão de cartões: o dinheiro parado que rende enquanto espera"
 meta_description: "Receita de float é o rendimento que a instituição de pagamento ganha enquanto o dinheiro da transação espera liquidar. Entenda como funciona, quanto rende e por que isso deve ser repassado a você emissor."

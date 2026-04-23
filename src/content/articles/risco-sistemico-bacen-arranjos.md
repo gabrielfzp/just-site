@@ -3,6 +3,7 @@ brief: 021
 slug: risco-sistemico-bacen-arranjos
 cluster: regulacao-pagamentos
 type: satellite
+author: gabriel-pires
 termo_alvo: risco sistêmico bacen arranjo pagamento
 title: "Risco sistêmico do BACEN: quando um arranjo de pagamento entra no radar crítico"
 meta_description: "O BACEN classifica arranjos de pagamento conforme o risco sistêmico que representam. Entenda os critérios, o que muda quando um arranjo é considerado sistemicamente importante, e por que essa classificação define estrutura, custo e obrigações do emissor."

@@ -3,6 +3,7 @@ brief: 008
 slug: arranjo-aberto-vs-arranjo-fechado
 cluster: arranjo-aberto
 type: satellite
+author: gabriel-pires
 termo_alvo: arranjo aberto arranjo fechado
 title: "Arranjo aberto vs arranjo fechado: qual modelo de cartão faz sentido para sua operação"
 meta_description: "Arranjo aberto e arranjo fechado são os dois modelos que o BACEN reconhece para operações de cartão. Entenda as diferenças, a matemática de cada um e como escolher o que faz sentido para sua empresa."

@@ -3,6 +3,7 @@ brief: 020
 slug: algoritmo-luhn-cartao
 cluster: tecnologia-pagamentos
 type: satellite
+author: gabriel-pires
 termo_alvo: algoritmo luhn validação cartão
 title: "Algoritmo de LUHN: como funciona a validação do número do cartão"
 meta_description: "O algoritmo de LUHN, criado em 1954 pela IBM, é o método que valida se o número de um cartão é consistente. Funciona em cartões de crédito, CPF, IMEI. Entenda o cálculo passo a passo, a ISO/IEC 7812 e por que o algoritmo é de consistência, não de segurança."

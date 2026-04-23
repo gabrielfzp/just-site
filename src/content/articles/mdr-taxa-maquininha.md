@@ -3,6 +3,7 @@ brief: 006
 slug: mdr-taxa-maquininha
 cluster: arranjo-aberto
 type: satellite
+author: gabriel-pires
 termo_alvo: mdr taxa maquininha
 title: "MDR: o que é a taxa da maquininha e como ela se divide no arranjo aberto"
 meta_description: "O MDR é a taxa que o estabelecimento paga em cada venda com cartão. Entenda como ela se compõe, para onde vai cada pedaço e por que o emissor, a bandeira e o adquirente têm incentivos diferentes."

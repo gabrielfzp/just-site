@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/bin-sponsor-o-que-e
 Markdown: https://wearejust.it/conteudos/bin-sponsor-o-que-e.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Cartões
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

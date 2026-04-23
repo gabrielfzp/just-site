@@ -3,6 +3,7 @@ brief: 005
 slug: intercambio-de-cartao
 cluster: arranjo-aberto
 type: satellite
+author: gabriel-pires
 termo_alvo: intercâmbio cartão
 title: "Intercâmbio de cartão: o que é, quanto paga e para onde vai esse dinheiro"
 meta_description: "Entenda o intercâmbio (interchange), a principal receita do emissor de cartão. Como funciona, quanto paga por bandeira e programa, e por que essa tarifa define se sua operação sustenta."

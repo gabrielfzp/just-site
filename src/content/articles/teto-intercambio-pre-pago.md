@@ -3,6 +3,7 @@ brief: 010
 slug: teto-intercambio-pre-pago
 cluster: arranjo-aberto
 type: satellite
+author: gabriel-pires
 termo_alvo: teto intercâmbio pré-pago bacen
 title: "Teto de 0,7% no intercâmbio de pré-pago: o que mudou e como recalibrar sua operação"
 meta_description: "Em 2023, o BACEN limitou o intercâmbio de cartão pré-pago a 0,7%. Entenda o que mudou, como afetou o mercado e o que fazer se sua operação estava ancorada no modelo antigo de pré-pago."

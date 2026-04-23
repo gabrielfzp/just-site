@@ -3,6 +3,7 @@ brief: 011
 slug: quanto-custa-emitir-cartao
 cluster: arranjo-aberto
 type: satellite
+author: gabriel-pires
 termo_alvo: quanto custa emitir cartão
 title: "Quanto custa emitir cartão no Brasil: CAPEX, OPEX e break-even sem romantismo"
 meta_description: "Guia completo dos custos reais de emissão de cartão no Brasil: setup, tarifas unitárias, custos de bandeira, plástico e logística. Com projeção de break-even e cenários por modelo."

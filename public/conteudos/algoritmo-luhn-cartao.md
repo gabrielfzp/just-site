@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/algoritmo-luhn-cartao
 Markdown: https://wearejust.it/conteudos/algoritmo-luhn-cartao.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Tecnologia
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

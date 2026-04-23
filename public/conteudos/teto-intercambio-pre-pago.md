@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/teto-intercambio-pre-pago
 Markdown: https://wearejust.it/conteudos/teto-intercambio-pre-pago.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Regulação
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

@@ -3,6 +3,7 @@ brief: 012
 slug: resolucao-bcb-150-2021
 cluster: regulacao-pagamentos
 type: satellite
+author: gabriel-pires
 termo_alvo: resolução bcb 150 2021
 title: "Resolução BCB 150/2021: quando um arranjo de pagamento precisa de autorização do BACEN"
 meta_description: "A Resolução BCB 150/2021 define quais arranjos de pagamento estão dispensados de autorização do BACEN e quais obrigações permanecem. Entenda os critérios, limites e o que muda na prática."

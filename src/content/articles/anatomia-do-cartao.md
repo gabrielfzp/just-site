@@ -3,6 +3,7 @@ brief: 014
 slug: anatomia-do-cartao
 cluster: emissao-cartao
 type: satellite
+author: gabriel-pires
 termo_alvo: anatomia do cartão pan cvv chip emv
 title: "Anatomia do cartão: o que são PAN, BIN, CVV, chip EMV e trilha magnética"
 meta_description: "O cartão físico tem vários componentes técnicos: PAN, BIN, CVV, chip EMV, trilha magnética, NFC e data de expiração. Entenda o que cada um faz, por que existe e como conversam entre si."

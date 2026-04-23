@@ -3,6 +3,7 @@ brief: 007
 slug: bin-sponsor-o-que-e
 cluster: arranjo-aberto
 type: satellite
+author: gabriel-pires
 termo_alvo: bin sponsor
 title: "BIN Sponsor: o que é e como viabilizar sua emissão de cartão sem licença própria"
 meta_description: "BIN Sponsor é o modelo que permite emitir cartão no Brasil sem ter licença do BACEN nem contrato direto com a bandeira. Entenda como funciona, quando faz sentido e o que precisa olhar antes de assinar."

@@ -3,6 +3,7 @@ brief: 015
 slug: tef-pos-van-pos-proprio
 cluster: arranjo-fechado
 type: satellite
+author: gabriel-pires
 termo_alvo: tef pos van pos próprio
 title: "TEF, POS VAN e POS Próprio: como escolher o meio de captura para seu cartão"
 meta_description: "Em arranjo fechado, escolher o meio de captura define custo, velocidade de implementação e alcance da rede. Entenda TEF, POS VAN, POS próprio e terminal web, com providers e custos reais."

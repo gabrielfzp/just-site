@@ -3,6 +3,7 @@ brief: 013
 slug: como-solicitar-bin-iin-abnt
 cluster: emissao-cartao
 type: satellite
+author: gabriel-pires
 termo_alvo: como solicitar bin abnt
 title: "Como solicitar um BIN/IIN no Brasil: o passo a passo da ABNT"
 meta_description: "Solicitar um BIN (Bank Identification Number) no Brasil passa pela ABNT, segue a ISO/IEC 7812-1 e leva 30 dias. Entenda o processo completo, o custo e quando você realmente precisa de um BIN próprio."

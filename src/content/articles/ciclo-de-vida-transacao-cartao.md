@@ -3,6 +3,7 @@ brief: 017
 slug: ciclo-de-vida-transacao-cartao
 cluster: tecnologia-pagamentos
 type: satellite
+author: gabriel-pires
 termo_alvo: ciclo de vida transação cartão
 title: "Ciclo de vida de uma transação de cartão: da autorização ao desfazimento"
 meta_description: "Toda transação de cartão segue um ciclo: pré-autorização, autorização, confirmação, desfazimento e arquivo de conciliação. Entenda cada etapa, as validações que acontecem em cada uma e por que entender esse fluxo é crítico para quem opera cartões."

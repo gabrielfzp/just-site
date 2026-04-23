@@ -3,6 +3,7 @@ brief: 019
 slug: funds-in-cartoes-recarga-tarifas
 cluster: arranjo-fechado
 type: satellite
+author: gabriel-pires
 termo_alvo: funds in recarga cartão
 title: "Funds-in em cartões: como funciona a recarga e quais tarifas cobrar"
 meta_description: "Funds-in é o processo de entrada de dinheiro em um cartão pré-pago ou na conta associada. Entenda os modelos (pré-pago vs pós-pago), as formas de cobrança (boleto, Pix) e a tabela de tarifas típicas do mercado brasileiro."

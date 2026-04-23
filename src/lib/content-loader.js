@@ -7,7 +7,7 @@ const articleModules = import.meta.glob("../content/articles/*.{md,mdx}", { eage
 function normalizeArticle(data) {
   const modulePath = `../content/articles/${data.file}`;
   const Component = articleModules[modulePath]?.default;
-  const author = getAuthorBySlug(data.authorSlug) || AUTHORS["equipe-just"] || AUTHORS["time-just"];
+  const author = getAuthorBySlug(data.authorSlug) || AUTHORS["gabriel-pires"] || AUTHORS["time-just"];
   const category = getCategoryBySlug(data.categorySlug) || CATEGORIES["meios-de-pagamento"];
 
   return {

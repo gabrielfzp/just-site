@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/intercambio-de-cartao
 Markdown: https://wearejust.it/conteudos/intercambio-de-cartao.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Cartões
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

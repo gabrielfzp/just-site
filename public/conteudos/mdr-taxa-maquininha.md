@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/mdr-taxa-maquininha
 Markdown: https://wearejust.it/conteudos/mdr-taxa-maquininha.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Cartões
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

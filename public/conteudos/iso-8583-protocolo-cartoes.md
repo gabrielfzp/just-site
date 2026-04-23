@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/iso-8583-protocolo-cartoes
 Markdown: https://wearejust.it/conteudos/iso-8583-protocolo-cartoes.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Tecnologia
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/funds-in-cartoes-recarga-tarifas
 Markdown: https://wearejust.it/conteudos/funds-in-cartoes-recarga-tarifas.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Operações
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

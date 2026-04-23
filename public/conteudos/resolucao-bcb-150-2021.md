@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/resolucao-bcb-150-2021
 Markdown: https://wearejust.it/conteudos/resolucao-bcb-150-2021.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Regulação
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

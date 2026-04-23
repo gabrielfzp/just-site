@@ -112,9 +112,9 @@ export async function loadContentArticles() {
     const parsed = matter(raw);
     const data = parsed.data;
     const slug = data.slug || file.replace(/\.(md|mdx)$/, "");
-    const authorSlug = data.author || "equipe-just";
+    const authorSlug = data.author || "gabriel-pires";
     const categorySlug = normalizeCategorySlug(data.category || data.categoria);
-    const author = AUTHORS[authorSlug] || AUTHORS["equipe-just"] || AUTHORS["time-just"];
+    const author = AUTHORS[authorSlug] || AUTHORS["gabriel-pires"] || AUTHORS["time-just"];
     const category = CATEGORIES[categorySlug] || CATEGORIES["meios-de-pagamento"];
     const canonicalPath = normalizeCanonicalPath(data.canonical, slug);
     const answer = data.answer || extractAnswer(parsed.content);

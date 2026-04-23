@@ -3,6 +3,7 @@ brief: 018
 slug: conciliacao-financeira-cartoes
 cluster: arranjo-fechado
 type: satellite
+author: gabriel-pires
 termo_alvo: conciliação financeira cartões
 title: "Conciliação financeira de cartões: como funciona e quanto custa para o emissor"
 meta_description: "Conciliação financeira é o processo em que o estabelecimento compara o que vendeu no cartão com o que recebeu. Entenda as plataformas (Conciliadora, Equals, Nexera, BoaVista), os custos de homologação e por que o serviço pode virar barreira de credenciamento."

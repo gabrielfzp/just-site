@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/tef-pos-van-pos-proprio
 Markdown: https://wearejust.it/conteudos/tef-pos-van-pos-proprio.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Arranjo Fechado
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23

@@ -30,7 +30,7 @@ Tags: private-label, cartões, BaaS, varejo, emissão, cooperativas, associaçõ
 URL: https://wearejust.it/conteudos/algoritmo-luhn-cartao/
 Markdown: https://wearejust.it/conteudos/algoritmo-luhn-cartao.md
 Categoria: Tecnologia
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: O algoritmo de LUHN, também chamado de mod 10, é o método usado para validar números de cartões de crédito, CPF, IMEI e outros identificadores numéricos. Criado em 1954 por Hans Peter Luhn, engenheiro da IBM, foi patenteado em 1960 e padroni
 Tags: algoritmo luhn, validação cartão, iso 7812, tecnologia
 
@@ -39,7 +39,7 @@ Tags: algoritmo luhn, validação cartão, iso 7812, tecnologia
 URL: https://wearejust.it/conteudos/anatomia-do-cartao/
 Markdown: https://wearejust.it/conteudos/anatomia-do-cartao.md
 Categoria: Cartões
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Um cartão de pagamento físico é composto por vários elementos técnicos, cada um com função específica. O PAN (Primary Account Number) é o número de 16 dígitos que identifica o cartão. Os primeiros 6 ou 8 dígitos são o BIN (Bank Identification Number), que identificam o emissor. O CVV é o código de segurança, e existe em versões diferentes (CVV1 na trilha magnética, CVV2 impresso no verso, CVV3 dinâmico em alguns cartões). O chip EMV é o circuito integrado que arma
 Tags: cartão, pan, cvv, chip emv, trilha magnética, nfc
 
@@ -48,7 +48,7 @@ Tags: cartão, pan, cvv, chip emv, trilha magnética, nfc
 URL: https://wearejust.it/conteudos/arranjo-aberto-vs-arranjo-fechado/
 Markdown: https://wearejust.it/conteudos/arranjo-aberto-vs-arranjo-fechado.md
 Categoria: Cartões
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Arranjo aberto é o modelo em que múltiplos emissores, bandeiras e adquirentes participam de um mesmo ecossistema padroni
 Tags: arranjo aberto, arranjo fechado, private label, cartão bandeirado, emissão de cartão
 
@@ -57,7 +57,7 @@ Tags: arranjo aberto, arranjo fechado, private label, cartão bandeirado, emiss�
 URL: https://wearejust.it/conteudos/bin-sponsor-o-que-e/
 Markdown: https://wearejust.it/conteudos/bin-sponsor-o-que-e.md
 Categoria: Cartões
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: BIN Sponsor é o serviço em que uma instituição financeira autori
 Tags: bin sponsor, banking as a service, emissão de cartão, arranjo aberto, licença bacen
 
@@ -66,7 +66,7 @@ Tags: bin sponsor, banking as a service, emissão de cartão, arranjo aberto, li
 URL: https://wearejust.it/conteudos/ciclo-de-vida-transacao-cartao/
 Markdown: https://wearejust.it/conteudos/ciclo-de-vida-transacao-cartao.md
 Categoria: Tecnologia
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Toda transação de cartão percorre um ciclo com cinco etapas principais: pré-autori
 Tags: transação de cartão, autorização, desfazimento, chargeback, processamento
 
@@ -75,7 +75,7 @@ Tags: transação de cartão, autorização, desfazimento, chargeback, processam
 URL: https://wearejust.it/conteudos/como-solicitar-bin-iin-abnt/
 Markdown: https://wearejust.it/conteudos/como-solicitar-bin-iin-abnt.md
 Categoria: Cartões
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: No Brasil, o registro de BIN (Bank Identification Number) e IIN (Issuer Identification Number) é controlado pela ABNT, que atua como Registration Authority do padrão ISO/IEC 7812-1. O processo envolve enviar e-mail à ABNT, preencher o formulário oficial (em inglês, no padrão internacional) e aguardar aprovação. Custa entre R$ 3.000 e R$ 5.000, leva em torno de 30 dias e resulta em um identificador único de 6 ou 8 dígitos que sua empresa pode usar para emitir cartões próprios, com bandeira própria ou homologados em bandeiras abertas.
 Tags: bin, iin, abnt, iso 7812, emissão de cartão
 
@@ -84,7 +84,7 @@ Tags: bin, iin, abnt, iso 7812, emissão de cartão
 URL: https://wearejust.it/conteudos/conciliacao-financeira-cartoes/
 Markdown: https://wearejust.it/conteudos/conciliacao-financeira-cartoes.md
 Categoria: Operações
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Conciliação financeira é o processo em que um estabelecimento comercial compara as transações de cartão que reali
 Tags: conciliação financeira, cartão, arranjo fechado, operações
 
@@ -93,7 +93,7 @@ Tags: conciliação financeira, cartão, arranjo fechado, operações
 URL: https://wearejust.it/conteudos/funds-in-cartoes-recarga-tarifas/
 Markdown: https://wearejust.it/conteudos/funds-in-cartoes-recarga-tarifas.md
 Categoria: Operações
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Funds-in é o processo de entrada de dinheiro em uma conta associada a um cartão, para que ele possa ser usado em pagamentos. Em cartões pré-pagos, a recarga acontece antes do uso, via boleto ou Pix. Em cartões pós-pagos (incluindo crédito e adiantamento salarial), a cobrança acontece depois do uso. Cada modelo tem estrutura de tarifação própria: emissão de cartão (R$ 5 a R$ 20), manutenção recorrente (R$ 1 a R$ 20 por mês), tarifa variável de recarga (0% a 3%) e tarifa de uso (pode ser positiva ou negativa). A estrutura correta depende do tipo de produto: benefício, gestão de frota, gestão de despesas, convênio salarial ou premiação.
 Tags: funds in, recarga, cartão, tarifas, arranjo fechado
 
@@ -102,7 +102,7 @@ Tags: funds in, recarga, cartão, tarifas, arranjo fechado
 URL: https://wearejust.it/conteudos/intercambio-de-cartao/
 Markdown: https://wearejust.it/conteudos/intercambio-de-cartao.md
 Categoria: Cartões
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: O intercâmbio (interchange, em inglês) é a tarifa que o emissor do cartão recebe toda ve
 Tags: intercâmbio, interchange, mdr, emissão de cartão, banking as a service
 
@@ -111,7 +111,7 @@ Tags: intercâmbio, interchange, mdr, emissão de cartão, banking as a service
 URL: https://wearejust.it/conteudos/iso-8583-protocolo-cartoes/
 Markdown: https://wearejust.it/conteudos/iso-8583-protocolo-cartoes.md
 Categoria: Tecnologia
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: ISO 8583 é o padrão internacional de mensageria transacional para cartões de pagamento, publicado pela primeira ve
 Tags: iso 8583, protocolo, cartão, processamento de transações, tecnologia
 
@@ -120,7 +120,7 @@ Tags: iso 8583, protocolo, cartão, processamento de transações, tecnologia
 URL: https://wearejust.it/conteudos/mdr-taxa-maquininha/
 Markdown: https://wearejust.it/conteudos/mdr-taxa-maquininha.md
 Categoria: Cartões
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: MDR (Merchant Discount Rate) é a taxa total que um estabelecimento comercial paga à adquirente a cada venda com cartão. No arranjo aberto, o MDR se divide em três pedaços: o intercâmbio, que vai para o emissor do cartão; a tarifa de bandeira, que remunera Visa, Mastercard, Elo ou American Express; e a margem do adquirente, dono da maquininha. No Brasil, o MDR médio em crédito fica entre 2% e 3% e em débito entre 1% e 2%.
 Tags: mdr, taxa da maquininha, intercâmbio, adquirência, emissão de cartão
 
@@ -129,7 +129,7 @@ Tags: mdr, taxa da maquininha, intercâmbio, adquirência, emissão de cartão
 URL: https://wearejust.it/conteudos/quanto-custa-emitir-cartao/
 Markdown: https://wearejust.it/conteudos/quanto-custa-emitir-cartao.md
 Categoria: Cartões
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Emitir cartão no Brasil via BIN Sponsor (o caminho mais comum hoje) envolve um setup inicial de R$ 100 mil a R$ 500 mil, um fee mínimo mensal entre R$ 10 mil e R$ 50 mil nos primeiros meses, e custos unitários por conta, transação e KYC que somam entre R$ 2,50 e R$ 6 por usuário ativo por mês. A produção de cartão físico custa R$ 10 a R$ 25 por unidade (incluindo plástico, embolsamento e logística). O break-even típico acontece entre 30 mil e 80 mil cartões ativos, no hori
 Tags: custo emissão cartão, capex, break-even, banking as a service, fintech
 
@@ -138,7 +138,7 @@ Tags: custo emissão cartão, capex, break-even, banking as a service, fintech
 URL: https://wearejust.it/conteudos/receita-de-float-emissao-cartoes/
 Markdown: https://wearejust.it/conteudos/receita-de-float-emissao-cartoes.md
 Categoria: Cartões
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Receita de float é o rendimento financeiro que uma instituição de pagamento gera ao investir, em títulos públicos seguros, o dinheiro que fica parado nas contas enquanto espera ser liquidado para o estabelecimento comercial. Em operações de cartão de crédito com liquidação em 28 dias (D+28), o float pode chegar a 1% a 1,5% do TPV mensal a títulos da Selic. É receita legítima do emissor e deve ser repassada pelo BaaS ao cliente que contratou o BIN Sponsor.
 Tags: float, receita de float, emissão de cartão, banking as a service, tesouraria
 
@@ -147,7 +147,7 @@ Tags: float, receita de float, emissão de cartão, banking as a service, tesour
 URL: https://wearejust.it/conteudos/resolucao-bcb-150-2021/
 Markdown: https://wearejust.it/conteudos/resolucao-bcb-150-2021.md
 Categoria: Regulação
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: A Resolução BCB 150/2021 lista os arranjos de pagamento que ficam dispensados de autori
 Tags: resolução bcb 150, bacen, arranjo de pagamento, spb, regulação
 
@@ -156,7 +156,7 @@ Tags: resolução bcb 150, bacen, arranjo de pagamento, spb, regulação
 URL: https://wearejust.it/conteudos/risco-sistemico-bacen-arranjos/
 Markdown: https://wearejust.it/conteudos/risco-sistemico-bacen-arranjos.md
 Categoria: Regulação
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Risco sistêmico é o conceito que o BACEN usa para classificar arranjos de pagamento que, se falharem, podem comprometer a estabilidade do sistema financeiro nacional. Arranjos sistemicamente importantes precisam de autori
 Tags: risco sistêmico, bacen, arranjo de pagamento, spb, regulação
 
@@ -165,7 +165,7 @@ Tags: risco sistêmico, bacen, arranjo de pagamento, spb, regulação
 URL: https://wearejust.it/conteudos/tef-pos-van-pos-proprio/
 Markdown: https://wearejust.it/conteudos/tef-pos-van-pos-proprio.md
 Categoria: Arranjo Fechado
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Em operação de cartão em arranjo fechado, o meio de captura é o equipamento ou aplicação que interliga o cartão ao estabelecimento comercial. As quatro opções principais são: POS próprio (maquininha da sua operação), POS VAN (uso da maquininha de terceiros via value aggregated network), TEF (transferência eletrônica de fundos integrada a sistemas fiscais) e terminal web (aplicação de captura baseada em navegador). Cada um tem custos, pra
 Tags: tef, pos, meio de captura, arranjo fechado, cartão
 
@@ -174,7 +174,7 @@ Tags: tef, pos, meio de captura, arranjo fechado, cartão
 URL: https://wearejust.it/conteudos/teto-intercambio-pre-pago/
 Markdown: https://wearejust.it/conteudos/teto-intercambio-pre-pago.md
 Categoria: Regulação
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Resumo: Em abril de 2023, o BACEN publicou a Resolução BCB 246, que limitou o intercâmbio de cartões pré-pagos a 0,7% sobre o valor da transação. Antes dessa mudança, o intercâmbio de pré-pago variava entre 1,0% e 1,5%, quase no nível do cartão de crédito. A nova regra tornou pré-pago e débito economicamente equivalentes e forçou muitas operações a repensarem o modelo.
 Tags: pré-pago, intercâmbio, bacen, regulação, cartão
 
@@ -221,7 +221,6 @@ Tags: white-label, private-label, cartões, BaaS, emissão, comparativo
 
 ## Autores
 
-- Equipe JUST: https://wearejust.it/autores/equipe-just/ — Equipe editorial e técnica da JUST. Conteúdos produzidos pela equipe da JUST com foco em cartões, regulação, arquitetura de pagamentos e operação de produtos financeiros digitais.
 - Gabriel Pires: https://wearejust.it/autores/gabriel-pires/ — Founder & CEO da JUST. Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.
 - Time JUST: https://wearejust.it/autores/time-just/ — Equipe de produto e tecnologia. Especialistas da JUST em arquitetura, operação e evolução de produtos financeiros digitais.
 

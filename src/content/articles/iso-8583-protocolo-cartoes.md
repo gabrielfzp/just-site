@@ -3,6 +3,7 @@ brief: 016
 slug: iso-8583-protocolo-cartoes
 cluster: tecnologia-pagamentos
 type: satellite
+author: gabriel-pires
 termo_alvo: iso 8583
 title: "ISO 8583: o protocolo que sustenta bilhões de transações de cartão no mundo"
 meta_description: "A ISO 8583 é o padrão internacional de mensageria para transações de cartão. Entenda como funciona o formato de bits, os códigos de mensagem (0200, 0400, 0800), as opções TCP/IP e HTTP, e por que esse protocolo de 1987 ainda domina o mercado."
