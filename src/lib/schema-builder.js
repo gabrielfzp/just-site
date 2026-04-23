@@ -1,7 +1,7 @@
-import { DEFAULT_IMAGE, SITE_BRAND_NAME, SITE_DESCRIPTION, SITE_KNOWS_ABOUT, SITE_NAME, SITE_SAME_AS, SITE_URL } from "../site/seo.js";
+import { canonicalUrl, DEFAULT_IMAGE, SITE_BRAND_NAME, SITE_DESCRIPTION, SITE_KNOWS_ABOUT, SITE_NAME, SITE_SAME_AS, SITE_URL } from "../site/seo.js";
 
 export function buildArticleUrl(article) {
-  return `${SITE_URL}/conteudos/${article.slug}`;
+  return canonicalUrl(`/conteudos/${article.slug}`);
 }
 
 export function buildArticleSchema(article) {
@@ -16,7 +16,7 @@ export function buildArticleSchema(article) {
     dateModified: article.updatedAt,
     inLanguage: "pt-BR",
     mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#webpage` },
-    author: { "@type": "Person", name: article.author.name, url: `${SITE_URL}/autores/${article.author.slug}` },
+    author: { "@type": "Person", name: article.author.name, url: canonicalUrl(`/autores/${article.author.slug}`) },
     publisher: {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
@@ -34,13 +34,13 @@ export function buildArticleSchema(article) {
 export function buildBreadcrumbSchema(article) {
   const items = [
     { name: "Home", item: `${SITE_URL}/` },
-    { name: "Conteúdos", item: `${SITE_URL}/conteudos` },
+    { name: "Conteúdos", item: canonicalUrl("/conteudos") },
   ];
 
   if (article.category) {
     items.push({
       name: article.category.name,
-      item: `${SITE_URL}/conteudos/categoria/${article.category.slug}`,
+      item: canonicalUrl(`/conteudos/categoria/${article.category.slug}`),
     });
   }
 
@@ -73,7 +73,7 @@ export function buildPersonSchema(author) {
   if (!author) return null;
   return {
     "@type": "Person",
-    "@id": `${SITE_URL}/autores/${author.slug}#person`,
+    "@id": `${canonicalUrl(`/autores/${author.slug}`)}#person`,
     name: author.name,
     jobTitle: author.role,
     description: author.bio,

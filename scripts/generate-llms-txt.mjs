@@ -2,23 +2,23 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { AUTHORS_LIST } from "../src/content/authors.js";
 import { CATEGORIES_LIST } from "../src/content/categories.js";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../src/site/seo.js";
+import { canonicalUrl, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../src/site/seo.js";
 import { distDir, loadContentArticles, rootDir } from "./load-content.mjs";
 
 function articleUrl(article) {
-  return `${SITE_URL}/conteudos/${article.slug}`;
+  return canonicalUrl(`/conteudos/${article.slug}`);
 }
 
 function articleMarkdownUrl(article) {
-  return `${articleUrl(article)}.md`;
+  return `${SITE_URL}/conteudos/${article.slug}.md`;
 }
 
 function categoryUrl(category) {
-  return `${SITE_URL}/conteudos/categoria/${category.slug}`;
+  return canonicalUrl(`/conteudos/categoria/${category.slug}`);
 }
 
 function authorUrl(author) {
-  return `${SITE_URL}/autores/${author.slug}`;
+  return canonicalUrl(`/autores/${author.slug}`);
 }
 
 const articles = await loadContentArticles();
@@ -36,10 +36,10 @@ const lines = [
   "## Site",
   "",
   `- Home: ${SITE_URL}/`,
-  `- Central de Conteudos: ${SITE_URL}/conteudos`,
-  `- Sobre a JUST: ${SITE_URL}/sobre`,
-  `- Tecnologia JUST: ${SITE_URL}/stack`,
-  `- Contato comercial: ${SITE_URL}/contato`,
+  `- Central de Conteudos: ${canonicalUrl("/conteudos")}`,
+  `- Sobre a JUST: ${canonicalUrl("/sobre")}`,
+  `- Tecnologia JUST: ${canonicalUrl("/stack")}`,
+  `- Contato comercial: ${canonicalUrl("/contato")}`,
   "",
   "## Conteudos principais",
   "",

@@ -19,6 +19,19 @@ const ArticlePage = lazy(() => import("./pages/ArticlePage.jsx"));
 const CategoriaPage = lazy(() => import("./pages/CategoriaPage.jsx"));
 const AutorPage = lazy(() => import("./pages/AutorPage.jsx"));
 
+const ROUTE_ALIASES = {
+  tecnologia: "stack",
+  "politica-de-privacidade": "privacidade",
+  "produtos/beneficios": "beneficios",
+  "produtos/frotas": "frotas",
+  "produtos/banking": "banking",
+  "produtos/despesas": "despesas",
+  "produtos/antecipacao": "antecipacao",
+  "produtos/sob-demanda": "sob-demanda",
+  "authors/gabriel-pires": "autores/gabriel-pires",
+  "authors/time-just": "autores/time-just",
+};
+
 // MAIN APP
 // ========================================
 function AppContent() {
@@ -53,13 +66,14 @@ function AppContent() {
   };
 
   const routeKey = location.pathname.replace(/^\/+|\/+$/g, "") || "home";
-  const segments = routeKey === "home" ? [] : routeKey.split("/");
+  const resolvedRouteKey = ROUTE_ALIASES[routeKey] || routeKey;
+  const segments = resolvedRouteKey === "home" ? [] : resolvedRouteKey.split("/");
   const page = segments[0] || "home";
 
   useEffect(() => {
-    const contentRoute = routeKey === "conteudos" || routeKey.startsWith("conteudos/") || routeKey.startsWith("autores/");
-    if (!contentRoute) applySeo(getSeo(routeKey, lang), lang);
-  }, [routeKey, lang]);
+    const contentRoute = resolvedRouteKey === "conteudos" || resolvedRouteKey.startsWith("conteudos/") || resolvedRouteKey.startsWith("autores/");
+    if (!contentRoute) applySeo(getSeo(resolvedRouteKey, lang), lang);
+  }, [resolvedRouteKey, lang]);
 
   useEffect(() => {
     initAnalytics();
@@ -120,18 +134,18 @@ function AppContent() {
   }, [location.pathname]);
 
   const render = () => {
-    if (routeKey === "home") return <HomePage setPage={setPage} lang={lang} />;
-    if (routeKey === "sobre") return <SobrePage setPage={setPage} lang={lang} />;
-    if (routeKey === "stack") return <ErrorBoundary><StackPage setPage={setPage} lang={lang} /></ErrorBoundary>;
-    if (routeKey === "cases") return <CasesPage setPage={setPage} lang={lang} />;
-    if (routeKey === "contato") return <ContatoPage lang={lang} />;
-    if (routeKey === "privacidade") return <PrivacyPage lang={lang} />;
-    if (routeKey === "sentinel") return <SentinelPage setPage={setPage} lang={lang} />;
-    if (routeKey === "conteudos") return <ConteudosPage />;
+    if (resolvedRouteKey === "home") return <HomePage setPage={setPage} lang={lang} />;
+    if (resolvedRouteKey === "sobre") return <SobrePage setPage={setPage} lang={lang} />;
+    if (resolvedRouteKey === "stack") return <ErrorBoundary><StackPage setPage={setPage} lang={lang} /></ErrorBoundary>;
+    if (resolvedRouteKey === "cases") return <CasesPage setPage={setPage} lang={lang} />;
+    if (resolvedRouteKey === "contato") return <ContatoPage lang={lang} />;
+    if (resolvedRouteKey === "privacidade") return <PrivacyPage lang={lang} />;
+    if (resolvedRouteKey === "sentinel") return <SentinelPage setPage={setPage} lang={lang} />;
+    if (resolvedRouteKey === "conteudos") return <ConteudosPage />;
     if (segments[0] === "conteudos" && segments[1] === "categoria") return <CategoriaPage slug={segments[2]} />;
     if (segments[0] === "conteudos" && segments[1]) return <ArticlePage slug={segments[1]} />;
     if (segments[0] === "autores" && segments[1]) return <AutorPage slug={segments[1]} />;
-    if (SOL[routeKey]) return <SolutionPage setPage={setPage} config={SOL[routeKey]} lang={lang} />;
+    if (SOL[resolvedRouteKey]) return <SolutionPage setPage={setPage} config={SOL[resolvedRouteKey]} lang={lang} />;
     return <HomePage setPage={setPage} lang={lang} />;
   };
 

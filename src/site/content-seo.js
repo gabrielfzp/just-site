@@ -1,11 +1,11 @@
-import { DEFAULT_IMAGE, SITE_URL } from "./seo.js";
+import { canonicalUrl, DEFAULT_IMAGE, SITE_URL } from "./seo.js";
 import { buildArticleJsonLd, buildArticleUrl } from "../lib/schema-builder.js";
 
 export function getContentHubSeo() {
   return {
     title: "Conteúdos JUST | Guias sobre produtos financeiros digitais",
     description: "Guias, análises e materiais técnicos sobre cartões, meios de pagamento, BaaS, benefícios, frotas, antifraude e produtos financeiros digitais.",
-    canonical: `${SITE_URL}/conteudos`,
+    canonical: canonicalUrl("/conteudos"),
     path: "/conteudos",
     robots: "index, follow",
     image: DEFAULT_IMAGE,
@@ -14,8 +14,8 @@ export function getContentHubSeo() {
       "@graph": [
         {
           "@type": "CollectionPage",
-          "@id": `${SITE_URL}/conteudos#webpage`,
-          url: `${SITE_URL}/conteudos`,
+          "@id": `${canonicalUrl("/conteudos")}#webpage`,
+          url: canonicalUrl("/conteudos"),
           name: "Conteúdos JUST",
           description: "Central de Conteúdos SEO da JUST.",
           inLanguage: "pt-BR",
@@ -34,7 +34,7 @@ export function getArticleSeo(article) {
     path: `/conteudos/${article.slug}`,
     robots: "index, follow",
     image: `${SITE_URL}${article.ogImage}`,
-    markdown: `${buildArticleUrl(article)}.md`,
+    markdown: `${SITE_URL}/conteudos/${article.slug}.md`,
     type: "article",
     article,
     jsonLd: buildArticleJsonLd(article),
@@ -45,7 +45,7 @@ export function getCategorySeo(category) {
   return {
     title: `${category.name} | Conteúdos JUST`,
     description: category.description,
-    canonical: `${SITE_URL}/conteudos/categoria/${category.slug}`,
+    canonical: canonicalUrl(`/conteudos/categoria/${category.slug}`),
     path: `/conteudos/categoria/${category.slug}`,
     robots: "index, follow",
     image: DEFAULT_IMAGE,
@@ -54,8 +54,8 @@ export function getCategorySeo(category) {
       "@graph": [
         {
           "@type": "CollectionPage",
-          "@id": `${SITE_URL}/conteudos/categoria/${category.slug}#webpage`,
-          url: `${SITE_URL}/conteudos/categoria/${category.slug}`,
+          "@id": `${canonicalUrl(`/conteudos/categoria/${category.slug}`)}#webpage`,
+          url: canonicalUrl(`/conteudos/categoria/${category.slug}`),
           name: category.name,
           description: category.description,
           inLanguage: "pt-BR",
@@ -69,7 +69,7 @@ export function getAuthorSeo(author) {
   return {
     title: `${author.name} | Autor JUST`,
     description: author.bio,
-    canonical: `${SITE_URL}/autores/${author.slug}`,
+    canonical: canonicalUrl(`/autores/${author.slug}`),
     path: `/autores/${author.slug}`,
     robots: "index, follow",
     image: DEFAULT_IMAGE,
@@ -78,15 +78,15 @@ export function getAuthorSeo(author) {
       "@graph": [
         {
           "@type": "ProfilePage",
-          "@id": `${SITE_URL}/autores/${author.slug}#webpage`,
-          url: `${SITE_URL}/autores/${author.slug}`,
+          "@id": `${canonicalUrl(`/autores/${author.slug}`)}#webpage`,
+          url: canonicalUrl(`/autores/${author.slug}`),
           name: author.name,
           description: author.bio,
           inLanguage: "pt-BR",
         },
         {
           "@type": "Person",
-          "@id": `${SITE_URL}/autores/${author.slug}#person`,
+          "@id": `${canonicalUrl(`/autores/${author.slug}`)}#person`,
           name: author.name,
           jobTitle: author.role,
           description: author.bio,

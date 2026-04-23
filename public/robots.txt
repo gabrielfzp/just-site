@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /conteudos/*.md$
 
 User-agent: OAI-SearchBot
 Allow: /

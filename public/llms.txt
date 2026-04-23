@@ -7,16 +7,16 @@ Este arquivo lista as paginas mais importantes da JUST para assistentes de IA, m
 ## Site
 
 - Home: https://wearejust.it/
-- Central de Conteudos: https://wearejust.it/conteudos
-- Sobre a JUST: https://wearejust.it/sobre
-- Tecnologia JUST: https://wearejust.it/stack
-- Contato comercial: https://wearejust.it/contato
+- Central de Conteudos: https://wearejust.it/conteudos/
+- Sobre a JUST: https://wearejust.it/sobre/
+- Tecnologia JUST: https://wearejust.it/stack/
+- Contato comercial: https://wearejust.it/contato/
 
 ## Conteudos principais
 
 ### Cartão private label: o guia completo para emitir o seu em 2026
 
-URL: https://wearejust.it/conteudos/cartao-private-label
+URL: https://wearejust.it/conteudos/cartao-private-label/
 Markdown: https://wearejust.it/conteudos/cartao-private-label.md
 Categoria: Meios de pagamento
 Autor: Gabriel Pires
@@ -27,7 +27,7 @@ Tags: private-label, cartões, BaaS, varejo, emissão, cooperativas, associaçõ
 
 ### Cartão bandeirado: o que é, como funciona e quais existem no Brasil
 
-URL: https://wearejust.it/conteudos/cartao-bandeirado-o-que-e
+URL: https://wearejust.it/conteudos/cartao-bandeirado-o-que-e/
 Markdown: https://wearejust.it/conteudos/cartao-bandeirado-o-que-e.md
 Categoria: Meios de pagamento
 Autor: Gabriel Pires
@@ -36,7 +36,7 @@ Tags: cartão-bandeirado, bandeiras, Visa, Mastercard, Elo, arranjo-aberto, BaaS
 
 ### Diferença entre cartão corporativo e empresarial: o que realmente muda
 
-URL: https://wearejust.it/conteudos/diferenca-cartao-corporativo-empresarial
+URL: https://wearejust.it/conteudos/diferenca-cartao-corporativo-empresarial/
 Markdown: https://wearejust.it/conteudos/diferenca-cartao-corporativo-empresarial.md
 Categoria: Gestão de gastos PJ
 Autor: Gabriel Pires
@@ -45,7 +45,7 @@ Tags: cartão-corporativo, cartão-empresarial, gestão-de-gastos, private-label
 
 ### White label vs private label: qual modelo de cartão escolher em 2026
 
-URL: https://wearejust.it/conteudos/white-label-vs-private-label
+URL: https://wearejust.it/conteudos/white-label-vs-private-label/
 Markdown: https://wearejust.it/conteudos/white-label-vs-private-label.md
 Categoria: Meios de pagamento
 Autor: Gabriel Pires
@@ -54,17 +54,17 @@ Tags: white-label, private-label, cartões, BaaS, emissão, comparativo
 
 ## Categorias
 
-- Meios de pagamento: https://wearejust.it/conteudos/categoria/meios-de-pagamento — Guias sobre cartões, arranjos, autorização, emissão, processamento e operação de pagamentos.
-- Benefícios flexíveis: https://wearejust.it/conteudos/categoria/beneficios-flexiveis — Conteúdos sobre programas de benefícios, saldos, regras de uso e cartões corporativos.
-- Frotas: https://wearejust.it/conteudos/categoria/frotas — Materiais sobre gestão financeira de frotas, abastecimento, pedágio e redes de aceitação.
-- BaaS e banking: https://wearejust.it/conteudos/categoria/baas — Artigos sobre banking as a service, contas digitais, PIX, emissão e provedores regulados.
-- Antifraude: https://wearejust.it/conteudos/categoria/antifraude — Conteúdos sobre risk score, autorização em tempo real e prevenção de fraude transacional.
-- Gestão de gastos PJ: https://wearejust.it/conteudos/categoria/gestao-de-gastos-pj — Guias sobre cartões corporativos, despesas empresariais, controle por política e reconciliação financeira.
+- Meios de pagamento: https://wearejust.it/conteudos/categoria/meios-de-pagamento/ — Guias sobre cartões, arranjos, autorização, emissão, processamento e operação de pagamentos.
+- Benefícios flexíveis: https://wearejust.it/conteudos/categoria/beneficios-flexiveis/ — Conteúdos sobre programas de benefícios, saldos, regras de uso e cartões corporativos.
+- Frotas: https://wearejust.it/conteudos/categoria/frotas/ — Materiais sobre gestão financeira de frotas, abastecimento, pedágio e redes de aceitação.
+- BaaS e banking: https://wearejust.it/conteudos/categoria/baas/ — Artigos sobre banking as a service, contas digitais, PIX, emissão e provedores regulados.
+- Antifraude: https://wearejust.it/conteudos/categoria/antifraude/ — Conteúdos sobre risk score, autorização em tempo real e prevenção de fraude transacional.
+- Gestão de gastos PJ: https://wearejust.it/conteudos/categoria/gestao-de-gastos-pj/ — Guias sobre cartões corporativos, despesas empresariais, controle por política e reconciliação financeira.
 
 ## Autores
 
-- Gabriel Pires: https://wearejust.it/autores/gabriel-pires — Founder & CEO da JUST. Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.
-- Time JUST: https://wearejust.it/autores/time-just — Equipe de produto e tecnologia. Especialistas da JUST em arquitetura, operação e evolução de produtos financeiros digitais.
+- Gabriel Pires: https://wearejust.it/autores/gabriel-pires/ — Founder & CEO da JUST. Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.
+- Time JUST: https://wearejust.it/autores/time-just/ — Equipe de produto e tecnologia. Especialistas da JUST em arquitetura, operação e evolução de produtos financeiros digitais.
 
 ## Orientacao de citacao
 

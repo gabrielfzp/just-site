@@ -147,6 +147,11 @@ export const PAGE_SEO = {
 
 export const SEO_ROUTE_KEYS = Object.keys(PAGE_SEO);
 
+export function canonicalUrl(path) {
+  if (!path || path === "/") return `${SITE_URL}/`;
+  return `${SITE_URL}${path.replace(/\/+$/, "")}/`;
+}
+
 export function localized(value, lang) {
   if (!value || typeof value === "string") return value || "";
   return value[lang] || value["pt-BR"] || value.en || "";
@@ -157,7 +162,7 @@ function routeFor(page) {
 }
 
 function absoluteUrl(path) {
-  return `${SITE_URL}${path === "/" ? "/" : path}`;
+  return canonicalUrl(path);
 }
 
 function upsertMeta(selector, attrs) {

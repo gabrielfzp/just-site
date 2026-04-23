@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { AUTHORS_LIST } from "../src/content/authors.js";
 import { CATEGORIES_LIST } from "../src/content/categories.js";
 import { buildArticleJsonLd, buildArticleUrl } from "../src/lib/schema-builder.js";
-import { DEFAULT_IMAGE, getSeo, SEO_ROUTE_KEYS, SITE_URL } from "../src/site/seo.js";
+import { canonicalUrl, DEFAULT_IMAGE, getSeo, SEO_ROUTE_KEYS, SITE_URL } from "../src/site/seo.js";
 import { applyHtmlSeo } from "./html-seo-utils.mjs";
 import { loadContentArticles } from "./load-content.mjs";
 
@@ -28,7 +28,7 @@ const articleRoutes = articles.map((article) => writeRoute(`/conteudos/${article
   title: `${article.seoTitle || article.title} | JUST`,
   description: article.description,
   canonical: buildArticleUrl(article),
-  markdown: `${buildArticleUrl(article)}.md`,
+  markdown: `${SITE_URL}/conteudos/${article.slug}.md`,
   image: `${SITE_URL}${article.ogImage}`,
   imageAlt: article.title,
   type: "article",
@@ -40,7 +40,7 @@ const articleRoutes = articles.map((article) => writeRoute(`/conteudos/${article
 const categoryRoutes = CATEGORIES_LIST.map((category) => writeRoute(`/conteudos/categoria/${category.slug}`, {
   title: `${category.name} | Conteúdos JUST`,
   description: category.description,
-  canonical: `${SITE_URL}/conteudos/categoria/${category.slug}`,
+  canonical: canonicalUrl(`/conteudos/categoria/${category.slug}`),
   image: DEFAULT_IMAGE,
   imageWidth: "812",
   imageHeight: "499",
@@ -50,7 +50,7 @@ const categoryRoutes = CATEGORIES_LIST.map((category) => writeRoute(`/conteudos/
     "@context": "https://schema.org",
     "@graph": [{
       "@type": "CollectionPage",
-      url: `${SITE_URL}/conteudos/categoria/${category.slug}`,
+      url: canonicalUrl(`/conteudos/categoria/${category.slug}`),
       name: category.name,
       description: category.description,
       inLanguage: "pt-BR",
@@ -61,7 +61,7 @@ const categoryRoutes = CATEGORIES_LIST.map((category) => writeRoute(`/conteudos/
 const authorRoutes = AUTHORS_LIST.map((author) => writeRoute(`/autores/${author.slug}`, {
   title: `${author.name} | Autor JUST`,
   description: author.bio,
-  canonical: `${SITE_URL}/autores/${author.slug}`,
+  canonical: canonicalUrl(`/autores/${author.slug}`),
   image: author.avatar ? `${SITE_URL}${author.avatar}` : DEFAULT_IMAGE,
   imageWidth: author.avatar ? "1200" : "812",
   imageHeight: author.avatar ? "630" : "499",
@@ -71,7 +71,7 @@ const authorRoutes = AUTHORS_LIST.map((author) => writeRoute(`/autores/${author.
     "@context": "https://schema.org",
     "@graph": [{
       "@type": "ProfilePage",
-      url: `${SITE_URL}/autores/${author.slug}`,
+      url: canonicalUrl(`/autores/${author.slug}`),
       name: author.name,
       description: author.bio,
       inLanguage: "pt-BR",
@@ -87,6 +87,49 @@ const authorRoutes = AUTHORS_LIST.map((author) => writeRoute(`/autores/${author.
   },
 }));
 
-await Promise.all([...siteRoutes, ...articleRoutes, ...categoryRoutes, ...authorRoutes]);
+const aliasRoutes = [
+  ["tecnologia", "stack"],
+  ["politica-de-privacidade", "privacidade"],
+  ["produtos/beneficios", "beneficios"],
+  ["produtos/frotas", "frotas"],
+  ["produtos/banking", "banking"],
+  ["produtos/despesas", "despesas"],
+  ["produtos/antecipacao", "antecipacao"],
+  ["produtos/sob-demanda", "sob-demanda"],
+].map(([aliasPath, routeKey]) => {
+  const seo = getSeo(routeKey, "pt-BR");
+  return writeRoute(`/${aliasPath}`, seo);
+});
 
-console.log(`Generated SEO HTML for ${SEO_ROUTE_KEYS.length} site routes, ${articles.length} article(s), ${CATEGORIES_LIST.length} category pages and ${AUTHORS_LIST.length} author pages.`);
+const authorAliasRoutes = AUTHORS_LIST.map((author) => writeRoute(`/authors/${author.slug}`, {
+  title: `${author.name} | Autor JUST`,
+  description: author.bio,
+  canonical: canonicalUrl(`/autores/${author.slug}`),
+  image: author.avatar ? `${SITE_URL}${author.avatar}` : DEFAULT_IMAGE,
+  imageWidth: author.avatar ? "1200" : "812",
+  imageHeight: author.avatar ? "630" : "499",
+  imageAlt: author.name,
+  robots: "index, follow",
+  jsonLd: {
+    "@context": "https://schema.org",
+    "@graph": [{
+      "@type": "ProfilePage",
+      url: canonicalUrl(`/autores/${author.slug}`),
+      name: author.name,
+      description: author.bio,
+      inLanguage: "pt-BR",
+      mainEntity: {
+        "@type": "Person",
+        name: author.name,
+        jobTitle: author.role,
+        description: author.bio,
+        image: author.avatar ? `${SITE_URL}${author.avatar}` : undefined,
+        sameAs: author.linkedin ? [author.linkedin] : [],
+      },
+    }],
+  },
+}));
+
+await Promise.all([...siteRoutes, ...articleRoutes, ...categoryRoutes, ...authorRoutes, ...aliasRoutes, ...authorAliasRoutes]);
+
+console.log(`Generated SEO HTML for ${SEO_ROUTE_KEYS.length} site routes, ${articles.length} article(s), ${CATEGORIES_LIST.length} category pages, ${AUTHORS_LIST.length} author pages and ${aliasRoutes.length + authorAliasRoutes.length} alias pages.`);
