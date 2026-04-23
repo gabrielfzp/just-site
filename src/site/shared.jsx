@@ -831,17 +831,17 @@ export function Btn({ children, primary = true, onClick, style = {}, size = "md"
 
 export function SectionTitle({ tag, title, subtitle, light = false, center = false, tagColor = null }) {
   return (
-    <div style={{ textAlign: center ? "center" : "left", marginBottom: 56 }}>
+    <div className="section-title-block" style={{ textAlign: center ? "center" : "left", marginBottom: 56 }}>
       {tag && <Reveal><Tag light={light} color={tagColor}>{tag}</Tag></Reveal>}
       <Reveal delay={0.08}>
-        <h2 style={{
+        <h2 className="section-title-heading" style={{
           fontSize: 44, fontWeight: 700, color: light ? T.primary : T.textLight,
           lineHeight: 1.15, letterSpacing: "-0.025em", margin: "14px 0 16px", whiteSpace: "pre-line",
         }}>{title}</h2>
       </Reveal>
       {subtitle && (
         <Reveal delay={0.16}>
-          <p style={{
+          <p className="section-title-subtitle" style={{
             fontSize: 17, color: light ? "rgba(15,17,43,0.55)" : T.textMuted,
             lineHeight: 1.65, maxWidth: center ? 560 : 640, margin: center ? "0 auto" : 0,
           }}>{subtitle}</p>

@@ -32,7 +32,7 @@ export default function StackPage({ setPage, lang }) {
   ];
 
   return (
-    <div>
+    <div className="tech-page">
       <style>{`
 /* ===== TECH PAGE - HERO ARCH DIAGRAM ===== */
 @keyframes ha-core-pulse {
@@ -201,11 +201,307 @@ export default function StackPage({ setPage, lang }) {
 .sec-highlight { margin-top: 32px; padding: 32px 40px; border-radius: 16px; background: linear-gradient(135deg, rgba(0,184,148,0.04), rgba(9,132,227,0.04)); border: 1px solid rgba(0,184,148,0.1); display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
 .sec-stat-value { font-size: 28px; font-weight: 800; color: #55efc4; }
 .sec-stat-label { font-size: 12px; color: rgba(242,244,248,0.35); margin-top: 4px; }
+
+@media (max-width: 900px) {
+  .tech-page {
+    overflow-x: hidden;
+  }
+  .tech-page .section-title-heading {
+    font-size: 34px !important;
+    line-height: 1.12 !important;
+  }
+  .tech-page section {
+    overflow: hidden;
+  }
+  .tech-hero {
+    padding: 124px 28px 72px !important;
+  }
+  .tech-hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 42px !important;
+  }
+  .tech-hero-copy h1 {
+    font-size: clamp(38px, 8.5vw, 48px) !important;
+    max-width: 11ch !important;
+  }
+  .tech-hero-copy p {
+    max-width: 34ch !important;
+  }
+  .hero-arch {
+    width: 100%;
+    max-width: 640px;
+    padding: 22px 18px;
+  }
+  .ha-row {
+    gap: 8px;
+  }
+  .ha-box {
+    white-space: normal;
+  }
+  .tech-section,
+  .tech-cta-section {
+    padding: 78px 28px !important;
+  }
+  .vtabs-layout {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 32px;
+  }
+  .vtabs-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .vtab-item {
+    padding: 18px;
+    border-left: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .vtab-item.active {
+    border-left-color: transparent;
+    box-shadow: inset 0 3px 0 #f45546;
+  }
+  .vtab-panel {
+    padding: 28px;
+    min-height: auto;
+  }
+  .vtab-visual {
+    align-items: flex-start;
+  }
+  .mp-providers-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mp-product-box,
+  .mp-just-box {
+    max-width: 100%;
+  }
+  .sec-highlight {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    padding: 28px;
+  }
+  .security-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .tech-page,
+  .tech-page * {
+    box-sizing: border-box;
+  }
+  .tech-page {
+    width: 100%;
+    max-width: 100vw;
+  }
+  .tech-page section > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .tech-hero {
+    padding: 108px 24px 60px !important;
+  }
+  .tech-hero-grid {
+    gap: 34px !important;
+  }
+  .tech-hero-copy h1 {
+    font-size: clamp(36px, 11.2vw, 44px) !important;
+    max-width: 10.5ch !important;
+  }
+  .tech-hero-copy p {
+    font-size: 16px !important;
+    max-width: 27ch !important;
+  }
+  .tech-section,
+  .tech-cta-section {
+    padding: 66px 24px !important;
+  }
+  .tech-page .section-title-heading {
+    font-size: 26px !important;
+    max-width: 14ch !important;
+    width: 100% !important;
+    overflow-wrap: break-word !important;
+    text-wrap: balance;
+  }
+  .tech-page [style*="margin-bottom: 56px"] {
+    margin-bottom: 36px !important;
+  }
+  .tech-page .section-title-subtitle {
+    font-size: 15px !important;
+    max-width: 28ch !important;
+    width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-arch {
+    padding: 18px 14px;
+    border-radius: 12px;
+    display: grid;
+    gap: 8px;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden;
+  }
+  .ha-label {
+    font-size: 8px;
+  }
+  .ha-box {
+    padding: 6px 10px;
+    font-size: 9px;
+    min-width: 0;
+  }
+  .ha-box.core {
+    font-size: 11px;
+    padding: 8px 14px;
+  }
+  .ha-box.sec {
+    padding: 7px 12px;
+  }
+  .ha-tooltip {
+    display: none;
+  }
+  .ha-bottom {
+    font-size: 9px;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+  }
+  .hero-arch .ha-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    min-width: 0;
+  }
+  .hero-arch .ha-row:has(.ha-box.core),
+  .hero-arch .ha-row:has(.ha-box.sec) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero-arch .ha-row .ha-box {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hero-arch .ha-row .ha-box.core,
+  .hero-arch .ha-row .ha-box.sec {
+    width: auto;
+  }
+  .ha-conn {
+    margin: 0;
+  }
+  .ha-div {
+    margin: 2px 0;
+  }
+  .vtabs-nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .vtab-item {
+    padding: 16px 18px;
+  }
+  .vtab-panel {
+    padding: 24px 20px;
+  }
+  .vtab-panel h3 {
+    font-size: 22px;
+  }
+  .vtab-panel p {
+    font-size: 14px;
+    max-width: 28ch;
+    overflow-wrap: break-word;
+  }
+  .vtab-visual {
+    padding: 14px;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px !important;
+  }
+  .vtab-visual > span {
+    display: none;
+  }
+  .vv-node {
+    font-size: 9px;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+  .feat-tag {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.35;
+  }
+  .features {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mp-diagram {
+    margin-top: 36px;
+  }
+  .mp-product-row,
+  .mp-just-row {
+    justify-content: stretch;
+  }
+  .mp-product-box,
+  .mp-just-box {
+    width: 100%;
+    padding: 16px 18px;
+  }
+  .mp-just-label {
+    font-size: 11px;
+  }
+  .mp-just-hint {
+    font-size: 9px;
+  }
+  .mp-connector-fan {
+    display: none;
+  }
+  .mp-providers-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .mp-prov-card {
+    padding: 20px 18px;
+  }
+  .mp-prov-badge {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .mp-swap-indicator {
+    align-items: flex-start;
+    padding: 16px;
+  }
+  .mp-swap-text {
+    font-size: 12px;
+    min-width: 0;
+    max-width: 26ch;
+    overflow-wrap: anywhere;
+  }
+  .sec-highlight {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px 20px;
+    gap: 18px;
+  }
+  .security-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .sec-card {
+    padding: 24px 20px;
+  }
+  .tech-cta-section .section-title-heading,
+  .tech-cta-section h2 {
+    font-size: 28px !important;
+    max-width: 16ch !important;
+  }
+}
 `}</style>
       {/* ===== HERO WITH ARCH DIAGRAM ===== */}
-      <section style={{ background: `linear-gradient(160deg, ${T.primary}, #151a2d, ${T.secondary})`, padding: "150px 48px 80px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 60, alignItems: "center" }}>
-          <div>
+      <section className="tech-hero" style={{ background: `linear-gradient(160deg, ${T.primary}, #151a2d, ${T.secondary})`, padding: "150px 48px 80px" }}>
+        <div className="tech-hero-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 60, alignItems: "center" }}>
+          <div className="tech-hero-copy">
             <Reveal><Tag>{tr.tag}</Tag></Reveal>
             <Reveal delay={0.1}><h1 style={{ fontSize: 44, fontWeight: 700, color: T.textLight, lineHeight: 1.1, marginBottom: 16 }}>{tr.h1}</h1></Reveal>
             <Reveal delay={0.2}><p style={{ fontSize: 17, color: T.textMutedLight, lineHeight: 1.6 }}>{tr.subtitle}</p></Reveal>
@@ -259,7 +555,7 @@ export default function StackPage({ setPage, lang }) {
       </section>
 
       {/* ===== VERTICAL TABS - COMPONENTES ===== */}
-      <section style={{ background: T.darkAlt, padding: "100px 48px" }}>
+      <section className="tech-section" style={{ background: T.darkAlt, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <SectionTitle tag={tr.platformTag} title={tr.platformTitle} center subtitle={tr.platformSubtitle} />
           <div className="vtabs-layout">
@@ -291,7 +587,7 @@ export default function StackPage({ setPage, lang }) {
       </section>
 
       {/* ===== MULTI-PROVIDER BY DESIGN ===== */}
-      <section style={{ background: T.primary, padding: "100px 48px" }}>
+      <section className="tech-section" style={{ background: T.primary, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <SectionTitle tag={tr.integrationsTag} title={tr.integrationsTitle} center subtitle={tr.integrationsSubtitle} />
           <div className="mp-diagram">
@@ -330,7 +626,7 @@ export default function StackPage({ setPage, lang }) {
       </section>
 
       {/* ===== SEGURANCA ===== */}
-      <section style={{ background: T.darkAlt, padding: "100px 48px" }}>
+      <section className="tech-section" style={{ background: T.darkAlt, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <SectionTitle tag={tr.securityTag} title={tr.securityTitle} center subtitle={tr.securitySubtitle} />
           <div className="sec-highlight">
@@ -362,11 +658,10 @@ export default function StackPage({ setPage, lang }) {
       </section>
 
       {/* ===== CTA ===== */}
-      <section style={{ background: `linear-gradient(135deg, ${T.primary}, ${T.secondary})`, padding: "100px 48px", textAlign: "center" }}>
+      <section className="tech-cta-section" style={{ background: `linear-gradient(135deg, ${T.primary}, ${T.secondary})`, padding: "100px 48px", textAlign: "center" }}>
         <Reveal><h2 style={{ fontSize: 36, fontWeight: 700, color: T.textLight, marginBottom: 24 }}>{tr.cta}</h2></Reveal>
         <Reveal delay={0.1}><Btn onClick={() => nav("contato")}>{tr.ctaBtn}</Btn></Reveal>
       </section>
     </div>
   );
 }
-

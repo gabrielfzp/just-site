@@ -12,7 +12,7 @@ export function ContentSearch({ onResults }) {
   }, [onResults, query, results]);
 
   return (
-    <div>
+    <div className="content-search">
       <label style={{ display: "block", color: CONTENT_T.muted, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 800, marginBottom: 10 }}>Buscar conteúdo</label>
       <input
         value={query}

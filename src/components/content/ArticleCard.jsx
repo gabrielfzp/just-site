@@ -4,6 +4,7 @@ export function ArticleCard({ article, featured = false }) {
   if (!article) return null;
   return (
     <article
+      className={`article-card ${featured ? "article-card-featured" : ""}`}
       role="link"
       tabIndex={0}
       onClick={(event) => {
@@ -45,7 +46,7 @@ export function ArticleCard({ article, featured = false }) {
       <p style={{ color: CONTENT_T.mutedStrong, fontSize: 15, lineHeight: 1.65, marginBottom: 22 }}>
         {article.description}
       </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 12, color: CONTENT_T.muted, fontSize: 13 }}>
+      <div className="article-card-meta" style={{ display: "flex", flexWrap: "wrap", gap: 12, color: CONTENT_T.muted, fontSize: 13 }}>
         <span>{article.author.name}</span>
         {article.author.linkedin && (
           <>

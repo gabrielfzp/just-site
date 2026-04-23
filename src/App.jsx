@@ -557,6 +557,152 @@ function AppContent() {
   color: ${CONTENT_T.text};
   background: #ffffff;
 }
+@media (max-width: 900px) {
+  .content-hub-hero {
+    padding: 118px 28px 56px !important;
+  }
+  .content-hub-hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+    align-items: start !important;
+  }
+  .content-hub-title {
+    font-size: clamp(44px, 11.4vw, 58px) !important;
+    line-height: 1.02 !important;
+    max-width: 9ch !important;
+    margin-bottom: 20px !important;
+  }
+  .content-hub-subtitle {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+    max-width: 36ch !important;
+  }
+  .content-search {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+  .content-hub-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 34px !important;
+  }
+  .content-hub-layout > main {
+    min-width: 0 !important;
+  }
+  .content-sidebar {
+    order: -1 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+  .content-sidebar-card {
+    padding: 18px !important;
+  }
+  .article-card {
+    min-height: auto !important;
+    padding: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .article-card h2 {
+    font-size: 23px !important;
+    line-height: 1.14 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card-featured h2 {
+    font-size: 30px !important;
+    line-height: 1.1 !important;
+  }
+}
+@media (max-width: 520px) {
+  .content-hub-hero {
+    padding: 106px 24px 44px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-hero-grid,
+  .content-hub-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .content-hub-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+    margin-bottom: 16px !important;
+  }
+  .content-hub-title {
+    font-size: clamp(42px, 12vw, 48px) !important;
+    max-width: 8.5ch !important;
+  }
+  .content-hub-subtitle {
+    font-size: 16px !important;
+    max-width: 25ch !important;
+  }
+  .content-hub-body {
+    padding: 44px 24px 72px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-layout {
+    gap: 30px !important;
+  }
+  .content-sidebar {
+    order: 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .content-featured {
+    margin-bottom: 38px !important;
+  }
+  .content-section-label {
+    margin-bottom: 12px !important;
+  }
+  .content-list-title {
+    font-size: 28px !important;
+  }
+  .content-card-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .article-card {
+    padding: 22px !important;
+    width: calc(100vw - 48px) !important;
+    max-width: calc(100vw - 48px) !important;
+  }
+  .article-card h2,
+  .article-card-featured h2 {
+    display: block !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    width: min(100%, 24ch) !important;
+    max-width: 24ch !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: inline !important;
+    min-width: 0 !important;
+  }
+  .article-card p {
+    font-size: 14px !important;
+  }
+  .article-card-meta {
+    gap: 8px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+  .content-search,
+  .content-search input {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
 `}</style>
         <Header page={page} setPage={setPage} lang={lang} />
         <main>
