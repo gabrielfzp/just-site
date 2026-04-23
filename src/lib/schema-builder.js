@@ -1,7 +1,7 @@
 import { canonicalUrl, DEFAULT_IMAGE, SITE_BRAND_NAME, SITE_DESCRIPTION, SITE_KNOWS_ABOUT, SITE_NAME, SITE_SAME_AS, SITE_URL } from "../site/seo.js";
 
 export function buildArticleUrl(article) {
-  return canonicalUrl(`/conteudos/${article.slug}`);
+  return canonicalUrl(article.canonicalPath || `/conteudos/${article.slug}`);
 }
 
 export function buildArticleSchema(article) {

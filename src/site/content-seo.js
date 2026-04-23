@@ -28,7 +28,7 @@ export function getContentHubSeo() {
 export function getArticleSeo(article) {
   const title = article.seoTitle || article.title;
   return {
-    title: `${title} | JUST`,
+    title,
     description: article.description,
     canonical: buildArticleUrl(article),
     path: `/conteudos/${article.slug}`,

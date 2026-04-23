@@ -25,7 +25,7 @@ const siteRoutes = SEO_ROUTE_KEYS.map((routeKey) => {
 });
 
 const articleRoutes = articles.map((article) => writeRoute(`/conteudos/${article.slug}`, {
-  title: `${article.seoTitle || article.title} | JUST`,
+  title: article.seoTitle || article.title,
   description: article.description,
   canonical: buildArticleUrl(article),
   markdown: `${SITE_URL}/conteudos/${article.slug}.md`,

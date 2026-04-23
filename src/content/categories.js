@@ -1,4 +1,29 @@
 export const CATEGORIES = {
+  cartoes: {
+    slug: "cartoes",
+    name: "Cartões",
+    description: "Guias sobre emissão, arranjos, tarifas, BIN, bandeiras e economia de produtos de cartão.",
+  },
+  regulacao: {
+    slug: "regulacao",
+    name: "Regulação",
+    description: "Conteúdos sobre BACEN, SPB, autorizações e regras que moldam operações de pagamento no Brasil.",
+  },
+  tecnologia: {
+    slug: "tecnologia",
+    name: "Tecnologia",
+    description: "Artigos técnicos sobre protocolos, mensageria, validação e arquitetura de pagamentos.",
+  },
+  "arranjo-fechado": {
+    slug: "arranjo-fechado",
+    name: "Arranjo Fechado",
+    description: "Materiais sobre operação, aceitação, TEF, POS próprio e desenho de programas fechados.",
+  },
+  operacoes: {
+    slug: "operacoes",
+    name: "Operações",
+    description: "Guias sobre conciliação, recarga, tarifação e rotinas operacionais de programas de cartões.",
+  },
   "meios-de-pagamento": {
     slug: "meios-de-pagamento",
     name: "Meios de pagamento",

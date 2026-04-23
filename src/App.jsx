@@ -503,6 +503,9 @@ function AppContent() {
   font-size: 18px;
   line-height: 1.78;
 }
+.content-article h1 {
+  display: none;
+}
 .content-article h2 {
   color: ${CONTENT_T.navy};
   font-size: 34px;

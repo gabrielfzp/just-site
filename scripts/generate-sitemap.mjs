@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { AUTHORS_LIST } from "../src/content/authors.js";
 import { CATEGORIES_LIST } from "../src/content/categories.js";
 import { canonicalUrl, PAGE_SEO, SEO_ROUTE_KEYS } from "../src/site/seo.js";
+import { buildArticleUrl } from "../src/lib/schema-builder.js";
 import { distDir, loadContentArticles, rootDir } from "./load-content.mjs";
 
 const today = "2026-04-20";
@@ -16,7 +17,7 @@ const urls = [
     priority: key === "home" ? "1.0" : key === "conteudos" ? "0.9" : "0.8",
   })),
   ...articles.map((article) => ({
-    loc: canonicalUrl(`/conteudos/${article.slug}`),
+    loc: buildArticleUrl(article),
     lastmod: article.updatedAt || today,
     changefreq: "monthly",
     priority: "0.8",
