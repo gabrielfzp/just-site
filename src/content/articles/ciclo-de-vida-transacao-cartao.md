@@ -33,15 +33,11 @@ Uma transação de cartão parece simples do lado do usuário: passa o cartão, 
 
 Entre o momento em que o usuário apresenta o cartão e o estabelecimento recebe o dinheiro, passam potencialmente semanas. Durante esse tempo, o sistema precisa lidar com:
 
-Falhas de comunicação entre POS e emissor.
-
-Cancelamentos e estornos solicitados pelo estabelecimento.
-
-Revisões de transações suspeitas.
-
-Conciliação entre o que foi autorizado e o que foi efetivamente capturado.
-
-Contestações do usuário (chargeback).
+- Falhas de comunicação entre POS e emissor.
+- Cancelamentos e estornos solicitados pelo estabelecimento.
+- Revisões de transações suspeitas.
+- Conciliação entre o que foi autorizado e o que foi efetivamente capturado.
+- Contestações do usuário (chargeback).
 
 Se todo esse trabalho acontecesse em uma única mensagem "compra aprovada", o sistema seria frágil. Qualquer erro depois da aprovação deixaria dinheiro solto em lugar nenhum.
 
@@ -53,19 +49,15 @@ A pré-autorização é uma etapa opcional que valida a operação antes de conf
 
 Cenários clássicos de pré-autorização:
 
-**Check-in em hotel.** O hotel pré-autoriza um valor estimado (diárias mais extras) no momento do check-in. O dinheiro fica bloqueado. Se o hóspede não usa o valor todo, o hotel libera o restante no checkout. Se usa mais, captura o valor total.
-
-**Aluguel de carro.** Similar ao hotel. Pré-autoriza um valor de garantia, libera o que não foi usado.
-
-**Combustível em bomba automática.** Alguns postos pré-autorizam um valor máximo antes de liberar a bomba. Se o tanque não enche o valor todo, libera o restante.
+- **Check-in em hotel.** O hotel pré-autoriza um valor estimado (diárias mais extras) no momento do check-in. O dinheiro fica bloqueado. Se o hóspede não usa o valor todo, o hotel libera o restante no checkout. Se usa mais, captura o valor total.
+- **Aluguel de carro.** Similar ao hotel. Pré-autoriza um valor de garantia, libera o que não foi usado.
+- **Combustível em bomba automática.** Alguns postos pré-autorizam um valor máximo antes de liberar a bomba. Se o tanque não enche o valor todo, libera o restante.
 
 Pré-autorização valida:
 
-Se o cartão está ativo.
-
-Se tem saldo ou limite disponível.
-
-Se o bloqueio do valor pré-autorizado é possível.
+- Se o cartão está ativo.
+- Se tem saldo ou limite disponível.
+- Se o bloqueio do valor pré-autorizado é possível.
 
 A mensagem é uma requisição de autorização específica (tipicamente MTI 0100 na ISO 8583, diferente da 0200 de compra). O emissor responde com 0110 de aprovação ou negativa.
 
@@ -77,19 +69,13 @@ A autorização é a etapa mais conhecida. É quando o usuário passa o cartão 
 
 A mensagem 0200 é enviada do POS para o emissor (via adquirente e bandeira em arranjo aberto, ou direto em arranjo fechado). O emissor valida vários itens:
 
-**Integridade do usuário.** O usuário pode usar esse cartão? O cartão está ativo, não está bloqueado, não foi reportado como perdido ou roubado?
-
-**Integridade do cartão.** O cartão usado na compra é genuíno? O criptograma EMV bate? O CVV (CVV1 para presencial, CVV2 para e-commerce) foi informado corretamente? PIN digitado corretamente?
-
-**Verificação do criptograma EMV.** Em compras com chip ou contactless, o POS envia um criptograma com os dados da transação criptografados. Esse criptograma é validado pela processadora do emissor (ou pelo EMV as a Service contratado). Se não bate, a transação é negada.
-
-**Saldo ou limite disponível.** Há saldo para débito ou limite para crédito que cubra o valor da compra?
-
-**Regras de negócio adicionais.** Por exemplo, em cartão de combustível, o valor por transação está dentro do permitido por motorista? A categoria do estabelecimento é elegível? Para cartão benefício, o MCC (Merchant Category Code) do estabelecimento está na lista de aceites?
-
-**Verificação de duplicidade.** A mesma transação não está sendo enviada duas vezes por erro?
-
-**Antifraude.** O padrão de uso bate com o perfil do usuário? Transação em outra cidade logo depois de uma no bairro usual levanta flag. Valor muito alto para o perfil também. Transação fora do horário de uso típico também. Operações mais sofisticadas aplicam machine learning em tempo real.
+- **Integridade do usuário.** O usuário pode usar esse cartão? O cartão está ativo, não está bloqueado, não foi reportado como perdido ou roubado?
+- **Integridade do cartão.** O cartão usado na compra é genuíno? O criptograma EMV bate? O CVV (CVV1 para presencial, CVV2 para e-commerce) foi informado corretamente? PIN digitado corretamente?
+- **Verificação do criptograma EMV.** Em compras com chip ou contactless, o POS envia um criptograma com os dados da transação criptografados. Esse criptograma é validado pela processadora do emissor (ou pelo EMV as a Service contratado). Se não bate, a transação é negada.
+- **Saldo ou limite disponível.** Há saldo para débito ou limite para crédito que cubra o valor da compra?
+- **Regras de negócio adicionais.** Por exemplo, em cartão de combustível, o valor por transação está dentro do permitido por motorista? A categoria do estabelecimento é elegível? Para cartão benefício, o MCC (Merchant Category Code) do estabelecimento está na lista de aceites?
+- **Verificação de duplicidade.** A mesma transação não está sendo enviada duas vezes por erro?
+- **Antifraude.** O padrão de uso bate com o perfil do usuário? Transação em outra cidade logo depois de uma no bairro usual levanta flag. Valor muito alto para o perfil também. Transação fora do horário de uso típico também. Operações mais sofisticadas aplicam machine learning em tempo real.
 
 Se todas as validações passam, o emissor responde 0210 com código 00 (aprovado) e um código de autorização (o famoso número que aparece no comprovante). Se alguma falha, responde 0210 com código de recusa (51 para saldo insuficiente, 54 para cartão vencido, etc).
 
@@ -111,11 +97,9 @@ Em chip EMV, a confirmação também serve para enviar o criptograma de resposta
 
 O desfazimento acontece quando a autorização foi enviada mas a resposta não chegou ao POS. Isso pode acontecer por:
 
-Falha de comunicação entre POS e emissor durante a resposta.
-
-Timeout no POS antes de a resposta chegar.
-
-Erro de software que aborta o processo no meio.
+- Falha de comunicação entre POS e emissor durante a resposta.
+- Timeout no POS antes de a resposta chegar.
+- Erro de software que aborta o processo no meio.
 
 Quando isso acontece, o POS não sabe se a transação foi aprovada ou não. Pode ser que o emissor aprovou e o dinheiro está bloqueado. Pode ser que nem chegou. O POS precisa assumir cenário de incerteza.
 
@@ -127,11 +111,9 @@ O desfazimento é um recurso de segurança contra estado inconsistente. Sem ele,
 
 Ao final de cada dia operacional, a entidade responsável pelo meio de captura (adquirente, POS, TEF) envia ao emissor um arquivo listando todas as transações capturadas naquele dia. Esse arquivo serve para:
 
-**Conferir que o que foi autorizado está sendo capturado.** Transações aprovadas que não aparecem no arquivo de conciliação podem ter sido abortadas. O emissor libera o valor bloqueado.
-
-**Confirmar transações pendentes.** Transações aprovadas mas sem confirmação podem ser confirmadas via arquivo.
-
-**Base para liquidação financeira.** É com base nesse arquivo que o emissor sabe quanto pagar ao estabelecimento no ciclo de liquidação.
+- **Conferir que o que foi autorizado está sendo capturado.** Transações aprovadas que não aparecem no arquivo de conciliação podem ter sido abortadas. O emissor libera o valor bloqueado.
+- **Confirmar transações pendentes.** Transações aprovadas mas sem confirmação podem ser confirmadas via arquivo.
+- **Base para liquidação financeira.** É com base nesse arquivo que o emissor sabe quanto pagar ao estabelecimento no ciclo de liquidação.
 
 Esse arquivo é a fonte da verdade contábil. Discrepâncias entre o que o POS registrou e o que o emissor autorizou aparecem aqui. Operações maduras têm processo automatizado de reconciliação que lê o arquivo, cruza com transações autorizadas, e gera alertas para discrepâncias.
 
@@ -141,13 +123,10 @@ Em arranjo fechado, quem gera esse arquivo é a própria operação (já que con
 
 Além das 5 etapas principais, algumas mensagens pontuais podem acontecer:
 
-**Estorno ou cancelamento (MTI 0400/0410).** Enviado pelo próprio estabelecimento quando cancela uma venda (erro de caixa, devolução do cliente). O valor é liberado no cartão do usuário e o emissor ajusta a liquidação.
-
-**Consulta de saldo.** Alguns tipos de cartão (pré-pago, voucher) permitem que o usuário consulte saldo no POS ou caixa eletrônico. É uma mensagem separada, com validação sem movimentação.
-
-**Chargeback.** Quando o usuário contesta a transação ao emissor (diz que não reconhece, diz que é fraude, diz que mercadoria não chegou), o emissor pode abrir um chargeback. Essa disputa é arbitrada pela bandeira entre o emissor e o adquirente, seguindo regras específicas. O chargeback pode durar de 45 a 120 dias para ser resolvido.
-
-**Fees, taxas, ajustes.** Ajustes pontuais (por exemplo, correção de valor, aplicação de tarifa) também seguem mensagens específicas.
+- **Estorno ou cancelamento (MTI 0400/0410).** Enviado pelo próprio estabelecimento quando cancela uma venda (erro de caixa, devolução do cliente). O valor é liberado no cartão do usuário e o emissor ajusta a liquidação.
+- **Consulta de saldo.** Alguns tipos de cartão (pré-pago, voucher) permitem que o usuário consulte saldo no POS ou caixa eletrônico. É uma mensagem separada, com validação sem movimentação.
+- **Chargeback.** Quando o usuário contesta a transação ao emissor (diz que não reconhece, diz que é fraude, diz que mercadoria não chegou), o emissor pode abrir um chargeback. Essa disputa é arbitrada pela bandeira entre o emissor e o adquirente, seguindo regras específicas. O chargeback pode durar de 45 a 120 dias para ser resolvido.
+- **Fees, taxas, ajustes.** Ajustes pontuais (por exemplo, correção de valor, aplicação de tarifa) também seguem mensagens específicas.
 
 ## Status possíveis de uma transação
 
@@ -170,29 +149,21 @@ Operações maduras monitoram a distribuição desses status em tempo real. Muit
 
 Alguns erros clássicos que toda operação de cartão enfrenta em algum momento:
 
-**Autorização sem captura.** Transação é aprovada, usuário vê o valor bloqueado no cartão, mas o estabelecimento não recebe porque o POS não confirmou corretamente. A resolução passa por identificar a transação no arquivo de conciliação e processar manualmente.
-
-**Captura sem autorização.** Menos comum, mas pode acontecer em offline mode. O POS capturou uma venda sem autorização prévia. O emissor pode negar a captura no ciclo seguinte, e o estabelecimento fica sem receber.
-
-**Estorno duplicado.** O estabelecimento cancela uma venda duas vezes por engano. Usuário recebe o valor de volta duas vezes. Ajuste manual necessário.
-
-**Chargeback fraudulento.** Usuário contesta uma compra legítima alegando que não reconhece. Emissor precisa comprovar a legitimidade para o adquirente. Se não comprovar, perde o chargeback e o estabelecimento perde a venda.
-
-**Timeout sistêmico.** Quando muitas transações passam por timeout, indica problema na infra. Pode ser lentidão na processadora, problema na rede da bandeira, ou falha no próprio POS. Investigação cruzada necessária.
+- **Autorização sem captura.** Transação é aprovada, usuário vê o valor bloqueado no cartão, mas o estabelecimento não recebe porque o POS não confirmou corretamente. A resolução passa por identificar a transação no arquivo de conciliação e processar manualmente.
+- **Captura sem autorização.** Menos comum, mas pode acontecer em offline mode. O POS capturou uma venda sem autorização prévia. O emissor pode negar a captura no ciclo seguinte, e o estabelecimento fica sem receber.
+- **Estorno duplicado.** O estabelecimento cancela uma venda duas vezes por engano. Usuário recebe o valor de volta duas vezes. Ajuste manual necessário.
+- **Chargeback fraudulento.** Usuário contesta uma compra legítima alegando que não reconhece. Emissor precisa comprovar a legitimidade para o adquirente. Se não comprovar, perde o chargeback e o estabelecimento perde a venda.
+- **Timeout sistêmico.** Quando muitas transações passam por timeout, indica problema na infra. Pode ser lentidão na processadora, problema na rede da bandeira, ou falha no próprio POS. Investigação cruzada necessária.
 
 ## Como monitorar a saúde do ciclo
 
 Para quem opera cartão, acompanhar métricas do ciclo é crítico:
 
-**Taxa de aprovação.** Percentual de 0200 aprovadas sobre o total de requisições. Abaixo de 90% indica problema (falsos positivos no antifraude, regras de negócio mal configuradas, problemas de saldo).
-
-**Tempo médio de autorização.** Tempo entre 0200 e 0210. Acima de 2 segundos indica lentidão; acima de 5 segundos indica problema crítico.
-
-**Taxa de desfazimento.** Percentual de 0420 sobre total de autorizações. Acima de 2% indica problemas de infraestrutura ou de POS.
-
-**Taxa de chargeback.** Transações contestadas em relação ao volume. Acima de 1% indica problema de fraude ou qualidade de serviço; acima de 3% pode levar a sanções da bandeira.
-
-**Diferença entre autorizado e capturado.** Valor autorizado no dia vs valor que aparece no arquivo de conciliação. Diferenças consistentes indicam bug em alguma ponta.
+- **Taxa de aprovação.** Percentual de 0200 aprovadas sobre o total de requisições. Abaixo de 90% indica problema (falsos positivos no antifraude, regras de negócio mal configuradas, problemas de saldo).
+- **Tempo médio de autorização.** Tempo entre 0200 e 0210. Acima de 2 segundos indica lentidão; acima de 5 segundos indica problema crítico.
+- **Taxa de desfazimento.** Percentual de 0420 sobre total de autorizações. Acima de 2% indica problemas de infraestrutura ou de POS.
+- **Taxa de chargeback.** Transações contestadas em relação ao volume. Acima de 1% indica problema de fraude ou qualidade de serviço; acima de 3% pode levar a sanções da bandeira.
+- **Diferença entre autorizado e capturado.** Valor autorizado no dia vs valor que aparece no arquivo de conciliação. Diferenças consistentes indicam bug em alguma ponta.
 
 ## FAQ
 

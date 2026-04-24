@@ -31,9 +31,8 @@ Depois que uma transação passa pelo [ciclo de vida completo](/conteudos/ciclo-
 
 Esse arquivo vem em dois momentos tipicamente:
 
-**No dia seguinte à transação.** Traz os dados da venda: valor bruto, data, cartão usado (mascarado), código de autorização, NSU. O estabelecimento pode conciliar com o que o PDV registrou no caixa.
-
-**No dia seguinte à liquidação.** Traz os dados financeiros: valor líquido recebido, tarifas descontadas, data de liquidação efetiva. O estabelecimento pode conciliar com o extrato bancário.
+- **No dia seguinte à transação.** Traz os dados da venda: valor bruto, data, cartão usado (mascarado), código de autorização, NSU. O estabelecimento pode conciliar com o que o PDV registrou no caixa.
+- **No dia seguinte à liquidação.** Traz os dados financeiros: valor líquido recebido, tarifas descontadas, data de liquidação efetiva. O estabelecimento pode conciliar com o extrato bancário.
 
 Entre esses dois momentos existe um gap de prazo (D+2 para débito/pré-pago, D+28 para crédito à vista). Na prática, uma operação de grande porte lida com centenas de milhares de transações em diferentes fases do ciclo simultaneamente. Sem automação de conciliação, fica ingovernável.
 
@@ -41,13 +40,10 @@ Entre esses dois momentos existe um gap de prazo (D+2 para débito/pré-pago, D+
 
 Quatro plataformas concentram a maior parte do mercado brasileiro de conciliação de cartões:
 
-**Conciliadora (Grupo Boticário).** Uma das mais usadas. Focada em cruzar dados de múltiplos emissores e adquirentes com sistemas internos dos estabelecimentos. Oferece dashboards e alertas em tempo real.
-
-**Equals.** Especializada em conciliação e análise financeira para grandes varejistas. Tem forte penetração em supermercados e redes de franquia.
-
-**Grupo Nexera.** Empresa brasileira de tecnologia financeira, oferece conciliação e serviços correlatos.
-
-**BoaVista.** Parte do grupo de serviços financeiros, atua em conciliação e análise de recebíveis.
+- **Conciliadora (Grupo Boticário).** Uma das mais usadas. Focada em cruzar dados de múltiplos emissores e adquirentes com sistemas internos dos estabelecimentos. Oferece dashboards e alertas em tempo real.
+- **Equals.** Especializada em conciliação e análise financeira para grandes varejistas. Tem forte penetração em supermercados e redes de franquia.
+- **Grupo Nexera.** Empresa brasileira de tecnologia financeira, oferece conciliação e serviços correlatos.
+- **BoaVista.** Parte do grupo de serviços financeiros, atua em conciliação e análise de recebíveis.
 
 Além dessas quatro, há dezenas de plataformas menores especializadas em nicho (por exemplo, conciliação para franquias de fast food, conciliação para redes de farmácia). Cada mercado tem jogador dominante local.
 
@@ -55,13 +51,10 @@ Além dessas quatro, há dezenas de plataformas menores especializadas em nicho 
 
 Para que um estabelecimento use uma plataforma de conciliação com um emissor específico, o emissor precisa estar homologado nessa plataforma. Homologação aqui significa:
 
-O emissor envia à plataforma a especificação do arquivo (layout, formato, campos, periodicidade).
-
-A plataforma adapta o parser dela para ler esse formato.
-
-Os dois testam troca de arquivos com volume real.
-
-A plataforma publica o emissor como "disponível" para clientes dela.
+- O emissor envia à plataforma a especificação do arquivo (layout, formato, campos, periodicidade).
+- A plataforma adapta o parser dela para ler esse formato.
+- Os dois testam troca de arquivos com volume real.
+- A plataforma publica o emissor como "disponível" para clientes dela.
 
 Cada plataforma tem seu protocolo e seu layout de arquivo. Não há padrão único. Emissor que quer ser aceito em múltiplas plataformas precisa homologar em cada uma separadamente.
 
@@ -85,17 +78,12 @@ Para arranjo fechado voltado a pequenos estabelecimentos, a conciliação costum
 
 Dois formatos dominantes:
 
-**Troca de arquivos (o mais comum).** O emissor gera um arquivo diário no layout da plataforma e o entrega via SFTP, FTP seguro, ou diretório compartilhado. A plataforma consome o arquivo automaticamente.
-
-Vantagens: simples, não exige infra permanentemente disponível, baixo overhead técnico.
-
-Desvantagens: latência (sempre D+1 mínimo), troubleshoot mais difícil.
-
-**Integração por API.** O emissor expõe endpoints que a plataforma consulta. Conciliação pode ser quase em tempo real.
-
-Vantagens: latência baixa, possibilidade de drill-down transação por transação, mais flexibilidade.
-
-Desvantagens: requer infra sempre disponível, mais complexo de implementar e monitorar.
+- **Troca de arquivos (o mais comum).** O emissor gera um arquivo diário no layout da plataforma e o entrega via SFTP, FTP seguro, ou diretório compartilhado. A plataforma consome o arquivo automaticamente.
+  - **Vantagens:** simples, não exige infra permanentemente disponível, baixo overhead técnico.
+  - **Desvantagens:** latência (sempre D+1 mínimo), troubleshoot mais difícil.
+- **Integração por API.** O emissor expõe endpoints que a plataforma consulta. Conciliação pode ser quase em tempo real.
+  - **Vantagens:** latência baixa, possibilidade de drill-down transação por transação, mais flexibilidade.
+  - **Desvantagens:** requer infra sempre disponível, mais complexo de implementar e monitorar.
 
 Em 2026, a tendência é migração para API. Arquivos continuam dominando o legado porque as plataformas ainda sustentam os dois modos.
 
@@ -103,17 +91,12 @@ Em 2026, a tendência é migração para API. Arquivos continuam dominando o leg
 
 Campos típicos:
 
-**Identificação da transação.** Data, hora, NSU, código de autorização.
-
-**Dados do cartão (mascarado).** Primeiros 6 dígitos, últimos 4 dígitos. Não vai PAN completo por questão de segurança (PCI DSS).
-
-**Dados financeiros.** Valor bruto, tarifas aplicadas, valor líquido.
-
-**Dados de liquidação.** Data de vencimento, data de liquidação efetiva, conta bancária destino.
-
-**Tipo de transação.** Compra, estorno, chargeback, ajuste.
-
-**Status.** Capturada, liquidada, cancelada, em disputa.
+- **Identificação da transação.** Data, hora, NSU, código de autorização.
+- **Dados do cartão (mascarado).** Primeiros 6 dígitos, últimos 4 dígitos. Não vai PAN completo por questão de segurança (PCI DSS).
+- **Dados financeiros.** Valor bruto, tarifas aplicadas, valor líquido.
+- **Dados de liquidação.** Data de vencimento, data de liquidação efetiva, conta bancária destino.
+- **Tipo de transação.** Compra, estorno, chargeback, ajuste.
+- **Status.** Capturada, liquidada, cancelada, em disputa.
 
 O layout pode ter 20, 50 ou 100 campos, dependendo do nível de detalhe. Plataformas mais sofisticadas pedem mais campos para análises mais profundas.
 
@@ -123,13 +106,10 @@ Quando um emissor quer estar em múltiplas plataformas de conciliação sem faze
 
 Como funciona: o emissor se homologa uma única vez com o hub. O hub traduz e envia os arquivos para todas as plataformas de conciliação suportadas. Vantagens:
 
-Um único processo de homologação inicial, que depois dá acesso a múltiplas plataformas.
-
-Manutenção centralizada: se uma plataforma muda layout, o hub ajusta, sem trabalho para o emissor.
-
-Redução de custo total ao longo do tempo.
-
-Desvantagem: mais uma camada de dependência na cadeia.
+- Um único processo de homologação inicial, que depois dá acesso a múltiplas plataformas.
+- Manutenção centralizada: se uma plataforma muda layout, o hub ajusta, sem trabalho para o emissor.
+- Redução de custo total ao longo do tempo.
+- **Desvantagem:** mais uma camada de dependência na cadeia.
 
 É uma decisão pragmática: se a operação vai usar só 1-2 plataformas, homologação direta faz sentido. Se precisa cobrir 4-5 ou mais, um hub compensa.
 

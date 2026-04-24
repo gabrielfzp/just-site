@@ -5,8 +5,8 @@ cluster: emissao-cartao
 type: satellite
 author: gabriel-pires
 termo_alvo: como solicitar bin abnt
-title: "Como solicitar um BIN/IIN no Brasil: o passo a passo da ABNT"
-meta_description: "Solicitar um BIN (Bank Identification Number) no Brasil passa pela ABNT, segue a ISO/IEC 7812-1 e leva 30 dias. Entenda o processo completo, o custo e quando você realmente precisa de um BIN próprio."
+title: "Como solicitar um BIN/IIN para arranjo fechado no Brasil: o caminho da ABNT"
+meta_description: "Para emitir cartão em arranjo fechado no Brasil, o BIN (Bank Identification Number) é registrado junto à ABNT seguindo a ISO/IEC 7812-1. Entenda o processo, o custo, o prazo e quando esse caminho faz sentido."
 canonical: /conteudos/como-solicitar-bin-iin-abnt
 og_image: /og/como-solicitar-bin-iin-abnt.png
 categoria: Cartões
@@ -18,14 +18,15 @@ tags:
   - iin
   - abnt
   - iso 7812
+  - arranjo fechado
   - emissão de cartão
 ---
 
-# Como solicitar um BIN/IIN no Brasil: o passo a passo da ABNT
+# Como solicitar um BIN/IIN para arranjo fechado no Brasil: o caminho da ABNT
 
 ## Resposta direta
 
-No Brasil, o registro de BIN (Bank Identification Number) e IIN (Issuer Identification Number) é controlado pela ABNT, que atua como Registration Authority do padrão ISO/IEC 7812-1. O processo envolve enviar e-mail à ABNT, preencher o formulário oficial (em inglês, no padrão internacional) e aguardar aprovação. Custa entre R$ 3.000 e R$ 5.000, leva em torno de 30 dias e resulta em um identificador único de 6 ou 8 dígitos que sua empresa pode usar para emitir cartões próprios, com bandeira própria ou homologados em bandeiras abertas.
+Para operações de cartão em arranjo fechado no Brasil, o registro do BIN (Bank Identification Number) e IIN (Issuer Identification Number) é feito diretamente junto à ABNT, que atua como Registration Authority do padrão ISO/IEC 7812-1. O processo envolve contato formal com a ABNT, preenchimento do formulário oficial (em inglês, no padrão internacional) e aguardo da aprovação. Custa entre R$ 3.000 e R$ 5.000, leva em torno de 30 dias e resulta em um identificador único de 6 ou 8 dígitos usado nos cartões da sua própria rede. Para arranjo aberto (cartões bandeirados Visa, Mastercard, Elo), o caminho é outro: o registro do BIN passa pela bandeira e envolve homologação técnica específica, não por solicitação direta à ABNT.
 
 ## O que é BIN e o que é IIN
 
@@ -39,19 +40,24 @@ Na prática, no Brasil e no mundo, se usa BIN e IIN como sinônimos. Esse artigo
 
 Os dígitos do IIN identificam o emissor do cartão no sistema global de pagamentos. Sem IIN registrado, o roteamento de transações não consegue encontrar quem emitiu o cartão. É o equivalente a um domínio no DNS: sem ele, ninguém sabe pra onde mandar o pacote.
 
-## Quando você precisa de BIN próprio
+## Arranjo fechado vs arranjo aberto: dois caminhos diferentes
 
-Nem toda operação de cartão precisa de BIN próprio. A regra geral:
+Antes de entrar no passo a passo, vale deixar claro em qual cenário esse caminho via ABNT se aplica.
 
-Se você opera via [BIN Sponsor](/conteudos/bin-sponsor-o-que-e) em bandeira aberta (Visa, Mastercard, Elo, Amex), não precisa. Você usa o BIN do sponsor.
+- **Arranjo fechado (foco deste artigo).** O emissor controla toda a cadeia, cria sua própria bandeira proprietária e credencia a rede de estabelecimentos que vai aceitar o cartão. O BIN precisa ser único no sistema global de identificação para não colidir com outros emissores. É para esse caso que o registro direto junto à ABNT faz sentido, seguindo a ISO/IEC 7812-1. Empresas que operam [private label](/conteudos/cartao-private-label), frota própria ou programas proprietários usam esse caminho.
+- **Arranjo aberto (Visa, Mastercard, Elo, American Express).** O emissor precisa de um BIN alocado pela bandeira, não solicitado diretamente à ABNT. O processo passa por contrato com a bandeira, homologação técnica, PCI DSS, integração com a rede global da bandeira. A bandeira cuida do registro do BIN nos sistemas internacionais dela. Se você vai emitir cartão Visa ou Mastercard, não é pela ABNT que o BIN é liberado, é pela bandeira (ou pelo seu [BIN Sponsor](/conteudos/bin-sponsor-o-que-e), que já tem essa estrutura).
 
-Se você emite cartão private label em [arranjo fechado](/conteudos/arranjo-aberto-vs-arranjo-fechado) em rede própria, precisa. O BIN próprio identifica seus cartões no seu próprio ecossistema.
+O resto deste artigo descreve o fluxo via ABNT, aplicável a arranjo fechado.
 
-Se você quer se tornar emissor direto de uma bandeira aberta, precisa. A bandeira exige BIN próprio para homologar sua operação.
+## Quando você precisa de BIN próprio em arranjo fechado
 
-Se você tem um arranjo de pagamento próprio que interopera com outros, precisa. O IIN é o que permite roteamento entre sistemas.
+Nem toda operação em arranjo fechado precisa solicitar BIN próprio à ABNT. A regra geral:
 
-Na maioria das operações de fintech que começam hoje, o caminho é via sponsor. Mas operações maduras, private labels e esquemas proprietários dependem de BIN registrado.
+- Se você opera via [BIN Sponsor](/conteudos/bin-sponsor-o-que-e) (tanto em bandeira aberta quanto em arranjo fechado suportado pelo sponsor), não precisa. Você usa o BIN do sponsor.
+- Se você emite [cartão private label](/conteudos/cartao-private-label) em rede própria e não usa sponsor, precisa. O BIN próprio identifica seus cartões no seu ecossistema e garante que o identificador não conflite com outros no mundo.
+- Se você tem um arranjo de pagamento próprio que interopera com outros sistemas (credenciadores, aceitadores terceiros), precisa. O IIN é o que permite roteamento entre sistemas.
+
+Na maioria das operações de fintech que começam hoje, o caminho é via sponsor, e não é necessário solicitar BIN diretamente. Private labels grandes e operações proprietárias que não passam por sponsor dependem de BIN registrado via ABNT.
 
 ## A ABNT como autoridade de registro
 
@@ -61,15 +67,17 @@ A ABNT tem um papel administrativo no processo. Recebe o pedido, valida o candid
 
 Quem registra BIN junto à ABNT recebe um número único que ninguém mais no mundo vai poder usar. É uma atribuição global, administrada localmente.
 
+Um ponto prático: o canal de contato da ABNT para essa solicitação não é publicado de forma visível no site, o processo depende do contato correto com a área técnica responsável pelo registro de IIN. Operações que nunca passaram por isso costumam perder semanas tentando achar a porta certa. A gente na JUST conduz esse processo regularmente para clientes, então se você estiver nessa etapa, [fale com a gente](/contato) que orientamos o fluxo inicial sem custo.
+
 ## O passo a passo do processo
 
-Depois de várias operações que acompanhei, o fluxo prático é esse:
+O fluxo prático é esse:
 
 ### Passo 1: Contato inicial com a ABNT
 
-O primeiro movimento é entrar em contato com a área responsável na ABNT, via e-mail. O endereço de contato varia ao longo do tempo e é publicado na página da ABNT, então sempre confira o canal atualizado antes de escrever. Na mensagem, você informa o interesse em solicitar um IIN e pede o formulário oficial.
+O primeiro movimento é abrir o contato formal com a área técnica da ABNT responsável pelo registro de IIN. Na mensagem, a empresa informa o interesse em solicitar um identificador e pede o formulário oficial de aplicação.
 
-A resposta da ABNT costuma vir em poucos dias úteis. Vem com o formulário de aplicação (em inglês, no padrão internacional) e com orientações de pagamento da taxa.
+A resposta da ABNT costuma vir em poucos dias úteis. Vem com o formulário de aplicação (em inglês, no padrão internacional) e com orientações de pagamento da taxa. Quem já fez esse processo antes passa por aqui em uma semana. Quem nunca fez costuma travar, porque o canal de contato não está exposto publicamente. Em caso de dúvida, a gente pode orientar como proceder, [é só nos chamar](/contato).
 
 ### Passo 2: Preenchimento do formulário
 
@@ -77,37 +85,22 @@ O formulário é o "Application/Agreement for Issuer Identification Number" padr
 
 Pede as seguintes informações principais:
 
-Nome legal completo da organização requerente.
-
-Endereço físico da organização.
-
-Endereço para correspondência, se diferente.
-
-Contato principal: nome e sobrenome.
-
-Número de telefone.
-
-E-mail.
-
-VAT ou equivalente fiscal (CNPJ, no Brasil).
-
-Indústria principal. O formulário lista opções (Airline, Entertainment, Banking/Financial, Healthcare, Merchandising/Retail, Technology, Telecommunications, Other).
-
-Descrição breve do negócio do requerente.
-
-Descrição breve de como o cartão será usado.
-
-Se a organização já tem algum IIN fora desse sistema (indica caso a organização já opere em outros países com IIN separado).
-
-Data prevista de primeiro uso do IIN.
-
-Quantos IINs você pretende registrar (uma organização pode ter mais de um se justificar o uso).
-
-Compromisso de que o IIN será usado em conformidade com a ISO/IEC 7812.
-
-Se o uso será doméstico e internacional, ou só doméstico (fechado).
-
-O formulário precisa ser assinado por representante legal da organização.
+- Nome legal completo da organização requerente.
+- Endereço físico da organização.
+- Endereço para correspondência, se diferente.
+- Contato principal: nome e sobrenome.
+- Número de telefone.
+- E-mail.
+- VAT ou equivalente fiscal (CNPJ, no Brasil).
+- Indústria principal. O formulário lista opções (Airline, Entertainment, Banking/Financial, Healthcare, Merchandising/Retail, Technology, Telecommunications, Other).
+- Descrição breve do negócio do requerente.
+- Descrição breve de como o cartão será usado.
+- Se a organização já tem algum IIN fora desse sistema (indica caso a organização já opere em outros países com IIN separado).
+- Data prevista de primeiro uso do IIN.
+- Quantos IINs você pretende registrar (uma organização pode ter mais de um se justificar o uso).
+- Compromisso de que o IIN será usado em conformidade com a ISO/IEC 7812.
+- Se o uso será doméstico e internacional, ou só doméstico (fechado).
+- O formulário precisa ser assinado por representante legal da organização.
 
 ### Passo 3: Pagamento da taxa
 
@@ -121,77 +114,20 @@ A ABNT analisa o pedido. Se tudo está correto, atribui um número único e envi
 
 O que chega na aprovação:
 
-O número do IIN atribuído.
-
-Certificado oficial (em inglês).
-
-Instruções para comunicação do uso ao sistema internacional.
+- O número do IIN atribuído.
+- Certificado oficial (em inglês).
+- Instruções para comunicação do uso ao sistema internacional.
 
 A partir daí, o IIN é seu. Tecnicamente, ele está disponível para ser usado imediatamente na identificação dos cartões que você vai emitir. Na prática, ainda há passos adicionais.
 
-### Passo 5: Homologação em bandeira (se aplicável)
-
-Se o IIN vai ser usado em cartão bandeirado (Visa, Mastercard, Elo, Amex), a bandeira precisa homologar o BIN nos seus sistemas. Esse processo envolve:
-
-Envio do IIN à bandeira como parte do contrato de emissor.
-
-Testes técnicos na rede da bandeira, para confirmar que transações originadas nesse BIN são roteadas corretamente.
-
-Validação de compliance (PCI DSS, requisitos de segurança, antifraude).
-
-Liberação do BIN em produção.
-
-Esse processo pode levar de 30 a 120 dias adicionais, dependendo da bandeira e da complexidade do programa.
-
-Se o IIN vai ser usado em arranjo fechado sem bandeira aberta, não precisa de homologação em bandeira. Basta garantir que os meios de captura integrados à sua operação reconheçam o IIN.
-
-## Transição de 6 para 8 dígitos
-
-Um ponto importante da ISO/IEC 7812-1 atual é a migração do IIN de 6 para 8 dígitos. A mudança começou em 2017 e o prazo de transição completa é 2022-2025, dependendo da bandeira.
-
-O motivo é simples: com 6 dígitos (1 milhão de combinações), o espaço de IINs no mundo está esgotando. Com 8 dígitos, são 100 milhões de combinações, que dão folga para décadas.
-
-Na prática, quem registra IIN hoje pode receber 8 dígitos. Os sistemas antigos (que só lêem 6) precisam ser atualizados. Para o usuário final, nada muda: o número impresso no cartão continua tendo 16 dígitos no total.
-
-Se você está registrando BIN novo em 2026, pergunte à ABNT se o registro é de 6 ou 8 dígitos e como ele se comporta nas bandeiras. Pode impactar o prazo e o custo de homologação.
-
-## Custos totais para ter um BIN funcionando
-
-Só o IIN da ABNT é R$ 3.000 a R$ 5.000. Mas de IIN registrado até cartão passando numa maquininha, há outros custos:
-
-| Etapa | Faixa típica |
-|---|---|
-| Registro do IIN na ABNT | R$ 3.000 a R$ 5.000 |
-| Consultoria jurídica para estruturar o arranjo | R$ 15.000 a R$ 50.000 |
-| Homologação em bandeira (se arranjo aberto) | R$ 20.000 a R$ 80.000 |
-| Integração técnica com processadora de cartão | R$ 50.000 a R$ 300.000 |
-| Produção de primeira tiragem de cartão físico | R$ 30.000 a R$ 200.000 |
-| Setup operacional (antifraude, atendimento) | R$ 50.000 a R$ 200.000 |
-| **Total até o primeiro cartão funcional** | **R$ 168.000 a R$ 835.000** |
-
-Essa tabela é útil para fazer a conta completa. Quem foca só no custo do IIN subestima o caminho em ordens de magnitude.
-
-## Alternativas se você não quer ou não precisa do BIN próprio
-
-Duas alternativas comuns:
-
-**Operar via BIN Sponsor (mais comum).** Você usa o BIN de um BaaS que já tem licença de instituição de pagamento e contrato com bandeira. Economiza CAPEX inicial, tempo e complexidade regulatória. A maioria das fintechs modernas começa assim.
-
-**Operar como subemissor de um sponsor.** Alguns sponsors atribuem faixas de numeração dentro do BIN deles (sub-BIN) para operações grandes. Dá a impressão de identidade própria sem o custo de registrar IIN novo.
-
-A escolha depende da ambição da operação. Se o plano é ter marca forte e controle total do arranjo, BIN próprio faz sentido. Se o plano é velocidade e eficiência, sponsor resolve.
-
 ## O que muitas operações esquecem
 
-Quatro coisas que vejo tropeçarem no processo de BIN:
+Quatro coisas que a gente vê travando o processo de BIN:
 
-Primeira, pedir o IIN antes de ter clareza do modelo de cartão. Registrar BIN sem saber se vai ser pré-pago, débito ou crédito, ou sem saber se vai ser bandeira aberta ou fechada, leva a IIN mal utilizado ou a necessidade de pedir outro depois. Faça o planejamento do produto antes do pedido.
-
-Segunda, negligenciar a homologação na bandeira. O IIN na mão não basta se o cartão não passa na maquininha. A homologação tem suas próprias regras e seu prazo, muitas vezes mais longo do que o registro do IIN em si.
-
-Terceira, esquecer do registro interno na processadora. A processadora de cartão (sua ou de terceiros) precisa ser configurada para reconhecer o IIN e encaminhar transações corretamente. Erro comum de quem delega demais: assumir que alguém vai fazer isso sozinho.
-
-Quarta, não manter documentação atualizada. Quando a empresa muda razão social, endereço, estrutura societária, o registro na ABNT precisa ser atualizado. Manter isso organizado evita problemas em auditorias futuras.
+- **Primeira: pedir o IIN antes de ter clareza do modelo de cartão.** Registrar BIN sem saber se vai ser pré-pago, débito ou crédito, ou sem saber se vai ser bandeira aberta ou fechada, leva a IIN mal utilizado ou a necessidade de pedir outro depois. Faça o planejamento do produto antes do pedido.
+- **Segunda: negligenciar a homologação na bandeira.** O IIN na mão não basta se o cartão não passa na maquininha. A homologação tem suas próprias regras e seu prazo, muitas vezes mais longo do que o registro do IIN em si.
+- **Terceira: esquecer do registro interno na processadora.** A processadora de cartão (sua ou de terceiros) precisa ser configurada para reconhecer o IIN e encaminhar transações corretamente. Erro comum de quem delega demais: assumir que alguém vai fazer isso sozinho.
+- **Quarta: não manter documentação atualizada.** Quando a empresa muda razão social, endereço, estrutura societária, o registro na ABNT precisa ser atualizado. Manter isso organizado evita problemas em auditorias futuras.
 
 ## FAQ
 
@@ -235,6 +171,14 @@ Não. O registro do IIN na ABNT é processo administrativo independente do BACEN
 
 Depende da bandeira e do tipo de uso. O IIN é um identificador global, mas o uso efetivo em rede internacional exige homologação específica da bandeira. Cartões em arranjo fechado geralmente ficam restritos ao Brasil.
 
+**Esse processo na ABNT vale para cartão Visa ou Mastercard?**
+
+Não. Para cartão de arranjo aberto (Visa, Mastercard, Elo, American Express), o BIN é alocado pela própria bandeira no processo de homologação do emissor, não solicitado diretamente à ABNT. Se você opera via [BIN Sponsor](/conteudos/bin-sponsor-o-que-e), o sponsor já tem o BIN alocado com a bandeira e você usa o dele. O caminho via ABNT descrito aqui é o padrão para arranjo fechado.
+
+**Como começar o contato com a ABNT?**
+
+O canal correto da ABNT para registro de IIN não é publicado de forma aberta no site deles. Operações que nunca passaram por isso costumam travar nessa etapa. A gente na JUST orienta clientes que estão nesse caminho. Se você está começando o processo, [fale com a gente](/contato) que indicamos a porta certa.
+
 ## Próximo passo
 
-Se você está estruturando uma operação de cartão e quer entender se vale mais a pena registrar BIN próprio ou operar via sponsor, a JUST ajuda a desenhar esse caminho com seus requisitos e orçamento. [Fale com a gente](/contato) para uma análise inicial.
+Se você está estruturando uma operação de cartão em arranjo fechado e precisa solicitar BIN próprio, a JUST orienta o processo junto à ABNT e ajuda a desenhar a estrutura completa de emissão. Para quem opera em arranjo aberto, a gente conecta com o caminho via bandeira ou BIN Sponsor adequado ao modelo. [Fale com a gente](/contato) para uma análise inicial.

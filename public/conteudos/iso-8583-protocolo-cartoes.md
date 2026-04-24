@@ -29,11 +29,9 @@ Décadas depois, mesmo com a largura de banda disponível hoje, o protocolo cont
 
 Uma mensagem ISO 8583 é composta de três partes:
 
-**Header (cabeçalho).** Contém metadados opcionais sobre a mensagem. Pode variar por implementação.
-
-**MTI (Message Type Indicator).** Quatro dígitos que identificam o tipo da mensagem. Por exemplo, 0200 é uma requisição de compra, 0210 é a resposta. Mais adiante detalho os MTIs principais.
-
-**Data Elements (bits de dados).** É a estrutura que carrega as informações da transação. Até 128 "bits" (na versão de 1987) ou até 192 bits (nas versões mais recentes), cada um carregando um dado específico.
+- **Header (cabeçalho).** Contém metadados opcionais sobre a mensagem. Pode variar por implementação.
+- **MTI (Message Type Indicator).** Quatro dígitos que identificam o tipo da mensagem. Por exemplo, 0200 é uma requisição de compra, 0210 é a resposta. Mais adiante detalho os MTIs principais.
+- **Data Elements (bits de dados).** É a estrutura que carrega as informações da transação. Até 128 "bits" (na versão de 1987) ou até 192 bits (nas versões mais recentes), cada um carregando um dado específico.
 
 Cada bit corresponde a um campo específico definido na norma:
 
@@ -65,13 +63,10 @@ Um bitmap no início da seção de dados indica quais bits estão presentes na m
 
 Os Message Type Indicators (MTIs) são os quatro dígitos que definem o tipo da mensagem. Cada dígito tem significado:
 
-Primeiro dígito: versão do protocolo (0 = ISO 8583-1987, 1 = ISO 8583-1993, 2 = ISO 8583-2003).
-
-Segundo dígito: classe da mensagem (autorização, financeira, reversal, consulta).
-
-Terceiro dígito: função (requisição, resposta, notificação).
-
-Quarto dígito: origem (emissor, adquirente, outros).
+- Primeiro dígito: versão do protocolo (0 = ISO 8583-1987, 1 = ISO 8583-1993, 2 = ISO 8583-2003).
+- Segundo dígito: classe da mensagem (autorização, financeira, reversal, consulta).
+- Terceiro dígito: função (requisição, resposta, notificação).
+- Quarto dígito: origem (emissor, adquirente, outros).
 
 Os códigos que aparecem no dia a dia de uma operação de cartão:
 
@@ -118,19 +113,15 @@ A forma tradicional de transmitir mensagens ISO 8583 é via socket TCP/IP. As du
 
 Vantagens do modo socket:
 
-Performance máxima. Mensagens têm overhead mínimo e são transmitidas direto.
-
-Baixa latência. Conexão persistente evita handshakes repetidos.
-
-Compatibilidade com sistemas legados. Bandeiras e grandes adquirentes operam assim há décadas.
+- Performance máxima. Mensagens têm overhead mínimo e são transmitidas direto.
+- Baixa latência. Conexão persistente evita handshakes repetidos.
+- Compatibilidade com sistemas legados. Bandeiras e grandes adquirentes operam assim há décadas.
 
 Desvantagens:
 
-Complexidade de implementação. Requer conhecimento do formato bit a bit, do bitmap, do parseamento de campos. Não é trivial para times que não têm experiência.
-
-Debugging difícil. Mensagens são binárias, legíveis só com ferramentas específicas. Erro comum de programador é montar a mensagem errada e levar horas para identificar.
-
-Infra mais específica. Precisa de balanceador TCP, gestão de conexões persistentes, monitoramento específico.
+- Complexidade de implementação. Requer conhecimento do formato bit a bit, do bitmap, do parseamento de campos. Não é trivial para times que não têm experiência.
+- Debugging difícil. Mensagens são binárias, legíveis só com ferramentas específicas. Erro comum de programador é montar a mensagem errada e levar horas para identificar.
+- Infra mais específica. Precisa de balanceador TCP, gestão de conexões persistentes, monitoramento específico.
 
 ## HTTP com JSON ou XML: o modo moderno
 
@@ -155,31 +146,24 @@ A resposta vem em formato similar, com CODMSG 0210.
 
 Vantagens do modo HTTP:
 
-Legibilidade. JSON é texto humano-readable. Debug fica muito mais simples.
-
-Ecossistema moderno. Toda ferramenta de API management, API gateway, monitoring, tracing fala HTTP nativamente.
-
-Implementação mais rápida. Times de engenharia modernos já dominam HTTP/REST, não precisam aprender o formato bit a bit.
-
-Compatível com arquiteturas serverless. Rodar em Lambda, Cloud Run ou similares fica muito mais fácil.
+- Legibilidade. JSON é texto humano-readable. Debug fica muito mais simples.
+- Ecossistema moderno. Toda ferramenta de API management, API gateway, monitoring, tracing fala HTTP nativamente.
+- Implementação mais rápida. Times de engenharia modernos já dominam HTTP/REST, não precisam aprender o formato bit a bit.
+- Compatível com arquiteturas serverless. Rodar em Lambda, Cloud Run ou similares fica muito mais fácil.
 
 Desvantagens:
 
-Overhead maior. HTTP tem headers, handshakes, campos nomeados. Uma mensagem que em binário tem 200 bytes pode ter 2 KB em JSON.
-
-Latência ligeiramente maior. Parse de JSON é mais lento que parse de bits. Embora em 2026 a diferença seja na casa de milissegundos, ainda importa em volume grande.
-
-Nem toda bandeira aceita. Visa e Mastercard mantêm operação core em socket. Elo aceita HTTP em alguns canais. Para emissor novo, é provável que o canal com a bandeira seja socket.
+- Overhead maior. HTTP tem headers, handshakes, campos nomeados. Uma mensagem que em binário tem 200 bytes pode ter 2 KB em JSON.
+- Latência ligeiramente maior. Parse de JSON é mais lento que parse de bits. Embora em 2026 a diferença seja na casa de milissegundos, ainda importa em volume grande.
+- Nem toda bandeira aceita. Visa e Mastercard mantêm operação core em socket. Elo aceita HTTP em alguns canais. Para emissor novo, é provável que o canal com a bandeira seja socket.
 
 ## Criptografia: ISO 9564 e 3DES
 
 A ISO 8583 em si não define criptografia. Os dados trafegam "em claro" quanto ao formato. A criptografia de dados sensíveis é feita em camadas paralelas:
 
-**PIN criptografado.** O PIN do usuário nunca vai em claro pela rede. É criptografado usando o padrão ISO 9564 format 0, com algoritmo 3DES (Triple DES). A chave de criptografia é negociada entre POS e emissor via processo de key exchange, usando chaves mestras que nunca saem do hardware de segurança (HSM).
-
-**Criptograma EMV.** Gerado pelo chip no momento da transação, usando chaves internas do chip e dados da transação. Vai no bit 55 da mensagem ISO 8583. Valida que a transação de fato veio de um cartão genuíno e não foi replicada.
-
-**PAN criptografado (opcional).** Algumas implementações modernas criptografam o próprio PAN durante o transporte, usando tokenização ou point-to-point encryption (P2PE). Reduz superfície de ataque contra vazamento.
+- **PIN criptografado.** O PIN do usuário nunca vai em claro pela rede. É criptografado usando o padrão ISO 9564 format 0, com algoritmo 3DES (Triple DES). A chave de criptografia é negociada entre POS e emissor via processo de key exchange, usando chaves mestras que nunca saem do hardware de segurança (HSM).
+- **Criptograma EMV.** Gerado pelo chip no momento da transação, usando chaves internas do chip e dados da transação. Vai no bit 55 da mensagem ISO 8583. Valida que a transação de fato veio de um cartão genuíno e não foi replicada.
+- **PAN criptografado (opcional).** Algumas implementações modernas criptografam o próprio PAN durante o transporte, usando tokenização ou point-to-point encryption (P2PE). Reduz superfície de ataque contra vazamento.
 
 A combinação desses mecanismos, somada à segurança de transporte (TLS no HTTP ou VPN no socket), torna o sistema resistente contra interceptação, replay e forjamento de transações.
 
@@ -187,11 +171,9 @@ A combinação desses mecanismos, somada à segurança de transporte (TLS no HTT
 
 Três razões práticas:
 
-**Integração com processadora e bandeira.** Se você vai contratar BaaS ou processadora, boa parte da documentação técnica deles fala em termos da ISO 8583. Entender o que são BIT_02, BIT_04, BIT_07 poupa dias de aprendizado no onboarding.
-
-**Debug de problemas.** Em algum momento, vai aparecer transação que não funciona. "Código 51", "Código 05", "Resposta 14". Esses códigos vêm da ISO 8583. Saber ler os códigos de resposta acelera a resolução.
-
-**Decisão de arquitetura.** Se sua operação vai operar via socket ou HTTP, isso afeta tecnologia, time, custo de infra. A escolha não é trivial e depende do parceiro.
+- **Integração com processadora e bandeira.** Se você vai contratar BaaS ou processadora, boa parte da documentação técnica deles fala em termos da ISO 8583. Entender o que são BIT_02, BIT_04, BIT_07 poupa dias de aprendizado no onboarding.
+- **Debug de problemas.** Em algum momento, vai aparecer transação que não funciona. "Código 51", "Código 05", "Resposta 14". Esses códigos vêm da ISO 8583. Saber ler os códigos de resposta acelera a resolução.
+- **Decisão de arquitetura.** Se sua operação vai operar via socket ou HTTP, isso afeta tecnologia, time, custo de infra. A escolha não é trivial e depende do parceiro.
 
 Para operações em arranjo aberto, a escolha não é de quem contrata (o socket geralmente é obrigatório pelo BaaS ou bandeira). Para operações em arranjo fechado com protocolo próprio, é decisão de arquitetura do emissor, e HTTP/JSON é o caminho moderno.
 

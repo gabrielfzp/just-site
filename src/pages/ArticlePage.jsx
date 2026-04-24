@@ -59,7 +59,7 @@ export default function ArticlePage({ slug }) {
 
   if (!article) {
     return (
-      <section style={{ minHeight: "70vh", padding: "150px 48px", background: CONTENT_T.bg }}>
+      <section className="article-empty-state" style={{ minHeight: "70vh", padding: "150px 48px", background: CONTENT_T.bg }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <h1 style={{ color: CONTENT_T.navy, fontSize: 44, marginBottom: 16 }}>Conteúdo não encontrado</h1>
           <p style={{ color: CONTENT_T.muted, marginBottom: 24 }}>O artigo que você tentou acessar não existe ou ainda não foi publicado.</p>
@@ -74,10 +74,10 @@ export default function ArticlePage({ slug }) {
   return (
     <div style={{ background: CONTENT_T.bg, minHeight: "100vh" }}>
       <ArticleHeader article={article} />
-      <section style={{ padding: "72px 48px 104px", background: CONTENT_T.bg }}>
+      <section className="article-page-body" style={{ padding: "72px 48px 104px", background: CONTENT_T.bg }}>
         <div className="article-layout" style={{ maxWidth: 1120, margin: "0 auto", display: "grid", gridTemplateColumns: "260px minmax(0, 1fr)", gap: 54, alignItems: "start" }}>
           <ArticleTOC items={article.toc} />
-          <main>
+          <main className="article-main">
             {article.answer && (
               <section
                 className="answer-box"

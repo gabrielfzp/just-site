@@ -435,9 +435,9 @@ export const ARTICLE_MANIFEST = [
   {
     "slug": "como-solicitar-bin-iin-abnt",
     "file": "como-solicitar-bin-iin-abnt.md",
-    "title": "Como solicitar um BIN/IIN no Brasil: o passo a passo da ABNT",
+    "title": "Como solicitar um BIN/IIN para arranjo fechado no Brasil: o caminho da ABNT",
     "seoTitle": "",
-    "description": "Solicitar um BIN (Bank Identification Number) no Brasil passa pela ABNT, segue a ISO/IEC 7812-1 e leva 30 dias. Entenda o processo completo, o custo e quando você realmente precisa de um BIN próprio.",
+    "description": "Para emitir cartão em arranjo fechado no Brasil, o BIN (Bank Identification Number) é registrado junto à ABNT seguindo a ISO/IEC 7812-1. Entenda o processo, o custo, o prazo e quando esse caminho faz sentido.",
     "categorySlug": "cartoes",
     "cluster": "emissao-cartao",
     "type": "satellite",
@@ -445,12 +445,13 @@ export const ARTICLE_MANIFEST = [
     "publishedAt": "2026-04-23",
     "updatedAt": "2026-04-23",
     "readingTime": 10,
-    "answer": "No Brasil, o registro de BIN (Bank Identification Number) e IIN (Issuer Identification Number) é controlado pela ABNT, que atua como Registration Authority do padrão ISO/IEC 7812-1. O processo envolve enviar e-mail à ABNT, preencher o formulário oficial (em inglês, no padrão internacional) e aguardar aprovação. Custa entre R$ 3.000 e R$ 5.000, leva em torno de 30 dias e resulta em um identificador único de 6 ou 8 dígitos que sua empresa pode usar para emitir cartões próprios, com bandeira própria ou homologados em bandeiras abertas.",
+    "answer": "Para operações de cartão em arranjo fechado no Brasil, o registro do BIN (Bank Identification Number) e IIN (Issuer Identification Number) é feito diretamente junto à ABNT, que atua como Registration Authority do padrão ISO/IEC 7812-1. O processo envolve contato formal com a ABNT, preenchimento do formulário oficial (em inglês, no padrão internacional) e aguardo da aprovação. Custa entre R$ 3.000 e R$ 5.000, leva em torno de 30 dias e resulta em um identificador único de 6 ou 8 dígitos usado nos cartões da sua própria rede. Para arranjo aberto (cartões bandeirados Visa, Mastercard, Elo), o caminho é outro: o registro do BIN passa pela bandeira e envolve homologação técnica específica, não por solicitação direta à ABNT.",
     "tags": [
       "bin",
       "iin",
       "abnt",
       "iso 7812",
+      "arranjo fechado",
       "emissão de cartão"
     ],
     "faqs": [
@@ -487,8 +488,12 @@ export const ARTICLE_MANIFEST = [
         "title": "O que é BIN e o que é IIN"
       },
       {
-        "id": "quando-você-precisa-de-bin-próprio",
-        "title": "Quando você precisa de BIN próprio"
+        "id": "arranjo-fechado-vs-arranjo-aberto-dois-caminhos-diferentes",
+        "title": "Arranjo fechado vs arranjo aberto: dois caminhos diferentes"
+      },
+      {
+        "id": "quando-você-precisa-de-bin-próprio-em-arranjo-fechado",
+        "title": "Quando você precisa de BIN próprio em arranjo fechado"
       },
       {
         "id": "a-abnt-como-autoridade-de-registro",
@@ -497,18 +502,6 @@ export const ARTICLE_MANIFEST = [
       {
         "id": "o-passo-a-passo-do-processo",
         "title": "O passo a passo do processo"
-      },
-      {
-        "id": "transição-de-6-para-8-dígitos",
-        "title": "Transição de 6 para 8 dígitos"
-      },
-      {
-        "id": "custos-totais-para-ter-um-bin-funcionando",
-        "title": "Custos totais para ter um BIN funcionando"
-      },
-      {
-        "id": "alternativas-se-você-não-quer-ou-não-precisa-do-bin-próprio",
-        "title": "Alternativas se você não quer ou não precisa do BIN próprio"
       },
       {
         "id": "o-que-muitas-operações-esquecem",

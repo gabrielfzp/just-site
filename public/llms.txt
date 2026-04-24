@@ -70,14 +70,14 @@ Autor: Gabriel Pires
 Resumo: Toda transação de cartão percorre um ciclo com cinco etapas principais: pré-autori
 Tags: transação de cartão, autorização, desfazimento, chargeback, processamento
 
-### Como solicitar um BIN/IIN no Brasil: o passo a passo da ABNT
+### Como solicitar um BIN/IIN para arranjo fechado no Brasil: o caminho da ABNT
 
 URL: https://wearejust.it/conteudos/como-solicitar-bin-iin-abnt/
 Markdown: https://wearejust.it/conteudos/como-solicitar-bin-iin-abnt.md
 Categoria: Cartões
 Autor: Gabriel Pires
-Resumo: No Brasil, o registro de BIN (Bank Identification Number) e IIN (Issuer Identification Number) é controlado pela ABNT, que atua como Registration Authority do padrão ISO/IEC 7812-1. O processo envolve enviar e-mail à ABNT, preencher o formulário oficial (em inglês, no padrão internacional) e aguardar aprovação. Custa entre R$ 3.000 e R$ 5.000, leva em torno de 30 dias e resulta em um identificador único de 6 ou 8 dígitos que sua empresa pode usar para emitir cartões próprios, com bandeira própria ou homologados em bandeiras abertas.
-Tags: bin, iin, abnt, iso 7812, emissão de cartão
+Resumo: Para operações de cartão em arranjo fechado no Brasil, o registro do BIN (Bank Identification Number) e IIN (Issuer Identification Number) é feito diretamente junto à ABNT, que atua como Registration Authority do padrão ISO/IEC 7812-1. O processo envolve contato formal com a ABNT, preenchimento do formulário oficial (em inglês, no padrão internacional) e aguardo da aprovação. Custa entre R$ 3.000 e R$ 5.000, leva em torno de 30 dias e resulta em um identificador único de 6 ou 8 dígitos usado nos cartões da sua própria rede. Para arranjo aberto (cartões bandeirados Visa, Mastercard, Elo), o caminho é outro: o registro do BIN passa pela bandeira e envolve homologação técnica específica, não por solicitação direta à ABNT.
+Tags: bin, iin, abnt, iso 7812, arranjo fechado, emissão de cartão
 
 ### Conciliação financeira de cartões: como funciona e quanto custa para o emissor
 

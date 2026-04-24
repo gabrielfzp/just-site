@@ -43,15 +43,11 @@ O mercado popularmente chamou o número de "0,7%" (referência à marca mais alt
 
 O resultado foi imediato:
 
-**Reordenação da rentabilidade por produto.** O que antes era melhor monetização virou pior monetização. Pré-pago caiu para o mesmo nível do débito.
-
-**Êxodo para crédito colateralizado.** Muitas operações migraram para o modelo de cartão de crédito com colateral (no estilo XP), onde o usuário deposita um valor que lastreia o limite. Assim, mantém a classificação de crédito (com intercâmbio em torno de 1,5%) sem assumir risco real de inadimplência.
-
-**Voucher ganhou protagonismo.** O programa voucher (cartões de alimentação e refeição para trabalhadores), com intercâmbio em torno de 1,0% a 2,5%, virou o refúgio de muitas operações de benefício. Não está sujeito ao teto de pré-pago.
-
-**Saída de marketplaces menores.** Fintechs menores, que faziam sentido só no modelo pré-pago com intercâmbio gordo, perderam a viabilidade. Alguns consolidaram, outros fecharam programa.
-
-**Revisão de P&L em cadeia.** Toda operação que tinha pré-pago como sustentáculo teve que refazer a projeção. Receita caiu 30% a 50% em muitos casos. Muita empresa descobriu que não tinha como recuperar.
+- **Reordenação da rentabilidade por produto.** O que antes era melhor monetização virou pior monetização. Pré-pago caiu para o mesmo nível do débito.
+- **Êxodo para crédito colateralizado.** Muitas operações migraram para o modelo de cartão de crédito com colateral (no estilo XP), onde o usuário deposita um valor que lastreia o limite. Assim, mantém a classificação de crédito (com intercâmbio em torno de 1,5%) sem assumir risco real de inadimplência.
+- **Voucher ganhou protagonismo.** O programa voucher (cartões de alimentação e refeição para trabalhadores), com intercâmbio em torno de 1,0% a 2,5%, virou o refúgio de muitas operações de benefício. Não está sujeito ao teto de pré-pago.
+- **Saída de marketplaces menores.** Fintechs menores, que faziam sentido só no modelo pré-pago com intercâmbio gordo, perderam a viabilidade. Alguns consolidaram, outros fecharam programa.
+- **Revisão de P&L em cadeia.** Toda operação que tinha pré-pago como sustentáculo teve que refazer a projeção. Receita caiu 30% a 50% em muitos casos. Muita empresa descobriu que não tinha como recuperar.
 
 ## O que significa 0,7% (ou 0,5%) na prática
 
@@ -65,9 +61,8 @@ Pra visualizar, vamos comparar antes e depois em uma operação típica:
 
 Em uma operação com TPV mensal de R$ 50 milhões em pré-pago consumidor 100% presencial:
 
-Antes: R$ 50 milhões × 1,1% (intercâmbio médio anterior) = R$ 550 mil de intercâmbio bruto mensal.
-
-Depois: R$ 50 milhões × 0,5% = R$ 250 mil de intercâmbio bruto mensal.
+- Antes: R$ 50 milhões × 1,1% (intercâmbio médio anterior) = R$ 550 mil de intercâmbio bruto mensal.
+- Depois: R$ 50 milhões × 0,5% = R$ 250 mil de intercâmbio bruto mensal.
 
 Uma queda de 55% na receita principal. Para a maioria das operações, não há como absorver essa queda sem repensar o modelo inteiro.
 
@@ -75,13 +70,10 @@ Uma queda de 55% na receita principal. Para a maioria das operações, não há 
 
 Quem estava em pré-pago e precisou recalibrar, basicamente, tomou uma dessas rotas:
 
-**Migração para crédito colateralizado.** O modelo mais popular. O usuário deposita um valor (fica investido ou em conta de pagamento) e esse depósito lastreia o limite do cartão de crédito. A fintech passa a emitir crédito, recebe intercâmbio de crédito (1,4% a 2,0%), mas não assume risco real de inadimplência. Foi o caminho que a XP escalou e que muitas fintechs seguiram.
-
-**Migração para voucher.** Para operações de benefício corporativo, migrar o programa da bandeira de pré-pago para voucher preserva a rentabilidade. O voucher tem intercâmbio entre 1,0% e 2,5%, dependendo da bandeira e do programa. Requer estrutura específica (o cartão só pode ser usado em MCCs específicos de alimentação ou refeição).
-
-**Monetização lateral.** Operações que não conseguiram migrar o programa passaram a extrair receita de outras fontes. Tarifa de manutenção, tarifa de saque, tarifa de transferência, assinatura premium, serviços complementares. Em muitos casos, não foi suficiente.
-
-**Consolidação ou encerramento.** Operações pequenas ou sem diferencial de produto acabaram sendo vendidas ou fechadas. O mercado de emissão se concentrou.
+- **Migração para crédito colateralizado.** O modelo mais popular. O usuário deposita um valor (fica investido ou em conta de pagamento) e esse depósito lastreia o limite do cartão de crédito. A fintech passa a emitir crédito, recebe intercâmbio de crédito (1,4% a 2,0%), mas não assume risco real de inadimplência. Foi o caminho que a XP escalou e que muitas fintechs seguiram.
+- **Migração para voucher.** Para operações de benefício corporativo, migrar o programa da bandeira de pré-pago para voucher preserva a rentabilidade. O voucher tem intercâmbio entre 1,0% e 2,5%, dependendo da bandeira e do programa. Requer estrutura específica (o cartão só pode ser usado em MCCs específicos de alimentação ou refeição).
+- **Monetização lateral.** Operações que não conseguiram migrar o programa passaram a extrair receita de outras fontes. Tarifa de manutenção, tarifa de saque, tarifa de transferência, assinatura premium, serviços complementares. Em muitos casos, não foi suficiente.
+- **Consolidação ou encerramento.** Operações pequenas ou sem diferencial de produto acabaram sendo vendidas ou fechadas. O mercado de emissão se concentrou.
 
 ## Como o teto mudou a negociação com BaaS
 
@@ -95,11 +87,9 @@ Hoje, em programas de pré-pago, o padrão é repasse quase integral do intercâ
 
 Se você está modelando uma operação de cartão em 2026 e está considerando pré-pago, aqui vão os pontos que a gente na JUST sempre joga na mesa:
 
-Primeira, pré-pago só faz sentido hoje em um de três cenários: voucher (alimentação ou refeição), programa corporativo específico com alta frequência e alto ticket, ou parte de uma estratégia híbrida onde o pré-pago é só onboarding antes da migração para crédito.
-
-Segunda, não use o intercâmbio antigo de pré-pago para projetar P&L. Se você encontrar tabelas desatualizadas com 1,2% a 1,5%, são de antes de abril de 2024. Use 0,5% a 0,7%, dependendo do mix presencial versus e-commerce.
-
-Terceira, se sua operação é B2B (cartão para CNPJ), considere cartão comercial em vez de pré-pago. Intercâmbio de crédito comercial fica entre 1,6% e 2,2%, bem mais atrativo, e o perfil de usuário (pessoa jurídica) é mais previsível.
+- **Primeira: pré-pago só faz sentido hoje em um de três cenários.** Voucher (alimentação ou refeição), programa corporativo específico com alta frequência e alto ticket, ou parte de uma estratégia híbrida onde o pré-pago é só onboarding antes da migração para crédito.
+- **Segunda: não use o intercâmbio antigo de pré-pago para projetar P&L.** Se você encontrar tabelas desatualizadas com 1,2% a 1,5%, são de antes de abril de 2024. Use 0,5% a 0,7%, dependendo do mix presencial versus e-commerce.
+- **Terceira: se sua operação é B2B (cartão para CNPJ), considere cartão comercial em vez de pré-pago.** Intercâmbio de crédito comercial fica entre 1,6% e 2,2%, bem mais atrativo, e o perfil de usuário (pessoa jurídica) é mais previsível.
 
 ## O que vem por aí
 
@@ -107,9 +97,8 @@ O BACEN não parou em pré-pago. A política de reduzir custos do sistema de pag
 
 Sinais que o mercado está acompanhando:
 
-Possível revisão de crédito em transações presenciais, com pressão para redução em subprogramas específicos.
-
-Expansão do Pix garantido e Pix automático, que podem canibalizar parte do volume de cartão em 2026 e 2027.
+- Possível revisão de crédito em transações presenciais, com pressão para redução em subprogramas específicos.
+- Expansão do Pix garantido e Pix automático, que podem canibalizar parte do volume de cartão em 2026 e 2027.
 
 Revisão da regulação de voucher, que hoje é o programa com intercâmbio mais alto do mercado e está na mira de atores que questionam se o nível é justificável.
 

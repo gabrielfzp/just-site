@@ -27,11 +27,9 @@ O MDR não é um número único. Ele varia por produto (crédito, débito, pré-
 
 O MDR parece uma taxa única, mas por dentro é uma cesta. Três atores dividem o valor:
 
-**O emissor do cartão** fica com a maior fatia, via intercâmbio. É quem sustenta a relação com o portador do cartão, cobre fraude e inadimplência, paga cartão físico, tokenização e atendimento. Recebe em geral 60% a 70% do MDR.
-
-**A bandeira** (Visa, Mastercard, Elo, American Express) fica com uma fatia menor, cobrando tarifas próprias de processamento, roteamento e uso da marca. Geralmente 5% a 10% do MDR.
-
-**O adquirente** (Cielo, Stone, Rede, Getnet e outros) fica com o restante, que é a margem de operação da adquirência. Paga a maquininha, o credenciamento do estabelecimento, a conciliação e as campanhas comerciais. Tipicamente 20% a 35% do MDR.
+- **O emissor do cartão** fica com a maior fatia, via intercâmbio. É quem sustenta a relação com o portador do cartão, cobre fraude e inadimplência, paga cartão físico, tokenização e atendimento. Recebe em geral 60% a 70% do MDR.
+- **A bandeira** (Visa, Mastercard, Elo, American Express) fica com uma fatia menor, cobrando tarifas próprias de processamento, roteamento e uso da marca. Geralmente 5% a 10% do MDR.
+- **O adquirente** (Cielo, Stone, Rede, Getnet e outros) fica com o restante, que é a margem de operação da adquirência. Paga a maquininha, o credenciamento do estabelecimento, a conciliação e as campanhas comerciais. Tipicamente 20% a 35% do MDR.
 
 A tabela abaixo mostra como uma venda de R$ 100 em crédito à vista costuma se distribuir. Os valores são aproximações de mercado e variam conforme o programa do cartão e a negociação do estabelecimento.
 
@@ -99,11 +97,9 @@ O resultado é um mercado onde o MDR continua sendo a principal tarifa de cartã
 
 Três coisas práticas para quem está montando o business case:
 
-Primeira coisa, foque no programa certo. Crédito corporativo (cartão comercial) continua rendendo bem. Crédito consumidor faz sentido se tiver público de alto ticket. Pré-pago só faz sentido em voucher (alimentação, refeição) ou em nicho muito específico.
-
-Segunda, olhe para o perfil de uso. Um usuário que transaciona R$ 2.000 por mês em crédito paga os custos fixos. Um que transaciona R$ 300 não paga. A matemática do MDR só fecha com frequência e ticket.
-
-Terceira, conheça seu take rate real. Se você opera via [BIN Sponsor](/conteudos/bin-sponsor-o-que-e), seu intercâmbio líquido vai ser o intercâmbio bruto da bandeira menos take rate do BaaS (quando houver), menos imposto. Cheque o número final, não o de topo.
+- **Primeira coisa: foque no programa certo.** Crédito corporativo (cartão comercial) continua rendendo bem. Crédito consumidor faz sentido se tiver público de alto ticket. Pré-pago só faz sentido em voucher (alimentação, refeição) ou em nicho muito específico.
+- **Segunda: olhe para o perfil de uso.** Um usuário que transaciona R$ 2.000 por mês em crédito paga os custos fixos. Um que transaciona R$ 300 não paga. A matemática do MDR só fecha com frequência e ticket.
+- **Terceira: conheça seu take rate real.** Se você opera via [BIN Sponsor](/conteudos/bin-sponsor-o-que-e), seu intercâmbio líquido vai ser o intercâmbio bruto da bandeira menos take rate do BaaS (quando houver), menos imposto. Cheque o número final, não o de topo.
 
 O MDR alto parece gordo. No fim do ciclo, a margem que sobra para o emissor é mais apertada do que muita projeção indica.
 

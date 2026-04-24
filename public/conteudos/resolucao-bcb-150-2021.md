@@ -41,13 +41,10 @@ A resolução detalha três categorias de arranjos que não precisam pedir autor
 
 São arranjos onde o uso do instrumento de pagamento (cartão, meio digital, voucher) é restrito a um escopo predefinido. O BACEN reconhece quatro subcategorias:
 
-**Rede de estabelecimentos da mesma sociedade empresária.** O cartão só funciona em estabelecimentos do mesmo grupo econômico. Exemplo clássico: cartão de benefício de uma rede de farmácias que só aceita nas farmácias da própria rede.
-
-**Rede de estabelecimentos com mesma identidade visual.** Franquias, redes de postos de combustível sob a mesma bandeira. O cartão funciona em todos os estabelecimentos da franquia, mesmo sendo de proprietários diferentes.
-
-**Serviços públicos específicos.** Transporte público (bilhete único, cartões metroviários) e telefonia pública. Funções sociais específicas que o BACEN quis manter fora do aperto regulatório.
-
-**Arranjos fechados de uso específico.** Emitidos e aceitos no âmbito de um arranjo fechado, exclusivamente para pagamentos de produtos ou serviços específicos, ou para atender um mercado especializado.
+- **Rede de estabelecimentos da mesma sociedade empresária.** O cartão só funciona em estabelecimentos do mesmo grupo econômico. Exemplo clássico: cartão de benefício de uma rede de farmácias que só aceita nas farmácias da própria rede.
+- **Rede de estabelecimentos com mesma identidade visual.** Franquias, redes de postos de combustível sob a mesma bandeira. O cartão funciona em todos os estabelecimentos da franquia, mesmo sendo de proprietários diferentes.
+- **Serviços públicos específicos.** Transporte público (bilhete único, cartões metroviários) e telefonia pública. Funções sociais específicas que o BACEN quis manter fora do aperto regulatório.
+- **Arranjos fechados de uso específico.** Emitidos e aceitos no âmbito de um arranjo fechado, exclusivamente para pagamentos de produtos ou serviços específicos, ou para atender um mercado especializado.
 
 Todos esses cabem dentro do conceito de [arranjo fechado](/conteudos/arranjo-aberto-vs-arranjo-fechado). Se o uso é limitado e específico, a regulação fica mais leve.
 
@@ -55,11 +52,8 @@ Todos esses cabem dentro do conceito de [arranjo fechado](/conteudos/arranjo-abe
 
 É aqui que mora o corte financeiro que mais importa pra fintech em crescimento. Um arranjo fica dispensado de autorização se, nos últimos 12 meses, teve simultaneamente:
 
-Volume financeiro movimentado inferior a R$ 20 bilhões.
-
-E
-
-Número de transações inferior a 100 milhões.
+- Volume financeiro movimentado inferior a R$ 20 bilhões.
+- Número de transações inferior a 100 milhões.
 
 Os dois critérios precisam valer ao mesmo tempo. Basta um deles ultrapassar o teto para o arranjo sair dessa categoria e precisar de autorização.
 
@@ -71,11 +65,9 @@ Quando ultrapassa, o relógio começa a correr. O arranjo precisa pedir autoriza
 
 Essa é a categoria mais específica. Cobre arranjos criados a partir de programas como:
 
-**Programa de Alimentação do Trabalhador (PAT)**, regido pelo Ministério do Trabalho. É o famoso vale-alimentação e vale-refeição. Empresas como Alelo, Ticket, Sodexo, VR operam nesse universo, e o arranjo associado a esse programa é dispensado por decisão regulatória.
-
-**Vale Cultura**, ligado ao Ministério da Cultura.
-
-Outros arranjos que estejam vinculados a políticas públicas similares podem cair nessa categoria, desde que caracterizados como benefícios em função de relações de trabalho ou prestação de serviços.
+- **Programa de Alimentação do Trabalhador (PAT)**, regido pelo Ministério do Trabalho. É o famoso vale-alimentação e vale-refeição. Empresas como Alelo, Ticket, Sodexo, VR operam nesse universo, e o arranjo associado a esse programa é dispensado por decisão regulatória.
+- **Vale Cultura**, ligado ao Ministério da Cultura.
+- Outros arranjos que estejam vinculados a políticas públicas similares podem cair nessa categoria, desde que caracterizados como benefícios em função de relações de trabalho ou prestação de serviços.
 
 ## As obrigações que permanecem mesmo dispensando autorização
 
@@ -83,15 +75,11 @@ Aqui mora o erro que a gente mais vê no mercado. Muita empresa lê "dispensa de
 
 O artigo 4º da Resolução BCB 150/2021 deixa claro: arranjos dispensados ainda precisam prestar informações ao BCB quando demandado. Além disso, continuam sujeitos a outras exigências da Lei 12.865/2013 e de normas correlatas:
 
-Medidas de segurança da informação e dos meios de pagamento.
-
-Políticas de prevenção à lavagem de dinheiro e ao financiamento do terrorismo (PLD/FT).
-
-Proteção ao consumidor, na forma do Código de Defesa do Consumidor e normas específicas.
-
-Registro em órgãos competentes quando aplicável.
-
-Cumprimento das normas fiscais e tributárias.
+- Medidas de segurança da informação e dos meios de pagamento.
+- Políticas de prevenção à lavagem de dinheiro e ao financiamento do terrorismo (PLD/FT).
+- Proteção ao consumidor, na forma do Código de Defesa do Consumidor e normas específicas.
+- Registro em órgãos competentes quando aplicável.
+- Cumprimento das normas fiscais e tributárias.
 
 Ou seja: a dispensa é da autorização prévia, não das demais obrigações regulatórias. O arranjo continua sendo uma estrutura regulada, só que com processo mais leve para começar a operar.
 
@@ -99,11 +87,9 @@ Ou seja: a dispensa é da autorização prévia, não das demais obrigações re
 
 Três cenários típicos disparam a necessidade de entrar no radar do BACEN:
 
-**Crescimento de volume.** Um arranjo que começa como de volume reduzido cresce e passa R$ 20 bilhões em 12 meses ou 100 milhões de transações. Nesse ponto, precisa protocolar o pedido de autorização junto ao BACEN.
-
-**Expansão de escopo.** Um arranjo fechado de propósito limitado que decide abrir para mais estabelecimentos fora do grupo original, ou conectar com outras bandeiras. Ao romper o limite do propósito limitado, cai para arranjo aberto, que tem exigência regulatória maior.
-
-**Característica de risco sistêmico.** Mesmo abaixo dos limites de volume, o BACEN pode classificar um arranjo como sistemicamente importante se considerar que o tamanho, a interconexão ou o público atendido o tornam crítico para o sistema financeiro.
+- **Crescimento de volume.** Um arranjo que começa como de volume reduzido cresce e passa R$ 20 bilhões em 12 meses ou 100 milhões de transações. Nesse ponto, precisa protocolar o pedido de autorização junto ao BACEN.
+- **Expansão de escopo.** Um arranjo fechado de propósito limitado que decide abrir para mais estabelecimentos fora do grupo original, ou conectar com outras bandeiras. Ao romper o limite do propósito limitado, cai para arranjo aberto, que tem exigência regulatória maior.
+- **Característica de risco sistêmico.** Mesmo abaixo dos limites de volume, o BACEN pode classificar um arranjo como sistemicamente importante se considerar que o tamanho, a interconexão ou o público atendido o tornam crítico para o sistema financeiro.
 
 Nesses casos, o arranjo precisa se estruturar como instituidor de arranjo de pagamento autorizado, o que envolve processo formal de autorização, governança documentada, políticas de risco, estrutura de compliance, e supervisão contínua.
 
@@ -111,11 +97,9 @@ Nesses casos, o arranjo precisa se estruturar como instituidor de arranjo de pag
 
 Três implicações práticas para quem está saindo do zero:
 
-Primeira, se você planeja um [cartão private label](/conteudos/cartao-private-label) com uso restrito, muito provavelmente cai em propósito limitado e fica dispensado. Fica mais rápido começar, mais barato de estruturar, menos burocracia.
-
-Segunda, se projeta volume próximo dos R$ 20 bilhões anuais ou 100 milhões de transações, planeja desde já a estrutura regulatória. Chegar no teto sem preparação é risco operacional. Pedir autorização do BACEN, se precisar, leva de 6 a 18 meses dependendo do caso. Se o arranjo passa do teto sem estar preparado, fica em zona de incerteza regulatória.
-
-Terceira, dispensa não é ausência. Você precisa manter estrutura mínima de compliance, registros, políticas de AML e KYC, proteção ao consumidor. O BACEN pode requisitar informações a qualquer momento, e respostas desorganizadas ou incompletas chamam auditoria mais detalhada.
+- **Primeira: se você planeja um [cartão private label](/conteudos/cartao-private-label) com uso restrito,** muito provavelmente cai em propósito limitado e fica dispensado. Fica mais rápido começar, mais barato de estruturar, menos burocracia.
+- **Segunda: se projeta volume próximo dos R$ 20 bilhões anuais ou 100 milhões de transações,** planeja desde já a estrutura regulatória. Chegar no teto sem preparação é risco operacional. Pedir autorização do BACEN, se precisar, leva de 6 a 18 meses dependendo do caso. Se o arranjo passa do teto sem estar preparado, fica em zona de incerteza regulatória.
+- **Terceira: dispensa não é ausência.** Você precisa manter estrutura mínima de compliance, registros, políticas de AML e KYC, proteção ao consumidor. O BACEN pode requisitar informações a qualquer momento, e respostas desorganizadas ou incompletas chamam auditoria mais detalhada.
 
 ## Comparativo: autorização vs dispensa
 
@@ -150,9 +134,8 @@ Nenhum desses exemplos é definitivo sem análise jurídica do caso concreto. Ma
 
 Desde a publicação da Res BCB 150/2021, o BACEN continuou ajustando o marco regulatório. Alguns movimentos relevantes pra quem estuda o tema:
 
-A discussão sobre instituições de pagamento iniciadoras de transação (ITP), que surgiu depois, criou um novo tipo de IP com exigências específicas.
-
-A regulação de open finance ampliou o perímetro de informações que instituições de pagamento precisam compartilhar.
+- A discussão sobre instituições de pagamento iniciadoras de transação (ITP), que surgiu depois, criou um novo tipo de IP com exigências específicas.
+- A regulação de open finance ampliou o perímetro de informações que instituições de pagamento precisam compartilhar.
 
 A circular sobre teto de intercâmbio de pré-pago (que cobrimos no artigo sobre [teto de 0,7% no pré-pago](/conteudos/teto-intercambio-pre-pago)) mudou a economia de vários arranjos dispensados.
 

@@ -31,17 +31,12 @@ O risco sistêmico é a linha que separa "preocupação do BACEN" de "preocupaç
 
 A Lei 12.865/2013 e suas regulamentações posteriores definem critérios objetivos e subjetivos para classificação. Os principais:
 
-**Volume financeiro movimentado.** Arranjos que movimentam grande volume são prioritariamente considerados sistemicamente importantes. O teto de R$ 20 bilhões em 12 meses é referência explícita na Resolução BCB 150/2021 para arranjos que deixam de ser dispensados.
-
-**Número de transações.** Volume de operações. 100 milhões em 12 meses é outro teto.
-
-**Volume de usuários afetados.** Quantas pessoas ou empresas dependem desse arranjo para fazer pagamentos no dia a dia.
-
-**Interconexão com o sistema financeiro.** Arranjos que estão interligados com bancos, adquirentes e sistemas de compensação são mais sensíveis. Cartão de benefício em arranjo fechado com rede própria tem interconexão limitada. Visa interage com centenas de sistemas simultaneamente.
-
-**Substituibilidade.** Se o arranjo falhar, há alternativas? Visa é pouco substituível (bilhões dependem). Um cartão de benefício regional tem muitos substitutos.
-
-**Natureza do serviço.** Serviços essenciais (salário, benefício trabalhista regulado) carregam mais peso regulatório do que serviços adicionais (cashback, premiação).
+- **Volume financeiro movimentado.** Arranjos que movimentam grande volume são prioritariamente considerados sistemicamente importantes. O teto de R$ 20 bilhões em 12 meses é referência explícita na Resolução BCB 150/2021 para arranjos que deixam de ser dispensados.
+- **Número de transações.** Volume de operações. 100 milhões em 12 meses é outro teto.
+- **Volume de usuários afetados.** Quantas pessoas ou empresas dependem desse arranjo para fazer pagamentos no dia a dia.
+- **Interconexão com o sistema financeiro.** Arranjos que estão interligados com bancos, adquirentes e sistemas de compensação são mais sensíveis. Cartão de benefício em arranjo fechado com rede própria tem interconexão limitada. Visa interage com centenas de sistemas simultaneamente.
+- **Substituibilidade.** Se o arranjo falhar, há alternativas? Visa é pouco substituível (bilhões dependem). Um cartão de benefício regional tem muitos substitutos.
+- **Natureza do serviço.** Serviços essenciais (salário, benefício trabalhista regulado) carregam mais peso regulatório do que serviços adicionais (cashback, premiação).
 
 Não há fórmula exata. O BACEN avalia cada caso combinando fatores. Arranjos claramente grandes (Visa, Mastercard, Elo, Pix) são considerados sistemicamente importantes por construção. Arranjos pequenos e contidos (cartão fidelidade de varejo regional) são não sistêmicos. No meio, há zona cinza onde a classificação pode ser argumentada.
 
@@ -49,21 +44,14 @@ Não há fórmula exata. O BACEN avalia cada caso combinando fatores. Arranjos c
 
 Estar classificado como sistemicamente importante implica uma série de exigências específicas:
 
-**Autorização prévia do BACEN.** Não pode operar sem a autorização formal. O processo leva de 6 a 18 meses e exige documentação abrangente.
-
-**Supervisão contínua.** O BACEN mantém equipe dedicada monitorando o arranjo. Reuniões periódicas, relatórios regulares, auditorias programadas.
-
-**Capital mínimo e reservas.** Exigência de capital próprio mínimo para sustentar a operação. Reservas de liquidez em instituições financeiras autorizadas, parcialmente investidas em títulos públicos com regras específicas.
-
-**Governança formalizada.** Conselho de administração, comitês de risco, política de compliance, diretor responsável pela operação junto ao BACEN. Tudo documentado e auditado.
-
-**Plano de contingência.** Documento que detalha o que acontece se o sistema falha: quem aciona, em quanto tempo, quais sistemas entram em operação alternativa. Testes periódicos do plano.
-
-**Teste de estresse.** Simulações regulares de cenários extremos (queda de parte do sistema, volume anormal, ataque cibernético, contraparte inadimplente).
-
-**Compartilhamento de informações.** Reportes padronizados ao BACEN com periodicidade (diária, semanal, mensal dependendo do item).
-
-**Integração com SPB.** O arranjo passa a ser formalmente parte do Sistema Brasileiro de Pagamentos, com implicações em como as transações são processadas, liquidadas e compensadas.
+- **Autorização prévia do BACEN.** Não pode operar sem a autorização formal. O processo leva de 6 a 18 meses e exige documentação abrangente.
+- **Supervisão contínua.** O BACEN mantém equipe dedicada monitorando o arranjo. Reuniões periódicas, relatórios regulares, auditorias programadas.
+- **Capital mínimo e reservas.** Exigência de capital próprio mínimo para sustentar a operação. Reservas de liquidez em instituições financeiras autorizadas, parcialmente investidas em títulos públicos com regras específicas.
+- **Governança formalizada.** Conselho de administração, comitês de risco, política de compliance, diretor responsável pela operação junto ao BACEN. Tudo documentado e auditado.
+- **Plano de contingência.** Documento que detalha o que acontece se o sistema falha: quem aciona, em quanto tempo, quais sistemas entram em operação alternativa. Testes periódicos do plano.
+- **Teste de estresse.** Simulações regulares de cenários extremos (queda de parte do sistema, volume anormal, ataque cibernético, contraparte inadimplente).
+- **Compartilhamento de informações.** Reportes padronizados ao BACEN com periodicidade (diária, semanal, mensal dependendo do item).
+- **Integração com SPB.** O arranjo passa a ser formalmente parte do Sistema Brasileiro de Pagamentos, com implicações em como as transações são processadas, liquidadas e compensadas.
 
 Isso gera custos. Uma estrutura de compliance para arranjo sistêmico custa facilmente R$ 5 milhões a R$ 20 milhões por ano, só em overhead regulatório e estrutura.
 
@@ -73,17 +61,12 @@ Sob a [Resolução BCB 150/2021](/conteudos/resolucao-bcb-150-2021), arranjos n�
 
 Obrigações que permanecem:
 
-**Prestação de informações sob demanda.** O BACEN pode requisitar a qualquer momento. A empresa precisa responder com precisão e prontidão.
-
-**Segurança da informação e dos meios de pagamento.** Medidas técnicas para proteger dados e transações.
-
-**AML/PLD/FT.** Prevenção à lavagem de dinheiro e ao financiamento do terrorismo. Inclui identificação de clientes (KYC), monitoramento de transações suspeitas, reporte ao COAF.
-
-**Proteção ao consumidor.** Cumprimento do Código de Defesa do Consumidor, transparência sobre tarifas, canais de atendimento.
-
-**Registros fiscais e tributários.** Operação precisa estar formalmente constituída, com CNPJ ativo, emitir notas fiscais quando aplicável, cumprir obrigações tributárias.
-
-**Não exercer atividade privativa de instituição financeira.** Arranjos dispensados podem operar meio de pagamento, mas não podem atuar como banco (captar depósitos à vista, conceder crédito em nome próprio).
+- **Prestação de informações sob demanda.** O BACEN pode requisitar a qualquer momento. A empresa precisa responder com precisão e prontidão.
+- **Segurança da informação e dos meios de pagamento.** Medidas técnicas para proteger dados e transações.
+- **AML/PLD/FT.** Prevenção à lavagem de dinheiro e ao financiamento do terrorismo. Inclui identificação de clientes (KYC), monitoramento de transações suspeitas, reporte ao COAF.
+- **Proteção ao consumidor.** Cumprimento do Código de Defesa do Consumidor, transparência sobre tarifas, canais de atendimento.
+- **Registros fiscais e tributários.** Operação precisa estar formalmente constituída, com CNPJ ativo, emitir notas fiscais quando aplicável, cumprir obrigações tributárias.
+- **Não exercer atividade privativa de instituição financeira.** Arranjos dispensados podem operar meio de pagamento, mas não podem atuar como banco (captar depósitos à vista, conceder crédito em nome próprio).
 
 Isso é bem mais leve que o regime sistêmico. Operação pode começar em semanas ou meses, não em anos. Custo de compliance é da ordem de dezenas a centenas de milhares de reais por ano, não de milhões.
 
@@ -121,15 +104,11 @@ Arranjos considerados sistemicamente importantes (autorizados e supervisionados)
 
 Do lado oposto, arranjos não sistemicamente importantes (dispensados ou em regime simplificado) incluem:
 
-Cartões private label de lojas de varejo (Riachuelo, Renner, Marisa, Havan).
-
-Cartões de benefício corporativo menores ou regionais.
-
-Cartões de frota fechada (ValeCard, Ticket Log, alguns modelos).
-
-Cartões de premiação e fidelidade.
-
-Fintechs em estágio inicial de cartão.
+- Cartões private label de lojas de varejo (Riachuelo, Renner, Marisa, Havan).
+- Cartões de benefício corporativo menores ou regionais.
+- Cartões de frota fechada (ValeCard, Ticket Log, alguns modelos).
+- Cartões de premiação e fidelidade.
+- Fintechs em estágio inicial de cartão.
 
 Em zona cinza, operações como Flash, Caju, Swile, Clara, Conta Simples, que cresceram rapidamente e podem estar transitando entre as categorias conforme volume evolui.
 
@@ -137,11 +116,9 @@ Em zona cinza, operações como Flash, Caju, Swile, Clara, Conta Simples, que cr
 
 Na prática, para operações em crescimento, três sinais indicam que a conversa com BACEN vai ser mais séria:
 
-**Sinal 1: Volume financeiro próximo dos tetos.** Se o arranjo está perto de R$ 10 bilhões anuais, o BACEN já vai tratar como tema relevante. Acima de R$ 15 bilhões, já é hora de protocolar pedido de autorização preventivamente.
-
-**Sinal 2: Crescimento rápido em base de usuários.** Chegar a 1 milhão de usuários, 5 milhões, 10 milhões. Cada ordem de grandeza muda a conversa.
-
-**Sinal 3: Papel sistêmico no setor.** Se a operação se tornou infraestrutura para outras empresas (outros arranjos dependem da sua para funcionar), o BACEN acompanha com mais atenção, mesmo que volume e usuários não expliquem.
+- **Sinal 1: volume financeiro próximo dos tetos.** Se o arranjo está perto de R$ 10 bilhões anuais, o BACEN já vai tratar como tema relevante. Acima de R$ 15 bilhões, já é hora de protocolar pedido de autorização preventivamente.
+- **Sinal 2: crescimento rápido em base de usuários.** Chegar a 1 milhão de usuários, 5 milhões, 10 milhões. Cada ordem de grandeza muda a conversa.
+- **Sinal 3: papel sistêmico no setor.** Se a operação se tornou infraestrutura para outras empresas (outros arranjos dependem da sua para funcionar), o BACEN acompanha com mais atenção, mesmo que volume e usuários não expliquem.
 
 Uma operação pode se manter estrategicamente pequena para não entrar no radar. Mas se quer crescer, precisa planejar a transição.
 
@@ -149,13 +126,10 @@ Uma operação pode se manter estrategicamente pequena para não entrar no radar
 
 Quatro passos práticos para operações em crescimento:
 
-**Primeiro, projete o crescimento para 36 meses.** Se a projeção cruza os tetos de volume ou transação dentro desse horizonte, comece a preparar.
-
-**Segundo, converse com assessoria jurídica especializada.** Escritórios com prática regulatória em pagamentos (Levy Salomão, Machado Meyer, Pinheiro Neto, Demarest, entre outros) conhecem os caminhos do BACEN.
-
-**Terceiro, estruture compliance antes do volume.** Monte governança, políticas de risco, AML, KYC. Não espere o BACEN pedir.
-
-**Quarto, protocolo preventivo quando apropriado.** Pedir autorização antes de precisar dá folga de tempo e mostra seriedade. O BACEN valoriza quem se antecipa.
+- **Primeiro, projete o crescimento para 36 meses.** Se a projeção cruza os tetos de volume ou transação dentro desse horizonte, comece a preparar.
+- **Segundo, converse com assessoria jurídica especializada.** Escritórios com prática regulatória em pagamentos (Levy Salomão, Machado Meyer, Pinheiro Neto, Demarest, entre outros) conhecem os caminhos do BACEN.
+- **Terceiro, estruture compliance antes do volume.** Monte governança, políticas de risco, AML, KYC. Não espere o BACEN pedir.
+- **Quarto, protocolo preventivo quando apropriado.** Pedir autorização antes de precisar dá folga de tempo e mostra seriedade. O BACEN valoriza quem se antecipa.
 
 ## FAQ
 

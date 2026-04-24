@@ -117,11 +117,9 @@ Alguns sponsors também cobram fee mínimo mensal. É o valor mínimo que a fint
 
 Não existe regra única, mas o padrão que a gente na JUST vê é o seguinte:
 
-**Comece com sponsor.** A não ser que você já seja um banco ou uma fintech com R$ 100 milhões de caixa e dois anos de pista regulatória, começar pelo sponsor é o caminho econômico e operacional correto. Evita investimento alto antes de validar o modelo.
-
-**Considere emissão direta quando a base cruzar 300 mil cartões ativos ou R$ 300 milhões de TPV mensal.** Nesse volume, o take rate e as tarifas unitárias do sponsor começam a pesar mais do que o custo de ter licença própria.
-
-**Negocie com o sponsor antes de migrar.** Se você tem volume, o sponsor tem incentivo para reduzir take rate e tarifas unitárias em vez de perder o cliente. Muitas operações que ameaçam migrar acabam ganhando desconto e ficando no sponsor por mais alguns anos.
+- **Comece com sponsor.** A não ser que você já seja um banco ou uma fintech com R$ 100 milhões de caixa e dois anos de pista regulatória, começar pelo sponsor é o caminho econômico e operacional correto. Evita investimento alto antes de validar o modelo.
+- **Considere emissão direta quando a base cruzar 300 mil cartões ativos ou R$ 300 milhões de TPV mensal.** Nesse volume, o take rate e as tarifas unitárias do sponsor começam a pesar mais do que o custo de ter licença própria.
+- **Negocie com o sponsor antes de migrar.** Se você tem volume, o sponsor tem incentivo para reduzir take rate e tarifas unitárias em vez de perder o cliente. Muitas operações que ameaçam migrar acabam ganhando desconto e ficando no sponsor por mais alguns anos.
 
 Mesmo migrando para licença própria, muitas operações mantêm um BIN Sponsor para programas específicos ou geografias específicas. É um modelo híbrido que preserva flexibilidade.
 
@@ -129,25 +127,19 @@ Mesmo migrando para licença própria, muitas operações mantêm um BIN Sponsor
 
 Cinco pontos que a gente sempre checa em due diligence de sponsor para clientes:
 
-Primeiro, a saúde financeira e regulatória do sponsor. Se o sponsor tomar descredenciamento do BACEN ou da bandeira, a fintech que depende dele fica em pé engessado. Olhe os últimos balanços, as auditorias divulgadas, o histórico de multas.
-
-Segundo, a granularidade do contrato. Take rate, fee mínimo, tarifas unitárias, cláusulas de exclusividade, prazo de permanência, multa rescisória, SLA de uptime, SLA de suporte. Tudo precisa estar claro. Cláusula ambígua em contrato de BaaS é dor de cabeça garantida depois.
-
-Terceiro, a API e o SDK. Peça documentação técnica, sandbox, exemplos de implementação. Um sponsor com API ruim vai fazer sua equipe de engenharia sofrer.
-
-Quarto, o modelo de repasse de intercâmbio e float. Precisa estar escrito, com frequência (mensal é o padrão), com detalhamento por transação. Se o sponsor resiste a mostrar o cálculo detalhado, é sinal amarelo.
-
-Quinto, a roadmap da plataforma. O que já está pronto, o que está em desenvolvimento, o que é mentira. Fale com outros clientes do sponsor antes de assinar. Se o sponsor não quer te dar referências, sinal vermelho.
+- **Primeiro: a saúde financeira e regulatória do sponsor.** Se o sponsor tomar descredenciamento do BACEN ou da bandeira, a fintech que depende dele fica em pé engessado. Olhe os últimos balanços, as auditorias divulgadas, o histórico de multas.
+- **Segundo: a granularidade do contrato.** Take rate, fee mínimo, tarifas unitárias, cláusulas de exclusividade, prazo de permanência, multa rescisória, SLA de uptime, SLA de suporte. Tudo precisa estar claro. Cláusula ambígua em contrato de BaaS é dor de cabeça garantida depois.
+- **Terceiro: a API e o SDK.** Peça documentação técnica, sandbox, exemplos de implementação. Um sponsor com API ruim vai fazer sua equipe de engenharia sofrer.
+- **Quarto: o modelo de repasse de intercâmbio e float.** Precisa estar escrito, com frequência (mensal é o padrão), com detalhamento por transação. Se o sponsor resiste a mostrar o cálculo detalhado, é sinal amarelo.
+- **Quinto: o roadmap da plataforma.** O que já está pronto, o que está em desenvolvimento, o que é mentira. Fale com outros clientes do sponsor antes de assinar. Se o sponsor não quer te dar referências, sinal vermelho.
 
 ## Limites do modelo
 
 O sponsor não resolve tudo. Algumas coisas ele não te entrega:
 
-**Autonomia regulatória.** Você depende do sponsor para seguir com sua operação. Se o sponsor muda a política, muda a tarifa, ou cancela um programa, você é impactado.
-
-**Negociação direta com a bandeira.** Incentivos comerciais (verba de marketing, subsídio a plástico) geralmente passam pelo sponsor. Você pode puxar a conversa, mas não negocia sozinho.
-
-**Flexibilidade total de produto.** O que o sponsor oferece é o que você pode vender. Se o sponsor não tem programa de cartão black, você não emite cartão black. Se ele não suporta cartão virtual multiuso, você não emite. Precisa casar com o que ele tem.
+- **Autonomia regulatória.** Você depende do sponsor para seguir com sua operação. Se o sponsor muda a política, muda a tarifa, ou cancela um programa, você é impactado.
+- **Negociação direta com a bandeira.** Incentivos comerciais (verba de marketing, subsídio a plástico) geralmente passam pelo sponsor. Você pode puxar a conversa, mas não negocia sozinho.
+- **Flexibilidade total de produto.** O que o sponsor oferece é o que você pode vender. Se o sponsor não tem programa de cartão black, você não emite cartão black. Se ele não suporta cartão virtual multiuso, você não emite. Precisa casar com o que ele tem.
 
 Para quem está avaliando entre BIN Sponsor e [arranjo fechado private label](/conteudos/cartao-private-label), a diferença é ainda mais radical: private label não precisa nem de sponsor nem de bandeira, porque é ecossistema fechado. Cada modelo resolve um problema diferente. Vale comparar os dois antes de decidir.
 

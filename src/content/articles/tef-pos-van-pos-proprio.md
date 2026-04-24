@@ -165,29 +165,18 @@ Transação por terminal web tem perfil de risco um pouco maior do que chip EMV 
 
 Pra orientar a decisão, três perguntas principais:
 
-**Qual é o porte do estabelecimento-alvo?**
-
-Grandes redes (supermercado, posto, varejo de médio/grande porte): TEF é o padrão.
-
-Pequenos estabelecimentos dispersos: POS VAN aproveita rede existente sem trabalho de parque próprio.
-
-Estabelecimentos parceiros específicos, com operação customizada: POS próprio.
-
-**Qual é o volume de transações por estabelecimento?**
-
-Alto volume (lojas de bandeira, operações de frota com alto consumo): POS próprio compensa investimento.
-
-Volume médio distribuído: TEF ou POS VAN.
-
-Volume baixo com muitos estabelecimentos: POS VAN ou terminal web.
-
-**Qual é o grau de customização necessário?**
-
-Regras complexas no ato da transação (limite por categoria, validação de MCC, integração com sistema de frota): POS próprio.
-
-Regras padrão da bandeira, sem customização no captura: TEF ou POS VAN.
-
-Regras customizadas implementadas na processadora pós-captura: qualquer opção funciona.
+- **Qual é o porte do estabelecimento-alvo?**
+  - Grandes redes (supermercado, posto, varejo de médio/grande porte): TEF é o padrão.
+  - Pequenos estabelecimentos dispersos: POS VAN aproveita rede existente sem trabalho de parque próprio.
+  - Estabelecimentos parceiros específicos, com operação customizada: POS próprio.
+- **Qual é o volume de transações por estabelecimento?**
+  - Alto volume (lojas de bandeira, operações de frota com alto consumo): POS próprio compensa investimento.
+  - Volume médio distribuído: TEF ou POS VAN.
+  - Volume baixo com muitos estabelecimentos: POS VAN ou terminal web.
+- **Qual é o grau de customização necessário?**
+  - Regras complexas no ato da transação (limite por categoria, validação de MCC, integração com sistema de frota): POS próprio.
+  - Regras padrão da bandeira, sem customização no captura: TEF ou POS VAN.
+  - Regras customizadas implementadas na processadora pós-captura: qualquer opção funciona.
 
 ## O que a gente na JUST costuma recomendar
 

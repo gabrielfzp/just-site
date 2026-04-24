@@ -40,17 +40,12 @@ A patente foi registrada em 1960, e desde então o algoritmo está em uso ininte
 
 A lógica é a seguinte:
 
-A partir do dígito mais à direita (o último dígito do número), percorre-se o número da direita para a esquerda.
-
-Cada segundo dígito (o penúltimo, o antepenúltimo do antepenúltimo, e assim por diante) é multiplicado por 2.
-
-Se a multiplicação resulta em número de dois dígitos (por exemplo, 8 × 2 = 16), soma-se os dígitos do resultado (1 + 6 = 7). Ou, equivalente, subtrai-se 9 (16 - 9 = 7).
-
-Os demais dígitos (os que não foram multiplicados) ficam como estão.
-
-Soma-se todos os valores resultantes.
-
-Se a soma final é divisível por 10 (termina em 0), o número é válido pelo LUHN. Caso contrário, é inválido.
+- A partir do dígito mais à direita (o último dígito do número), percorre-se o número da direita para a esquerda.
+- Cada segundo dígito (o penúltimo, o antepenúltimo do antepenúltimo, e assim por diante) é multiplicado por 2.
+- Se a multiplicação resulta em número de dois dígitos (por exemplo, 8 × 2 = 16), soma-se os dígitos do resultado (1 + 6 = 7). Ou, equivalente, subtrai-se 9 (16 - 9 = 7).
+- Os demais dígitos (os que não foram multiplicados) ficam como estão.
+- Soma-se todos os valores resultantes.
+- Se a soma final é divisível por 10 (termina em 0), o número é válido pelo LUHN. Caso contrário, é inválido.
 
 ## Exemplo passo a passo
 
@@ -87,9 +82,8 @@ Se alguém digitar esse cartão com um erro simples (por exemplo, trocar o últi
 
 A escolha de dobrar cada segundo dígito (em vez de todos) não é arbitrária. Luhn fez essa escolha para cobrir dois tipos de erro muito comuns:
 
-**Erro de um único dígito.** Se você digita um número e um único dígito está errado, o algoritmo detecta. Isso porque mudar um dígito por 1 (ex: 6 por 7) muda a soma em 1 ou 2 (dependendo de estar ou não em posição de dobrar), e isso faz a soma deixar de ser divisível por 10.
-
-**Inversão de dois dígitos adjacentes.** Se você inverte dois dígitos consecutivos (ex: digita 61 em vez de 16), o algoritmo detecta na maioria dos casos. Se todos os dígitos fossem dobrados, a inversão não seria pega; se nenhum fosse, também não. A alternância um sim/um não faz o algoritmo ser sensível a essa classe de erro.
+- **Erro de um único dígito.** Se você digita um número e um único dígito está errado, o algoritmo detecta. Isso porque mudar um dígito por 1 (ex: 6 por 7) muda a soma em 1 ou 2 (dependendo de estar ou não em posição de dobrar), e isso faz a soma deixar de ser divisível por 10.
+- **Inversão de dois dígitos adjacentes.** Se você inverte dois dígitos consecutivos (ex: digita 61 em vez de 16), o algoritmo detecta na maioria dos casos. Se todos os dígitos fossem dobrados, a inversão não seria pega; se nenhum fosse, também não. A alternância um sim/um não faz o algoritmo ser sensível a essa classe de erro.
 
 Há uma pequena classe de erros que o LUHN não detecta (como inverter 09 por 90, que mantém a mesma soma). Mas esses casos são raros na prática.
 
@@ -97,15 +91,11 @@ Há uma pequena classe de erros que o LUHN não detecta (como inverter 09 por 90
 
 Vários identificadores numéricos adotam LUHN:
 
-**Números de cartão de crédito.** Visa, Mastercard, Elo, American Express, Discover, Diners, JCB, Maestro e todas as bandeiras que seguem ISO/IEC 7812. O último dígito do PAN é o verificador LUHN.
-
-**IMEI (International Mobile Equipment Identity).** Todo celular tem um IMEI único. O último dígito é verificador LUHN.
-
-**CPF brasileiro.** O CPF brasileiro usa um algoritmo similar (mas com variações que o distinguem do LUHN puro). A lógica de verificador no final é a mesma.
-
-**CNPJ brasileiro.** Também usa verificador similar.
-
-Outros identificadores também usam lógica parecida: número de conta corrente em alguns bancos, números de prontuário médico, identificadores de produto.
+- **Números de cartão de crédito.** Visa, Mastercard, Elo, American Express, Discover, Diners, JCB, Maestro e todas as bandeiras que seguem ISO/IEC 7812. O último dígito do PAN é o verificador LUHN.
+- **IMEI (International Mobile Equipment Identity).** Todo celular tem um IMEI único. O último dígito é verificador LUHN.
+- **CPF brasileiro.** O CPF brasileiro usa um algoritmo similar (mas com variações que o distinguem do LUHN puro). A lógica de verificador no final é a mesma.
+- **CNPJ brasileiro.** Também usa verificador similar.
+- Outros identificadores também usam lógica parecida: número de conta corrente em alguns bancos, números de prontuário médico, identificadores de produto.
 
 Sempre que você vê um identificador numérico com dígito verificador no final, há boa chance de ser LUHN ou variação próxima.
 
@@ -149,11 +139,9 @@ A confusão mais comum é achar que, se o LUHN passa, o cartão é válido e seg
 
 Três razões:
 
-**Simplicidade computacional.** Validação do LUHN demora microssegundos. Mesmo em cenários de altíssimo volume, não é gargalo.
-
-**Poder de detecção alto para os erros mais comuns.** Um dígito errado, dois dígitos invertidos. Esses dois casos cobrem a grande maioria dos erros humanos de digitação.
-
-**Inércia institucional e compatibilidade global.** Todos os sistemas do mundo estão preparados para LUHN. Mudar para outro algoritmo exigiria coordenar emissor, bandeira, adquirente, processadora. Custo astronômico, benefício marginal.
+- **Simplicidade computacional.** Validação do LUHN demora microssegundos. Mesmo em cenários de altíssimo volume, não é gargalo.
+- **Poder de detecção alto para os erros mais comuns.** Um dígito errado, dois dígitos invertidos. Esses dois casos cobrem a grande maioria dos erros humanos de digitação.
+- **Inércia institucional e compatibilidade global.** Todos os sistemas do mundo estão preparados para LUHN. Mudar para outro algoritmo exigiria coordenar emissor, bandeira, adquirente, processadora. Custo astronômico, benefício marginal.
 
 Então mesmo passado 70 anos, o algoritmo continua sendo usado exatamente como em 1960.
 
@@ -161,13 +149,10 @@ Então mesmo passado 70 anos, o algoritmo continua sendo usado exatamente como e
 
 A norma que padroniza globalmente o uso do LUHN em cartões é a ISO/IEC 7812 (a mesma que define [BIN e IIN](/conteudos/como-solicitar-bin-iin-abnt)). A norma define:
 
-Comprimento total do número do cartão (de 8 a 19 dígitos).
-
-Estrutura em três partes: IIN, identificador único do cartão, dígito verificador.
-
-Uso do algoritmo de LUHN para o dígito verificador.
-
-Procedimentos de registro e gestão de IINs.
+- Comprimento total do número do cartão (de 8 a 19 dígitos).
+- Estrutura em três partes: IIN, identificador único do cartão, dígito verificador.
+- Uso do algoritmo de LUHN para o dígito verificador.
+- Procedimentos de registro e gestão de IINs.
 
 A ISO/IEC 7812 é o alicerce de como cartões funcionam mundialmente.
 
@@ -175,13 +160,10 @@ A ISO/IEC 7812 é o alicerce de como cartões funcionam mundialmente.
 
 Para quem desenvolve software que lida com cartões, LUHN aparece em:
 
-**Validação de formulário no frontend.** Antes de enviar ao backend, o form valida que o número preenchido passa no LUHN. Erro de digitação é capturado imediatamente, sem chamada HTTP.
-
-**Validação no backend antes de chamada externa.** Mesmo que o frontend valide, o backend deve validar de novo antes de fazer requisição à processadora ou BaaS. Evita chamadas desnecessárias e reduz logs de erro.
-
-**Geração de números de cartão para testes.** Em ambiente de desenvolvimento, times usam geradores que criam PANs válidos por LUHN para testar fluxos. Esses números não correspondem a cartões reais mas passam na validação local.
-
-**Análise de fraude.** Um padrão de tentativas com muitos números que falham no LUHN indica script automatizado tentando números aleatórios. Monitoramento dessa taxa ajuda a detectar ataques.
+- **Validação de formulário no frontend.** Antes de enviar ao backend, o form valida que o número preenchido passa no LUHN. Erro de digitação é capturado imediatamente, sem chamada HTTP.
+- **Validação no backend antes de chamada externa.** Mesmo que o frontend valide, o backend deve validar de novo antes de fazer requisição à processadora ou BaaS. Evita chamadas desnecessárias e reduz logs de erro.
+- **Geração de números de cartão para testes.** Em ambiente de desenvolvimento, times usam geradores que criam PANs válidos por LUHN para testar fluxos. Esses números não correspondem a cartões reais mas passam na validação local.
+- **Análise de fraude.** Um padrão de tentativas com muitos números que falham no LUHN indica script automatizado tentando números aleatórios. Monitoramento dessa taxa ajuda a detectar ataques.
 
 ## FAQ
 
