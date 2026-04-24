@@ -1,15 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
-import { searchArticles } from "../../lib/search-index.js";
-import { ArticleCard } from "./ArticleCard.jsx";
+import { useEffect, useState } from "react";
 import { CONTENT_T } from "../../site/shared.jsx";
 
 export function ContentSearch({ onResults }) {
   const [query, setQuery] = useState("");
-  const results = useMemo(() => searchArticles(query), [query]);
 
   useEffect(() => {
-    if (onResults) onResults(results, query);
-  }, [onResults, query, results]);
+    if (onResults) onResults(query);
+  }, [onResults, query]);
 
   return (
     <div className="content-search">
@@ -30,12 +27,6 @@ export function ContentSearch({ onResults }) {
           outline: "none",
         }}
       />
-      {query && (
-        <div style={{ marginTop: 20, display: "grid", gap: 14 }}>
-          {results.map((article) => <ArticleCard key={article.slug} article={article} />)}
-          {!results.length && <p style={{ color: CONTENT_T.mutedStrong }}>Nenhum conteúdo encontrado para essa busca.</p>}
-        </div>
-      )}
     </div>
   );
 }

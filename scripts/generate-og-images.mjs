@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs";
-import { mkdir, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "@vercel/og";
 import { distDir, loadContentArticles, publicOgDir } from "./load-content.mjs";
@@ -83,14 +83,12 @@ for (const article of articles) {
     const response = new ImageResponse(ogElement(article), { width: 1200, height: 630 });
     const buffer = Buffer.from(await response.arrayBuffer());
     await writeFile(publicTarget, buffer);
+    await writeFile(distTarget, buffer).catch(() => {});
     generated += 1;
+    continue;
   }
 
-  if (existsSync(publicTarget)) {
-    const response = new ImageResponse(ogElement(article), { width: 1200, height: 630 });
-    const buffer = Buffer.from(await response.arrayBuffer());
-    await writeFile(distTarget, buffer).catch(() => {});
-  }
+  await copyFile(publicTarget, distTarget).catch(() => {});
 }
 
 console.log(`Generated ${generated} new OG image(s).`);
