@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/intercambio-de-cartao
 Markdown: https://wearejust.it/conteudos/intercambio-de-cartao.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Cartões
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23
@@ -115,11 +115,9 @@ Cartão black tem intercâmbio maior (1,8% a 2,0%), mas carrega custo mensal de 
 
 Três erros clássicos que a gente vê no mercado:
 
-**Usar intercâmbio bruto para projetar P&L.** Ignora imposto, take rate do BaaS, custo de bandeira e tarifas unitárias. Margem projetada infla 40% ou mais.
-
-**Assumir que o usuário vai transacionar tudo no cartão.** Na prática, com Pix fortalecido, boa parte dos usuários de conta digital usa cartão para fração do que imagina. Um usuário que deveria transacionar R$ 2.000/mês costuma transacionar R$ 500 a R$ 800.
-
-**Não monitorar migração regulatória.** O teto de pré-pago pegou várias operações no contrapé. Quem não tem um compliance rodando cria uma modelagem com premissa que vira ilegal no ano seguinte.
+- **Usar intercâmbio bruto para projetar P&L.** Ignora imposto, take rate do BaaS, custo de bandeira e tarifas unitárias. Margem projetada infla 40% ou mais.
+- **Assumir que o usuário vai transacionar tudo no cartão.** Na prática, com Pix fortalecido, boa parte dos usuários de conta digital usa cartão para fração do que imagina. Um usuário que deveria transacionar R$ 2.000/mês costuma transacionar R$ 500 a R$ 800.
+- **Não monitorar migração regulatória.** O teto de pré-pago pegou várias operações no contrapé. Quem não tem um compliance rodando cria uma modelagem com premissa que vira ilegal no ano seguinte.
 
 ## FAQ
 

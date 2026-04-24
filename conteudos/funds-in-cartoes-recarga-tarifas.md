@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/funds-in-cartoes-recarga-tarifas
 Markdown: https://wearejust.it/conteudos/funds-in-cartoes-recarga-tarifas.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Operações
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23
@@ -45,15 +45,11 @@ O modelo pré-pago é mais simples de operar, mas mais complicado de usar (usuá
 
 As formas de funds-in mais comuns no Brasil:
 
-**Boleto bancário.** Tradicional, mas ainda importante. O usuário ou empresa acessa a plataforma, solicita a recarga, recebe um boleto, paga no banco. O valor é creditado na conta quando o boleto é compensado (D+1 útil, em média). Útil para empresas que preferem pagamento por boleto (fluxo fiscal integrado).
-
-**Pix.** Crescendo rapidamente como padrão. O usuário solicita recarga, recebe uma chave Pix ou um QR Code, paga. O valor é creditado em segundos. Reduz fricção e é mais barato para a operação.
-
-**TED.** Usado em volumes grandes, mas está sendo substituído pelo Pix. Ainda aparece em operações corporativas que processam recargas em lote por transferência bancária.
-
-**Débito automático.** Algumas operações permitem configurar débito automático da conta bancária do usuário ou empresa em datas fixas. Útil para benefícios recorrentes.
-
-**Cartão de crédito.** Menos comum, mas algumas operações permitem recarregar saldo com cartão de crédito (pagando a tarifa correspondente).
+- **Boleto bancário.** Tradicional, mas ainda importante. O usuário ou empresa acessa a plataforma, solicita a recarga, recebe um boleto, paga no banco. O valor é creditado na conta quando o boleto é compensado (D+1 útil, em média). Útil para empresas que preferem pagamento por boleto (fluxo fiscal integrado).
+- **Pix.** Crescendo rapidamente como padrão. O usuário solicita recarga, recebe uma chave Pix ou um QR Code, paga. O valor é creditado em segundos. Reduz fricção e é mais barato para a operação.
+- **TED.** Usado em volumes grandes, mas está sendo substituído pelo Pix. Ainda aparece em operações corporativas que processam recargas em lote por transferência bancária.
+- **Débito automático.** Algumas operações permitem configurar débito automático da conta bancária do usuário ou empresa em datas fixas. Útil para benefícios recorrentes.
+- **Cartão de crédito.** Menos comum, mas algumas operações permitem recarregar saldo com cartão de crédito (pagando a tarifa correspondente).
 
 A maioria das operações em 2026 oferece Pix como padrão, boleto como alternativa para quem precisa, e TED para volumes grandes B2B.
 
@@ -61,15 +57,13 @@ A maioria das operações em 2026 oferece Pix como padrão, boleto como alternat
 
 Para emitir boleto e receber Pix, uma operação de arranjo fechado pode usar:
 
-**Bancos tradicionais via CNAB.** Bradesco, Itaú, Santander, Banco do Brasil. Integração via CNAB 240 ou CNAB 400 (layouts de arquivo), ou via API moderna. Boa opção para operações que já têm relacionamento bancário estabelecido.
-
-**Banking as a Service especializado em cobrança.** Transfeera, Celcoin, Dock. Oferecem API única para emitir boleto, receber Pix, TED, saque, tudo sob uma mesma plataforma. Mais rápidos de integrar, cobrança por transação processada.
+- **Bancos tradicionais via CNAB.** Bradesco, Itaú, Santander, Banco do Brasil. Integração via CNAB 240 ou CNAB 400 (layouts de arquivo), ou via API moderna. Boa opção para operações que já têm relacionamento bancário estabelecido.
+- **Banking as a Service especializado em cobrança.** Transfeera, Celcoin, Dock. Oferecem API única para emitir boleto, receber Pix, TED, saque, tudo sob uma mesma plataforma. Mais rápidos de integrar, cobrança por transação processada.
 
 A escolha entre banco tradicional e BaaS depende do porte da operação:
 
-Operações pequenas (até 10 mil transações/mês): BaaS costuma ser mais econômico e rápido.
-
-Operações grandes (acima de 100 mil transações/mês): banco tradicional pode oferecer melhor pricing, mas exige negociação e contrato específico.
+- Operações pequenas (até 10 mil transações/mês): BaaS costuma ser mais econômico e rápido.
+- Operações grandes (acima de 100 mil transações/mês): banco tradicional pode oferecer melhor pricing, mas exige negociação e contrato específico.
 
 ## A estrutura de tarifas em funds-in
 
@@ -103,13 +97,10 @@ Cobrada mensalmente por conta ou por cartão ativo.
 
 Varia muito por produto:
 
-Gestão de despesas corporativas: tende a ficar em R$ 15 a R$ 20/mês. Alto valor agregado ao cliente empresa.
-
-Convênio salarial: tende a ficar em R$ 1 a R$ 3/mês. Produto commoditizado.
-
-Benefícios: varia de zero (custo absorvido pelo empregador no MDR) a R$ 5-10/mês em programas premium.
-
-Premiação: geralmente custo zero para o usuário, custo embutido no valor-presente.
+- Gestão de despesas corporativas: tende a ficar em R$ 15 a R$ 20/mês. Alto valor agregado ao cliente empresa.
+- Convênio salarial: tende a ficar em R$ 1 a R$ 3/mês. Produto commoditizado.
+- Benefícios: varia de zero (custo absorvido pelo empregador no MDR) a R$ 5-10/mês em programas premium.
+- Premiação: geralmente custo zero para o usuário, custo embutido no valor-presente.
 
 ### Tarifa variável de recarga
 
@@ -119,11 +110,9 @@ Percentual aplicado sobre o valor recarregado, no ato da recarga.
 
 Aplicável principalmente em:
 
-Benefícios: tipicamente isento (regulação e concorrência impõem).
-
-Premiação: tende a cobrar 1% a 3% sobre o valor, como fonte de receita.
-
-Gestão de frota: pode cobrar pequena tarifa sobre o valor recarregado pela empresa.
+- Benefícios: tipicamente isento (regulação e concorrência impõem).
+- Premiação: tende a cobrar 1% a 3% sobre o valor, como fonte de receita.
+- Gestão de frota: pode cobrar pequena tarifa sobre o valor recarregado pela empresa.
 
 ### Tarifa de uso
 
@@ -133,11 +122,9 @@ Aplicada sobre o valor efetivamente gastado pelo usuário. Pode ser positiva (de
 
 Aplicável:
 
-Benefícios: não pode ter taxa negativa (regulação veda cashback em vale-refeição e vale-alimentação).
-
-Gestão de frota e convênio salarial: podem aplicar tarifa positiva sobre o valor usado.
-
-Premiação: pode aplicar tarifa negativa (cashback como incentivo de uso).
+- Benefícios: não pode ter taxa negativa (regulação veda cashback em vale-refeição e vale-alimentação).
+- Gestão de frota e convênio salarial: podem aplicar tarifa positiva sobre o valor usado.
+- Premiação: pode aplicar tarifa negativa (cashback como incentivo de uso).
 
 ## Tabela consolidada por produto
 
@@ -173,9 +160,8 @@ Pela regulação BACEN, recursos de conta pré-paga devem ficar em contas segreg
 
 Isso gera dois pontos práticos:
 
-**Rendimento do float.** O dinheiro aplicado em títulos públicos rende. Esse rendimento é [receita de float](/conteudos/receita-de-float-emissao-cartoes) e pode ser apropriado pelo emissor (ou repassado pela instituição de pagamento que gerencia).
-
-**Obrigações de compliance.** A custódia exige reportes regulares ao BACEN, auditorias, reservas mínimas. Não é operação que pode ser feita de forma informal.
+- **Rendimento do float.** O dinheiro aplicado em títulos públicos rende. Esse rendimento é [receita de float](/conteudos/receita-de-float-emissao-cartoes) e pode ser apropriado pelo emissor (ou repassado pela instituição de pagamento que gerencia).
+- **Obrigações de compliance.** A custódia exige reportes regulares ao BACEN, auditorias, reservas mínimas. Não é operação que pode ser feita de forma informal.
 
 Em operações via BaaS, o BaaS assume a maior parte dessas obrigações regulatórias. Em operações com licença própria ou em arranjos fechados maiores, a operação gerencia tudo diretamente.
 

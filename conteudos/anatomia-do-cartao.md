@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/anatomia-do-cartao
 Markdown: https://wearejust.it/conteudos/anatomia-do-cartao.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Cartões
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23
@@ -25,11 +25,9 @@ Vamos percorrer o cartão de fora pra dentro.
 
 PAN é Primary Account Number. É aquele número de 16 dígitos que fica gravado na frente do cartão. Tecnicamente não é um número arbitrário. Ele é estruturado em três blocos, conforme a norma ISO/IEC 7812:
 
-**Dígitos 1 a 6 (ou 1 a 8, na norma atualizada): BIN/IIN.** Identificam quem emitiu o cartão. É o [BIN que se registra na ABNT](/conteudos/como-solicitar-bin-iin-abnt).
-
-**Dígitos 7 a 15 (ou 9 a 15): Identificador único do cartão.** É o número específico daquele cartão dentro do emissor. Geralmente é um sequencial, mas pode ter lógica interna para identificar produto, série, data de emissão.
-
-**Dígito 16: Dígito verificador.** Calculado pelo [algoritmo de LUHN](/conteudos/algoritmo-luhn-cartao). Serve para detectar erros de digitação. Não é um dígito de segurança, é um dígito de consistência.
+- **Dígitos 1 a 6 (ou 1 a 8, na norma atualizada): BIN/IIN.** Identificam quem emitiu o cartão. É o [BIN que se registra na ABNT](/conteudos/como-solicitar-bin-iin-abnt).
+- **Dígitos 7 a 15 (ou 9 a 15): Identificador único do cartão.** É o número específico daquele cartão dentro do emissor. Geralmente é um sequencial, mas pode ter lógica interna para identificar produto, série, data de emissão.
+- **Dígito 16: Dígito verificador.** Calculado pelo [algoritmo de LUHN](/conteudos/algoritmo-luhn-cartao). Serve para detectar erros de digitação. Não é um dígito de segurança, é um dígito de consistência.
 
 Quando alguém tenta gerar um PAN aleatoriamente, a chance de o dígito verificador bater é de 1 em 10. Por isso o LUHN é usado desde os anos 1950. É um filtro simples que evita que erros triviais de digitação virem transações erradas.
 
@@ -93,15 +91,13 @@ Contactless é funcionalmente parecido com chip EMV. O cartão gera criptograma 
 
 Vantagens do contactless:
 
-Rapidez. Transação acontece em menos de 1 segundo.
-
-Desgaste menor do cartão. Sem atrito físico.
-
-Compatível com carteiras digitais (Apple Pay, Google Pay, Samsung Pay), que usam o mesmo padrão NFC.
+- Rapidez. Transação acontece em menos de 1 segundo.
+- Desgaste menor do cartão. Sem atrito físico.
+- Compatível com carteiras digitais (Apple Pay, Google Pay, Samsung Pay), que usam o mesmo padrão NFC.
 
 Desvantagens:
 
-Custo adicional. Cartão com NFC custa mais caro na produção (R$ 2 a R$ 4 a mais por unidade). Infra de POS com contactless também tem custo de adequação (R$ 20 mil a R$ 30 mil por mês em alguns contratos de tecnologia de leitura).
+- Custo adicional. Cartão com NFC custa mais caro na produção (R$ 2 a R$ 4 a mais por unidade). Infra de POS com contactless também tem custo de adequação (R$ 20 mil a R$ 30 mil por mês em alguns contratos de tecnologia de leitura).
 
 Em arranjos fechados, NFC é menos comum. O ganho de velocidade não compensa o custo adicional quando a operação é contida.
 
@@ -111,11 +107,9 @@ Simples, mas merece atenção. A data de expiração (MM/AA) indica até quando 
 
 Função técnica:
 
-**Autenticação adicional.** Em compras não presentes, o merchant pede a data junto com o PAN e CVV2. Trio de dados.
-
-**Controle de ciclo.** Cartões expirados são automaticamente bloqueados na autorização. Se alguém tenta usar um cartão depois da data, o emissor nega.
-
-**Gerenciamento de risco.** O emissor reemite o cartão periodicamente, o que dá chance de atualizar chips, substituir cartões perdidos, atualizar CVVs.
+- **Autenticação adicional.** Em compras não presentes, o merchant pede a data junto com o PAN e CVV2. Trio de dados.
+- **Controle de ciclo.** Cartões expirados são automaticamente bloqueados na autorização. Se alguém tenta usar um cartão depois da data, o emissor nega.
+- **Gerenciamento de risco.** O emissor reemite o cartão periodicamente, o que dá chance de atualizar chips, substituir cartões perdidos, atualizar CVVs.
 
 A validade padrão de um cartão varia de 3 a 5 anos. Cartões premium às vezes são emitidos com validade mais longa, cartões de benefício corporativo às vezes com validade mais curta alinhada ao contrato de trabalho.
 
@@ -123,11 +117,9 @@ A validade padrão de um cartão varia de 3 a 5 anos. Cartões premium às vezes
 
 Impresso na frente, abaixo do PAN. Não tem função técnica de autenticação direta na maioria dos sistemas. Mas cumpre funções:
 
-**Identificação visual.** Em compras presenciais, o comerciante pode pedir o documento do portador pra conferir se o nome bate com o cartão.
-
-**Branding.** Cartões empresariais podem ter o nome da empresa junto com o do funcionário.
-
-**Relacionamento.** Cartão com nome personaliza a experiência do cliente.
+- **Identificação visual.** Em compras presenciais, o comerciante pode pedir o documento do portador pra conferir se o nome bate com o cartão.
+- **Branding.** Cartões empresariais podem ter o nome da empresa junto com o do funcionário.
+- **Relacionamento.** Cartão com nome personaliza a experiência do cliente.
 
 O nome tem limite de caracteres que varia por bandeira. Visa e Mastercard geralmente aceitam até 26 caracteres. Nome muito longo é truncado ou abreviado.
 
@@ -135,15 +127,11 @@ O nome tem limite de caracteres que varia por bandeira. Visa e Mastercard geralm
 
 Alguns elementos adicionais que aparecem em cartões:
 
-**Dados do emissor.** Impressos no verso, identificam a instituição legalmente responsável. Útil para o portador saber quem contatar em caso de problema.
-
-**Texto livre.** Espaço para informações adicionais: número de atendimento, canais de suporte, avisos sobre uso. Varia por emissor.
-
-**Hologramas.** Algumas bandeiras exigem holograma específico (Visa tem a pomba voadora, Mastercard tem os círculos sobrepostos). Elemento anti-falsificação visual.
-
-**Elementos táteis.** Algumas jurisdições exigem elementos em relevo, incluindo em Braille, para acessibilidade.
-
-**Código de serviço.** Três dígitos armazenados na trilha magnética, indicam tipo de cartão (crédito, débito, pré-pago), se é internacional, se permite PIN.
+- **Dados do emissor.** Impressos no verso, identificam a instituição legalmente responsável. Útil para o portador saber quem contatar em caso de problema.
+- **Texto livre.** Espaço para informações adicionais: número de atendimento, canais de suporte, avisos sobre uso. Varia por emissor.
+- **Hologramas.** Algumas bandeiras exigem holograma específico (Visa tem a pomba voadora, Mastercard tem os círculos sobrepostos). Elemento anti-falsificação visual.
+- **Elementos táteis.** Algumas jurisdições exigem elementos em relevo, incluindo em Braille, para acessibilidade.
+- **Código de serviço.** Três dígitos armazenados na trilha magnética, indicam tipo de cartão (crédito, débito, pré-pago), se é internacional, se permite PIN.
 
 ## Quanto custa cada elemento na produção
 

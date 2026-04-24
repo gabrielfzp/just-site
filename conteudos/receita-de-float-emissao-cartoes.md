@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/receita-de-float-emissao-cartoes
 Markdown: https://wearejust.it/conteudos/receita-de-float-emissao-cartoes.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Cartões
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23
@@ -29,9 +29,8 @@ No Brasil, onde a Selic anual hoje está perto de 10% ao ano, o dinheiro em cust
 
 O float nasce da assimetria entre a janela de pagamento do consumidor e a janela de recebimento do estabelecimento. Em cartão de crédito, essa assimetria é grande:
 
-O consumidor paga a fatura em datas fixas (normalmente mensal), mas a transação aconteceu em qualquer dia do ciclo.
-
-O estabelecimento quer receber o quanto antes, mas a janela padrão é D+28.
+- O consumidor paga a fatura em datas fixas (normalmente mensal), mas a transação aconteceu em qualquer dia do ciclo.
+- O estabelecimento quer receber o quanto antes, mas a janela padrão é D+28.
 
 A adquirente antecipa o pagamento ao estabelecimento (via recebível), cobrando uma taxa que compensa o risco. Essa antecipação é o que sustenta o modelo comercial de Stone, Cielo e Rede hoje. Mesmo assim, a liquidação formal da transação segue o calendário da bandeira.
 
@@ -47,9 +46,8 @@ O prazo médio de liquidação é D+28. Isso significa que, a qualquer momento, 
 
 Usando 20 dias como média:
 
-R$ 45 milhões mensais = R$ 1,5 milhão de TPV diário.
-
-R$ 1,5 milhão × 20 dias = R$ 30 milhões em saldo médio parado na conta da instituição de pagamento.
+- R$ 45 milhões mensais = R$ 1,5 milhão de TPV diário.
+- R$ 1,5 milhão × 20 dias = R$ 30 milhões em saldo médio parado na conta da instituição de pagamento.
 
 Com Selic a 10% ao ano (aproximadamente 0,8% ao mês), o rendimento desses R$ 30 milhões é de R$ 240 mil por mês. Isso é só rendimento financeiro. Sem nenhuma atividade comercial adicional.
 
@@ -75,11 +73,9 @@ Se você contratou BaaS e não tem cláusula clara de repasse de float, levanta 
 
 Os modelos comerciais mais comuns no mercado:
 
-**Repasse integral (100% do float).** O BaaS repassa ao emissor 100% do rendimento financeiro gerado em cima do saldo em custódia. Geralmente, o BaaS cobra uma tarifa de administração em troca, ou uma taxa unitária já embutida nas outras tarifas. É o modelo mais transparente.
-
-**Repasse parcial (50% a 80% do float).** O BaaS retém uma parcela (20% a 50%) como remuneração pelo serviço de gestão do float. Em troca, pode oferecer tarifas unitárias menores nos outros serviços.
-
-**Sem repasse de float (0%).** Alguns contratos (em geral mais antigos ou com BaaS menos transparentes) não têm cláusula de repasse. Todo o float fica com o BaaS. Se você está em um contrato assim, renegocie.
+- **Repasse integral (100% do float).** O BaaS repassa ao emissor 100% do rendimento financeiro gerado em cima do saldo em custódia. Geralmente, o BaaS cobra uma tarifa de administração em troca, ou uma taxa unitária já embutida nas outras tarifas. É o modelo mais transparente.
+- **Repasse parcial (50% a 80% do float).** O BaaS retém uma parcela (20% a 50%) como remuneração pelo serviço de gestão do float. Em troca, pode oferecer tarifas unitárias menores nos outros serviços.
+- **Sem repasse de float (0%).** Alguns contratos (em geral mais antigos ou com BaaS menos transparentes) não têm cláusula de repasse. Todo o float fica com o BaaS. Se você está em um contrato assim, renegocie.
 
 A frequência do repasse é geralmente mensal. O cálculo é feito com base no saldo médio diário da conta, aplicando a rentabilidade líquida dos investimentos que o BaaS fez no período. O BaaS deve dar visibilidade do cálculo mensal.
 
@@ -87,13 +83,10 @@ A frequência do repasse é geralmente mensal. O cálculo é feito com base no s
 
 O float é material em cenários específicos:
 
-**Cartão de crédito com D+28.** Já cobrimos acima. É o cenário clássico de float relevante. Quanto maior o ticket médio e a frequência de uso, maior o saldo parado e maior o float.
-
-**Operações com saldo mantido em conta.** Algumas operações (contas digitais, wallets corporativas, cartões com saldo pré-carregado) mantêm valores parados em conta por tempos variáveis. Esse saldo também gera float.
-
-**Voucher e benefícios corporativos com carregamento mensal.** O empregador deposita R$ 800 por funcionário no início do mês. Parte desse saldo é gasta ao longo do mês, mas sempre há um saldo residual. Em uma base de 100 mil funcionários, isso é um estoque permanente de dezenas de milhões de reais em float.
-
-**Antecipação de recebíveis integrada.** Quando a fintech também atua como adquirente ou sub-adquirente, o float se soma ao spread da antecipação. Os dois se potencializam. É o modelo que alimenta Stone e Cielo no lado da adquirência.
+- **Cartão de crédito com D+28.** Já cobrimos acima. É o cenário clássico de float relevante. Quanto maior o ticket médio e a frequência de uso, maior o saldo parado e maior o float.
+- **Operações com saldo mantido em conta.** Algumas operações (contas digitais, wallets corporativas, cartões com saldo pré-carregado) mantêm valores parados em conta por tempos variáveis. Esse saldo também gera float.
+- **Voucher e benefícios corporativos com carregamento mensal.** O empregador deposita R$ 800 por funcionário no início do mês. Parte desse saldo é gasta ao longo do mês, mas sempre há um saldo residual. Em uma base de 100 mil funcionários, isso é um estoque permanente de dezenas de milhões de reais em float.
+- **Antecipação de recebíveis integrada.** Quando a fintech também atua como adquirente ou sub-adquirente, o float se soma ao spread da antecipação. Os dois se potencializam. É o modelo que alimenta Stone e Cielo no lado da adquirência.
 
 ## Quando o float não importa
 

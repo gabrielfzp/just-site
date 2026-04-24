@@ -2,7 +2,7 @@
 Canônica: https://wearejust.it/conteudos/quanto-custa-emitir-cartao
 Markdown: https://wearejust.it/conteudos/quanto-custa-emitir-cartao.md
 Site: JUST Fintechs
-Autor: Equipe JUST
+Autor: Gabriel Pires
 Categoria: Cartões
 Publicado em: 2026-04-23
 Atualizado em: 2026-04-23
@@ -19,13 +19,10 @@ Emitir cartão no Brasil via BIN Sponsor (o caminho mais comum hoje) envolve um 
 
 O custo de emitir cartão não é uma linha única. É um empilhamento de quatro camadas distintas:
 
-**CAPEX inicial.** O que você paga para começar. Setup com BaaS, homologação na bandeira, integração de API, primeira tiragem de plástico se for cartão físico, adequações regulatórias, consultoria jurídica.
-
-**Custos fixos mensais.** O que você paga independentemente de quantos usuários tem. Fee mínimo do BaaS, time interno (produto, engenharia, operações, compliance), infraestrutura, jurídico.
-
-**Custos variáveis por usuário ou transação.** O que você paga em função da operação. Conta ativa, processamento de transação, KYC, antifraude, bandeira, tokenização em carteiras digitais.
-
-**Custos de produção física.** Plástico, embolsamento, logística para envio ao usuário.
+- **CAPEX inicial.** O que você paga para começar. Setup com BaaS, homologação na bandeira, integração de API, primeira tiragem de plástico se for cartão físico, adequações regulatórias, consultoria jurídica.
+- **Custos fixos mensais.** O que você paga independentemente de quantos usuários tem. Fee mínimo do BaaS, time interno (produto, engenharia, operações, compliance), infraestrutura, jurídico.
+- **Custos variáveis por usuário ou transação.** O que você paga em função da operação. Conta ativa, processamento de transação, KYC, antifraude, bandeira, tokenização em carteiras digitais.
+- **Custos de produção física.** Plástico, embolsamento, logística para envio ao usuário.
 
 Cada camada tem sua lógica, sua negociação e seu impacto no P&L. Não vamos abordar só o custo bruto. Vamos mostrar a dinâmica de como tudo isso interage e em que ponto a conta começa a fechar.
 
@@ -154,15 +151,11 @@ Esses números são médias de mercado, não promessas. Cada operação tem vari
 
 Cinco erros que a gente na JUST vê em quase toda operação que falha ou atrasa o break-even:
 
-**Superestimar ativação.** Projetar 80% de ativação quando o mercado opera em 50% faz a conta fechar no papel mas não no caixa. A ativação é a variável mais subestimada em business plan de cartão.
-
-**Não renegociar o fee mínimo do BaaS.** Fechar contrato de BaaS com fee mínimo de R$ 50 mil sem ter garantia de escala rápida pode quebrar a operação antes dela começar. Negociar fee mínimo menor no primeiro ano, com escalonamento conforme a base cresce, é uma prática de mercado.
-
-**Escolher o programa errado.** Operar em pré-pago achando que vai ganhar intercâmbio de crédito. Operar em crédito consumidor para um público que pedia corporativo. Programa errado compromete a rentabilidade unitária para sempre.
-
-**Subestimar reposição de plástico.** Muita operação projeta 1 cartão por usuário para a vida inteira. No mundo real, é 1,3 a 1,5. Isso adiciona 30% a 50% ao custo de plástico anual.
-
-**Ignorar fraude e chargeback.** Em operações novas, fraude pode consumir 0,5% a 2% do TPV se não houver antifraude bem calibrado. Perdas por chargeback são custo real, recai sobre o emissor.
+- **Superestimar ativação.** Projetar 80% de ativação quando o mercado opera em 50% faz a conta fechar no papel mas não no caixa. A ativação é a variável mais subestimada em business plan de cartão.
+- **Não renegociar o fee mínimo do BaaS.** Fechar contrato de BaaS com fee mínimo de R$ 50 mil sem ter garantia de escala rápida pode quebrar a operação antes dela começar. Negociar fee mínimo menor no primeiro ano, com escalonamento conforme a base cresce, é uma prática de mercado.
+- **Escolher o programa errado.** Operar em pré-pago achando que vai ganhar intercâmbio de crédito. Operar em crédito consumidor para um público que pedia corporativo. Programa errado compromete a rentabilidade unitária para sempre.
+- **Subestimar reposição de plástico.** Muita operação projeta 1 cartão por usuário para a vida inteira. No mundo real, é 1,3 a 1,5. Isso adiciona 30% a 50% ao custo de plástico anual.
+- **Ignorar fraude e chargeback.** Em operações novas, fraude pode consumir 0,5% a 2% do TPV se não houver antifraude bem calibrado. Perdas por chargeback são custo real, recai sobre o emissor.
 
 ## Como a JUST ajuda nessa conta
 
