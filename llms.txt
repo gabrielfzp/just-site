@@ -10,7 +10,52 @@ Este arquivo lista as paginas mais importantes da JUST para assistentes de IA, m
 - Central de Conteudos: https://wearejust.it/conteudos/
 - Sobre a JUST: https://wearejust.it/sobre/
 - Tecnologia JUST: https://wearejust.it/stack/
+- Cases JUST: https://wearejust.it/cases/
 - Contato comercial: https://wearejust.it/contato/
+
+## Produtos
+
+### JUST Sentinel | Antifraude em tempo real
+
+URL: https://wearejust.it/sentinel/
+Tipo: Fraud detection
+Resumo: Sentinel é a camada antifraude da JUST: risk scoring em tempo real para autorização de cartões, com modelos proprietários treinados em milhões de transações.
+
+### JUST Benefits | Benefícios flexíveis com sua marca
+
+URL: https://wearejust.it/beneficios/
+Tipo: Employee benefits financial platform
+Resumo: Plataforma para benefícios flexíveis com múltiplos saldos, regras customizáveis, arranjos aberto, fechado ou híbrido e controle operacional.
+
+### JUST Fleet | Gestão financeira de frotas
+
+URL: https://wearejust.it/frotas/
+Tipo: Fleet financial management platform
+Resumo: Produto financeiro para gestão de frotas com controle por veículo, abastecimento, pedágio, manutenção, regras em tempo real e conciliação.
+
+### JUST Banking | Banking digital para empresas
+
+URL: https://wearejust.it/banking/
+Tipo: Digital banking platform
+Resumo: Banking digital para empresas com conta, cartão, PIX, transferências e funcionalidades bancárias integradas ao seu produto.
+
+### JUST Expense | Despesas corporativas com controle
+
+URL: https://wearejust.it/despesas/
+Tipo: Corporate expense management platform
+Resumo: Cartões corporativos e gestão de despesas com políticas, limites, conciliação, relatórios e controle financeiro em tempo real.
+
+### JUST Credit | Crédito e antecipação
+
+URL: https://wearejust.it/antecipacao/
+Tipo: Credit platform
+Resumo: Produtos de crédito, private label, antecipação e recebíveis integrados ao seu negócio com governança e compliance.
+
+### JUST Custom | Produtos financeiros sob demanda
+
+URL: https://wearejust.it/sob-demanda/
+Tipo: Custom financial product development
+Resumo: Projetos de produtos financeiros sob demanda, com arquitetura customizada, integrações multi-provider e operação preparada para escala.
 
 ## Conteudos principais
 
