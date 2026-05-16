@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { AUTHORS_LIST } from "../src/content/authors.js";
 import { CATEGORIES_LIST } from "../src/content/categories.js";
-import { canonicalUrl, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../src/site/seo.js";
+import { canonicalUrl, localized, PAGE_SEO, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../src/site/seo.js";
 import { distDir, loadContentArticles, rootDir } from "./load-content.mjs";
 
 function articleUrl(article) {
@@ -24,6 +24,7 @@ function authorUrl(author) {
 const articles = await loadContentArticles();
 const pillarArticles = articles.filter((article) => article.type === "pillar");
 const satelliteArticles = articles.filter((article) => article.type !== "pillar");
+const productRouteKeys = Object.keys(PAGE_SEO).filter((key) => PAGE_SEO[key].serviceType);
 const UTF8_BOM = "\uFEFF";
 
 const lines = [
@@ -39,8 +40,24 @@ const lines = [
   `- Central de Conteudos: ${canonicalUrl("/conteudos")}`,
   `- Sobre a JUST: ${canonicalUrl("/sobre")}`,
   `- Tecnologia JUST: ${canonicalUrl("/stack")}`,
+  `- Cases JUST: ${canonicalUrl("/cases")}`,
   `- Contato comercial: ${canonicalUrl("/contato")}`,
   "",
+  "## Produtos",
+  "",
+  ...productRouteKeys.flatMap((key) => {
+    const route = PAGE_SEO[key];
+    const title = localized(route.title, "pt-BR");
+    const description = localized(route.description, "pt-BR");
+    return [
+      `### ${title}`,
+      "",
+      `URL: ${canonicalUrl(route.path)}`,
+      `Tipo: ${route.serviceType}`,
+      `Resumo: ${description}`,
+      "",
+    ];
+  }),
   "## Conteudos principais",
   "",
   ...pillarArticles.flatMap((article) => [

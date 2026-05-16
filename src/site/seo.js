@@ -332,6 +332,7 @@ export function applySeo(seo, lang) {
   } else {
     removeNode("link[rel='alternate'][type='text/markdown']");
   }
+  upsertLink("link[rel='alternate'][type='text/plain']", { rel: "alternate", type: "text/plain", href: `${SITE_URL}/llms.txt`, title: "LLM-friendly site index" });
   upsertLink("link[rel='alternate'][hreflang='pt-BR']", { rel: "alternate", hreflang: "pt-BR", href: seo.canonical });
   upsertLink("link[rel='alternate'][hreflang='x-default']", { rel: "alternate", hreflang: "x-default", href: seo.canonical });
   upsertJsonLd(seo.jsonLd);

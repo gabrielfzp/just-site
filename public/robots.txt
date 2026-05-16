@@ -1,6 +1,9 @@
+# Versões Markdown dos artigos (/conteudos/<slug>.md) são públicas
+# e otimizadas para consumo por LLMs e mecanismos de resposta.
+# Índice consolidado em https://wearejust.it/llms.txt
+
 User-agent: *
 Allow: /
-Disallow: /conteudos/*.md$
 
 User-agent: OAI-SearchBot
 Allow: /

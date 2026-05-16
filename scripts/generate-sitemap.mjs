@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { AUTHORS_LIST } from "../src/content/authors.js";
 import { CATEGORIES_LIST } from "../src/content/categories.js";
-import { canonicalUrl, PAGE_SEO, SEO_ROUTE_KEYS } from "../src/site/seo.js";
+import { canonicalUrl, PAGE_SEO, SEO_ROUTE_KEYS, SITE_URL } from "../src/site/seo.js";
 import { buildArticleUrl } from "../src/lib/schema-builder.js";
 import { distDir, loadContentArticles, rootDir } from "./load-content.mjs";
 
@@ -16,12 +16,20 @@ const urls = [
     changefreq: key === "home" ? "weekly" : key === "conteudos" ? "daily" : "monthly",
     priority: key === "home" ? "1.0" : key === "conteudos" ? "0.9" : "0.8",
   })),
-  ...articles.map((article) => ({
-    loc: buildArticleUrl(article),
-    lastmod: article.updatedAt || today,
-    changefreq: "monthly",
-    priority: "0.8",
-  })),
+  ...articles.flatMap((article) => [
+    {
+      loc: buildArticleUrl(article),
+      lastmod: article.updatedAt || today,
+      changefreq: "monthly",
+      priority: "0.8",
+    },
+    {
+      loc: `${SITE_URL}/conteudos/${article.slug}.md`,
+      lastmod: article.updatedAt || today,
+      changefreq: "monthly",
+      priority: "0.5",
+    },
+  ]),
   ...CATEGORIES_LIST.map((category) => ({
     loc: canonicalUrl(`/conteudos/categoria/${category.slug}`),
     lastmod: today,
