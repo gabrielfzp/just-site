@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-article-images.mjs && node scripts/generate-content-manifest.mjs && vite build && node scripts/generate-og-images.mjs && node scripts/generate-seo-pages.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-content-markdown.mjs && node scripts/generate-llms-txt.mjs",
+    "build": "node scripts/generate-article-images.mjs && node scripts/generate-content-manifest.mjs && vite build && node scripts/generate-og-images.mjs && node scripts/generate-seo-pages.mjs && node scripts/prerender.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-content-markdown.mjs && node scripts/generate-llms-txt.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -33,6 +33,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "puppeteer": "^25.0.2",
     "vite": "^7.2.4"
   }
 }
