@@ -5,6 +5,7 @@ import { AUTHORS_LIST } from "../src/content/authors.js";
 import { CATEGORIES_LIST } from "../src/content/categories.js";
 import { buildArticleJsonLd, buildArticleUrl } from "../src/lib/schema-builder.js";
 import { canonicalUrl, DEFAULT_IMAGE, getSeo, SEO_ROUTE_KEYS, SITE_URL } from "../src/site/seo.js";
+import { buildContentHubJsonLd } from "../src/site/content-seo.js";
 import { applyHtmlSeo } from "./html-seo-utils.mjs";
 import { loadContentArticles } from "./load-content.mjs";
 
@@ -21,6 +22,9 @@ function writeRoute(path, seo) {
 
 const siteRoutes = SEO_ROUTE_KEYS.map((routeKey) => {
   const seo = getSeo(routeKey, "pt-BR");
+  if (routeKey === "conteudos") {
+    seo.jsonLd = buildContentHubJsonLd(articles);
+  }
   return writeRoute(seo.path, seo);
 });
 
