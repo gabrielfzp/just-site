@@ -793,7 +793,7 @@ export function Reveal({ children, delay = 0, direction = "up", style = {} }) {
   const [ref, visible] = useInView(0.08);
   const transforms = { up: "translateY(40px)", down: "translateY(-20px)", left: "translateX(-40px)", right: "translateX(40px)", none: "none", scale: "scale(0.95)" };
   return (
-    <div ref={ref} style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : transforms[direction], transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s`, ...style }}>
+    <div ref={ref} style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : transforms[direction], transition: `opacity 0.52s var(--ease-out) ${delay}s, transform 0.52s var(--ease-out) ${delay}s`, ...style }}>
       {children}
     </div>
   );
@@ -816,15 +816,23 @@ export function Tag({ children, light = false, color = null }) {
 
 export function Btn({ children, primary = true, onClick, style = {}, size = "md" }) {
   const [hover, setHover] = useState(false);
+  const [active, setActive] = useState(false);
   const sizes = { sm: { p: "10px 20px", f: 13 }, md: { p: "14px 28px", f: 15 }, lg: { p: "18px 36px", f: 16 } };
   return (
-    <button onClick={onClick} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => { setHover(false); setActive(false); }}
+      onMouseDown={() => setActive(true)}
+      onMouseUp={() => setActive(false)}
+      onBlur={() => setActive(false)}
+      style={{
       padding: sizes[size].p, borderRadius: 10, fontSize: sizes[size].f, fontWeight: 600, cursor: "pointer",
       border: primary ? "none" : `1px solid rgba(242,244,248,0.25)`,
       background: primary ? (hover ? T.ctaHover : T.cta) : (hover ? "rgba(242,244,248,0.1)" : "transparent"),
-      color: "#fff", transform: hover ? "translateY(-1px)" : "none",
+      color: "#fff", transform: active ? "scale(0.97)" : (hover ? "translateY(-1px)" : "none"),
       boxShadow: primary && hover ? "0 8px 24px rgba(244,85,70,0.3)" : "none",
-      transition: "all 0.25s ease", ...style,
+      transition: "transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease", ...style,
     }}>{children}</button>
   );
 }
@@ -945,8 +953,7 @@ export function HeroOrbital({ trProd }) {
         <div key={i} className="orbit-ring" style={{
           position: "absolute", width: size, height: size, borderRadius: "50%",
           border: `1px solid rgba(108,92,231,${0.1 - i * 0.03})`,
-          animation: `ringPulse ${4 + i}s ease-in-out infinite ${i}s`,
-          transition: "all 0.6s ease",
+          transition: "border-color 220ms var(--ease-out), transform 220ms var(--ease-out), opacity 220ms ease",
         }} />
       ))}
 
@@ -963,7 +970,7 @@ export function HeroOrbital({ trProd }) {
           <line key={i} x1="230" y1="230" x2={l.x2} y2={l.y2}
             stroke={`rgba(${l.c},0.12)`} strokeWidth="1"
             strokeDasharray="4 6"
-            style={{ animation: "dashFlow 15s linear infinite" }}
+            style={{ opacity: 0.8 }}
           />
         ))}
       </svg>
@@ -982,8 +989,7 @@ export function HeroOrbital({ trProd }) {
           position: "absolute", width: 3, height: 3, borderRadius: "50%",
           background: p.bg, zIndex: 1,
           top: p.top, left: p.left, right: p.right, bottom: p.bottom,
-          animation: `particleFloat${i} ${p.dur} ease-in-out infinite`,
-          animationDelay: p.delay,
+          opacity: 0.45,
         }} />
       ))}
 
@@ -994,8 +1000,8 @@ export function HeroOrbital({ trProd }) {
         border: "1.5px solid rgba(108,92,231,0.35)",
         display: "flex", alignItems: "center", justifyContent: "center",
         boxShadow: "0 0 40px rgba(108,92,231,0.15), 0 0 80px rgba(108,92,231,0.08), inset 0 1px 0 rgba(255,255,255,0.1)",
-        animation: "hubFloat 5s ease-in-out infinite",
-        transition: "all 0.6s ease",
+        animation: "hubFloat 7s ease-in-out infinite",
+        transition: "border-color 220ms var(--ease-out), box-shadow 220ms ease, transform 220ms var(--ease-out)",
       }}>
         <img src={LOGO_PATH} alt="JUST" style={{ height: 36, filter: "brightness(1.1)" }} />
       </div>
@@ -1020,14 +1026,14 @@ export function HeroOrbital({ trProd }) {
               border: `1.5px solid ${c}59`,
               boxShadow: `0 0 20px ${c}1F, 0 4px 16px rgba(0,0,0,0.3)`,
               backdropFilter: "blur(8px)",
-              transition: "all 0.4s ease",
+              transition: "transform 180ms var(--ease-out), box-shadow 200ms ease, border-color 180ms ease",
             }}>
               {HERO_SVG_ICONS[node.key]}
             </div>
             <span className="node-label" style={{
               fontSize: 11, fontWeight: 600, letterSpacing: "0.5px",
               color: "rgba(255,255,255,0.45)", textAlign: "center",
-              whiteSpace: "nowrap", transition: "all 0.3s",
+              whiteSpace: "nowrap", transition: "color 160ms ease, opacity 160ms ease",
             }}>{trProd[node.key]?.name?.replace("JUST ", "")}</span>
             <div className="node-tooltip">
               <div className="tooltip-name" style={{ color: node.tooltipColor }}>{trProd[node.key]?.name}</div>
@@ -1054,7 +1060,7 @@ export function HeroOrbital({ trProd }) {
 .bento-grid .bento-card:nth-child(5) { grid-column: span 2; }
 .bento-grid .bento-card:nth-child(6) { grid-column: span 1; }
 .bento-card {
-  border-radius: 16px;
+  border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.06);
   background: rgba(255,255,255,0.02);
   overflow: hidden;
@@ -1062,11 +1068,19 @@ export function HeroOrbital({ trProd }) {
   position: relative;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.4s ease, background 0.4s ease;
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms var(--ease-out);
 }
 .bento-card:hover {
   border-color: rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.035);
+}
+.bento-card:focus-visible {
+  outline: 2px solid rgba(244,85,70,0.72);
+  outline-offset: 4px;
+  border-color: rgba(244,85,70,0.32);
+}
+.bento-card:active {
+  transform: scale(0.99);
 }
 .bento-card::after {
   content: '';
@@ -1077,7 +1091,7 @@ export function HeroOrbital({ trProd }) {
   height: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 220ms var(--ease-out);
 }
 .bento-card:hover::after {
   transform: scaleX(1);
@@ -1093,7 +1107,7 @@ export function HeroOrbital({ trProd }) {
 
 /* DE > PARA comparison hover effects */
 .comp-row {
-  transition: border-color 0.4s ease;
+  transition: border-color 220ms ease;
 }
 .comp-row:hover {
   border-color: rgba(39,174,96,0.25) !important;
@@ -1110,7 +1124,7 @@ export function HeroOrbital({ trProd }) {
     rgba(39,174,96,0.07) 100%
   );
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 220ms ease;
   pointer-events: none;
   z-index: 0;
 }
@@ -1131,120 +1145,7 @@ export function HeroOrbital({ trProd }) {
     transparent 65%,
     transparent 100%
   );
-  transition: left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  pointer-events: none;
-  z-index: 0;
-}
-.comp-row:hover::after {
-  left: 100%;
-}
-.comp-row:hover .comp-icon-com {
-  transform: scale(1.08);
-  box-shadow: 0 0 24px rgba(39,174,96,0.2) !important;
-}
-.comp-row:hover .comp-arrow {
-  background: rgba(39,174,96,0.12) !important;
-  border-color: rgba(39,174,96,0.3) !important;
-  transform: translateX(3px);
-}
-.comp-row:hover .comp-arrow svg path {
-  stroke: rgba(39,174,96,0.8);
-}
-
-
-        
-
-/* Bento grid products */
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-.bento-grid .bento-card:nth-child(1) { grid-column: span 2; }
-.bento-grid .bento-card:nth-child(2) { grid-column: span 1; }
-.bento-grid .bento-card:nth-child(3) { grid-column: span 1; }
-.bento-grid .bento-card:nth-child(4) { grid-column: span 2; }
-.bento-grid .bento-card:nth-child(5) { grid-column: span 2; }
-.bento-grid .bento-card:nth-child(6) { grid-column: span 1; }
-.bento-card {
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.06);
-  background: rgba(255,255,255,0.02);
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.4s ease, background 0.4s ease;
-}
-.bento-card:hover {
-  border-color: rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.035);
-}
-.bento-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.bento-card:hover::after {
-  transform: scaleX(1);
-}
-.bento-card:hover .bento-icon-card {
-  transform: scale(1.1);
-}
-.bento-card:hover .bento-arrow-btn {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.15);
-  transform: translateX(2px);
-}
-
-/* DE > PARA comparison hover effects */
-.comp-row {
-  transition: border-color 0.4s ease;
-}
-.comp-row:hover {
-  border-color: rgba(39,174,96,0.25) !important;
-}
-.comp-row::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg,
-    rgba(232,93,74,0.03) 0%,
-    rgba(232,93,74,0.01) 25%,
-    transparent 45%,
-    rgba(39,174,96,0.04) 55%,
-    rgba(39,174,96,0.07) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-  z-index: 0;
-}
-.comp-row:hover::before {
-  opacity: 1;
-}
-.comp-row::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  left: -100%;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    transparent 35%,
-    rgba(39,174,96,0.07) 48%,
-    rgba(39,174,96,0.12) 52%,
-    rgba(39,174,96,0.07) 56%,
-    transparent 65%,
-    transparent 100%
-  );
-  transition: left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: left 420ms var(--ease-out);
   pointer-events: none;
   z-index: 0;
 }
@@ -1266,42 +1167,42 @@ export function HeroOrbital({ trProd }) {
 
 @keyframes ringPulse {
           0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.5; transform: scale(1.02); }
+          50% { opacity: 0.72; transform: scale(1.01); }
         }
         @keyframes hubFloat {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
+          50% { transform: translateY(-4px); }
         }
         @keyframes dashFlow { to { stroke-dashoffset: -100; } }
         @keyframes nodeFloat1 {
           0%, 100% { transform: translate(0, 0); }
-          33% { transform: translate(8px, -12px); }
-          66% { transform: translate(-5px, -6px); }
+          33% { transform: translate(3px, -5px); }
+          66% { transform: translate(-2px, -3px); }
         }
         @keyframes nodeFloat2 {
           0%, 100% { transform: translate(0, 0); }
-          33% { transform: translate(-10px, -8px); }
-          66% { transform: translate(5px, -14px); }
+          33% { transform: translate(-4px, -3px); }
+          66% { transform: translate(2px, -5px); }
         }
         @keyframes nodeFloat3 {
           0%, 100% { transform: translate(0, 0); }
-          33% { transform: translate(-12px, 6px); }
-          66% { transform: translate(-6px, -10px); }
+          33% { transform: translate(-5px, 3px); }
+          66% { transform: translate(-3px, -4px); }
         }
         @keyframes nodeFloat4 {
           0%, 100% { transform: translate(0, 0); }
-          33% { transform: translate(10px, -8px); }
-          66% { transform: translate(6px, 10px); }
+          33% { transform: translate(4px, -3px); }
+          66% { transform: translate(3px, 4px); }
         }
         @keyframes nodeFloat5 {
           0%, 100% { transform: translate(0, 0); }
-          33% { transform: translate(8px, 10px); }
-          66% { transform: translate(-6px, 5px); }
+          33% { transform: translate(3px, 4px); }
+          66% { transform: translate(-3px, 2px); }
         }
         @keyframes nodeFloat6 {
           0%, 100% { transform: translate(0, 0); }
-          33% { transform: translate(-8px, 8px); }
-          66% { transform: translate(10px, 4px); }
+          33% { transform: translate(-3px, 3px); }
+          66% { transform: translate(4px, 2px); }
         }
         @keyframes particleFloat0 {
           0%, 100% { transform: translate(0, 0); opacity: 0.3; }
@@ -1352,8 +1253,8 @@ export function HeroOrbital({ trProd }) {
           z-index: 50 !important;
         }
         .hero-product-node:hover > div:first-child {
-          transform: scale(1.12);
-          box-shadow: 0 0 35px rgba(108,92,231,0.3), 0 4px 24px rgba(0,0,0,0.4) !important;
+          transform: scale(1.08);
+          box-shadow: 0 0 28px rgba(108,92,231,0.28), 0 4px 24px rgba(0,0,0,0.4) !important;
         }
         .hero-product-node:hover span {
           opacity: 1 !important;
@@ -1375,7 +1276,7 @@ export function HeroOrbital({ trProd }) {
           box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
           opacity: 0;
           pointer-events: none;
-          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transition: opacity 170ms var(--ease-out), transform 170ms var(--ease-out), border-color 170ms ease, box-shadow 170ms ease;
           z-index: 100;
         }
         .node-tooltip::before {
@@ -1456,8 +1357,8 @@ export function HeroOrbital({ trProd }) {
 
         /* === LANCE HOVER -> ORBITAL GREEN BURST === */
         .orbital-wrapper.lance-active .hero-product-node > div:first-child {
-          transform: scale(1.15) !important;
-          transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+          transform: scale(1.12) !important;
+          transition: transform 220ms var(--ease-out), box-shadow 220ms ease, border-color 220ms ease !important;
         }
         .orbital-wrapper.lance-active .hero-product-node span {
           color: #fff !important;
@@ -1789,10 +1690,9 @@ export function HeroOrbital({ trProd }) {
   color: #f2f4f8;
   margin-bottom: 16px;
 }
-.hybrid-title .gradient-text {
-  background: linear-gradient(135deg, #6C5CE7, #f45546, #00B894);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.hybrid-title .hybrid-emphasis {
+  color: #f45546;
+  text-shadow: 0 0 28px rgba(244,85,70,0.18);
 }
 .hybrid-description {
   font-size: 16px;
@@ -1918,7 +1818,7 @@ export function HeroOrbital({ trProd }) {
 
 /* ===== PARTNER LOGOS ===== */
 .partner-logo:hover {
-  opacity: 0.6 !important;
+  opacity: 0.82 !important;
 }
 
 /* ===== PROCESS TIMELINE ===== */
@@ -1963,7 +1863,7 @@ export function HeroOrbital({ trProd }) {
   font-size: 16px;
   font-weight: 800;
   letter-spacing: 0.02em;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 180ms var(--ease-out), box-shadow 180ms ease;
   position: relative;
   z-index: 3;
 }
@@ -2009,7 +1909,7 @@ export function HeroOrbital({ trProd }) {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: border-color 0.3s ease, background 0.3s ease;
+  transition: border-color 180ms ease, background-color 180ms ease;
 }
 .process-step:hover .step-visual {
   border-color: rgba(255,255,255,0.1);
@@ -2032,7 +1932,7 @@ export function HeroOrbital({ trProd }) {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  transition: transform 0.3s ease;
+  transition: transform 180ms var(--ease-out);
 }
 .process-step:hover .arq-block { transform: scale(1.03); }
 .arq-block-ready { border: 1px solid rgba(0,184,148,0.3); background: rgba(0,184,148,0.08); color: rgba(0,184,148,0.7); }
@@ -2105,7 +2005,7 @@ export function HeroOrbital({ trProd }) {
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 180ms var(--ease-out), box-shadow 220ms ease, border-color 180ms ease;
 }
 .case-card:hover {
   transform: translateY(-4px);

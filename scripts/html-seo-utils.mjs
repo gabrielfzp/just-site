@@ -24,6 +24,11 @@ export function updateMetaProperty(html, property, content) {
   return replaceOrInsert(html, new RegExp(`<meta property="${property}" content="[^"]*"\\s*/?>`), tag);
 }
 
+export function updateMetaHttpEquiv(html, httpEquiv, content) {
+  const tag = `<meta http-equiv="${httpEquiv}" content="${escapeAttr(content)}" />`;
+  return replaceOrInsert(html, new RegExp(`<meta http-equiv="${httpEquiv}" content="[^"]*"\\s*/?>`), tag);
+}
+
 export function updateCanonical(html, href) {
   return replaceOrInsert(
     html,
@@ -95,6 +100,11 @@ export function applyHtmlSeo(baseHtml, seo) {
     if (tags) html = html.replace("</head>", `${tags}\n  </head>`);
   }
   html = updateCanonical(html, seo.canonical);
+  if (seo.redirectTo) {
+    html = updateMetaHttpEquiv(html, "refresh", `0; url=${seo.redirectTo}`);
+  } else {
+    html = html.replace(/\s*<meta http-equiv="refresh" content="[^"]*"\s*\/?>/g, "");
+  }
   html = updateVerificationMeta(html);
   html = updateMarkdownAlternate(html, seo.markdown);
   html = withManagedSeoBlock(html, seo);

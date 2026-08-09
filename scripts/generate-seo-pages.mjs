@@ -19,6 +19,15 @@ function writeRoute(path, seo) {
   return mkdir(dirname(target), { recursive: true }).then(() => writeFile(target, html));
 }
 
+function aliasSeoFor(routeKey) {
+  const seo = getSeo(routeKey, "pt-BR");
+  return {
+    ...seo,
+    robots: "noindex, follow",
+    redirectTo: seo.canonical,
+  };
+}
+
 const siteRoutes = SEO_ROUTE_KEYS.map((routeKey) => {
   const seo = getSeo(routeKey, "pt-BR");
   return writeRoute(seo.path, seo);
@@ -90,6 +99,11 @@ const authorRoutes = AUTHORS_LIST.map((author) => writeRoute(`/autores/${author.
 const aliasRoutes = [
   ["tecnologia", "stack"],
   ["politica-de-privacidade", "privacidade"],
+  ["somos-just", "sobre"],
+  ["soluções", "home"],
+  ["solucoes", "home"],
+  ["fintechs", "home"],
+  ["solucao-em-pagamentos", "home"],
   ["produtos/beneficios", "beneficios"],
   ["produtos/frotas", "frotas"],
   ["produtos/banking", "banking"],
@@ -97,8 +111,7 @@ const aliasRoutes = [
   ["produtos/antecipacao", "antecipacao"],
   ["produtos/sob-demanda", "sob-demanda"],
 ].map(([aliasPath, routeKey]) => {
-  const seo = getSeo(routeKey, "pt-BR");
-  return writeRoute(`/${aliasPath}`, seo);
+  return writeRoute(`/${aliasPath}`, aliasSeoFor(routeKey));
 });
 
 const authorAliasRoutes = AUTHORS_LIST.map((author) => writeRoute(`/authors/${author.slug}`, {
@@ -109,7 +122,8 @@ const authorAliasRoutes = AUTHORS_LIST.map((author) => writeRoute(`/authors/${au
   imageWidth: author.avatar ? "1200" : "812",
   imageHeight: author.avatar ? "630" : "499",
   imageAlt: author.name,
-  robots: "index, follow",
+  robots: "noindex, follow",
+  redirectTo: canonicalUrl(`/autores/${author.slug}`),
   jsonLd: {
     "@context": "https://schema.org",
     "@graph": [{

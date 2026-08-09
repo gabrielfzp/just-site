@@ -4,7 +4,16 @@ import { Btn, EcosystemAnimation, HeroOrbital, Metric, ProductIcon, ProductMocku
 // HOME PAGE v2 - Platform positioning
 // ========================================
 export default function HomePage({ setPage, lang }) {
-  const nav = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const nav = (p) => {
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    setPage(p);
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  };
+  const activateNav = (event, page) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    nav(page);
+  };
   const tr = (T18N[lang] || T18N["pt-BR"]).home;
   const trProd = (T18N[lang] || T18N["pt-BR"]).products;
   const heroMobile = lang === "en"
@@ -142,15 +151,15 @@ export default function HomePage({ setPage, lang }) {
               {tr.ecosystemLabel}
             </div>
             <div className="social-logos" style={{ display: "flex", gap: 40, alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/finscale.svg`} alt="Finscale" style={{ height: 28, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/abfintechs.png`} alt="ABFintechs" style={{ height: 32, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/abstartups.png`} alt="ABStartups" style={{ height: 38, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itaú" style={{ height: 48, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/aws-partner.png`} alt="AWS Partner" style={{ height: 42, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/fiserv.png`} alt="Fiserv" style={{ height: 32, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/linx.png`} alt="Linx" style={{ height: 34, width: "auto", opacity: 0.55, filter: "brightness(0) invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/swap.svg`} alt="Swap" style={{ height: 32, width: "auto", opacity: 0.3, filter: "invert(1)", transition: "opacity 0.3s" }} />
-              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/evertec.svg`} alt="Evertec" style={{ height: 32, width: "auto", opacity: 0.3, transition: "opacity 0.3s" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/finscale.svg`} alt="Finscale" style={{ height: 28, width: "auto", opacity: 0.56, transition: "opacity 180ms ease" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/abfintechs.png`} alt="ABFintechs" style={{ height: 32, width: "auto", opacity: 0.5, transition: "opacity 180ms ease" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/abstartups.png`} alt="ABStartups" style={{ height: 36, width: "auto", opacity: 0.72, filter: "brightness(0) invert(1)", transition: "opacity 180ms ease" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/cubo-itau.png`} alt="Cubo Itaú" style={{ height: 42, width: "auto", opacity: 0.5, transition: "opacity 180ms ease" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/aws-partner.png`} alt="AWS Partner" style={{ height: 38, width: "auto", opacity: 0.72, filter: "brightness(0) invert(1)", transition: "opacity 180ms ease" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/fiserv.png`} alt="Fiserv" style={{ height: 32, width: "auto", opacity: 0.72, filter: "brightness(0) invert(1)", transition: "opacity 180ms ease" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/linx.png`} alt="Linx" style={{ height: 32, width: "auto", opacity: 0.72, filter: "brightness(0) invert(1)", transition: "opacity 180ms ease" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/swap.svg`} alt="Swap" style={{ height: 32, width: "auto", opacity: 0.56, filter: "invert(1)", transition: "opacity 180ms ease" }} />
+              <img className="partner-logo" src={`${import.meta.env.BASE_URL}logos/evertec.svg`} alt="Evertec" style={{ height: 32, width: "auto", opacity: 0.5, transition: "opacity 180ms ease" }} />
             </div>
           </div>
         </Reveal>
@@ -208,13 +217,17 @@ export default function HomePage({ setPage, lang }) {
               { key: "banking", size: "narrow", label: "JUST Banking", title: "Conta, cartão e PIX\ncom sua marca", badge: "Conta + cartão + PIX sobre BaaS regulado", color: PRODUCT_COLORS.banking.accent, colorLight: "#74B9FF" },
               { key: "despesas", size: "wide", label: "JUST Expense", title: "Cartões corporativos com\npolíticas inteligentes", badge: "Políticas inteligentes + conciliação automática", color: PRODUCT_COLORS.despesas.accent, colorLight: "#FAB1A0" },
               { key: "antecipacao", size: "wide", label: "JUST Credit", title: "Produtos de crédito\nsob medida", badge: "Private label, antecipação e recebíveis", color: PRODUCT_COLORS.antecipacao.accent, colorLight: "#FFEAA7" },
-              { key: "sob-demanda", size: "narrow", label: "JUST Custom", title: "Produto sob medida?\nConstruimos.", badge: "Sob medida", color: PRODUCT_COLORS["sob-demanda"].accent, colorLight: "#B2BEC3" },
+              { key: "sob-demanda", size: "narrow", label: "JUST Custom", title: "Produto sob medida?\nConstruímos.", badge: "Sob medida", color: PRODUCT_COLORS["sob-demanda"].accent, colorLight: "#B2BEC3" },
             ].map((card, i) => (
               <Reveal key={card.key} delay={i * 0.06}>
                 <div
                   className="bento-card"
                   data-size={card.size}
                   onClick={() => nav(card.key)}
+                  onKeyDown={(event) => activateNav(event, card.key)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Conhecer ${card.label}`}
                   style={{ cursor: "pointer" }}
                 >
                   {/* Visual area */}
@@ -269,7 +282,7 @@ export default function HomePage({ setPage, lang }) {
                       position: "absolute", zIndex: 2, bottom: 16, left: card.size === "wide" ? 20 : 16,
                       padding: "6px 12px", borderRadius: 8, fontSize: 11, fontWeight: 600,
                       background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.08)",
-                      backdropFilter: "blur(4px)", whiteSpace: "nowrap", color: card.colorLight,
+                      backdropFilter: "blur(4px)", maxWidth: "calc(100% - 32px)", lineHeight: 1.25, color: card.colorLight,
                     }}>
                       <span style={{ opacity: 0.5 }}>&#9679;</span> {card.badge}
                     </div>
@@ -301,7 +314,7 @@ export default function HomePage({ setPage, lang }) {
                       background: "rgba(255,255,255,0.04)",
                       border: "1px solid rgba(255,255,255,0.08)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      flexShrink: 0, transition: "all 0.3s ease",
+                      flexShrink: 0, transition: "transform 180ms var(--ease-out), background-color 180ms ease, border-color 180ms ease",
                     }}>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="rgba(255,255,255,0.35)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </div>
@@ -427,7 +440,7 @@ export default function HomePage({ setPage, lang }) {
                       {tr.cardsPioneer}
                     </div>
                     <h3 className="hybrid-title">
-                      {tr.cardsHybridTitle.split("\n").map((l, i) => <React.Fragment key={i}>{l}{i === 0 && <br />}</React.Fragment>)}<span className="gradient-text">{tr.cardsHybridGradient}</span>
+                      {tr.cardsHybridTitle.split("\n").map((l, i) => <React.Fragment key={i}>{l}{i === 0 && <br />}</React.Fragment>)}<span className="hybrid-emphasis">{tr.cardsHybridGradient}</span>
                     </h3>
                     <p className="hybrid-description">
                       {tr.cardsHybridDesc}
@@ -774,6 +787,7 @@ export default function HomePage({ setPage, lang }) {
                   <iframe
                     src="https://www.youtube.com/embed/rngBWxLvsNw?rel=0&modestbranding=1"
                     title="eFleet - Case JUST"
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
@@ -803,6 +817,7 @@ export default function HomePage({ setPage, lang }) {
                   <iframe
                     src="https://www.youtube.com/embed/dr_fzCkw7Z8?rel=0&modestbranding=1"
                     title="ViasoftPay - Case JUST"
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />

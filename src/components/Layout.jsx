@@ -38,7 +38,13 @@ export function Header({ page, setPage, lang }) {
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
   }, []);
-  const nav = (p) => { setPage(p); setDropOpen(false); setMobileOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const nav = (p) => {
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    setPage(p);
+    setDropOpen(false);
+    setMobileOpen(false);
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  };
   const productRouteKeys = ["beneficios", "frotas", "banking", "despesas", "antecipacao", "sob-demanda", "sentinel"];
   const isActive = (p) => {
     if (p === "conteudos") return isContentPage;
@@ -75,7 +81,7 @@ export function Header({ page, setPage, lang }) {
       background: solidHeader ? "rgba(15,17,43,0.97)" : "transparent",
       backdropFilter: solidHeader ? "blur(16px)" : "none",
       borderBottom: solidHeader ? `1px solid ${T.borderLight}` : "1px solid transparent",
-      transition: "all 0.35s ease", zIndex: 100,
+      transition: "background-color 200ms var(--ease-out), border-color 200ms ease, backdrop-filter 200ms ease", zIndex: 100,
     }}>
       <div style={{ cursor: "pointer", display: "flex", alignItems: "center" }} onClick={() => nav("home")}>
         <JustLogo height={36} />
@@ -84,16 +90,30 @@ export function Header({ page, setPage, lang }) {
       {/* Desktop nav - hidden on mobile via CSS */}
       <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: 2 }}>
         <button className={`nav-link ${isActive("home") ? "nav-link-active" : ""}`} style={lnk("home")} onClick={() => nav("home")}>{tr.nav.home}</button>
-        <div style={{ position: "relative" }} onMouseEnter={() => setDropOpen(true)} onMouseLeave={() => setDropOpen(false)}>
-          <button className={`nav-link ${isActive("solucoes") ? "nav-link-active" : ""}`} style={lnk("solucoes")}>{tr.nav.products} &#9662;</button>
-          {dropOpen && (
-            <div style={{
+        <div style={{ position: "relative" }} onMouseEnter={() => setDropOpen(true)} onMouseLeave={() => setDropOpen(false)} onFocus={() => setDropOpen(true)} onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setDropOpen(false); }}>
+          <button
+            className={`nav-link ${isActive("solucoes") ? "nav-link-active" : ""}`}
+            style={lnk("solucoes")}
+            aria-haspopup="menu"
+            aria-expanded={dropOpen}
+          >
+            {tr.nav.products} &#9662;
+          </button>
+          <div style={{
               position: "absolute", top: "100%", left: -20, background: "rgba(15,17,43,0.98)",
               border: `1px solid ${T.borderLight}`, borderRadius: 14, padding: "12px 8px",
               minWidth: 320, backdropFilter: "blur(20px)", boxShadow: "0 20px 60px rgba(0,0,0,0.4)", zIndex: 200,
-            }}>
+              opacity: dropOpen ? 1 : 0,
+              transform: dropOpen ? "translateY(0) scale(1)" : "translateY(6px) scale(0.98)",
+              transformOrigin: "top center",
+              pointerEvents: dropOpen ? "auto" : "none",
+              visibility: dropOpen ? "visible" : "hidden",
+              transition: "opacity 170ms var(--ease-out), transform 170ms var(--ease-out), border-color 170ms ease",
+            }}
+            role="menu"
+          >
               {solucoes.map((s) => (
-                <button key={s.key} onClick={() => nav(s.key)} style={{
+                <button key={s.key} onClick={() => nav(s.key)} tabIndex={dropOpen ? 0 : -1} role="menuitem" style={{
                   display: "flex", alignItems: "center", gap: 12, width: "100%", textAlign: "left",
                   padding: "10px 14px", background: "none", border: "none", color: T.textLight,
                   fontSize: 14, cursor: "pointer", borderRadius: 10, transition: "background 0.15s",
@@ -109,7 +129,6 @@ export function Header({ page, setPage, lang }) {
                 </button>
               ))}
             </div>
-          )}
         </div>
         <button className={`nav-link ${isActive("stack") ? "nav-link-active" : ""}`} style={lnk("stack")} onClick={() => nav("stack")}>{tr.nav.technology}</button>
         <button className={`nav-link ${isActive("cases") ? "nav-link-active" : ""}`} style={lnk("cases")} onClick={() => nav("cases")}>{tr.nav.cases}</button>
@@ -120,7 +139,7 @@ export function Header({ page, setPage, lang }) {
       </nav>
 
       {/* Mobile hamburger - shown on mobile via CSS */}
-      <button className="mobile-menu-btn" onClick={() => setMobileOpen(!mobileOpen)} style={{
+      <button className="mobile-menu-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={mobileOpen} style={{
         display: "none", alignItems: "center", justifyContent: "center",
         background: "none", border: "none", cursor: "pointer", padding: 8,
         color: T.textLight, width: 40, height: 40,

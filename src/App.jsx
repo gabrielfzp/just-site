@@ -153,11 +153,27 @@ function AppContent() {
     <LangContext.Provider value={{ lang, setLang: changeLang }}>
         <div style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", background: T.primary, minHeight: "100vh", WebkitFontSmoothing: "antialiased" }}>
         <style>{`
+          :root {
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+          }
           * { margin: 0; padding: 0; box-sizing: border-box; }
           html, body { overflow-x: hidden; width: 100%; background: #0f112b; }
           ::selection { background: rgba(244,85,70,0.3); }
           input:focus, textarea:focus, select:focus { border-color: ${T.cta} !important; }
           button:focus { outline: none; }
+          button:focus-visible {
+            outline: 2px solid rgba(244,85,70,0.72);
+            outline-offset: 3px;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              scroll-behavior: auto !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
           .desktop-nav .nav-link:hover { color: ${T.textLight} !important; }
           .desktop-nav .nav-link-active::after {
             content: "";
