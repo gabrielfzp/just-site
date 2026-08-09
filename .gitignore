@@ -32,3 +32,7 @@ dist-ssr
 *.backup
 "index [0-9]*.html"
 
+
+# Env local
+.env
+.env.local

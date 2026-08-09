@@ -81,6 +81,17 @@ Para adicionar uma nova string:
 
 **Regra**: nunca hardcodar strings em português diretamente nos componentes. Arrays de dados (timeline, cases, security cards, comparisons, FAQs, hybrid features) também vivem no T18N.
 
+## Analytics
+
+Camada única em `src/lib/analytics.js`, inicializada em `App.jsx` (`initAnalytics` no mount, `trackPageView` a cada rota, `trackEvent` para interações). Suporta dois provedores em paralelo:
+
+- **GA4**: ativado somente se `VITE_GA4_ID` (Measurement ID `G-...`) estiver definido no `.env` no momento do build. O script gtag é injetado dinamicamente com `send_page_view: false`; page views de SPA são enviados manualmente via `config` a cada mudança de rota.
+- **Plausible**: script estático no `index.html` + queue em `analytics.js`. **Atenção**: a conta Plausible expirou em jun/2026 e os dados não são mais contados.
+
+Eventos instrumentados: `contact_form_submit`, `contact_form_error`, `contact_cta_click`, `contact_page_view`, `whatsapp_click`, `author_linkedin_click`, `company_linkedin_click`, `article_view`, `article_read_progress`, `llm_referral`.
+
+Para ativar GA4: preencher `VITE_GA4_ID` no `.env` (gitignored), rodar `npm run build` e fazer deploy. O page view duplicado no primeiro load em dev é artefato do StrictMode; não ocorre em produção.
+
 ## Como Rodar
 
 ### Via Docker (recomendado)
