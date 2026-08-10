@@ -38,7 +38,7 @@ O build gera:
 
 ## SEO, Analytics e LLMO
 
-O site tem suporte opcional a GA4, Plausible, verificações de Search Console/Bing e eventos de conversão.
+O site tem suporte a GA4 (ativo em produção desde 2026-08-10), verificações de Search Console/Bing e eventos de conversão. Em localhost o analytics não inicializa. O Plausible foi removido em ago/2026 (assinatura expirada).
 
 Crie um `.env` local a partir de `.env.example`:
 
@@ -49,8 +49,6 @@ cp .env.example .env
 Variáveis:
 
 - `VITE_GA4_ID`: Measurement ID do GA4, exemplo `G-XXXXXXXXXX`.
-- `VITE_PLAUSIBLE_DOMAIN`: domínio no Plausible, exemplo `wearejust.it`.
-- `VITE_PLAUSIBLE_SRC`: script do Plausible. O site já usa o script dedicado fornecido pelo Plausible para `wearejust.it`.
 - `VITE_GOOGLE_SITE_VERIFICATION`: token da meta tag do Google Search Console.
 - `VITE_BING_SITE_VERIFICATION`: token da meta tag do Bing Webmaster.
 

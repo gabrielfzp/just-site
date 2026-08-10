@@ -83,14 +83,14 @@ Para adicionar uma nova string:
 
 ## Analytics
 
-Camada única em `src/lib/analytics.js`, inicializada em `App.jsx` (`initAnalytics` no mount, `trackPageView` a cada rota, `trackEvent` para interações). Suporta dois provedores em paralelo:
+Camada única em `src/lib/analytics.js`, inicializada em `App.jsx` (`initAnalytics` no mount, `trackPageView` a cada rota, `trackEvent` para interações). Provedor: **GA4** (ativo em produção desde 2026-08-10, propriedade `G-ZLGE23K7KT`).
 
-- **GA4**: ativado somente se `VITE_GA4_ID` (Measurement ID `G-...`) estiver definido no `.env` no momento do build. O script gtag é injetado dinamicamente com `send_page_view: false`; page views de SPA são enviados manualmente via `config` a cada mudança de rota.
-- **Plausible**: script estático no `index.html` + queue em `analytics.js`. **Atenção**: a conta Plausible expirou em jun/2026 e os dados não são mais contados.
+- O ID vem de `VITE_GA4_ID` no `.env` (gitignored) e entra no bundle no momento do build.
+- O script gtag é injetado dinamicamente com `send_page_view: false`; page views de SPA são enviados manualmente via `config` a cada mudança de rota. Por isso, na Medição Otimizada do GA4, "alterações de página com base no histórico do navegador" fica **desligada**.
+- **Guard de localhost**: em `localhost`, `127.0.0.1` e `*.localhost` o analytics não inicializa (nada de dados de dev na propriedade).
+- O Plausible foi removido em ago/2026 (assinatura expirou em jun/2026). Não reintroduzir.
 
 Eventos instrumentados: `contact_form_submit`, `contact_form_error`, `contact_cta_click`, `contact_page_view`, `whatsapp_click`, `author_linkedin_click`, `company_linkedin_click`, `article_view`, `article_read_progress`, `llm_referral`.
-
-Para ativar GA4: preencher `VITE_GA4_ID` no `.env` (gitignored), rodar `npm run build` e fazer deploy. O page view duplicado no primeiro load em dev é artefato do StrictMode; não ocorre em produção.
 
 ## Como Rodar
 

@@ -1,8 +1,6 @@
 const env = import.meta.env || {};
 
 const GA4_ID = env.VITE_GA4_ID || "";
-const PLAUSIBLE_DOMAIN = env.VITE_PLAUSIBLE_DOMAIN || "";
-const PLAUSIBLE_SRC = env.VITE_PLAUSIBLE_SRC || "https://plausible.io/js/pa-tnQg-2tE0DrOZj9nGuskh.js";
 
 const LLM_REFERRERS = [
   "chatgpt.com",
@@ -17,10 +15,15 @@ const LLM_REFERRERS = [
 
 let analyticsReady = false;
 let llmReferralTracked = false;
-let plausibleFirstPageViewSkipped = false;
 
 function canUseBrowser() {
   return typeof window !== "undefined" && typeof document !== "undefined";
+}
+
+function isLocalhost() {
+  if (!canUseBrowser()) return false;
+  const { hostname } = window.location;
+  return hostname === "localhost" || hostname === "127.0.0.1" || hostname.endsWith(".localhost");
 }
 
 function appendScript(id, attrs) {
@@ -32,21 +35,6 @@ function appendScript(id, attrs) {
     else if (value) script.setAttribute(key, value);
   });
   document.head.appendChild(script);
-}
-
-function hasScriptWithSrc(src) {
-  if (!canUseBrowser() || !src) return false;
-  return Array.from(document.scripts).some((script) => script.src === src);
-}
-
-function setupPlausibleQueue() {
-  window.plausible = window.plausible || function plausibleFallback() {
-    window.plausible.q = window.plausible.q || [];
-    window.plausible.q.push(arguments);
-  };
-  window.plausible.init = window.plausible.init || function plausibleInit(options) {
-    window.plausible.o = options || {};
-  };
 }
 
 function normalizePath(path) {
@@ -65,15 +53,9 @@ export function initAnalytics() {
   if (!canUseBrowser() || analyticsReady) return;
   analyticsReady = true;
 
-  if (PLAUSIBLE_SRC || PLAUSIBLE_DOMAIN) {
-    setupPlausibleQueue();
-    window.plausible.init();
-
-    if (!hasScriptWithSrc(PLAUSIBLE_SRC)) appendScript("plausible-script", {
-      defer: true,
-      "data-domain": PLAUSIBLE_DOMAIN || undefined,
-      src: PLAUSIBLE_SRC,
-    });
+  if (isLocalhost()) {
+    console.info("[analytics] desativado em localhost");
+    return;
   }
 
   if (GA4_ID) {
@@ -92,39 +74,20 @@ export function initAnalytics() {
 
 export function trackEvent(name, props = {}) {
   if (!canUseBrowser()) return;
-  const eventProps = cleanProps(props);
-
-  if (typeof window.plausible === "function") {
-    window.plausible(name, { props: eventProps });
-  }
-
   if (typeof window.gtag === "function") {
-    window.gtag("event", name, eventProps);
+    window.gtag("event", name, cleanProps(props));
   }
 }
 
 export function trackPageView(path, title) {
   if (!canUseBrowser()) return;
+  if (typeof window.gtag !== "function" || !GA4_ID) return;
   const pagePath = normalizePath(path);
-  const pageUrl = `${window.location.origin}${pagePath}`;
-  const pageTitle = title || document.title;
-
-  if (typeof window.plausible === "function") {
-    const hasStaticSnippet = hasScriptWithSrc(PLAUSIBLE_SRC);
-    if (hasStaticSnippet && !plausibleFirstPageViewSkipped) {
-      plausibleFirstPageViewSkipped = true;
-    } else {
-      window.plausible("pageview", { u: pageUrl });
-    }
-  }
-
-  if (typeof window.gtag === "function" && GA4_ID) {
-    window.gtag("config", GA4_ID, {
-      page_path: pagePath,
-      page_location: pageUrl,
-      page_title: pageTitle,
-    });
-  }
+  window.gtag("config", GA4_ID, {
+    page_path: pagePath,
+    page_location: `${window.location.origin}${pagePath}`,
+    page_title: title || document.title,
+  });
 }
 
 export function maybeTrackLlmReferral(path) {
