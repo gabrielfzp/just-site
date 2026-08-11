@@ -41,7 +41,7 @@
         }
       }(window.location));
     </script>
-    <script type="module" crossorigin src="/assets/index-D7mgY0XA.js"></script>
+    <script type="module" crossorigin src="/assets/index-Bgkzpfet.js"></script>
       <meta property="article:published_time" content="2026-04-23" />
       <meta property="article:modified_time" content="2026-04-23" />
       <meta property="article:author" content="Gabriel Pires" />
@@ -59,7 +59,899 @@
     <!-- /JUST route SEO -->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><link rel="preload" as="image" href="/logo-just-2x.png"/><link rel="preload" as="image" href="/logos/cubo-itau.png"/><link rel="preload" as="image" href="/logos/abfintechs.png"/><link rel="preload" as="image" href="/logos/abstartups.png"/><link rel="preload" as="image" href="/logos/finscale.svg"/><link rel="preload" as="image" href="/logos/aws-partner.png"/><link rel="preload" as="image" href="/logos/swap.svg"/><link rel="preload" as="image" href="/logos/evertec.svg"/><link rel="preload" as="image" href="/logos/fiserv.png"/><link rel="preload" as="image" href="/logos/linx.png"/><link rel="preload" as="image" href="/authors/gabriel-pires.jpeg"/><div style="font-family:&#x27;Inter&#x27;, -apple-system, BlinkMacSystemFont, sans-serif;background:#0f112b;min-height:100vh;-webkit-font-smoothing:antialiased"><style>
+          :root {
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+          }
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          html, body { overflow-x: hidden; width: 100%; background: #0f112b; }
+          ::selection { background: rgba(244,85,70,0.3); }
+          input:focus, textarea:focus, select:focus { border-color: #f45546 !important; }
+          button:focus { outline: none; }
+          button:focus-visible {
+            outline: 2px solid rgba(244,85,70,0.72);
+            outline-offset: 3px;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              scroll-behavior: auto !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+          .desktop-nav .nav-link:hover { color: #f2f4f8 !important; }
+          .desktop-nav .nav-link-active::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            width: 26px;
+            height: 1px;
+            transform: translateX(-50%);
+            background: #f45546;
+            border-radius: 999px;
+          }
+          .hero-title-mobile { display: none; }
+          .hero-title-desktop { display: inline; }
+
+@media (max-width: 900px) {
+  .desktop-nav { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+  header { padding: 0 20px !important; }
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+  }
+  .comp-row > div {
+    min-width: 0 !important;
+  }
+  .comp-row h4,
+  .comp-row p {
+    overflow-wrap: anywhere !important;
+  }
+}
+@media (max-width: 520px) {
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels span {
+    font-size: 10px !important;
+    padding: 7px 10px !important;
+  }
+  .comp-row > div {
+    padding: 16px 10px !important;
+    gap: 9px !important;
+  }
+  .comp-row h4 {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+}
+@media (max-width: 900px) {
+  .hero-grid > div:last-child {
+    display: none !important;
+  }
+  .section-hero {
+    min-height: auto !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    padding: 116px 28px 46px !important;
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    align-items: start !important;
+  }
+  .hero-grid > div:first-child {
+    width: 100% !important;
+    max-width: 680px !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 16px !important;
+    letter-spacing: 0.1em !important;
+  }
+  .hero-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+    margin: 28px 0 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-grid p {
+    max-width: 34ch !important;
+    font-size: 17px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 28px !important;
+  }
+  .flow-steps-row {
+    display: none !important;
+  }
+  .hero-cta-row {
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+  .hero-cta-row button {
+    font-size: 15px !important;
+    padding: 14px 24px !important;
+  }
+  .section-social-proof {
+    padding: 28px 24px 40px !important;
+  }
+  .section-why-just {
+    padding: 84px 28px !important;
+  }
+  .why-just-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+  }
+  .just-pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .just-pillar {
+    min-height: auto !important;
+    padding: 30px 0 34px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  }
+  .just-pillars-grid > div:last-child .just-pillar {
+    border-bottom: none !important;
+  }
+  .just-pillar h3 {
+    font-size: 34px !important;
+  }
+  .social-logos {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(72px, 1fr)) !important;
+    gap: 22px 18px !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+    justify-items: center !important;
+    align-items: center !important;
+  }
+  .social-logos .partner-logo {
+    width: 86px !important;
+    height: 26px !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+  .site-footer {
+    padding: 58px 24px 34px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 38px 34px !important;
+  }
+  .site-footer-brand {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+  }
+  .site-footer-brand p {
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+  }
+  .site-footer-main h4 {
+    margin-bottom: 14px !important;
+  }
+  .site-footer-products button {
+    align-items: center !important;
+    gap: 10px !important;
+    line-height: 1.45 !important;
+    max-width: 100% !important;
+  }
+  .site-footer-company button,
+  .site-footer-contact a,
+  .site-footer-contact span {
+    font-size: 14px !important;
+    line-height: 1.75 !important;
+  }
+  .site-footer-contact {
+    grid-column: 1 / -1 !important;
+  }
+  .site-footer-bottom {
+    margin-top: 36px !important;
+  }
+  .site-footer-partners {
+    justify-content: center !important;
+    gap: 24px 34px !important;
+  }
+  .site-footer-partner-group {
+    text-align: center !important;
+  }
+  .site-footer-partner-logos {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  .privacy-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .privacy-aside {
+    position: static !important;
+  }
+  .article-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .toc-mobile-toggle {
+    display: block !important;
+  }
+  .toc-panel {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .section-hero {
+    min-height: auto !important;
+    padding: 104px 24px 42px !important;
+  }
+  .hero-grid {
+    min-height: auto !important;
+  }
+  .hero-grid > div:first-child {
+    min-height: auto !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 15px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .hero-title {
+    font-size: clamp(46px, 12.6vw, 50px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.058em !important;
+    margin: 30px 0 22px !important;
+    width: 100% !important;
+    max-width: calc(100vw - 48px) !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-title-desktop {
+    display: none !important;
+  }
+  .hero-title-mobile {
+    display: inline !important;
+  }
+  .hero-grid p {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+    max-width: 33ch !important;
+    margin-bottom: 26px !important;
+  }
+  .hero-cta-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    max-width: 306px !important;
+  }
+  .hero-cta-row button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 13px 22px !important;
+  }
+  .section-social-proof {
+    padding: 24px 24px 42px !important;
+  }
+  .section-why-just {
+    padding: 76px 24px !important;
+  }
+  .why-just-title {
+    font-size: clamp(52px, 13.8vw, 59px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.058em !important;
+  }
+  .just-pillar {
+    padding: 28px 0 32px !important;
+  }
+  .just-pillar h3 {
+    font-size: 30px !important;
+    margin-bottom: 18px !important;
+  }
+  .just-pillar p {
+    font-size: 15px !important;
+  }
+  .social-logos {
+    grid-template-columns: repeat(3, minmax(64px, 1fr)) !important;
+    gap: 22px 14px !important;
+    max-width: 330px !important;
+  }
+  .social-logos .partner-logo {
+    width: 72px !important;
+    height: 22px !important;
+    max-width: 100% !important;
+  }
+  .site-footer {
+    padding: 56px 24px 32px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    text-align: center !important;
+  }
+  .site-footer-products button {
+    justify-content: center !important;
+    margin: 0 auto !important;
+    width: fit-content !important;
+  }
+  .site-footer-company button {
+    margin: 0 auto !important;
+  }
+  .site-footer-contact {
+    text-align: center !important;
+  }
+  .site-footer-contact a,
+  .site-footer-contact span {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 300px !important;
+    white-space: pre-line !important;
+  }
+  .site-footer-partners {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .site-footer-partner-group {
+    width: 100% !important;
+  }
+  .site-footer-bottom-row {
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+.content-article {
+  font-size: 18px;
+  line-height: 1.78;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.content-article h1 {
+  display: none;
+}
+.content-article h2 {
+  color: #10243f;
+  font-size: 34px;
+  line-height: 1.18;
+  margin: 52px 0 18px;
+  scroll-margin-top: 112px;
+}
+.content-article h3 {
+  color: #10243f;
+  font-size: 24px;
+  line-height: 1.25;
+  margin: 36px 0 14px;
+}
+.content-article h2 a,
+.content-article h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.content-article p,
+.content-article li {
+  color: #273347;
+}
+.content-article p {
+  margin: 0 0 22px;
+}
+.content-article a {
+  color: #f45546;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+.content-article figure {
+  margin: 34px 0;
+}
+.content-article figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 18px 46px rgba(16,36,63,0.08);
+}
+.content-article figcaption {
+  margin-top: 10px;
+  color: #647084;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.content-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.content-article pre {
+  margin: 30px 0;
+  padding: 18px 20px;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  background: #f8fafc;
+  color: #10243f;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.content-article code {
+  overflow-wrap: anywhere;
+}
+.content-article th,
+.content-article td {
+  border: 1px solid #dbe3ee;
+  padding: 14px 16px;
+  text-align: left;
+}
+.content-article th {
+  color: #10243f;
+  background: #f8fafc;
+}
+.content-article td {
+  color: #273347;
+  background: #ffffff;
+}
+@media (max-width: 900px) {
+  .article-page-header {
+    padding: 118px 28px 48px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-category-kicker {
+    margin-bottom: 14px !important;
+  }
+  .article-page-title {
+    font-size: clamp(38px, 8vw, 48px) !important;
+    line-height: 1.04 !important;
+    max-width: 100% !important;
+    margin-bottom: 18px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-page-description {
+    font-size: 17px !important;
+    line-height: 1.62 !important;
+    max-width: 100% !important;
+    margin-bottom: 26px !important;
+  }
+  .article-page-meta {
+    gap: 20px !important;
+    align-items: flex-start !important;
+  }
+  .article-page-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-hero {
+    padding: 118px 28px 56px !important;
+  }
+  .content-hub-hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+    align-items: start !important;
+  }
+  .content-hub-title {
+    font-size: clamp(44px, 11.4vw, 58px) !important;
+    line-height: 1.02 !important;
+    max-width: 9ch !important;
+    margin-bottom: 20px !important;
+  }
+  .content-hub-subtitle {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+    max-width: 36ch !important;
+  }
+  .content-search {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+  .content-hub-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 34px !important;
+  }
+  .content-hub-layout > main {
+    min-width: 0 !important;
+  }
+  .content-sidebar {
+    order: -1 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+  .content-sidebar-card {
+    padding: 18px !important;
+  }
+  .article-card {
+    min-height: auto !important;
+    padding: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .article-card h2 {
+    font-size: 23px !important;
+    line-height: 1.14 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card-featured h2 {
+    font-size: 30px !important;
+    line-height: 1.1 !important;
+  }
+  .article-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+  .article-layout > aside,
+  .article-layout > main,
+  .article-main {
+    min-width: 0 !important;
+  }
+  .answer-box,
+  .source-box {
+    margin-bottom: 28px !important;
+  }
+  .answer-box h2,
+  .source-box h2 {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+  }
+  .content-article {
+    font-size: 17px !important;
+    line-height: 1.72 !important;
+  }
+  .content-article h2 {
+    font-size: 29px !important;
+    line-height: 1.16 !important;
+    margin: 42px 0 16px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article h3 {
+    font-size: 22px !important;
+    line-height: 1.24 !important;
+    margin: 30px 0 12px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .content-article th,
+  .content-article td {
+    min-width: 150px !important;
+  }
+}
+@media (max-width: 520px) {
+  .article-page-header {
+    padding: 104px 24px 38px !important;
+  }
+  .article-page-body {
+    padding: 40px 24px 68px !important;
+    overflow: hidden !important;
+  }
+  .article-empty-state {
+    padding: 120px 24px 56px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 11px !important;
+    margin-bottom: 18px !important;
+  }
+  .article-category-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .article-page-title {
+    font-size: clamp(34px, 10.2vw, 40px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+    width: 100% !important;
+  }
+  .article-page-description {
+    font-size: 16px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 22px !important;
+  }
+  .article-page-meta {
+    display: grid !important;
+    gap: 16px !important;
+  }
+  .content-hub-hero {
+    padding: 106px 24px 44px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-hero-grid,
+  .content-hub-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .content-hub-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+    margin-bottom: 16px !important;
+  }
+  .content-hub-title {
+    font-size: clamp(42px, 12vw, 48px) !important;
+    max-width: 8.5ch !important;
+  }
+  .content-hub-subtitle {
+    font-size: 16px !important;
+    max-width: 25ch !important;
+  }
+  .content-hub-body {
+    padding: 44px 24px 72px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-layout {
+    gap: 30px !important;
+  }
+  .content-sidebar {
+    order: 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .content-featured {
+    margin-bottom: 38px !important;
+  }
+  .content-section-label {
+    margin-bottom: 12px !important;
+  }
+  .content-list-title {
+    font-size: 28px !important;
+  }
+  .content-card-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .article-card {
+    padding: 22px !important;
+    width: calc(100vw - 48px) !important;
+    max-width: calc(100vw - 48px) !important;
+  }
+  .article-card h2,
+  .article-card-featured h2 {
+    display: block !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    width: min(100%, 24ch) !important;
+    max-width: 24ch !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: inline !important;
+    min-width: 0 !important;
+  }
+  .article-card p {
+    font-size: 14px !important;
+  }
+  .article-card-meta {
+    gap: 8px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+  .content-search,
+  .content-search input {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .article-layout {
+    gap: 22px !important;
+  }
+  .answer-box {
+    padding: 20px 18px !important;
+    margin-bottom: 24px !important;
+  }
+  .source-box {
+    margin-top: 34px !important;
+    padding-top: 20px !important;
+  }
+  .content-article {
+    font-size: 16px !important;
+    line-height: 1.68 !important;
+  }
+  .content-article p {
+    margin-bottom: 18px !important;
+  }
+  .content-article h2 {
+    font-size: 26px !important;
+    line-height: 1.14 !important;
+    margin: 36px 0 14px !important;
+  }
+  .content-article h3 {
+    font-size: 20px !important;
+    line-height: 1.22 !important;
+    margin: 26px 0 10px !important;
+  }
+  .content-article pre {
+    margin: 24px 0 !important;
+    padding: 14px 16px !important;
+    font-size: 13px !important;
+  }
+  .content-article th,
+  .content-article td {
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+  }
+}
+</style><header style="position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(15,17,43,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background-color 200ms var(--ease-out), border-color 200ms ease, backdrop-filter 200ms ease;z-index:100"><div style="cursor:pointer;display:flex;align-items:center"><img src="/logo-just-2x.png" alt="JUST" style="height:36px;object-fit:contain"/></div><nav class="desktop-nav" style="display:flex;align-items:center;gap:2px"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Home</button><div style="position:relative"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s" aria-haspopup="menu" aria-expanded="false">Produtos<!-- --> ▾</button><div style="position:absolute;top:100%;left:-20px;background:rgba(15,17,43,0.98);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:12px 8px;min-width:320px;backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:200;opacity:0;transform:translateY(6px) scale(0.98);transform-origin:top center;pointer-events:none;visibility:hidden;transition:opacity 170ms var(--ease-out), transform 170ms var(--ease-out), border-color 170ms ease" role="menu"><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #6C5CE718, rgba(10,12,31,0.9));border:1px solid #6C5CE740;box-shadow:0 0 12.8px #6C5CE720;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Benefits</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Benefícios flexíveis com arranjo customizável</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00B89418, rgba(10,12,31,0.9));border:1px solid #00B89440;box-shadow:0 0 12.8px #00B89420;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Fleet</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Controle financeiro completo por veículo</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #0984E318, rgba(10,12,31,0.9));border:1px solid #0984E340;box-shadow:0 0 12.8px #0984E320;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Banking</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Conta, cartão e PIX com sua marca</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #E1705518, rgba(10,12,31,0.9));border:1px solid #E1705540;box-shadow:0 0 12.8px #E1705520;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Expense</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Cartões corporativos com políticas inteligentes</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #FDCB6E18, rgba(10,12,31,0.9));border:1px solid #FDCB6E40;box-shadow:0 0 12.8px #FDCB6E20;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Credit</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos de crédito sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #636E7218, rgba(10,12,31,0.9));border:1px solid #636E7240;box-shadow:0 0 12.8px #636E7220;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Custom</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos financeiros sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00CEC918, rgba(10,12,31,0.9));border:1px solid #00CEC940;box-shadow:0 0 12.8px #00CEC920;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Sentinel</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Antifraude AI-native em tempo real</div></div></button></div></div><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Tecnologia</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Cases</button><button class="nav-link nav-link-active" style="color:#f2f4f8;font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Conteúdos</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Sobre</button><div style="display:flex;align-items:center;gap:6px;margin-left:8px;color:rgba(242,244,248,0.44);font-size:12px"><button style="padding:0;border:none;background:none;cursor:pointer;color:#f2f4f8;font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">PT</button><span style="opacity:0.55">/</span><button style="padding:0;border:none;background:none;cursor:pointer;color:rgba(242,244,248,0.34);font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">EN</button></div><button style="padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease;margin-left:8px">Fale Conosco</button></nav><button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:8px;color:#f2f4f8;width:40px;height:40px"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button></header><main><!--$?--><template id="B:0"></template><div style="min-height:80vh;background:#0f112b"></div><!--/$--></main><footer class="site-footer" style="background:#0a0c1e;padding:80px 48px 40px;border-top:1px solid rgba(255,255,255,0.07)"><div class="site-footer-main" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px"><div class="site-footer-brand"><div style="margin-bottom:20px"><img src="/logo-just-2x.png" alt="JUST" style="height:30px;object-fit:contain"/></div><p style="font-size:13px;color:rgba(242,244,248,0.35);line-height:1.7;max-width:260px">Crie sua fintech com tecnologia pronta para operar, escalar e evoluir.</p></div><div class="site-footer-products"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Produtos</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span>JUST Benefits</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span>JUST Fleet</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span>JUST Banking</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span>JUST Expense</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span>JUST Credit</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span>JUST Custom</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span>JUST Sentinel</button></div><div class="site-footer-company"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Empresa</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Sobre</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Cases</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Tecnologia</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Conteúdos</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Contato</button></div><div class="site-footer-contact"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Contato</h4><a href="mailto:contato@wearejust.it" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">contato@wearejust.it</a><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:8px">Condomínio Praça Capital<!-- -->
+<!-- -->Av. José Rocha Bomfim, 214 - Edifício Madri<!-- -->
+<!-- -->Campinas - SP</span><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:10px">Cubo Itaú<!-- -->
+<!-- -->Alameda Vicente Pinzón, 54 - Vila Olímpia<!-- -->
+<!-- -->São Paulo - SP</span><a href="https://www.linkedin.com/company/wearejust-it" target="_blank" rel="noopener noreferrer" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">LinkedIn →</a></div></div><div class="site-footer-bottom" style="max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.04)"><div class="site-footer-partners" style="display:flex;gap:48px;margin-bottom:24px;flex-wrap:wrap"><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Ecossistema e associações</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/cubo-itau.png" alt="Cubo Itaú" style="height:24px;width:auto;opacity:0.2"/><img src="/logos/abfintechs.png" alt="ABFintechs" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/abstartups.png" alt="ABStartups" style="height:18px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/finscale.svg" alt="Finscale" style="height:14px;width:auto;opacity:0.2"/></div></div><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Parceiros tecnológicos</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/aws-partner.png" alt="AWS" style="height:20px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/swap.svg" alt="Swap" style="height:16px;width:auto;opacity:0.2;filter:invert(1)"/><img src="/logos/evertec.svg" alt="Evertec" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/fiserv.png" alt="Fiserv" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/linx.png" alt="Linx" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/></div></div></div><p style="font-size:11px;color:rgba(242,244,248,0.18);line-height:1.7;margin-bottom:24px">A JUST atua exclusivamente como provedora de tecnologia e não realiza atividades privativas de instituições financeiras. Todos os serviços financeiros são operados por parceiros devidamente autorizados pelo Banco Central do Brasil.</p><div class="site-footer-bottom-row" style="display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap"><p style="font-size:12px;color:rgba(242,244,248,0.2)">© 2026 JUST. Todos os direitos reservados.</p><button style="font-size:12px;color:rgba(242,244,248,0.35);background:none;border:none;cursor:pointer;padding:0;text-decoration:none">Política de Privacidade</button></div></div></footer><a href="https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp" style="position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);z-index:1000;transition:transform 0.2s ease, box-shadow 0.2s ease;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a></div><script>requestAnimationFrame(function(){$RT=performance.now()});</script><div hidden id="S:0"><div style="background:#ffffff;min-height:100vh"><header class="article-page-header" style="padding:138px 48px 64px;background:#f6f8fb;border-bottom:1px solid #dbe3ee"><div style="max-width:1120px;margin:0 auto"><nav class="article-breadcrumbs" style="color:#647084;font-size:13px;margin-bottom:28px"><a href="/" style="color:inherit;text-decoration:none">Home</a><span style="margin:0 8px">/</span><a href="/conteudos" style="color:inherit;text-decoration:none">Conteúdos</a><span style="margin:0 8px">/</span><a href="/conteudos/categoria/tecnologia" style="color:#f45546;text-decoration:none">Tecnologia</a></nav><div class="article-category-kicker" style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px">Tecnologia</div><h1 class="article-page-title" style="color:#10243f;font-size:56px;line-height:1.03;letter-spacing:-0.02em;max-width:900px;margin-bottom:22px">ISO 8583: o protocolo que sustenta bilhões de transações de cartão no mundo</h1><p class="article-page-description" style="color:#45556c;font-size:19px;line-height:1.65;max-width:760px;margin-bottom:32px">A ISO 8583 é o padrão internacional de mensageria para transações de cartão. Entenda como funciona o formato de bits, os códigos de mensagem (0200, 0400, 0800), as opções TCP/IP e HTTP, e por que esse protocolo de 1987 ainda domina o mercado.</p><div class="article-page-meta" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><div style="color:#647084;font-size:13px;line-height:1.7"><div>Atualizado em <!-- -->23/04/2026</div><div>12<!-- --> min de leitura</div></div></div></div></header><section class="article-page-body" style="padding:72px 48px 104px;background:#ffffff"><div class="article-layout" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:260px minmax(0, 1fr);gap:54px;align-items:start"><aside style="position:sticky;top:104px"><button class="toc-mobile-toggle" style="display:none;width:100%;padding:12px 14px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc;color:#10243f;font-weight:700;margin-bottom:12px">Índice do artigo</button><div class="toc-panel" style="padding:20px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><p style="color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:800;margin-bottom:14px">Neste artigo</p><ol style="list-style:none;display:grid;gap:10px;margin:0;padding:0"><li><a href="#resposta-direta" style="color:#f45546;font-size:13px;line-height:1.45;text-decoration:none;font-weight:700">Resposta direta</a></li><li><a href="#por-que-um-padrão-de-1987-ainda-está-no-centro-do-sistema" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Por que um padrão de 1987 ainda está no centro do sistema</a></li><li><a href="#como-funciona-a-estrutura-da-mensagem" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Como funciona a estrutura da mensagem</a></li><li><a href="#os-mtis-principais" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Os MTIs principais</a></li><li><a href="#ciclo-de-vida-da-mensagem" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Ciclo de vida da mensagem</a></li><li><a href="#tcp-ip-socket-o-modo-clássico" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">TCP/IP Socket: o modo clássico</a></li><li><a href="#http-com-json-ou-xml-o-modo-moderno" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">HTTP com JSON ou XML: o modo moderno</a></li><li><a href="#criptografia-iso-9564-e-3des" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Criptografia: ISO 9564 e 3DES</a></li><li><a href="#por-que-entender-iso-8583-importa-para-quem-monta-operação-de-cartão" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Por que entender ISO 8583 importa para quem monta operação de cartão</a></li><li><a href="#códigos-de-resposta-mais-comuns" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Códigos de resposta mais comuns</a></li><li><a href="#faq" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">FAQ</a></li><li><a href="#próximo-passo" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Próximo passo</a></li></ol></div></aside><main class="article-main"><section class="answer-box" aria-labelledby="resposta-curta" style="border:1px solid #dbe3ee;border-left:4px solid #f45546;border-radius:8px;padding:24px 26px;margin-bottom:34px;background:#ffffff;box-shadow:0 14px 34px rgba(16,36,63,0.06)"><h2 id="resposta-curta" style="color:#10243f;font-size:22px;line-height:1.25;margin-bottom:10px">Resposta curta</h2><p style="color:#273347;font-size:17px;line-height:1.7;margin:0">ISO 8583 é o padrão internacional de mensageria transacional para cartões de pagamento, publicado pela primeira ve</p></section><article class="content-article" style="color:#273347"><h1 id="iso-8583-o-protocolo-que-sustenta-bilhões-de-transações-de-cartão-no-mundo"><a href="#iso-8583-o-protocolo-que-sustenta-bilhões-de-transações-de-cartão-no-mundo">ISO 8583: o protocolo que sustenta bilhões de transações de cartão no mundo</a></h1>
+<h2 id="resposta-direta"><a href="#resposta-direta">Resposta direta</a></h2>
+<p>ISO 8583 é o padrão internacional de mensageria transacional para cartões de pagamento, publicado pela primeira vez em 1987 e atualizado em 1993 e 2003. Define como informações de uma transação (compra, cancelamento, consulta de saldo) são formatadas, transmitidas e interpretadas entre emissor, bandeira e adquirente. Ainda hoje, décadas depois, é o protocolo por trás de praticamente toda transação de cartão no mundo, incluindo Visa, Mastercard, Elo, American Express. Pode rodar sobre TCP/IP com mensagens binárias ou sobre HTTP com JSON/XML em implementações modernas.</p>
+<h2 id="por-que-um-padrão-de-1987-ainda-está-no-centro-do-sistema"><a href="#por-que-um-padrão-de-1987-ainda-está-no-centro-do-sistema">Por que um padrão de 1987 ainda está no centro do sistema</a></h2>
+<p>Em tecnologia, durar quase 40 anos na ativa é raro. A ISO 8583 dura porque foi bem projetada para o problema dela.</p>
+<p>Ela resolve um problema simples: como emissor, bandeira e adquirente, rodando em empresas diferentes em países diferentes, podem conversar sobre uma mesma transação em linguagem comum, sem perda de informação, sem ambiguidade, com velocidade suficiente para o usuário não sentir demora.</p>
+<p>A elegância da solução está no formato compacto baseado em bits. Em uma época de conexões lentas e caras, cada byte transmitido contava. A ISO 8583 empacota tudo que é necessário para uma transação em menos de 1 KB de dados, muitas vezes em menos de 200 bytes. O POS na loja pede autorização, a bandeira roteia, o emissor responde, tudo em menos de 2 segundos.</p>
+<p>Décadas depois, mesmo com a largura de banda disponível hoje, o protocolo continua sustentando o padrão. As bandeiras investiram bilhões em sistemas baseados em ISO 8583, e mudar seria trocar o alicerce do mundo dos pagamentos.</p>
+<h2 id="como-funciona-a-estrutura-da-mensagem"><a href="#como-funciona-a-estrutura-da-mensagem">Como funciona a estrutura da mensagem</a></h2>
+<p>Uma mensagem ISO 8583 é composta de três partes:</p>
+<ul>
+<li><strong>Header (cabeçalho).</strong> Contém metadados opcionais sobre a mensagem. Pode variar por implementação.</li>
+<li><strong>MTI (Message Type Indicator).</strong> Quatro dígitos que identificam o tipo da mensagem. Por exemplo, 0200 é uma requisição de compra, 0210 é a resposta. Mais adiante detalho os MTIs principais.</li>
+<li><strong>Data Elements (bits de dados).</strong> É a estrutura que carrega as informações da transação. Até 128 &quot;bits&quot; (na versão de 1987) ou até 192 bits (nas versões mais recentes), cada um carregando um dado específico.</li>
+</ul>
+<p>Cada bit corresponde a um campo específico definido na norma:</p>
+<table><thead><tr><th>Bit</th><th>Campo</th><th>Exemplo</th></tr></thead><tbody><tr><td>2</td><td>PAN (número do cartão)</td><td>5642570404782927</td></tr><tr><td>3</td><td>Código de processamento</td><td>000000 (compra)</td></tr><tr><td>4</td><td>Valor da transação</td><td>000000010000 (R$ 100,00)</td></tr><tr><td>7</td><td>Data e hora da transmissão</td><td>0514130434 (14 de maio, 13:04:34)</td></tr><tr><td>11</td><td>STAN (Systems Trace Audit Number)</td><td>051413</td></tr><tr><td>12</td><td>Horário local</td><td>130434</td></tr><tr><td>13</td><td>Data local</td><td>0514</td></tr><tr><td>14</td><td>Data de expiração</td><td>3112 (dezembro/2031)</td></tr><tr><td>32</td><td>Identificação da instituição aquirente</td><td>002073</td></tr><tr><td>37</td><td>Número de referência da transação</td><td>567134101183</td></tr><tr><td>42</td><td>Identificação do estabelecimento (card acceptor)</td><td>000000000000001</td></tr><tr><td>48</td><td>Dados adicionais</td><td>Varia</td></tr><tr><td>49</td><td>Código de moeda</td><td>986 (BRL)</td></tr><tr><td>52</td><td>PIN criptografado</td><td>Criptograma</td></tr><tr><td>55</td><td>Dados do chip EMV</td><td>Criptograma EMV</td></tr><tr><td>61</td><td>Dados pessoais do usuário</td><td>Varia</td></tr><tr><td>120</td><td>Reservado</td><td>Varia</td></tr></tbody></table>
+<p>A lista real tem dezenas de campos. Cada implementação escolhe quais bits usa, conforme necessidade.</p>
+<p>Um bitmap no início da seção de dados indica quais bits estão presentes na mensagem. Se o bit 4 está ligado no bitmap, significa que o campo &quot;valor da transação&quot; está incluído. Se está desligado, não está. Isso permite que a mensagem transmita só o que é necessário, economizando tamanho.</p>
+<h2 id="os-mtis-principais"><a href="#os-mtis-principais">Os MTIs principais</a></h2>
+<p>Os Message Type Indicators (MTIs) são os quatro dígitos que definem o tipo da mensagem. Cada dígito tem significado:</p>
+<ul>
+<li>Primeiro dígito: versão do protocolo (0 = ISO 8583-1987, 1 = ISO 8583-1993, 2 = ISO 8583-2003).</li>
+<li>Segundo dígito: classe da mensagem (autorização, financeira, reversal, consulta).</li>
+<li>Terceiro dígito: função (requisição, resposta, notificação).</li>
+<li>Quarto dígito: origem (emissor, adquirente, outros).</li>
+</ul>
+<p>Os códigos que aparecem no dia a dia de uma operação de cartão:</p>
+<table><thead><tr><th>Código</th><th>Significado</th></tr></thead><tbody><tr><td>0100</td><td>Requisição de autorização</td></tr><tr><td>0110</td><td>Resposta de autorização</td></tr><tr><td>0200</td><td>Requisição de compra (financeira, com captura)</td></tr><tr><td>0210</td><td>Resposta de compra</td></tr><tr><td>0400</td><td>Requisição de cancelamento ou estorno</td></tr><tr><td>0410</td><td>Resposta de cancelamento ou estorno</td></tr><tr><td>0420</td><td>Requisição de desfazimento (reversal)</td></tr><tr><td>0430</td><td>Resposta de desfazimento</td></tr><tr><td>0800</td><td>Requisição de administração (keep alive, atualização de chaves)</td></tr><tr><td>0810</td><td>Resposta de administração</td></tr></tbody></table>
+<p>Uma transação completa vai gerar pelo menos duas mensagens: a requisição e a resposta. Em casos de timeout ou de falha de comunicação, aparecem as mensagens de desfazimento (0420/0430).</p>
+<h2 id="ciclo-de-vida-da-mensagem"><a href="#ciclo-de-vida-da-mensagem">Ciclo de vida da mensagem</a></h2>
+<p>Vamos percorrer o fluxo de uma compra típica para deixar palpável:</p>
+<ol>
+<li>
+<p>O POS lê o cartão (chip, tarja ou contactless) e monta uma mensagem 0200 contendo PAN, valor, data/hora, identificação do estabelecimento, STAN e criptograma EMV (se for chip).</p>
+</li>
+<li>
+<p>A mensagem é enviada para a processadora ou diretamente para a bandeira. A rota depende da topologia do arranjo. Em arranjo aberto, vai para o adquirente primeiro, que envia para a bandeira, que envia para o emissor. Em arranjo fechado, pode ir direto para a processadora do emissor.</p>
+</li>
+<li>
+<p>A processadora ou emissor recebe a 0200, valida: cartão ativo, saldo suficiente, criptograma bate, transação não duplicada, regras de negócio atendidas, antifraude ok.</p>
+</li>
+<li>
+<p>Monta a resposta 0210 com código de autorização (00 = aprovado) ou código de erro (por exemplo 51 = saldo insuficiente).</p>
+</li>
+<li>
+<p>A resposta viaja pela mesma rota de volta até o POS.</p>
+</li>
+<li>
+<p>O POS recebe a 0210, imprime o comprovante, libera a venda.</p>
+</li>
+<li>
+<p>Em alguns casos, especialmente com chip EMV, o POS manda uma mensagem de confirmação adicional para o emissor, indicando que a transação foi de fato concluída no estabelecimento.</p>
+</li>
+</ol>
+<p>Se entre o passo 5 e 6 algo der errado (cabo desconecta, POS reinicia), o POS pode enviar uma 0420 (reversal) para desfazer a transação que nunca foi efetivada no estabelecimento.</p>
+<p>Todo esse fluxo em menos de 2 segundos, em situação normal.</p>
+<h2 id="tcpip-socket-o-modo-clássico"><a href="#tcpip-socket-o-modo-clássico">TCP/IP Socket: o modo clássico</a></h2>
+<p>A forma tradicional de transmitir mensagens ISO 8583 é via socket TCP/IP. As duas partes (por exemplo, adquirente e emissor) mantêm conexão persistente, e as mensagens trafegam pela conexão no formato binário bits-em-campos definido pela norma.</p>
+<p>Vantagens do modo socket:</p>
+<ul>
+<li>Performance máxima. Mensagens têm overhead mínimo e são transmitidas direto.</li>
+<li>Baixa latência. Conexão persistente evita handshakes repetidos.</li>
+<li>Compatibilidade com sistemas legados. Bandeiras e grandes adquirentes operam assim há décadas.</li>
+</ul>
+<p>Desvantagens:</p>
+<ul>
+<li>Complexidade de implementação. Requer conhecimento do formato bit a bit, do bitmap, do parseamento de campos. Não é trivial para times que não têm experiência.</li>
+<li>Debugging difícil. Mensagens são binárias, legíveis só com ferramentas específicas. Erro comum de programador é montar a mensagem errada e levar horas para identificar.</li>
+<li>Infra mais específica. Precisa de balanceador TCP, gestão de conexões persistentes, monitoramento específico.</li>
+</ul>
+<h2 id="http-com-json-ou-xml-o-modo-moderno"><a href="#http-com-json-ou-xml-o-modo-moderno">HTTP com JSON ou XML: o modo moderno</a></h2>
+<p>Implementações mais recentes usam HTTP (geralmente HTTPS) para transmitir as mesmas informações da ISO 8583, mas estruturadas em JSON ou XML. Os campos (bits) viram atributos nomeados.</p>
+<p>Exemplo simplificado em JSON:</p>
+<pre><code class="language-json">{
+  &quot;CODMSG&quot;: &quot;0200&quot;,
+  &quot;BIT_02&quot;: &quot;5642570404782927&quot;,
+  &quot;BIT_03&quot;: &quot;000000&quot;,
+  &quot;BIT_04&quot;: &quot;000000010000&quot;,
+  &quot;BIT_07&quot;: &quot;0514130434&quot;,
+  &quot;BIT_11&quot;: &quot;051413&quot;,
+  &quot;BIT_12&quot;: &quot;130434&quot;,
+  &quot;BIT_42&quot;: &quot;000000000000001&quot;
+}
+</code></pre>
+<p>A resposta vem em formato similar, com CODMSG 0210.</p>
+<p>Vantagens do modo HTTP:</p>
+<ul>
+<li>Legibilidade. JSON é texto humano-readable. Debug fica muito mais simples.</li>
+<li>Ecossistema moderno. Toda ferramenta de API management, API gateway, monitoring, tracing fala HTTP nativamente.</li>
+<li>Implementação mais rápida. Times de engenharia modernos já dominam HTTP/REST, não precisam aprender o formato bit a bit.</li>
+<li>Compatível com arquiteturas serverless. Rodar em Lambda, Cloud Run ou similares fica muito mais fácil.</li>
+</ul>
+<p>Desvantagens:</p>
+<ul>
+<li>Overhead maior. HTTP tem headers, handshakes, campos nomeados. Uma mensagem que em binário tem 200 bytes pode ter 2 KB em JSON.</li>
+<li>Latência ligeiramente maior. Parse de JSON é mais lento que parse de bits. Embora em 2026 a diferença seja na casa de milissegundos, ainda importa em volume grande.</li>
+<li>Nem toda bandeira aceita. Visa e Mastercard mantêm operação core em socket. Elo aceita HTTP em alguns canais. Para emissor novo, é provável que o canal com a bandeira seja socket.</li>
+</ul>
+<h2 id="criptografia-iso-9564-e-3des"><a href="#criptografia-iso-9564-e-3des">Criptografia: ISO 9564 e 3DES</a></h2>
+<p>A ISO 8583 em si não define criptografia. Os dados trafegam &quot;em claro&quot; quanto ao formato. A criptografia de dados sensíveis é feita em camadas paralelas:</p>
+<ul>
+<li><strong>PIN criptografado.</strong> O PIN do usuário nunca vai em claro pela rede. É criptografado usando o padrão ISO 9564 format 0, com algoritmo 3DES (Triple DES). A chave de criptografia é negociada entre POS e emissor via processo de key exchange, usando chaves mestras que nunca saem do hardware de segurança (HSM).</li>
+<li><strong>Criptograma EMV.</strong> Gerado pelo chip no momento da transação, usando chaves internas do chip e dados da transação. Vai no bit 55 da mensagem ISO 8583. Valida que a transação de fato veio de um cartão genuíno e não foi replicada.</li>
+<li><strong>PAN criptografado (opcional).</strong> Algumas implementações modernas criptografam o próprio PAN durante o transporte, usando tokenização ou point-to-point encryption (P2PE). Reduz superfície de ataque contra vazamento.</li>
+</ul>
+<p>A combinação desses mecanismos, somada à segurança de transporte (TLS no HTTP ou VPN no socket), torna o sistema resistente contra interceptação, replay e forjamento de transações.</p>
+<h2 id="por-que-entender-iso-8583-importa-para-quem-monta-operação-de-cartão"><a href="#por-que-entender-iso-8583-importa-para-quem-monta-operação-de-cartão">Por que entender ISO 8583 importa para quem monta operação de cartão</a></h2>
+<p>Três razões práticas:</p>
+<ul>
+<li><strong>Integração com processadora e bandeira.</strong> Se você vai contratar BaaS ou processadora, boa parte da documentação técnica deles fala em termos da ISO 8583. Entender o que são BIT_02, BIT_04, BIT_07 poupa dias de aprendizado no onboarding.</li>
+<li><strong>Debug de problemas.</strong> Em algum momento, vai aparecer transação que não funciona. &quot;Código 51&quot;, &quot;Código 05&quot;, &quot;Resposta 14&quot;. Esses códigos vêm da ISO 8583. Saber ler os códigos de resposta acelera a resolução.</li>
+<li><strong>Decisão de arquitetura.</strong> Se sua operação vai operar via socket ou HTTP, isso afeta tecnologia, time, custo de infra. A escolha não é trivial e depende do parceiro.</li>
+</ul>
+<p>Para operações em arranjo aberto, a escolha não é de quem contrata (o socket geralmente é obrigatório pelo BaaS ou bandeira). Para operações em arranjo fechado com protocolo próprio, é decisão de arquitetura do emissor, e HTTP/JSON é o caminho moderno.</p>
+<h2 id="códigos-de-resposta-mais-comuns"><a href="#códigos-de-resposta-mais-comuns">Códigos de resposta mais comuns</a></h2>
+<p>Para encerrar, os códigos de resposta (bit 39) que aparecem mais frequentemente na vida real:</p>
+<table><thead><tr><th>Código</th><th>Significado</th></tr></thead><tbody><tr><td>00</td><td>Transação aprovada</td></tr><tr><td>01</td><td>Consultar emissor</td></tr><tr><td>04</td><td>Reter cartão (suspeita de fraude)</td></tr><tr><td>05</td><td>Não aprovada (motivo genérico)</td></tr><tr><td>12</td><td>Transação inválida</td></tr><tr><td>13</td><td>Valor inválido</td></tr><tr><td>14</td><td>Número de cartão inválido</td></tr><tr><td>51</td><td>Saldo ou limite insuficiente</td></tr><tr><td>54</td><td>Cartão vencido</td></tr><tr><td>57</td><td>Transação não permitida para o cartão</td></tr><tr><td>58</td><td>Transação não permitida no terminal</td></tr><tr><td>61</td><td>Excede limite diário</td></tr><tr><td>62</td><td>Cartão restrito</td></tr><tr><td>65</td><td>Excede frequência de uso</td></tr><tr><td>75</td><td>Limite de tentativas de PIN excedido</td></tr><tr><td>91</td><td>Emissor indisponível</td></tr><tr><td>96</td><td>Erro de sistema</td></tr></tbody></table>
+<p>Cada um tem tratamento recomendado. Código 51 (saldo insuficiente), por exemplo, o estabelecimento pode perguntar se o cliente quer usar outro cartão. Código 04 (reter cartão) teoricamente indica que o estabelecimento deve confiscar o cartão (na prática, raramente acontece). Código 91 (emissor indisponível) aponta falha sistêmica e pode exigir contingência.</p>
+<h2 id="faq"><a href="#faq">FAQ</a></h2>
+<p><strong>O que é ISO 8583?</strong></p>
+<p>ISO 8583 é o padrão internacional de mensageria transacional para cartões de pagamento, publicado em 1987 e atualizado em 1993 e 2003. Define como informações de uma transação são formatadas e transmitidas entre emissor, bandeira e adquirente.</p>
+<p><strong>Por que um protocolo de 1987 ainda é usado?</strong></p>
+<p>Porque foi bem projetado para o problema que resolve e porque mudar o padrão exigiria coordenar bandeiras, emissores e adquirentes do mundo todo. Os investimentos em sistemas baseados em ISO 8583 são incalculáveis, e o protocolo continua atendendo bem.</p>
+<p><strong>Qual é a diferença entre 0200 e 0420?</strong></p>
+<p>0200 é uma requisição de compra. 0420 é uma requisição de desfazimento (reversal), usada quando a transação foi solicitada mas não foi possível concluir no estabelecimento (por exemplo, timeout na resposta). 0420 pede ao emissor que desfaça o que foi autorizado.</p>
+<p><strong>O que significa o bit 39 em ISO 8583?</strong></p>
+<p>Bit 39 é o campo do código de resposta. Indica se a transação foi aprovada (00), negada por saldo (51), negada por cartão vencido (54), e assim por diante. É o principal campo para entender o que aconteceu com a transação.</p>
+<p><strong>ISO 8583 usa TCP/IP ou HTTP?</strong></p>
+<p>Originalmente socket TCP/IP, com mensagens binárias. Implementações modernas também aceitam HTTP com JSON ou XML, que preserva a mesma estrutura lógica de campos (bits) mas em formato texto. Depende da implementação da bandeira ou processadora.</p>
+<p><strong>Qual é a diferença entre autorização e confirmação?</strong></p>
+<p>Autorização é a aprovação inicial da transação (0200/0210), onde o emissor valida se o cartão tem saldo e se a transação pode ser feita. Confirmação é uma mensagem adicional enviada após a autorização, indicando que a transação de fato se concretizou no estabelecimento. Em chip EMV, essa confirmação é importante para fechar o ciclo.</p>
+<p><strong>O que é STAN?</strong></p>
+<p>STAN (Systems Trace Audit Number) é um identificador de 6 dígitos que aparece no bit 11 da mensagem. Serve como identificador único dentro de uma sessão entre dois sistemas, permitindo correlacionar requisições e respostas. É gerado pelo originador da transação.</p>
+<p><strong>ISO 8583 criptografa os dados?</strong></p>
+<p>Não em si mesmo. A ISO 8583 define a estrutura da mensagem, não a criptografia. A criptografia vem em camadas paralelas: PIN criptografado com ISO 9564 format 0 usando 3DES, criptograma EMV gerado pelo chip, e criptografia de transporte (TLS, VPN).</p>
+<p><strong>Posso implementar ISO 8583 em aplicação moderna?</strong></p>
+<p>Sim. Há bibliotecas open source em várias linguagens (Python, Java, Go, JavaScript) que implementam o parseamento da ISO 8583. Para operações novas, o caminho comum é usar essas bibliotecas quando a integração é com bandeira ou processadora que exige socket.</p>
+<p><strong>Quando uma operação precisa implementar ISO 8583 diretamente?</strong></p>
+<p>Quando é emissor direto em bandeira aberta (Visa, Mastercard, Elo), quando é adquirente, ou quando é processadora independente. Para quem opera via <a href="/conteudos/bin-sponsor-o-que-e">BIN Sponsor</a> ou BaaS, o parceiro implementa a ISO 8583 no back-end e expõe APIs REST para o emissor. Então você não precisa lidar com o protocolo diretamente.</p>
+<h2 id="próximo-passo"><a href="#próximo-passo">Próximo passo</a></h2>
+<p>Se você está estruturando uma operação de cartão e precisa entender como se conectar tecnicamente à bandeira ou processadora, a JUST ajuda a desenhar a arquitetura e intermedia homologações técnicas com fornecedores. <a href="/contato">Fale com a gente</a>.</p></article><footer style="margin-top:48px;padding-top:36px;border-top:1px solid #dbe3ee"><aside style="margin:36px 0;padding:28px;border-radius:8px;background:#fff7f5;border:1px solid rgba(244,85,70,0.22)"><h3 style="color:#10243f;font-size:24px;line-height:1.2;margin-bottom:10px">Quer aplicar isso no seu produto financeiro?</h3><p style="color:#45556c;font-size:16px;line-height:1.65;margin-bottom:22px">A JUST ajuda empresas a desenhar, construir e operar produtos financeiros digitais com arquitetura modular.</p><button style="padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease">Conversar com especialista</button></aside><div style="padding:24px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><p style="color:#45556c;font-size:14px;line-height:1.7;margin-top:14px">Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.</p></div></footer><section style="margin-top:64px"><h2 style="color:#10243f;font-size:30px;line-height:1.2;margin-bottom:22px">Continue lendo</h2><div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:18px"><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Tecnologia</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/algoritmo-luhn-cartao" style="color:#10243f;text-decoration:none">Algoritmo de LUHN: como funciona a validação do número do cartão</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">O algoritmo de LUHN, criado em 1954 pela IBM, é o método que valida se o número de um cartão é consistente. Funciona em cartões de crédito, CPF, IMEI. Entenda o cálculo passo a passo, a ISO/IEC 7812 e por que o algoritmo é de consistência, não de segurança.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>9<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->23/04/2026</span></div></article><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Tecnologia</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/ciclo-de-vida-transacao-cartao" style="color:#10243f;text-decoration:none">Ciclo de vida de uma transação de cartão: da autorização ao desfazimento</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">Toda transação de cartão segue um ciclo: pré-autorização, autorização, confirmação, desfazimento e arquivo de conciliação. Entenda cada etapa, as validações que acontecem em cada uma e por que entender esse fluxo é crítico para quem opera cartões.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>11<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->23/04/2026</span></div></article></div></section></main></div></section></div></div><script>$RB=[];$RV=function(a){$RT=performance.now();for(var b=0;b<a.length;b+=2){var c=a[b],e=a[b+1];null!==e.parentNode&&e.parentNode.removeChild(e);var f=c.parentNode;if(f){var g=c.previousSibling,h=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d||"/&"===d)if(0===h)break;else h--;else"$"!==d&&"$?"!==d&&"$~"!==d&&"$!"!==d&&"&"!==d||h++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;e.firstChild;)f.insertBefore(e.firstChild,c);g.data="$";g._reactRetry&&requestAnimationFrame(g._reactRetry)}}a.length=0};
+$RC=function(a,b){if(b=document.getElementById(b))(a=document.getElementById(a))?(a.previousSibling.data="$~",$RB.push(a,b),2===$RB.length&&("number"!==typeof $RT?requestAnimationFrame($RV.bind(null,$RB)):(a=performance.now(),setTimeout($RV.bind(null,$RB),2300>a&&2E3<a?2300-a:$RT+300-a)))):b.parentNode.removeChild(b)};$RC("B:0","S:0")</script></div>
     <noscript>A JUST desenvolve e integra tecnologia para produtos financeiros digitais.</noscript>
   </body>
 </html>

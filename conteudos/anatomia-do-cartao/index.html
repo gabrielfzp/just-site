@@ -41,7 +41,7 @@
         }
       }(window.location));
     </script>
-    <script type="module" crossorigin src="/assets/index-D7mgY0XA.js"></script>
+    <script type="module" crossorigin src="/assets/index-Bgkzpfet.js"></script>
       <meta property="article:published_time" content="2026-04-23" />
       <meta property="article:modified_time" content="2026-04-23" />
       <meta property="article:author" content="Gabriel Pires" />
@@ -60,7 +60,862 @@
     <!-- /JUST route SEO -->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><link rel="preload" as="image" href="/logo-just-2x.png"/><link rel="preload" as="image" href="/logos/cubo-itau.png"/><link rel="preload" as="image" href="/logos/abfintechs.png"/><link rel="preload" as="image" href="/logos/abstartups.png"/><link rel="preload" as="image" href="/logos/finscale.svg"/><link rel="preload" as="image" href="/logos/aws-partner.png"/><link rel="preload" as="image" href="/logos/swap.svg"/><link rel="preload" as="image" href="/logos/evertec.svg"/><link rel="preload" as="image" href="/logos/fiserv.png"/><link rel="preload" as="image" href="/logos/linx.png"/><link rel="preload" as="image" href="/authors/gabriel-pires.jpeg"/><div style="font-family:&#x27;Inter&#x27;, -apple-system, BlinkMacSystemFont, sans-serif;background:#0f112b;min-height:100vh;-webkit-font-smoothing:antialiased"><style>
+          :root {
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+          }
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          html, body { overflow-x: hidden; width: 100%; background: #0f112b; }
+          ::selection { background: rgba(244,85,70,0.3); }
+          input:focus, textarea:focus, select:focus { border-color: #f45546 !important; }
+          button:focus { outline: none; }
+          button:focus-visible {
+            outline: 2px solid rgba(244,85,70,0.72);
+            outline-offset: 3px;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              scroll-behavior: auto !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+          .desktop-nav .nav-link:hover { color: #f2f4f8 !important; }
+          .desktop-nav .nav-link-active::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            width: 26px;
+            height: 1px;
+            transform: translateX(-50%);
+            background: #f45546;
+            border-radius: 999px;
+          }
+          .hero-title-mobile { display: none; }
+          .hero-title-desktop { display: inline; }
+
+@media (max-width: 900px) {
+  .desktop-nav { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+  header { padding: 0 20px !important; }
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+  }
+  .comp-row > div {
+    min-width: 0 !important;
+  }
+  .comp-row h4,
+  .comp-row p {
+    overflow-wrap: anywhere !important;
+  }
+}
+@media (max-width: 520px) {
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels span {
+    font-size: 10px !important;
+    padding: 7px 10px !important;
+  }
+  .comp-row > div {
+    padding: 16px 10px !important;
+    gap: 9px !important;
+  }
+  .comp-row h4 {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+}
+@media (max-width: 900px) {
+  .hero-grid > div:last-child {
+    display: none !important;
+  }
+  .section-hero {
+    min-height: auto !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    padding: 116px 28px 46px !important;
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    align-items: start !important;
+  }
+  .hero-grid > div:first-child {
+    width: 100% !important;
+    max-width: 680px !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 16px !important;
+    letter-spacing: 0.1em !important;
+  }
+  .hero-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+    margin: 28px 0 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-grid p {
+    max-width: 34ch !important;
+    font-size: 17px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 28px !important;
+  }
+  .flow-steps-row {
+    display: none !important;
+  }
+  .hero-cta-row {
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+  .hero-cta-row button {
+    font-size: 15px !important;
+    padding: 14px 24px !important;
+  }
+  .section-social-proof {
+    padding: 28px 24px 40px !important;
+  }
+  .section-why-just {
+    padding: 84px 28px !important;
+  }
+  .why-just-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+  }
+  .just-pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .just-pillar {
+    min-height: auto !important;
+    padding: 30px 0 34px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  }
+  .just-pillars-grid > div:last-child .just-pillar {
+    border-bottom: none !important;
+  }
+  .just-pillar h3 {
+    font-size: 34px !important;
+  }
+  .social-logos {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(72px, 1fr)) !important;
+    gap: 22px 18px !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+    justify-items: center !important;
+    align-items: center !important;
+  }
+  .social-logos .partner-logo {
+    width: 86px !important;
+    height: 26px !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+  .site-footer {
+    padding: 58px 24px 34px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 38px 34px !important;
+  }
+  .site-footer-brand {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+  }
+  .site-footer-brand p {
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+  }
+  .site-footer-main h4 {
+    margin-bottom: 14px !important;
+  }
+  .site-footer-products button {
+    align-items: center !important;
+    gap: 10px !important;
+    line-height: 1.45 !important;
+    max-width: 100% !important;
+  }
+  .site-footer-company button,
+  .site-footer-contact a,
+  .site-footer-contact span {
+    font-size: 14px !important;
+    line-height: 1.75 !important;
+  }
+  .site-footer-contact {
+    grid-column: 1 / -1 !important;
+  }
+  .site-footer-bottom {
+    margin-top: 36px !important;
+  }
+  .site-footer-partners {
+    justify-content: center !important;
+    gap: 24px 34px !important;
+  }
+  .site-footer-partner-group {
+    text-align: center !important;
+  }
+  .site-footer-partner-logos {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  .privacy-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .privacy-aside {
+    position: static !important;
+  }
+  .article-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .toc-mobile-toggle {
+    display: block !important;
+  }
+  .toc-panel {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .section-hero {
+    min-height: auto !important;
+    padding: 104px 24px 42px !important;
+  }
+  .hero-grid {
+    min-height: auto !important;
+  }
+  .hero-grid > div:first-child {
+    min-height: auto !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 15px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .hero-title {
+    font-size: clamp(46px, 12.6vw, 50px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.058em !important;
+    margin: 30px 0 22px !important;
+    width: 100% !important;
+    max-width: calc(100vw - 48px) !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-title-desktop {
+    display: none !important;
+  }
+  .hero-title-mobile {
+    display: inline !important;
+  }
+  .hero-grid p {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+    max-width: 33ch !important;
+    margin-bottom: 26px !important;
+  }
+  .hero-cta-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    max-width: 306px !important;
+  }
+  .hero-cta-row button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 13px 22px !important;
+  }
+  .section-social-proof {
+    padding: 24px 24px 42px !important;
+  }
+  .section-why-just {
+    padding: 76px 24px !important;
+  }
+  .why-just-title {
+    font-size: clamp(52px, 13.8vw, 59px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.058em !important;
+  }
+  .just-pillar {
+    padding: 28px 0 32px !important;
+  }
+  .just-pillar h3 {
+    font-size: 30px !important;
+    margin-bottom: 18px !important;
+  }
+  .just-pillar p {
+    font-size: 15px !important;
+  }
+  .social-logos {
+    grid-template-columns: repeat(3, minmax(64px, 1fr)) !important;
+    gap: 22px 14px !important;
+    max-width: 330px !important;
+  }
+  .social-logos .partner-logo {
+    width: 72px !important;
+    height: 22px !important;
+    max-width: 100% !important;
+  }
+  .site-footer {
+    padding: 56px 24px 32px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    text-align: center !important;
+  }
+  .site-footer-products button {
+    justify-content: center !important;
+    margin: 0 auto !important;
+    width: fit-content !important;
+  }
+  .site-footer-company button {
+    margin: 0 auto !important;
+  }
+  .site-footer-contact {
+    text-align: center !important;
+  }
+  .site-footer-contact a,
+  .site-footer-contact span {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 300px !important;
+    white-space: pre-line !important;
+  }
+  .site-footer-partners {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .site-footer-partner-group {
+    width: 100% !important;
+  }
+  .site-footer-bottom-row {
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+.content-article {
+  font-size: 18px;
+  line-height: 1.78;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.content-article h1 {
+  display: none;
+}
+.content-article h2 {
+  color: #10243f;
+  font-size: 34px;
+  line-height: 1.18;
+  margin: 52px 0 18px;
+  scroll-margin-top: 112px;
+}
+.content-article h3 {
+  color: #10243f;
+  font-size: 24px;
+  line-height: 1.25;
+  margin: 36px 0 14px;
+}
+.content-article h2 a,
+.content-article h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.content-article p,
+.content-article li {
+  color: #273347;
+}
+.content-article p {
+  margin: 0 0 22px;
+}
+.content-article a {
+  color: #f45546;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+.content-article figure {
+  margin: 34px 0;
+}
+.content-article figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 18px 46px rgba(16,36,63,0.08);
+}
+.content-article figcaption {
+  margin-top: 10px;
+  color: #647084;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.content-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.content-article pre {
+  margin: 30px 0;
+  padding: 18px 20px;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  background: #f8fafc;
+  color: #10243f;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.content-article code {
+  overflow-wrap: anywhere;
+}
+.content-article th,
+.content-article td {
+  border: 1px solid #dbe3ee;
+  padding: 14px 16px;
+  text-align: left;
+}
+.content-article th {
+  color: #10243f;
+  background: #f8fafc;
+}
+.content-article td {
+  color: #273347;
+  background: #ffffff;
+}
+@media (max-width: 900px) {
+  .article-page-header {
+    padding: 118px 28px 48px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-category-kicker {
+    margin-bottom: 14px !important;
+  }
+  .article-page-title {
+    font-size: clamp(38px, 8vw, 48px) !important;
+    line-height: 1.04 !important;
+    max-width: 100% !important;
+    margin-bottom: 18px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-page-description {
+    font-size: 17px !important;
+    line-height: 1.62 !important;
+    max-width: 100% !important;
+    margin-bottom: 26px !important;
+  }
+  .article-page-meta {
+    gap: 20px !important;
+    align-items: flex-start !important;
+  }
+  .article-page-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-hero {
+    padding: 118px 28px 56px !important;
+  }
+  .content-hub-hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+    align-items: start !important;
+  }
+  .content-hub-title {
+    font-size: clamp(44px, 11.4vw, 58px) !important;
+    line-height: 1.02 !important;
+    max-width: 9ch !important;
+    margin-bottom: 20px !important;
+  }
+  .content-hub-subtitle {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+    max-width: 36ch !important;
+  }
+  .content-search {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+  .content-hub-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 34px !important;
+  }
+  .content-hub-layout > main {
+    min-width: 0 !important;
+  }
+  .content-sidebar {
+    order: -1 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+  .content-sidebar-card {
+    padding: 18px !important;
+  }
+  .article-card {
+    min-height: auto !important;
+    padding: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .article-card h2 {
+    font-size: 23px !important;
+    line-height: 1.14 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card-featured h2 {
+    font-size: 30px !important;
+    line-height: 1.1 !important;
+  }
+  .article-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+  .article-layout > aside,
+  .article-layout > main,
+  .article-main {
+    min-width: 0 !important;
+  }
+  .answer-box,
+  .source-box {
+    margin-bottom: 28px !important;
+  }
+  .answer-box h2,
+  .source-box h2 {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+  }
+  .content-article {
+    font-size: 17px !important;
+    line-height: 1.72 !important;
+  }
+  .content-article h2 {
+    font-size: 29px !important;
+    line-height: 1.16 !important;
+    margin: 42px 0 16px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article h3 {
+    font-size: 22px !important;
+    line-height: 1.24 !important;
+    margin: 30px 0 12px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .content-article th,
+  .content-article td {
+    min-width: 150px !important;
+  }
+}
+@media (max-width: 520px) {
+  .article-page-header {
+    padding: 104px 24px 38px !important;
+  }
+  .article-page-body {
+    padding: 40px 24px 68px !important;
+    overflow: hidden !important;
+  }
+  .article-empty-state {
+    padding: 120px 24px 56px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 11px !important;
+    margin-bottom: 18px !important;
+  }
+  .article-category-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .article-page-title {
+    font-size: clamp(34px, 10.2vw, 40px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+    width: 100% !important;
+  }
+  .article-page-description {
+    font-size: 16px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 22px !important;
+  }
+  .article-page-meta {
+    display: grid !important;
+    gap: 16px !important;
+  }
+  .content-hub-hero {
+    padding: 106px 24px 44px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-hero-grid,
+  .content-hub-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .content-hub-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+    margin-bottom: 16px !important;
+  }
+  .content-hub-title {
+    font-size: clamp(42px, 12vw, 48px) !important;
+    max-width: 8.5ch !important;
+  }
+  .content-hub-subtitle {
+    font-size: 16px !important;
+    max-width: 25ch !important;
+  }
+  .content-hub-body {
+    padding: 44px 24px 72px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-layout {
+    gap: 30px !important;
+  }
+  .content-sidebar {
+    order: 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .content-featured {
+    margin-bottom: 38px !important;
+  }
+  .content-section-label {
+    margin-bottom: 12px !important;
+  }
+  .content-list-title {
+    font-size: 28px !important;
+  }
+  .content-card-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .article-card {
+    padding: 22px !important;
+    width: calc(100vw - 48px) !important;
+    max-width: calc(100vw - 48px) !important;
+  }
+  .article-card h2,
+  .article-card-featured h2 {
+    display: block !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    width: min(100%, 24ch) !important;
+    max-width: 24ch !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: inline !important;
+    min-width: 0 !important;
+  }
+  .article-card p {
+    font-size: 14px !important;
+  }
+  .article-card-meta {
+    gap: 8px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+  .content-search,
+  .content-search input {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .article-layout {
+    gap: 22px !important;
+  }
+  .answer-box {
+    padding: 20px 18px !important;
+    margin-bottom: 24px !important;
+  }
+  .source-box {
+    margin-top: 34px !important;
+    padding-top: 20px !important;
+  }
+  .content-article {
+    font-size: 16px !important;
+    line-height: 1.68 !important;
+  }
+  .content-article p {
+    margin-bottom: 18px !important;
+  }
+  .content-article h2 {
+    font-size: 26px !important;
+    line-height: 1.14 !important;
+    margin: 36px 0 14px !important;
+  }
+  .content-article h3 {
+    font-size: 20px !important;
+    line-height: 1.22 !important;
+    margin: 26px 0 10px !important;
+  }
+  .content-article pre {
+    margin: 24px 0 !important;
+    padding: 14px 16px !important;
+    font-size: 13px !important;
+  }
+  .content-article th,
+  .content-article td {
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+  }
+}
+</style><header style="position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(15,17,43,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background-color 200ms var(--ease-out), border-color 200ms ease, backdrop-filter 200ms ease;z-index:100"><div style="cursor:pointer;display:flex;align-items:center"><img src="/logo-just-2x.png" alt="JUST" style="height:36px;object-fit:contain"/></div><nav class="desktop-nav" style="display:flex;align-items:center;gap:2px"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Home</button><div style="position:relative"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s" aria-haspopup="menu" aria-expanded="false">Produtos<!-- --> ▾</button><div style="position:absolute;top:100%;left:-20px;background:rgba(15,17,43,0.98);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:12px 8px;min-width:320px;backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:200;opacity:0;transform:translateY(6px) scale(0.98);transform-origin:top center;pointer-events:none;visibility:hidden;transition:opacity 170ms var(--ease-out), transform 170ms var(--ease-out), border-color 170ms ease" role="menu"><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #6C5CE718, rgba(10,12,31,0.9));border:1px solid #6C5CE740;box-shadow:0 0 12.8px #6C5CE720;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Benefits</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Benefícios flexíveis com arranjo customizável</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00B89418, rgba(10,12,31,0.9));border:1px solid #00B89440;box-shadow:0 0 12.8px #00B89420;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Fleet</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Controle financeiro completo por veículo</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #0984E318, rgba(10,12,31,0.9));border:1px solid #0984E340;box-shadow:0 0 12.8px #0984E320;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Banking</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Conta, cartão e PIX com sua marca</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #E1705518, rgba(10,12,31,0.9));border:1px solid #E1705540;box-shadow:0 0 12.8px #E1705520;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Expense</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Cartões corporativos com políticas inteligentes</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #FDCB6E18, rgba(10,12,31,0.9));border:1px solid #FDCB6E40;box-shadow:0 0 12.8px #FDCB6E20;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Credit</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos de crédito sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #636E7218, rgba(10,12,31,0.9));border:1px solid #636E7240;box-shadow:0 0 12.8px #636E7220;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Custom</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos financeiros sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00CEC918, rgba(10,12,31,0.9));border:1px solid #00CEC940;box-shadow:0 0 12.8px #00CEC920;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Sentinel</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Antifraude AI-native em tempo real</div></div></button></div></div><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Tecnologia</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Cases</button><button class="nav-link nav-link-active" style="color:#f2f4f8;font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Conteúdos</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Sobre</button><div style="display:flex;align-items:center;gap:6px;margin-left:8px;color:rgba(242,244,248,0.44);font-size:12px"><button style="padding:0;border:none;background:none;cursor:pointer;color:#f2f4f8;font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">PT</button><span style="opacity:0.55">/</span><button style="padding:0;border:none;background:none;cursor:pointer;color:rgba(242,244,248,0.34);font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">EN</button></div><button style="padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease;margin-left:8px">Fale Conosco</button></nav><button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:8px;color:#f2f4f8;width:40px;height:40px"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button></header><main><!--$?--><template id="B:0"></template><div style="min-height:80vh;background:#0f112b"></div><!--/$--></main><footer class="site-footer" style="background:#0a0c1e;padding:80px 48px 40px;border-top:1px solid rgba(255,255,255,0.07)"><div class="site-footer-main" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px"><div class="site-footer-brand"><div style="margin-bottom:20px"><img src="/logo-just-2x.png" alt="JUST" style="height:30px;object-fit:contain"/></div><p style="font-size:13px;color:rgba(242,244,248,0.35);line-height:1.7;max-width:260px">Crie sua fintech com tecnologia pronta para operar, escalar e evoluir.</p></div><div class="site-footer-products"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Produtos</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span>JUST Benefits</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span>JUST Fleet</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span>JUST Banking</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span>JUST Expense</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span>JUST Credit</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span>JUST Custom</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span>JUST Sentinel</button></div><div class="site-footer-company"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Empresa</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Sobre</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Cases</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Tecnologia</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Conteúdos</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Contato</button></div><div class="site-footer-contact"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Contato</h4><a href="mailto:contato@wearejust.it" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">contato@wearejust.it</a><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:8px">Condomínio Praça Capital<!-- -->
+<!-- -->Av. José Rocha Bomfim, 214 - Edifício Madri<!-- -->
+<!-- -->Campinas - SP</span><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:10px">Cubo Itaú<!-- -->
+<!-- -->Alameda Vicente Pinzón, 54 - Vila Olímpia<!-- -->
+<!-- -->São Paulo - SP</span><a href="https://www.linkedin.com/company/wearejust-it" target="_blank" rel="noopener noreferrer" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">LinkedIn →</a></div></div><div class="site-footer-bottom" style="max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.04)"><div class="site-footer-partners" style="display:flex;gap:48px;margin-bottom:24px;flex-wrap:wrap"><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Ecossistema e associações</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/cubo-itau.png" alt="Cubo Itaú" style="height:24px;width:auto;opacity:0.2"/><img src="/logos/abfintechs.png" alt="ABFintechs" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/abstartups.png" alt="ABStartups" style="height:18px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/finscale.svg" alt="Finscale" style="height:14px;width:auto;opacity:0.2"/></div></div><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Parceiros tecnológicos</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/aws-partner.png" alt="AWS" style="height:20px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/swap.svg" alt="Swap" style="height:16px;width:auto;opacity:0.2;filter:invert(1)"/><img src="/logos/evertec.svg" alt="Evertec" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/fiserv.png" alt="Fiserv" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/linx.png" alt="Linx" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/></div></div></div><p style="font-size:11px;color:rgba(242,244,248,0.18);line-height:1.7;margin-bottom:24px">A JUST atua exclusivamente como provedora de tecnologia e não realiza atividades privativas de instituições financeiras. Todos os serviços financeiros são operados por parceiros devidamente autorizados pelo Banco Central do Brasil.</p><div class="site-footer-bottom-row" style="display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap"><p style="font-size:12px;color:rgba(242,244,248,0.2)">© 2026 JUST. Todos os direitos reservados.</p><button style="font-size:12px;color:rgba(242,244,248,0.35);background:none;border:none;cursor:pointer;padding:0;text-decoration:none">Política de Privacidade</button></div></div></footer><a href="https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp" style="position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);z-index:1000;transition:transform 0.2s ease, box-shadow 0.2s ease;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a></div><script>requestAnimationFrame(function(){$RT=performance.now()});</script><div hidden id="S:0"><div style="background:#ffffff;min-height:100vh"><header class="article-page-header" style="padding:138px 48px 64px;background:#f6f8fb;border-bottom:1px solid #dbe3ee"><div style="max-width:1120px;margin:0 auto"><nav class="article-breadcrumbs" style="color:#647084;font-size:13px;margin-bottom:28px"><a href="/" style="color:inherit;text-decoration:none">Home</a><span style="margin:0 8px">/</span><a href="/conteudos" style="color:inherit;text-decoration:none">Conteúdos</a><span style="margin:0 8px">/</span><a href="/conteudos/categoria/cartoes" style="color:#f45546;text-decoration:none">Cartões</a></nav><div class="article-category-kicker" style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px">Cartões</div><h1 class="article-page-title" style="color:#10243f;font-size:56px;line-height:1.03;letter-spacing:-0.02em;max-width:900px;margin-bottom:22px">Anatomia do cartão: o que são PAN, BIN, CVV, chip EMV e trilha magnética</h1><p class="article-page-description" style="color:#45556c;font-size:19px;line-height:1.65;max-width:760px;margin-bottom:32px">O cartão físico tem vários componentes técnicos: PAN, BIN, CVV, chip EMV, trilha magnética, NFC e data de expiração. Entenda o que cada um faz, por que existe e como conversam entre si.</p><div class="article-page-meta" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><div style="color:#647084;font-size:13px;line-height:1.7"><div>Atualizado em <!-- -->23/04/2026</div><div>12<!-- --> min de leitura</div></div></div></div></header><section class="article-page-body" style="padding:72px 48px 104px;background:#ffffff"><div class="article-layout" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:260px minmax(0, 1fr);gap:54px;align-items:start"><aside style="position:sticky;top:104px"><button class="toc-mobile-toggle" style="display:none;width:100%;padding:12px 14px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc;color:#10243f;font-weight:700;margin-bottom:12px">Índice do artigo</button><div class="toc-panel" style="padding:20px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><p style="color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:800;margin-bottom:14px">Neste artigo</p><ol style="list-style:none;display:grid;gap:10px;margin:0;padding:0"><li><a href="#resposta-direta" style="color:#f45546;font-size:13px;line-height:1.45;text-decoration:none;font-weight:700">Resposta direta</a></li><li><a href="#por-que-vale-entender-a-anatomia-do-cartão" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Por que vale entender a anatomia do cartão</a></li><li><a href="#o-pan-o-número-principal" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">O PAN: o número principal</a></li><li><a href="#bin-quem-emitiu-o-cartão" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">BIN: quem emitiu o cartão</a></li><li><a href="#cvv-o-código-de-segurança" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">CVV: o código de segurança</a></li><li><a href="#chip-emv-o-circuito-integrado" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Chip EMV: o circuito integrado</a></li><li><a href="#trilha-magnética-o-legado-que-ainda-persiste" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Trilha magnética: o legado que ainda persiste</a></li><li><a href="#nfc-e-contactless" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">NFC e contactless</a></li><li><a href="#data-de-expiração" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Data de expiração</a></li><li><a href="#nome-do-portador" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Nome do portador</a></li><li><a href="#outros-elementos-do-cartão-físico" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Outros elementos do cartão físico</a></li><li><a href="#quanto-custa-cada-elemento-na-produção" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Quanto custa cada elemento na produção</a></li><li><a href="#faq" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">FAQ</a></li><li><a href="#próximo-passo" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Próximo passo</a></li></ol></div></aside><main class="article-main"><section class="answer-box" aria-labelledby="resposta-curta" style="border:1px solid #dbe3ee;border-left:4px solid #f45546;border-radius:8px;padding:24px 26px;margin-bottom:34px;background:#ffffff;box-shadow:0 14px 34px rgba(16,36,63,0.06)"><h2 id="resposta-curta" style="color:#10243f;font-size:22px;line-height:1.25;margin-bottom:10px">Resposta curta</h2><p style="color:#273347;font-size:17px;line-height:1.7;margin:0">Um cartão de pagamento físico é composto por vários elementos técnicos, cada um com função específica. O PAN (Primary Account Number) é o número de 16 dígitos que identifica o cartão. Os primeiros 6 ou 8 dígitos são o BIN (Bank Identification Number), que identificam o emissor. O CVV é o código de segurança, e existe em versões diferentes (CVV1 na trilha magnética, CVV2 impresso no verso, CVV3 dinâmico em alguns cartões). O chip EMV é o circuito integrado que arma</p></section><article class="content-article" style="color:#273347"><h1 id="anatomia-do-cartão-o-que-são-pan-bin-cvv-chip-emv-e-trilha-magnética"><a href="#anatomia-do-cartão-o-que-são-pan-bin-cvv-chip-emv-e-trilha-magnética">Anatomia do cartão: o que são PAN, BIN, CVV, chip EMV e trilha magnética</a></h1>
+<h2 id="resposta-direta"><a href="#resposta-direta">Resposta direta</a></h2>
+<p>Um cartão de pagamento físico é composto por vários elementos técnicos, cada um com função específica. O PAN (Primary Account Number) é o número de 16 dígitos que identifica o cartão. Os primeiros 6 ou 8 dígitos são o BIN (Bank Identification Number), que identificam o emissor. O CVV é o código de segurança, e existe em versões diferentes (CVV1 na trilha magnética, CVV2 impresso no verso, CVV3 dinâmico em alguns cartões). O chip EMV é o circuito integrado que armazena dados criptografados para compras presenciais. A trilha magnética é o legado, padronizado pela ISO/IEC 7813. O NFC (contactless) é a antena para aproximação.</p>
+<h2 id="por-que-vale-entender-a-anatomia-do-cartão"><a href="#por-que-vale-entender-a-anatomia-do-cartão">Por que vale entender a anatomia do cartão</a></h2>
+<p>Se você vai emitir cartão, conhecer cada parte não é luxo. É o que separa quem faz uma operação bem feita de quem fica refém do fornecedor.</p>
+<p>Vamos percorrer o cartão de fora pra dentro.</p>
+<h2 id="o-pan-o-número-principal"><a href="#o-pan-o-número-principal">O PAN: o número principal</a></h2>
+<p>PAN é Primary Account Number. É aquele número de 16 dígitos que fica gravado na frente do cartão. Tecnicamente não é um número arbitrário. Ele é estruturado em três blocos, conforme a norma ISO/IEC 7812:</p>
+<ul>
+<li><strong>Dígitos 1 a 6 (ou 1 a 8, na norma atualizada): BIN/IIN.</strong> Identificam quem emitiu o cartão. É o <a href="/conteudos/como-solicitar-bin-iin-abnt">BIN que se registra na ABNT</a>.</li>
+<li><strong>Dígitos 7 a 15 (ou 9 a 15): Identificador único do cartão.</strong> É o número específico daquele cartão dentro do emissor. Geralmente é um sequencial, mas pode ter lógica interna para identificar produto, série, data de emissão.</li>
+<li><strong>Dígito 16: Dígito verificador.</strong> Calculado pelo <a href="/conteudos/algoritmo-luhn-cartao">algoritmo de LUHN</a>. Serve para detectar erros de digitação. Não é um dígito de segurança, é um dígito de consistência.</li>
+</ul>
+<p>Quando alguém tenta gerar um PAN aleatoriamente, a chance de o dígito verificador bater é de 1 em 10. Por isso o LUHN é usado desde os anos 1950. É um filtro simples que evita que erros triviais de digitação virem transações erradas.</p>
+<p>O PAN inteiro é público no sentido de que está impresso no cartão. Mas o uso do PAN isolado geralmente não é suficiente pra autorizar uma transação. Você precisa casar com outros elementos (data de expiração, CVV, senha).</p>
+<h2 id="bin-quem-emitiu-o-cartão"><a href="#bin-quem-emitiu-o-cartão">BIN: quem emitiu o cartão</a></h2>
+<p>O BIN (Bank Identification Number), como já vimos, são os primeiros 6 ou 8 dígitos do PAN. É o que permite o roteamento de transações. Quando você passa o cartão numa maquininha, o adquirente lê o BIN, consulta uma tabela global, identifica a bandeira e o emissor, e roteia a transação para a rede certa.</p>
+<p>Cada bandeira tem faixas de BIN reservadas. Visa começa geralmente com 4. Mastercard com 5 (ou 2 em alguns programas novos). American Express com 34 ou 37. Elo com faixas específicas atribuídas à bandeira nacional.</p>
+<p>Isso explica o &quot;truque&quot; que muita gente percebe sem entender: ao olhar os primeiros dígitos de um cartão, dá pra saber a bandeira antes mesmo de ver o logo. Mas esse é só o primeiro filtro. O BIN completo identifica também o emissor específico, que pode ser o banco, a fintech ou o programa.</p>
+<h2 id="cvv-o-código-de-segurança"><a href="#cvv-o-código-de-segurança">CVV: o código de segurança</a></h2>
+<p>Aqui mora uma confusão clássica. Muita gente acha que o CVV é só aquele código de 3 dígitos no verso do cartão. Na verdade, existem múltiplos CVVs.</p>
+<p><strong>CVV1 (também chamado CVC1, CVN1).</strong> É gerado pelo emissor e gravado na trilha magnética do cartão. Nunca é visível ao portador. Serve para autenticação em transações presenciais com tarja magnética. Quando o cartão é passado na maquininha, o CVV1 é lido e enviado na autorização. Se o CVV1 não bate com o esperado, a transação é negada. Isso dificulta clonagem simples de cartão.</p>
+<p><strong>CVV2 (ou CVC2, CVN2).</strong> É o famoso código de 3 dígitos impresso no verso. Em cartões Amex, são 4 dígitos na frente. Serve para autenticar transações em cartão não presente (e-commerce, telefone). Não está na trilha magnética. Não está no chip. A ideia é que só quem tem o cartão físico em mãos pode fornecer o CVV2. Se alguém roubou só o PAN e a data de expiração (via scraping ou phishing, por exemplo), sem o CVV2 não consegue fazer uma compra online na maioria dos merchants.</p>
+<p><strong>CVV3 (dinâmico).</strong> Em alguns cartões modernos, especialmente os premium, existe um display no cartão que exibe um CVV3 que muda a cada poucas horas. Criptograficamente gerado, torna quase impossível fraudar mesmo que alguém veja o cartão por alguns segundos. No Brasil, ainda é raro.</p>
+<p>Nenhum dos CVVs é criptográfico por design, mas cada um cumpre um filtro contra um tipo de fraude específico. Um bom sistema antifraude combina CVV com outras assinaturas (IP, geolocalização, histórico de uso) para decidir autorização.</p>
+<h2 id="chip-emv-o-circuito-integrado"><a href="#chip-emv-o-circuito-integrado">Chip EMV: o circuito integrado</a></h2>
+<p>EMV significa Europay, Mastercard, Visa. São as três bandeiras que se uniram nos anos 1990 para criar um padrão único de cartão com chip. A Europay depois foi absorvida pela Mastercard, mas o nome ficou.</p>
+<p>O chip EMV é aquele quadradinho dourado na frente do cartão. Ele armazena dados criptografados do cartão e do emissor. Quando inserido na maquininha, troca mensagens com o POS, gera um criptograma único para aquela transação, e só libera a compra se o criptograma for validado pela processadora.</p>
+<p>A grande diferença entre chip EMV e trilha magnética é que o chip gera um criptograma único por transação. Isso significa que, mesmo se alguém gravar o dado gerado naquela compra, não consegue replicar a mesma transação depois. Já a tarja magnética tem dados estáticos, que podem ser copiados com um skimmer e reutilizados.</p>
+<p>Por isso, cartões com chip são exponencialmente mais seguros que cartões só com tarja. Hoje, em praticamente todo o mundo, o chip é mandatório para cartões de bandeira aberta. Fraude com tarja magnética caiu mais de 80% depois da adoção ampla do EMV.</p>
+<p>Em operações de <a href="/conteudos/cartao-private-label">arranjo fechado</a>, o chip EMV às vezes é dispensado porque o escopo de uso é controlado e o risco de fraude é menor. O custo do chip (R$ 7 a R$ 12 por cartão na produção, mais R$ 5 mil a R$ 10 mil por mês em contratos de tecnologia para leitura) não compensa em todos os cenários.</p>
+<h2 id="trilha-magnética-o-legado-que-ainda-persiste"><a href="#trilha-magnética-o-legado-que-ainda-persiste">Trilha magnética: o legado que ainda persiste</a></h2>
+<p>A trilha magnética (magnetic stripe) é a faixa preta ou marrom no verso do cartão. Foi o primeiro padrão de armazenamento de dados em cartão de pagamento, inventado nos anos 1960.</p>
+<p>Tecnicamente, a trilha magnética padrão ISO/IEC 7813 tem três faixas:</p>
+<table><thead><tr><th>Trilha</th><th>Conteúdo</th><th>Uso</th></tr></thead><tbody><tr><td>1</td><td>PAN, nome do portador, data de expiração, código de serviço</td><td>Historicamente usada em cartões da indústria aérea</td></tr><tr><td>2</td><td>PAN, data de expiração, código de serviço, CVV1</td><td>Mais usada em cartões bancários no Brasil</td></tr><tr><td>3</td><td>Conteúdo opcional, customizável por instituição</td><td>Raramente usada</td></tr></tbody></table>
+<p>A trilha magnética é o caminho mais barato e simples para emitir cartão. Uma tiragem de plástico com só tarja magnética custa entre R$ 0,50 e R$ 2,00 por unidade, contra R$ 7 a R$ 12 com chip EMV.</p>
+<p>O problema é a segurança. Trilha magnética é copiável com equipamento barato (skimmer). Por isso as bandeiras abertas obrigam chip EMV em todos os cartões emitidos hoje. Em arranjos fechados, onde a rede é controlada, tarja magnética ainda é aceitável.</p>
+<p>O Brasil, assim como Europa e boa parte da Ásia, migrou para chip EMV bem antes dos Estados Unidos. Os americanos só adotaram EMV em massa a partir de 2015.</p>
+<h2 id="nfc-e-contactless"><a href="#nfc-e-contactless">NFC e contactless</a></h2>
+<p>NFC (Near Field Communication) é a tecnologia que permite pagamento por aproximação. O cartão tem uma antena interna que se comunica com o POS sem contato físico. A maioria dos cartões bandeirados emitidos hoje tem NFC.</p>
+<p>Contactless é funcionalmente parecido com chip EMV. O cartão gera criptograma único por transação, só que a conexão é via rádio em vez de contato físico.</p>
+<p>Vantagens do contactless:</p>
+<ul>
+<li>Rapidez. Transação acontece em menos de 1 segundo.</li>
+<li>Desgaste menor do cartão. Sem atrito físico.</li>
+<li>Compatível com carteiras digitais (Apple Pay, Google Pay, Samsung Pay), que usam o mesmo padrão NFC.</li>
+</ul>
+<p>Desvantagens:</p>
+<ul>
+<li>Custo adicional. Cartão com NFC custa mais caro na produção (R$ 2 a R$ 4 a mais por unidade). Infra de POS com contactless também tem custo de adequação (R$ 20 mil a R$ 30 mil por mês em alguns contratos de tecnologia de leitura).</li>
+</ul>
+<p>Em arranjos fechados, NFC é menos comum. O ganho de velocidade não compensa o custo adicional quando a operação é contida.</p>
+<h2 id="data-de-expiração"><a href="#data-de-expiração">Data de expiração</a></h2>
+<p>Simples, mas merece atenção. A data de expiração (MM/AA) indica até quando o cartão é válido. Depois disso, o cartão precisa ser reemitido.</p>
+<p>Função técnica:</p>
+<ul>
+<li><strong>Autenticação adicional.</strong> Em compras não presentes, o merchant pede a data junto com o PAN e CVV2. Trio de dados.</li>
+<li><strong>Controle de ciclo.</strong> Cartões expirados são automaticamente bloqueados na autorização. Se alguém tenta usar um cartão depois da data, o emissor nega.</li>
+<li><strong>Gerenciamento de risco.</strong> O emissor reemite o cartão periodicamente, o que dá chance de atualizar chips, substituir cartões perdidos, atualizar CVVs.</li>
+</ul>
+<p>A validade padrão de um cartão varia de 3 a 5 anos. Cartões premium às vezes são emitidos com validade mais longa, cartões de benefício corporativo às vezes com validade mais curta alinhada ao contrato de trabalho.</p>
+<h2 id="nome-do-portador"><a href="#nome-do-portador">Nome do portador</a></h2>
+<p>Impresso na frente, abaixo do PAN. Não tem função técnica de autenticação direta na maioria dos sistemas. Mas cumpre funções:</p>
+<ul>
+<li><strong>Identificação visual.</strong> Em compras presenciais, o comerciante pode pedir o documento do portador pra conferir se o nome bate com o cartão.</li>
+<li><strong>Branding.</strong> Cartões empresariais podem ter o nome da empresa junto com o do funcionário.</li>
+<li><strong>Relacionamento.</strong> Cartão com nome personaliza a experiência do cliente.</li>
+</ul>
+<p>O nome tem limite de caracteres que varia por bandeira. Visa e Mastercard geralmente aceitam até 26 caracteres. Nome muito longo é truncado ou abreviado.</p>
+<h2 id="outros-elementos-do-cartão-físico"><a href="#outros-elementos-do-cartão-físico">Outros elementos do cartão físico</a></h2>
+<p>Alguns elementos adicionais que aparecem em cartões:</p>
+<ul>
+<li><strong>Dados do emissor.</strong> Impressos no verso, identificam a instituição legalmente responsável. Útil para o portador saber quem contatar em caso de problema.</li>
+<li><strong>Texto livre.</strong> Espaço para informações adicionais: número de atendimento, canais de suporte, avisos sobre uso. Varia por emissor.</li>
+<li><strong>Hologramas.</strong> Algumas bandeiras exigem holograma específico (Visa tem a pomba voadora, Mastercard tem os círculos sobrepostos). Elemento anti-falsificação visual.</li>
+<li><strong>Elementos táteis.</strong> Algumas jurisdições exigem elementos em relevo, incluindo em Braille, para acessibilidade.</li>
+<li><strong>Código de serviço.</strong> Três dígitos armazenados na trilha magnética, indicam tipo de cartão (crédito, débito, pré-pago), se é internacional, se permite PIN.</li>
+</ul>
+<h2 id="quanto-custa-cada-elemento-na-produção"><a href="#quanto-custa-cada-elemento-na-produção">Quanto custa cada elemento na produção</a></h2>
+<p>Pra dar uma ordem de grandeza:</p>
+<table><thead><tr><th>Elemento</th><th>Custo adicional por cartão</th></tr></thead><tbody><tr><td>Plástico padrão com tarja magnética</td><td>R$ 0,50 a R$ 2,00</td></tr><tr><td>Chip EMV</td><td>R$ 7,00 a R$ 12,00 adicional</td></tr><tr><td>Antena NFC (contactless)</td><td>R$ 2,00 a R$ 4,00 adicional</td></tr><tr><td>Hologramas e elementos de segurança</td><td>R$ 1,00 a R$ 3,00 adicional</td></tr><tr><td>Plástico premium (metal, transparente)</td><td>R$ 30,00 a R$ 80,00 vs padrão</td></tr><tr><td>Personalização (embossing, gravação a laser)</td><td>R$ 2,00 a R$ 5,00</td></tr><tr><td>Embalagem (cartão em caixa, carta personalizada)</td><td>R$ 3,00 a R$ 10,00</td></tr></tbody></table>
+<p>Quem está modelando operação de cartão precisa somar esses itens ao custo total. Um cartão completo bandeirado com chip, NFC e embalagem padrão fica entre R$ 12 e R$ 25 por unidade. Cartão premium metálico com embalagem sofisticada facilmente passa de R$ 100.</p>
+<h2 id="faq"><a href="#faq">FAQ</a></h2>
+<p><strong>O que é PAN em cartão?</strong></p>
+<p>PAN (Primary Account Number) é o número principal do cartão, aquele de 16 dígitos impresso na frente. Identifica unicamente cada cartão no sistema de pagamentos.</p>
+<p><strong>Qual é a diferença entre CVV1 e CVV2?</strong></p>
+<p>CVV1 é o código gravado na trilha magnética, usado em transações presenciais. Nunca é visível ao portador. CVV2 é o código de 3 dígitos impresso no verso (ou 4 dígitos na frente, em cartões Amex), usado em transações não presentes (e-commerce). Tem funções diferentes e atende ataques diferentes.</p>
+<p><strong>Chip EMV é mais seguro que tarja magnética?</strong></p>
+<p>Sim. Chip EMV gera criptograma único por transação, tornando clonagem muito mais difícil. Tarja magnética tem dados estáticos, que podem ser copiados com skimmer e reutilizados. Por isso, bandeiras abertas mundialmente hoje obrigam chip EMV.</p>
+<p><strong>O que é NFC no cartão?</strong></p>
+<p>NFC (Near Field Communication) é a tecnologia de comunicação por aproximação. Uma antena dentro do cartão permite pagamento por aproximação do POS, sem precisar inserir o cartão. É a mesma tecnologia usada em Apple Pay, Google Pay e Samsung Pay.</p>
+<p><strong>Por que o cartão tem data de expiração?</strong></p>
+<p>A data de expiração serve como autenticação adicional (junto com PAN e CVV2), como controle de ciclo (permite reemitir cartões periodicamente) e como gerenciamento de risco. Cartões vencidos são bloqueados automaticamente na autorização.</p>
+<p><strong>O que são as trilhas magnéticas do cartão?</strong></p>
+<p>A trilha magnética segue o padrão ISO/IEC 7813 e tem 3 faixas. A trilha 1 armazena PAN, nome e data de expiração. A trilha 2 armazena PAN, data de expiração, código de serviço e CVV1. A trilha 3 é opcional e raramente usada. A trilha 2 é a mais usada em cartões bancários no Brasil.</p>
+<p><strong>Por que o último dígito do cartão é um dígito verificador?</strong></p>
+<p>O último dígito do PAN é calculado pelo algoritmo de LUHN para permitir detecção de erros de digitação. Se alguém digita o número errado, o dígito verificador não bate e o sistema rejeita antes mesmo de tentar a transação. Não é segurança, é consistência.</p>
+<p><strong>Posso ter cartão só virtual sem cartão físico?</strong></p>
+<p>Sim. Cartões virtuais são emitidos apenas digitalmente, com PAN, data de expiração e CVV2, sem plástico correspondente. São usados em compras online. Algumas fintechs (como Caju, Nubank Rewards) operam só com virtual em alguns cenários. A economia é significativa: zero custo de produção e logística.</p>
+<p><strong>Qual é a diferença entre cartão físico e tokenizado?</strong></p>
+<p>Cartão físico é o plástico com PAN gravado. Cartão tokenizado é a versão do mesmo cartão carregada em carteira digital (Apple Pay, Google Pay). A tokenização substitui o PAN por um token diferente por dispositivo, aumentando a segurança. Um único cartão pode ter múltiplos tokens ativos ao mesmo tempo (um no celular, outro no relógio, outro no laptop).</p>
+<p><strong>Quantos dígitos tem um cartão?</strong></p>
+<p>A maioria dos cartões tem 16 dígitos no PAN. Amex usa 15 dígitos. Diners Club histórico usa 14. A norma ISO/IEC 7812 permite de 13 a 19 dígitos, mas a convenção global é 16.</p>
+<h2 id="próximo-passo"><a href="#próximo-passo">Próximo passo</a></h2>
+<p>Se você está estruturando operação de cartão e precisa escolher os elementos do produto (chip ou só tarja, com NFC ou sem, plástico padrão ou premium), a JUST ajuda a desenhar a configuração que faz sentido para o seu caso de uso e orçamento. <a href="/contato">Fale com a gente</a>.</p></article><footer style="margin-top:48px;padding-top:36px;border-top:1px solid #dbe3ee"><aside style="margin:36px 0;padding:28px;border-radius:8px;background:#fff7f5;border:1px solid rgba(244,85,70,0.22)"><h3 style="color:#10243f;font-size:24px;line-height:1.2;margin-bottom:10px">Quer aplicar isso no seu produto financeiro?</h3><p style="color:#45556c;font-size:16px;line-height:1.65;margin-bottom:22px">A JUST ajuda empresas a desenhar, construir e operar produtos financeiros digitais com arquitetura modular.</p><button style="padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease">Conversar com especialista</button></aside><div style="padding:24px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><p style="color:#45556c;font-size:14px;line-height:1.7;margin-top:14px">Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.</p></div></footer><section style="margin-top:64px"><h2 style="color:#10243f;font-size:30px;line-height:1.2;margin-bottom:22px">Continue lendo</h2><div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:18px"><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Cartões</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/como-solicitar-bin-iin-abnt" style="color:#10243f;text-decoration:none">Como solicitar um BIN/IIN para arranjo fechado no Brasil: o caminho da ABNT</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">Para emitir cartão em arranjo fechado no Brasil, o BIN (Bank Identification Number) é registrado junto à ABNT seguindo a ISO/IEC 7812-1. Entenda o processo, o custo, o prazo e quando esse caminho faz sentido.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>10<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->23/04/2026</span></div></article><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Cartões</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/arranjo-aberto-vs-arranjo-fechado" style="color:#10243f;text-decoration:none">Arranjo aberto vs arranjo fechado: qual modelo de cartão faz sentido para sua operação</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">Arranjo aberto e arranjo fechado são os dois modelos que o BACEN reconhece para operações de cartão. Entenda as diferenças, a matemática de cada um e como escolher o que faz sentido para sua empresa.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>12<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->23/04/2026</span></div></article><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Cartões</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/bin-sponsor-o-que-e" style="color:#10243f;text-decoration:none">BIN Sponsor: o que é e como viabilizar sua emissão de cartão sem licença própria</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">BIN Sponsor é o modelo que permite emitir cartão no Brasil sem ter licença do BACEN nem contrato direto com a bandeira. Entenda como funciona, quando faz sentido e o que precisa olhar antes de assinar.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>11<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->23/04/2026</span></div></article></div></section></main></div></section></div></div><script>$RB=[];$RV=function(a){$RT=performance.now();for(var b=0;b<a.length;b+=2){var c=a[b],e=a[b+1];null!==e.parentNode&&e.parentNode.removeChild(e);var f=c.parentNode;if(f){var g=c.previousSibling,h=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d||"/&"===d)if(0===h)break;else h--;else"$"!==d&&"$?"!==d&&"$~"!==d&&"$!"!==d&&"&"!==d||h++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;e.firstChild;)f.insertBefore(e.firstChild,c);g.data="$";g._reactRetry&&requestAnimationFrame(g._reactRetry)}}a.length=0};
+$RC=function(a,b){if(b=document.getElementById(b))(a=document.getElementById(a))?(a.previousSibling.data="$~",$RB.push(a,b),2===$RB.length&&("number"!==typeof $RT?requestAnimationFrame($RV.bind(null,$RB)):(a=performance.now(),setTimeout($RV.bind(null,$RB),2300>a&&2E3<a?2300-a:$RT+300-a)))):b.parentNode.removeChild(b)};$RC("B:0","S:0")</script></div>
     <noscript>A JUST desenvolve e integra tecnologia para produtos financeiros digitais.</noscript>
   </body>
 </html>

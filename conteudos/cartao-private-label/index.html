@@ -41,7 +41,7 @@
         }
       }(window.location));
     </script>
-    <script type="module" crossorigin src="/assets/index-D7mgY0XA.js"></script>
+    <script type="module" crossorigin src="/assets/index-Bgkzpfet.js"></script>
       <meta property="article:published_time" content="2026-04-20" />
       <meta property="article:modified_time" content="2026-04-20" />
       <meta property="article:author" content="Gabriel Pires" />
@@ -61,7 +61,927 @@
     <!-- /JUST route SEO -->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><link rel="preload" as="image" href="/logo-just-2x.png"/><link rel="preload" as="image" href="/logos/cubo-itau.png"/><link rel="preload" as="image" href="/logos/abfintechs.png"/><link rel="preload" as="image" href="/logos/abstartups.png"/><link rel="preload" as="image" href="/logos/finscale.svg"/><link rel="preload" as="image" href="/logos/aws-partner.png"/><link rel="preload" as="image" href="/logos/swap.svg"/><link rel="preload" as="image" href="/logos/evertec.svg"/><link rel="preload" as="image" href="/logos/fiserv.png"/><link rel="preload" as="image" href="/logos/linx.png"/><link rel="preload" as="image" href="/authors/gabriel-pires.jpeg"/><div style="font-family:&#x27;Inter&#x27;, -apple-system, BlinkMacSystemFont, sans-serif;background:#0f112b;min-height:100vh;-webkit-font-smoothing:antialiased"><style>
+          :root {
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+          }
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          html, body { overflow-x: hidden; width: 100%; background: #0f112b; }
+          ::selection { background: rgba(244,85,70,0.3); }
+          input:focus, textarea:focus, select:focus { border-color: #f45546 !important; }
+          button:focus { outline: none; }
+          button:focus-visible {
+            outline: 2px solid rgba(244,85,70,0.72);
+            outline-offset: 3px;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              scroll-behavior: auto !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+          .desktop-nav .nav-link:hover { color: #f2f4f8 !important; }
+          .desktop-nav .nav-link-active::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            width: 26px;
+            height: 1px;
+            transform: translateX(-50%);
+            background: #f45546;
+            border-radius: 999px;
+          }
+          .hero-title-mobile { display: none; }
+          .hero-title-desktop { display: inline; }
+
+@media (max-width: 900px) {
+  .desktop-nav { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+  header { padding: 0 20px !important; }
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+  }
+  .comp-row > div {
+    min-width: 0 !important;
+  }
+  .comp-row h4,
+  .comp-row p {
+    overflow-wrap: anywhere !important;
+  }
+}
+@media (max-width: 520px) {
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels span {
+    font-size: 10px !important;
+    padding: 7px 10px !important;
+  }
+  .comp-row > div {
+    padding: 16px 10px !important;
+    gap: 9px !important;
+  }
+  .comp-row h4 {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+}
+@media (max-width: 900px) {
+  .hero-grid > div:last-child {
+    display: none !important;
+  }
+  .section-hero {
+    min-height: auto !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    padding: 116px 28px 46px !important;
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    align-items: start !important;
+  }
+  .hero-grid > div:first-child {
+    width: 100% !important;
+    max-width: 680px !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 16px !important;
+    letter-spacing: 0.1em !important;
+  }
+  .hero-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+    margin: 28px 0 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-grid p {
+    max-width: 34ch !important;
+    font-size: 17px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 28px !important;
+  }
+  .flow-steps-row {
+    display: none !important;
+  }
+  .hero-cta-row {
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+  .hero-cta-row button {
+    font-size: 15px !important;
+    padding: 14px 24px !important;
+  }
+  .section-social-proof {
+    padding: 28px 24px 40px !important;
+  }
+  .section-why-just {
+    padding: 84px 28px !important;
+  }
+  .why-just-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+  }
+  .just-pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .just-pillar {
+    min-height: auto !important;
+    padding: 30px 0 34px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  }
+  .just-pillars-grid > div:last-child .just-pillar {
+    border-bottom: none !important;
+  }
+  .just-pillar h3 {
+    font-size: 34px !important;
+  }
+  .social-logos {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(72px, 1fr)) !important;
+    gap: 22px 18px !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+    justify-items: center !important;
+    align-items: center !important;
+  }
+  .social-logos .partner-logo {
+    width: 86px !important;
+    height: 26px !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+  .site-footer {
+    padding: 58px 24px 34px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 38px 34px !important;
+  }
+  .site-footer-brand {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+  }
+  .site-footer-brand p {
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+  }
+  .site-footer-main h4 {
+    margin-bottom: 14px !important;
+  }
+  .site-footer-products button {
+    align-items: center !important;
+    gap: 10px !important;
+    line-height: 1.45 !important;
+    max-width: 100% !important;
+  }
+  .site-footer-company button,
+  .site-footer-contact a,
+  .site-footer-contact span {
+    font-size: 14px !important;
+    line-height: 1.75 !important;
+  }
+  .site-footer-contact {
+    grid-column: 1 / -1 !important;
+  }
+  .site-footer-bottom {
+    margin-top: 36px !important;
+  }
+  .site-footer-partners {
+    justify-content: center !important;
+    gap: 24px 34px !important;
+  }
+  .site-footer-partner-group {
+    text-align: center !important;
+  }
+  .site-footer-partner-logos {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  .privacy-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .privacy-aside {
+    position: static !important;
+  }
+  .article-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .toc-mobile-toggle {
+    display: block !important;
+  }
+  .toc-panel {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .section-hero {
+    min-height: auto !important;
+    padding: 104px 24px 42px !important;
+  }
+  .hero-grid {
+    min-height: auto !important;
+  }
+  .hero-grid > div:first-child {
+    min-height: auto !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 15px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .hero-title {
+    font-size: clamp(46px, 12.6vw, 50px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.058em !important;
+    margin: 30px 0 22px !important;
+    width: 100% !important;
+    max-width: calc(100vw - 48px) !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-title-desktop {
+    display: none !important;
+  }
+  .hero-title-mobile {
+    display: inline !important;
+  }
+  .hero-grid p {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+    max-width: 33ch !important;
+    margin-bottom: 26px !important;
+  }
+  .hero-cta-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    max-width: 306px !important;
+  }
+  .hero-cta-row button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 13px 22px !important;
+  }
+  .section-social-proof {
+    padding: 24px 24px 42px !important;
+  }
+  .section-why-just {
+    padding: 76px 24px !important;
+  }
+  .why-just-title {
+    font-size: clamp(52px, 13.8vw, 59px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.058em !important;
+  }
+  .just-pillar {
+    padding: 28px 0 32px !important;
+  }
+  .just-pillar h3 {
+    font-size: 30px !important;
+    margin-bottom: 18px !important;
+  }
+  .just-pillar p {
+    font-size: 15px !important;
+  }
+  .social-logos {
+    grid-template-columns: repeat(3, minmax(64px, 1fr)) !important;
+    gap: 22px 14px !important;
+    max-width: 330px !important;
+  }
+  .social-logos .partner-logo {
+    width: 72px !important;
+    height: 22px !important;
+    max-width: 100% !important;
+  }
+  .site-footer {
+    padding: 56px 24px 32px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    text-align: center !important;
+  }
+  .site-footer-products button {
+    justify-content: center !important;
+    margin: 0 auto !important;
+    width: fit-content !important;
+  }
+  .site-footer-company button {
+    margin: 0 auto !important;
+  }
+  .site-footer-contact {
+    text-align: center !important;
+  }
+  .site-footer-contact a,
+  .site-footer-contact span {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 300px !important;
+    white-space: pre-line !important;
+  }
+  .site-footer-partners {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .site-footer-partner-group {
+    width: 100% !important;
+  }
+  .site-footer-bottom-row {
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+.content-article {
+  font-size: 18px;
+  line-height: 1.78;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.content-article h1 {
+  display: none;
+}
+.content-article h2 {
+  color: #10243f;
+  font-size: 34px;
+  line-height: 1.18;
+  margin: 52px 0 18px;
+  scroll-margin-top: 112px;
+}
+.content-article h3 {
+  color: #10243f;
+  font-size: 24px;
+  line-height: 1.25;
+  margin: 36px 0 14px;
+}
+.content-article h2 a,
+.content-article h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.content-article p,
+.content-article li {
+  color: #273347;
+}
+.content-article p {
+  margin: 0 0 22px;
+}
+.content-article a {
+  color: #f45546;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+.content-article figure {
+  margin: 34px 0;
+}
+.content-article figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 18px 46px rgba(16,36,63,0.08);
+}
+.content-article figcaption {
+  margin-top: 10px;
+  color: #647084;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.content-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.content-article pre {
+  margin: 30px 0;
+  padding: 18px 20px;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  background: #f8fafc;
+  color: #10243f;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.content-article code {
+  overflow-wrap: anywhere;
+}
+.content-article th,
+.content-article td {
+  border: 1px solid #dbe3ee;
+  padding: 14px 16px;
+  text-align: left;
+}
+.content-article th {
+  color: #10243f;
+  background: #f8fafc;
+}
+.content-article td {
+  color: #273347;
+  background: #ffffff;
+}
+@media (max-width: 900px) {
+  .article-page-header {
+    padding: 118px 28px 48px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-category-kicker {
+    margin-bottom: 14px !important;
+  }
+  .article-page-title {
+    font-size: clamp(38px, 8vw, 48px) !important;
+    line-height: 1.04 !important;
+    max-width: 100% !important;
+    margin-bottom: 18px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-page-description {
+    font-size: 17px !important;
+    line-height: 1.62 !important;
+    max-width: 100% !important;
+    margin-bottom: 26px !important;
+  }
+  .article-page-meta {
+    gap: 20px !important;
+    align-items: flex-start !important;
+  }
+  .article-page-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-hero {
+    padding: 118px 28px 56px !important;
+  }
+  .content-hub-hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+    align-items: start !important;
+  }
+  .content-hub-title {
+    font-size: clamp(44px, 11.4vw, 58px) !important;
+    line-height: 1.02 !important;
+    max-width: 9ch !important;
+    margin-bottom: 20px !important;
+  }
+  .content-hub-subtitle {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+    max-width: 36ch !important;
+  }
+  .content-search {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+  .content-hub-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 34px !important;
+  }
+  .content-hub-layout > main {
+    min-width: 0 !important;
+  }
+  .content-sidebar {
+    order: -1 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+  .content-sidebar-card {
+    padding: 18px !important;
+  }
+  .article-card {
+    min-height: auto !important;
+    padding: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .article-card h2 {
+    font-size: 23px !important;
+    line-height: 1.14 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card-featured h2 {
+    font-size: 30px !important;
+    line-height: 1.1 !important;
+  }
+  .article-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+  .article-layout > aside,
+  .article-layout > main,
+  .article-main {
+    min-width: 0 !important;
+  }
+  .answer-box,
+  .source-box {
+    margin-bottom: 28px !important;
+  }
+  .answer-box h2,
+  .source-box h2 {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+  }
+  .content-article {
+    font-size: 17px !important;
+    line-height: 1.72 !important;
+  }
+  .content-article h2 {
+    font-size: 29px !important;
+    line-height: 1.16 !important;
+    margin: 42px 0 16px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article h3 {
+    font-size: 22px !important;
+    line-height: 1.24 !important;
+    margin: 30px 0 12px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .content-article th,
+  .content-article td {
+    min-width: 150px !important;
+  }
+}
+@media (max-width: 520px) {
+  .article-page-header {
+    padding: 104px 24px 38px !important;
+  }
+  .article-page-body {
+    padding: 40px 24px 68px !important;
+    overflow: hidden !important;
+  }
+  .article-empty-state {
+    padding: 120px 24px 56px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 11px !important;
+    margin-bottom: 18px !important;
+  }
+  .article-category-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .article-page-title {
+    font-size: clamp(34px, 10.2vw, 40px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+    width: 100% !important;
+  }
+  .article-page-description {
+    font-size: 16px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 22px !important;
+  }
+  .article-page-meta {
+    display: grid !important;
+    gap: 16px !important;
+  }
+  .content-hub-hero {
+    padding: 106px 24px 44px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-hero-grid,
+  .content-hub-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .content-hub-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+    margin-bottom: 16px !important;
+  }
+  .content-hub-title {
+    font-size: clamp(42px, 12vw, 48px) !important;
+    max-width: 8.5ch !important;
+  }
+  .content-hub-subtitle {
+    font-size: 16px !important;
+    max-width: 25ch !important;
+  }
+  .content-hub-body {
+    padding: 44px 24px 72px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-layout {
+    gap: 30px !important;
+  }
+  .content-sidebar {
+    order: 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .content-featured {
+    margin-bottom: 38px !important;
+  }
+  .content-section-label {
+    margin-bottom: 12px !important;
+  }
+  .content-list-title {
+    font-size: 28px !important;
+  }
+  .content-card-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .article-card {
+    padding: 22px !important;
+    width: calc(100vw - 48px) !important;
+    max-width: calc(100vw - 48px) !important;
+  }
+  .article-card h2,
+  .article-card-featured h2 {
+    display: block !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    width: min(100%, 24ch) !important;
+    max-width: 24ch !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: inline !important;
+    min-width: 0 !important;
+  }
+  .article-card p {
+    font-size: 14px !important;
+  }
+  .article-card-meta {
+    gap: 8px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+  .content-search,
+  .content-search input {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .article-layout {
+    gap: 22px !important;
+  }
+  .answer-box {
+    padding: 20px 18px !important;
+    margin-bottom: 24px !important;
+  }
+  .source-box {
+    margin-top: 34px !important;
+    padding-top: 20px !important;
+  }
+  .content-article {
+    font-size: 16px !important;
+    line-height: 1.68 !important;
+  }
+  .content-article p {
+    margin-bottom: 18px !important;
+  }
+  .content-article h2 {
+    font-size: 26px !important;
+    line-height: 1.14 !important;
+    margin: 36px 0 14px !important;
+  }
+  .content-article h3 {
+    font-size: 20px !important;
+    line-height: 1.22 !important;
+    margin: 26px 0 10px !important;
+  }
+  .content-article pre {
+    margin: 24px 0 !important;
+    padding: 14px 16px !important;
+    font-size: 13px !important;
+  }
+  .content-article th,
+  .content-article td {
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+  }
+}
+</style><header style="position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(15,17,43,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background-color 200ms var(--ease-out), border-color 200ms ease, backdrop-filter 200ms ease;z-index:100"><div style="cursor:pointer;display:flex;align-items:center"><img src="/logo-just-2x.png" alt="JUST" style="height:36px;object-fit:contain"/></div><nav class="desktop-nav" style="display:flex;align-items:center;gap:2px"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Home</button><div style="position:relative"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s" aria-haspopup="menu" aria-expanded="false">Produtos<!-- --> ▾</button><div style="position:absolute;top:100%;left:-20px;background:rgba(15,17,43,0.98);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:12px 8px;min-width:320px;backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:200;opacity:0;transform:translateY(6px) scale(0.98);transform-origin:top center;pointer-events:none;visibility:hidden;transition:opacity 170ms var(--ease-out), transform 170ms var(--ease-out), border-color 170ms ease" role="menu"><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #6C5CE718, rgba(10,12,31,0.9));border:1px solid #6C5CE740;box-shadow:0 0 12.8px #6C5CE720;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Benefits</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Benefícios flexíveis com arranjo customizável</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00B89418, rgba(10,12,31,0.9));border:1px solid #00B89440;box-shadow:0 0 12.8px #00B89420;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Fleet</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Controle financeiro completo por veículo</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #0984E318, rgba(10,12,31,0.9));border:1px solid #0984E340;box-shadow:0 0 12.8px #0984E320;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Banking</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Conta, cartão e PIX com sua marca</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #E1705518, rgba(10,12,31,0.9));border:1px solid #E1705540;box-shadow:0 0 12.8px #E1705520;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Expense</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Cartões corporativos com políticas inteligentes</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #FDCB6E18, rgba(10,12,31,0.9));border:1px solid #FDCB6E40;box-shadow:0 0 12.8px #FDCB6E20;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Credit</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos de crédito sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #636E7218, rgba(10,12,31,0.9));border:1px solid #636E7240;box-shadow:0 0 12.8px #636E7220;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Custom</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos financeiros sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00CEC918, rgba(10,12,31,0.9));border:1px solid #00CEC940;box-shadow:0 0 12.8px #00CEC920;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Sentinel</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Antifraude AI-native em tempo real</div></div></button></div></div><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Tecnologia</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Cases</button><button class="nav-link nav-link-active" style="color:#f2f4f8;font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Conteúdos</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Sobre</button><div style="display:flex;align-items:center;gap:6px;margin-left:8px;color:rgba(242,244,248,0.44);font-size:12px"><button style="padding:0;border:none;background:none;cursor:pointer;color:#f2f4f8;font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">PT</button><span style="opacity:0.55">/</span><button style="padding:0;border:none;background:none;cursor:pointer;color:rgba(242,244,248,0.34);font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">EN</button></div><button style="padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease;margin-left:8px">Fale Conosco</button></nav><button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:8px;color:#f2f4f8;width:40px;height:40px"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button></header><main><!--$?--><template id="B:0"></template><div style="min-height:80vh;background:#0f112b"></div><!--/$--></main><footer class="site-footer" style="background:#0a0c1e;padding:80px 48px 40px;border-top:1px solid rgba(255,255,255,0.07)"><div class="site-footer-main" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px"><div class="site-footer-brand"><div style="margin-bottom:20px"><img src="/logo-just-2x.png" alt="JUST" style="height:30px;object-fit:contain"/></div><p style="font-size:13px;color:rgba(242,244,248,0.35);line-height:1.7;max-width:260px">Crie sua fintech com tecnologia pronta para operar, escalar e evoluir.</p></div><div class="site-footer-products"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Produtos</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span>JUST Benefits</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span>JUST Fleet</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span>JUST Banking</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span>JUST Expense</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span>JUST Credit</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span>JUST Custom</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span>JUST Sentinel</button></div><div class="site-footer-company"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Empresa</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Sobre</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Cases</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Tecnologia</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Conteúdos</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Contato</button></div><div class="site-footer-contact"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Contato</h4><a href="mailto:contato@wearejust.it" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">contato@wearejust.it</a><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:8px">Condomínio Praça Capital<!-- -->
+<!-- -->Av. José Rocha Bomfim, 214 - Edifício Madri<!-- -->
+<!-- -->Campinas - SP</span><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:10px">Cubo Itaú<!-- -->
+<!-- -->Alameda Vicente Pinzón, 54 - Vila Olímpia<!-- -->
+<!-- -->São Paulo - SP</span><a href="https://www.linkedin.com/company/wearejust-it" target="_blank" rel="noopener noreferrer" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">LinkedIn →</a></div></div><div class="site-footer-bottom" style="max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.04)"><div class="site-footer-partners" style="display:flex;gap:48px;margin-bottom:24px;flex-wrap:wrap"><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Ecossistema e associações</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/cubo-itau.png" alt="Cubo Itaú" style="height:24px;width:auto;opacity:0.2"/><img src="/logos/abfintechs.png" alt="ABFintechs" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/abstartups.png" alt="ABStartups" style="height:18px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/finscale.svg" alt="Finscale" style="height:14px;width:auto;opacity:0.2"/></div></div><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Parceiros tecnológicos</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/aws-partner.png" alt="AWS" style="height:20px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/swap.svg" alt="Swap" style="height:16px;width:auto;opacity:0.2;filter:invert(1)"/><img src="/logos/evertec.svg" alt="Evertec" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/fiserv.png" alt="Fiserv" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/linx.png" alt="Linx" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/></div></div></div><p style="font-size:11px;color:rgba(242,244,248,0.18);line-height:1.7;margin-bottom:24px">A JUST atua exclusivamente como provedora de tecnologia e não realiza atividades privativas de instituições financeiras. Todos os serviços financeiros são operados por parceiros devidamente autorizados pelo Banco Central do Brasil.</p><div class="site-footer-bottom-row" style="display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap"><p style="font-size:12px;color:rgba(242,244,248,0.2)">© 2026 JUST. Todos os direitos reservados.</p><button style="font-size:12px;color:rgba(242,244,248,0.35);background:none;border:none;cursor:pointer;padding:0;text-decoration:none">Política de Privacidade</button></div></div></footer><a href="https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp" style="position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);z-index:1000;transition:transform 0.2s ease, box-shadow 0.2s ease;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a></div><script>requestAnimationFrame(function(){$RT=performance.now()});</script><div hidden id="S:0"><div style="background:#ffffff;min-height:100vh"><header class="article-page-header" style="padding:138px 48px 64px;background:#f6f8fb;border-bottom:1px solid #dbe3ee"><div style="max-width:1120px;margin:0 auto"><nav class="article-breadcrumbs" style="color:#647084;font-size:13px;margin-bottom:28px"><a href="/" style="color:inherit;text-decoration:none">Home</a><span style="margin:0 8px">/</span><a href="/conteudos" style="color:inherit;text-decoration:none">Conteúdos</a><span style="margin:0 8px">/</span><a href="/conteudos/categoria/meios-de-pagamento" style="color:#f45546;text-decoration:none">Meios de pagamento</a></nav><div class="article-category-kicker" style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px">Meios de pagamento</div><h1 class="article-page-title" style="color:#10243f;font-size:56px;line-height:1.03;letter-spacing:-0.02em;max-width:900px;margin-bottom:22px">Cartão private label: o guia completo para emitir o seu em 2026</h1><p class="article-page-description" style="color:#45556c;font-size:19px;line-height:1.65;max-width:760px;margin-bottom:32px">Como funciona, quanto custa, o que diz o BACEN e quando vale lançar um cartão private label próprio. Guia pragmático para empresas.</p><div class="article-page-meta" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><div style="color:#647084;font-size:13px;line-height:1.7"><div>Atualizado em <!-- -->20/04/2026</div><div>14<!-- --> min de leitura</div></div></div></div></header><section class="article-page-body" style="padding:72px 48px 104px;background:#ffffff"><div class="article-layout" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:260px minmax(0, 1fr);gap:54px;align-items:start"><aside style="position:sticky;top:104px"><button class="toc-mobile-toggle" style="display:none;width:100%;padding:12px 14px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc;color:#10243f;font-weight:700;margin-bottom:12px">Índice do artigo</button><div class="toc-panel" style="padding:20px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><p style="color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:800;margin-bottom:14px">Neste artigo</p><ol style="list-style:none;display:grid;gap:10px;margin:0;padding:0"><li><a href="#o-que-é-um-cartão-private-label-e-o-que-não-é" style="color:#f45546;font-size:13px;line-height:1.45;text-decoration:none;font-weight:700">O que é um cartão private label (e o que não é)</a></li><li><a href="#como-funciona-um-cartão-private-label-na-prática" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Como funciona um cartão private label na prática</a></li><li><a href="#o-que-diz-o-bacen-sobre-cartões-private-label" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">O que diz o BACEN sobre cartões private label</a></li><li><a href="#quanto-custa-emitir-um-cartão-private-label" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Quanto custa emitir um cartão private label</a></li><li><a href="#vantagens-reais-do-private-label" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Vantagens reais do private label</a></li><li><a href="#desvantagens-e-riscos-que-ninguém-te-conta" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Desvantagens e riscos que ninguém te conta</a></li><li><a href="#como-emitir-um-cartão-private-label-em-6-etapas" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Como emitir um cartão private label em 6 etapas</a></li><li><a href="#quando-private-label-não-é-a-resposta" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Quando private label NÃO é a resposta</a></li><li><a href="#além-do-varejo-casos-onde-private-label-é-sub-explorado" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Além do varejo: casos onde private label é sub-explorado</a></li><li><a href="#exemplos-de-cartões-private-label-no-brasil" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Exemplos de cartões private label no Brasil</a></li><li><a href="#matriz-de-decisão-qual-modelo-escolher" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Matriz de decisão: qual modelo escolher</a></li><li><a href="#perguntas-frequentes-sobre-cartão-private-label" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Perguntas frequentes sobre cartão private label</a></li></ol></div></aside><main class="article-main"><section class="answer-box" aria-labelledby="resposta-curta" style="border:1px solid #dbe3ee;border-left:4px solid #f45546;border-radius:8px;padding:24px 26px;margin-bottom:34px;background:#ffffff;box-shadow:0 14px 34px rgba(16,36,63,0.06)"><h2 id="resposta-curta" style="color:#10243f;font-size:22px;line-height:1.25;margin-bottom:10px">Resposta curta</h2><p style="color:#273347;font-size:17px;line-height:1.7;margin:0">Cartão private label é um cartão de pagamento sem bandeira aberta, aceito apenas na rede do próprio emissor. Ele costuma fazer sentido quando a empresa tem base recorrente, quer capturar margem em transações on-us e aceita assumir mais controle operacional, risco de fraude e, quando houver crédito, risco de inadimplência.</p></section><article class="content-article" style="color:#273347"><p>Se você chegou aqui, provavelmente está fazendo uma das três perguntas: vale a pena lançar um cartão próprio? Quanto isso custa de verdade? O BACEN vai deixar? São perguntas boas, e os artigos que dominam a busca no Google hoje respondem mal as três. Sobram adjetivos, faltam números.</p>
+<p>Este texto é uma tentativa de ser honesto sobre trade-offs. Vamos passar por definição, fluxo técnico, enquadramento regulatório, faixa de custo, vantagens, riscos, seis etapas de implementação e, no final, casos onde private label é sub-explorado: cooperativas, associações, franquias. Escrevi a partir da experiência da JUST como infraestrutura de emissão, processamento e antifraude. Onde faço afirmação de valor, mostro a faixa. Onde não há fonte pública, digo que é estimativa de mercado.</p>
+<h2 id="o-que-é-um-cartão-private-label-e-o-que-não-é"><a href="#o-que-é-um-cartão-private-label-e-o-que-não-é">O que é um cartão private label (e o que não é)</a></h2>
+<p>Private label é um cartão de pagamento de uso restrito à rede do próprio emissor. Ele não tem bandeira aberta do tipo Visa ou Mastercard, e opera dentro de um arranjo de pagamento fechado, conforme definido pela Lei 12.865/2013 e pela Resolução BCB 150/2021. Na prática, o cartão funciona dentro do universo da marca que o emitiu: lojas próprias, e-commerce, aplicativo, rede de franqueados. Não funciona no posto de gasolina da esquina nem na farmácia da outra rede.</p>
+<p>O exemplo mais conhecido no Brasil é o cartão Pernambucanas, que existe desde antes da maioria das fintechs ter CNPJ. A Renner tem o Meu Cartão Renner (via Realize). A Riachuelo tem Midway. A C&amp;A opera com a Bradescard. São private labels de crédito, que permitem ao varejista vender no crediário próprio e financiar o portador sem depender de bandeira.</p>
+<h3 id="definição-e-arranjo-de-pagamento-fechado"><a href="#definição-e-arranjo-de-pagamento-fechado">Definição e arranjo de pagamento fechado</a></h3>
+<p>No arranjo fechado, o emissor, a processadora e a rede que aceita o cartão pertencem à mesma empresa ou ao mesmo grupo econômico. É o oposto do arranjo aberto, onde Visa ou Mastercard entram como bandeiras e conectam milhares de emissores a milhões de estabelecimentos.</p>
+<p>Num arranjo fechado, o ciclo inteiro fica dentro de casa: o varejista emite, processa, autoriza, cobra. Por isso não paga intercâmbio para ninguém. Por isso também assume todo o risco de crédito e fraude. Essa é a troca.</p>
+<p>O BACEN publicou a definição oficial de arranjo de pagamento e classifica os tipos no site institucional. Vale consultar a fonte direto quando bater dúvida: <a href="https://www.bcb.gov.br" target="_blank" rel="noopener">BACEN, definição de arranjo de pagamento</a>.</p>
+<h3 id="private-label-vs-white-label-vs-co-branded-vs-crediário"><a href="#private-label-vs-white-label-vs-co-branded-vs-crediário">Private label vs white label vs co-branded vs crediário</a></h3>
+<p>Muita gente usa os termos como sinônimos. Não são. A tabela abaixo resume a diferença prática:</p>
+<table><thead><tr><th>Modelo</th><th>Aceitação</th><th>Bandeira</th><th>Risco de crédito</th><th>Dado do portador</th><th>Custo típico</th></tr></thead><tbody><tr><td>Private label</td><td>Restrita à rede do emissor</td><td>Sem bandeira</td><td>Emissor</td><td>Emissor</td><td>Baixo</td></tr><tr><td>White label</td><td>Bandeira ampla</td><td>Visa, Mastercard, Elo</td><td>Banco ou IP emissor</td><td>Emissor + banco</td><td>Médio</td></tr><tr><td>Co-branded</td><td>Bandeira ampla</td><td>Visa, Mastercard, Elo</td><td>Banco parceiro</td><td>Compartilhado</td><td>Médio a alto</td></tr><tr><td>Crediário</td><td>Loja física ou digital</td><td>Sem cartão plástico</td><td>Varejista</td><td>Varejista</td><td>Muito baixo</td></tr></tbody></table>
+<p>Resumindo em uma frase: private label é cartão da casa, white label é cartão com bandeira vendido com a marca do cliente, co-branded é cartão bandeira que divide marca com um parceiro (tipo LATAM Pass Itaú), e crediário é conta no caderninho, com sofisticação digital ou sem.</p>
+<h2 id="como-funciona-um-cartão-private-label-na-prática"><a href="#como-funciona-um-cartão-private-label-na-prática">Como funciona um cartão private label na prática</a></h2>
+<h3 id="os-quatro-atores"><a href="#os-quatro-atores">Os quatro atores</a></h3>
+<p>Um arranjo de pagamento tem quatro papéis que precisam existir, mesmo em operação fechada:</p>
+<ul>
+<li><strong>Emissor</strong>: dono do programa. No private label, normalmente é o próprio varejista ou uma IP contratada em nome dele.</li>
+<li><strong>Processadora</strong>: quem gerencia BIN, autorização, captura, clearing, settlement. Roda os padrões técnicos, inclusive ISO 8583 quando a operação cresce e passa a conversar com outros sistemas.</li>
+<li><strong>Autorizador</strong>: motor que decide se uma transação é aprovada. Em arranjo fechado, costuma estar dentro da processadora.</li>
+<li><strong>Rede aceitadora</strong>: onde o cartão pode ser usado. No private label, é só a rede do próprio emissor.</li>
+</ul>
+<p>Em muitos casos, dois ou três desses papéis ficam na mesma empresa. A JUST, por exemplo, atua como emissora e processadora para vários clientes, o que elimina pontos de integração e reduz o time-to-market. Quando o varejista não quer virar Instituição de Pagamento, ele aciona uma BaaS autorizada e herda a licença, o que cobriremos na seção regulatória.</p>
+<h3 id="fluxo-de-uma-transação-do-swipe-ao-settlement"><a href="#fluxo-de-uma-transação-do-swipe-ao-settlement">Fluxo de uma transação, do swipe ao settlement</a></h3>
+<p>O cliente passa o cartão no caixa. O PDV manda a requisição para a processadora. A processadora aciona o autorizador. O autorizador verifica saldo ou limite, regras antifraude, score transacional, e devolve aprovação ou recusa. A transação é capturada, entra no batch de clearing, e no settlement os valores são liquidados internamente.</p>
+<p>Em arranjo fechado, o settlement é essencialmente uma movimentação contábil entre contas do mesmo grupo. Em arranjo aberto, envolve bandeira, banco emissor, banco adquirente e o sistema de compensação. Por isso o arranjo fechado é mais simples tecnicamente e, geralmente, mais barato por transação. A contrapartida é a aceitação limitada.</p>
+<figure><img src="/conteudos/cartao-private-label/fluxo-transacao-private-label.png" alt="Fluxo de uma transação de cartão private label, do portador ao settlement" loading="lazy" decoding="async"/><figcaption>Fluxo simplificado de uma transação private label em arranjo fechado: autorização, processamento e liquidação acontecem dentro do ecossistema do emissor.</figcaption></figure>
+<h3 id="arranjo-fechado-aberto-e-híbrido"><a href="#arranjo-fechado-aberto-e-híbrido">Arranjo fechado, aberto e híbrido</a></h3>
+<p>Existem três configurações possíveis:</p>
+<p>O arranjo fechado é o clássico private label, uso restrito à rede do emissor. O arranjo aberto é o modelo bandeirado tradicional, aceitação ampla via Visa, Mastercard ou Elo. O arranjo híbrido mistura os dois: o cartão tem um saldo ou função fechada para uso interno (tipo vale-alimentação da empresa X) e, ao mesmo tempo, aceita transações em estabelecimentos externos via bandeira.</p>
+<p>O <a href="/beneficios">JUST Benefits para benefícios flexíveis</a> opera os três formatos dependendo do caso de uso. Benefício fechado dentro da empresa, benefício aberto para a rede de parceiros, ou híbrido para programas que precisam das duas coisas.</p>
+<h2 id="o-que-diz-o-bacen-sobre-cartões-private-label"><a href="#o-que-diz-o-bacen-sobre-cartões-private-label">O que diz o BACEN sobre cartões private label</a></h2>
+<p>Essa é a parte que ninguém explica direito na internet. Vou tentar explicar sem simplificar demais.</p>
+<h3 id="lei-1286513-e-o-conceito-de-arranjo-de-pagamento"><a href="#lei-1286513-e-o-conceito-de-arranjo-de-pagamento">Lei 12.865/13 e o conceito de arranjo de pagamento</a></h3>
+<p>A Lei 12.865/2013 é o marco legal dos arranjos e instituições de pagamento no Brasil. O artigo 6º define arranjo de pagamento como o conjunto de regras e procedimentos que disciplina a prestação de serviço de pagamento ao público. Ou seja, mesmo um cartão que só funciona na sua rede está sujeito à lei, porque é um instrumento de pagamento que transfere valor entre participantes.</p>
+<p>A lei não proíbe ninguém de lançar um cartão private label. Ela diz que, a partir de certos limites, o arranjo precisa ser formalmente autorizado pelo Banco Central. Abaixo desses limites, você opera sem autorização específica do arranjo, desde que as regras e a operação sigam a legislação vigente, inclusive sobre prevenção à lavagem de dinheiro (PLD-FT), KYC e proteção de dados (LGPD).</p>
+<p>Fonte oficial: <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12865.htm" target="_blank" rel="noopener">Planalto, Lei 12.865/2013</a>.</p>
+<h3 id="resolução-bcb-15021-e-quando-o-arranjo-precisa-ser-autorizado"><a href="#resolução-bcb-15021-e-quando-o-arranjo-precisa-ser-autorizado">Resolução BCB 150/21 e quando o arranjo precisa ser autorizado</a></h3>
+<p>A Resolução BCB 150/2021 define os critérios para dispensa ou exigência de autorização de arranjos de pagamento. Em linhas gerais, o arranjo precisa ser autorizado quando ultrapassa algum dos parâmetros: volume anual de transações acima de determinado patamar de valor ou de quantidade, ou base de usuários finais ativos acima de um teto definido.</p>
+<p>Os números exatos mudam ao longo do tempo por atos normativos complementares. O que vale guardar é a lógica: operações pequenas ou médias não precisam passar por autorização formal de arranjo. Operações grandes sim. Os thresholds são públicos e consultáveis direto na <a href="https://www.bcb.gov.br" target="_blank" rel="noopener">BCB, Resolução 150/2021</a>. Recomendo consultar a versão vigente antes de tomar decisão de lançamento.</p>
+<h3 id="quando-você-precisa-ser-instituição-de-pagamento-ip-autorizada"><a href="#quando-você-precisa-ser-instituição-de-pagamento-ip-autorizada">Quando você precisa ser Instituição de Pagamento (IP) autorizada</a></h3>
+<p>Aqui mora uma confusão comum. Emitir um private label não obriga automaticamente o varejista a virar Instituição de Pagamento. Existem dois caminhos:</p>
+<p>O primeiro é virar IP, pedir autorização ao BACEN, montar estrutura de compliance, capital mínimo, PLD-FT, auditoria. Custa caro e leva tempo. Faz sentido quando o plano é operar como fintech independente e oferecer serviços de pagamento para terceiros.</p>
+<p>O segundo é contratar uma BaaS autorizada. A IP já existe, você é cliente dela. Sua marca fica no cartão, a licença fica na parceira. Essa é a forma como a maioria dos programas de médio porte opera hoje no Brasil. É o que a JUST oferece com <a href="/antecipacao">JUST Credit: private label, antecipação e recebíveis</a> e com <a href="/banking">JUST Banking: banking digital white-label</a>.</p>
+<p>Regra prática: se você não tem ambição de virar fintech de pagamentos, não precisa virar IP. Contrata uma BaaS e foca no programa, não na burocracia.</p>
+<h2 id="quanto-custa-emitir-um-cartão-private-label"><a href="#quanto-custa-emitir-um-cartão-private-label">Quanto custa emitir um cartão private label</a></h2>
+<p>Essa é a seção que os concorrentes não escrevem. Vou mostrar faixas realistas, separadas por CAPEX, OPEX e receitas. São ordens de grandeza de mercado, não cotação. O número real depende de volume, complexidade do produto, integrações e se você vai ou não ter crédito.</p>
+<figure><img src="/conteudos/cartao-private-label/unit-economics-private-label.png" alt="Quadro com principais custos e unit economics de um cartão private label" loading="lazy" decoding="async"/><figcaption>Antes do go-live, a decisão precisa fechar em quatro dimensões: CAPEX, OPEX, risco de crédito e volume mínimo para breakeven.</figcaption></figure>
+<h3 id="capex-inicial"><a href="#capex-inicial">CAPEX inicial</a></h3>
+<ul>
+<li><strong>Setup de tecnologia via BaaS</strong>: R$ 30 mil a R$ 150 mil, dependendo do grau de customização. Programa padrão com UX pronta fica no piso. Múltiplos saldos, integrações específicas e regras de negócio exclusivas empurram para o teto.</li>
+<li><strong>Setup regulatório via BaaS autorizada</strong>: geralmente incluso ou com taxa entre R$ 0 e R$ 50 mil. A IP já existe, você usa a licença dela.</li>
+<li><strong>Setup regulatório caso queira ser IP própria</strong>: de R$ 500 mil a R$ 2 milhões, com 8 a 12 meses de processo. Envolve capital mínimo, estrutura de compliance, auditoria, sistemas obrigatórios de PLD-FT.</li>
+<li><strong>Desenho de produto e marca</strong>: R$ 20 mil a R$ 80 mil. Inclui arte do cartão, UX do app, identidade do programa, jornada de cadastro e KYC.</li>
+<li><strong>Integrações ERP, POS, e-commerce</strong>: R$ 15 mil a R$ 60 mil. Varia muito com o ERP. SAP custa mais do que um ERP nacional. POS legado custa mais do que POS moderno.</li>
+</ul>
+<h3 id="opex-recorrente"><a href="#opex-recorrente">OPEX recorrente</a></h3>
+<ul>
+<li><strong>Processamento por transação</strong>: R$ 0,05 a R$ 0,30. Quanto maior o volume, mais baixo o custo unitário.</li>
+<li><strong>Antifraude</strong>: 0,5% a 1,5% do GMV transacionado, dependendo do motor e do perfil de risco. Um arranjo fechado tende a ter custo menor do que bandeirado porque o universo de ataque é limitado. Quem usa <a href="/sentinel">Sentinel, nosso motor de antifraude transacional</a> consegue otimizar essa linha.</li>
+<li><strong>Atendimento e call center</strong>: proporcional à base ativa. Regra prática: 1% a 3% dos portadores ativos acionam suporte por mês.</li>
+<li><strong>PDD (provisão para devedores duvidosos)</strong>: 3% a 12% do crédito concedido, dependendo do score médio da base. Base com score alto opera no piso, base subprime opera no teto.</li>
+<li><strong>Custo de capital</strong>: só aparece se você oferecer crédito. Depende do funding: capital próprio, FIDC, parceria com banco, securitização.</li>
+</ul>
+<h3 id="receitas-possíveis"><a href="#receitas-possíveis">Receitas possíveis</a></h3>
+<ul>
+<li><strong>Intercâmbio on-us</strong>: 0,5% a 2%. Em arranjo fechado, você mesmo recebe essa fatia, porque não há bandeira cobrando.</li>
+<li><strong>MDR em redes parceiras</strong>: se hibridizar o arranjo, o MDR negociado vira receita também. Variável.</li>
+<li><strong>Juros de rotativo ou parcelado</strong>: 8% a 15% ao mês, conforme política de risco e regulação vigente.</li>
+<li><strong>Anuidade</strong>: rara em private label de varejo. R$ 0 a R$ 80 por ano quando cobrada.</li>
+<li><strong>Float</strong>: ganho financeiro sobre o saldo pré-pago ou sobre o prazo entre transação e liquidação. Depende da estrutura.</li>
+</ul>
+<h3 id="a-partir-de-que-volume-compensa"><a href="#a-partir-de-que-volume-compensa">A partir de que volume compensa</a></h3>
+<p>A faixa de breakeven de mercado para um private label de crédito gira em torno de 10 mil a 20 mil cartões ativos, ou R$ 50 milhões a R$ 100 milhões por ano em GMV on-us. Abaixo disso, a matemática dos custos fixos pesa demais. Pré-pago tem breakeven mais baixo porque não tem PDD nem custo de capital.</p>
+<p>Número importante: esses são referenciais genéricos. Um programa bem desenhado numa base engajada pode virar positivo mais cedo. Um programa solto numa base fria pode nunca virar.</p>
+<p>Quer uma estimativa real para o seu caso? <a href="/contato?assunto=private-label">Fale com o time JUST</a>.</p>
+<h2 id="vantagens-reais-do-private-label"><a href="#vantagens-reais-do-private-label">Vantagens reais do private label</a></h2>
+<h3 id="aumento-de-ticket-médio-e-recorrência"><a href="#aumento-de-ticket-médio-e-recorrência">Aumento de ticket médio e recorrência</a></h3>
+<p>Cartão próprio com crédito ou benefício dedicado costuma elevar ticket médio e frequência de compra na base ativa. A ABECS publica dados setoriais sobre penetração e uso de cartões que ajudam a calibrar expectativa. O efeito é real, mas é gradativo: não espere dobrar o faturamento no primeiro trimestre.</p>
+<h3 id="dado-do-portador-e-lgpd"><a href="#dado-do-portador-e-lgpd">Dado do portador e LGPD</a></h3>
+<p>Você sabe quem comprou, o que comprou, quando, quanto, com qual frequência. Isso é ouro para CRM, campanha, estoque, pricing. O catch é LGPD. Tratar dado pessoal com base legal válida, minimização, segurança, base legal explícita para marketing. Programa de private label mal desenhado vira passivo em auditoria. Programa bem desenhado vira vantagem competitiva.</p>
+<h3 id="redução-de-mdr-em-transações-on-us"><a href="#redução-de-mdr-em-transações-on-us">Redução de MDR em transações on-us</a></h3>
+<p>Em compra feita com o cartão da casa dentro da casa, você não paga MDR para bandeira nem para adquirente. A economia direta costuma ficar entre 3% e 3,5% do valor da transação, que era o que iria para a adquirência no modelo bandeirado. Em operação com GMV alto, isso é dinheiro real.</p>
+<h3 id="crédito-próprio-como-alavanca-de-margem"><a href="#crédito-próprio-como-alavanca-de-margem">Crédito próprio como alavanca de margem</a></h3>
+<p>Se você oferece parcelado sem juros na loja, alguém está bancando o custo. Normalmente, é a adquirente ou a bandeira via antecipação. No private label com crédito próprio, o spread fica com você. Isso muda a P&amp;L do negócio, mas traz responsabilidade: inadimplência também fica com você.</p>
+<h2 id="desvantagens-e-riscos-que-ninguém-te-conta"><a href="#desvantagens-e-riscos-que-ninguém-te-conta">Desvantagens e riscos que ninguém te conta</a></h2>
+<h3 id="inadimplência-e-pdd"><a href="#inadimplência-e-pdd">Inadimplência e PDD</a></h3>
+<p>Se você concede crédito, você precisa provisionar perdas. Isso é contábil, não opcional. A PDD reduz o resultado antes mesmo do default acontecer. Em base subprime, a PDD pode comer toda a margem do spread. Mitigar com política de risco, scoring, limites conservadores no início, crescimento da base gradual e revisão trimestral.</p>
+<h3 id="capital-imobilizado-no-crédito-concedido"><a href="#capital-imobilizado-no-crédito-concedido">Capital imobilizado no crédito concedido</a></h3>
+<p>Crédito na rua é caixa fora do balanço. Se o programa cresce rápido, a necessidade de capital cresce junto. Programas que começam com recursos próprios muitas vezes precisam buscar FIDC, securitização ou parceria com banco para não travar crescimento. Dinheiro é combustível, e quanto mais cartões ativos, mais combustível você precisa.</p>
+<h3 id="fraude-transacional-em-ambiente-fechado"><a href="#fraude-transacional-em-ambiente-fechado">Fraude transacional em ambiente fechado</a></h3>
+<p>A fraude em arranjo fechado é menos volumosa que em bandeirado, mas tem uma característica perversa: quando ela acontece, você arca com 100% do chargeback. Não há bandeira para dividir perda, não há regra de responsabilidade do adquirente. Por isso antifraude em private label precisa ser desenhado para o contexto, com regras específicas para o comportamento de compra da rede.</p>
+<h3 id="base-desengajada-e-o-risco-de-jogar-dinheiro-fora"><a href="#base-desengajada-e-o-risco-de-jogar-dinheiro-fora">Base desengajada e o risco de jogar dinheiro fora</a></h3>
+<p>Lançar cartão próprio para uma base que compra duas vezes por ano na sua loja é jogar CAPEX fora. O cartão vira brinde esquecido na carteira. Antes de investir em emissão, vale medir engajamento atual: frequência média, share of wallet, retenção. Se a base não compra recorrente, private label não muda isso. Primeiro resolva engajamento, depois lance cartão.</p>
+<h2 id="como-emitir-um-cartão-private-label-em-6-etapas"><a href="#como-emitir-um-cartão-private-label-em-6-etapas">Como emitir um cartão private label em 6 etapas</a></h2>
+<p>Fluxo que funciona, testado em clientes em operação. Você pode ver alguns <a href="/cases">cases de clientes em operação</a> para referência.</p>
+<h3 id="1-validar-hipótese-de-negócio-e-volume-mínimo"><a href="#1-validar-hipótese-de-negócio-e-volume-mínimo">1. Validar hipótese de negócio e volume mínimo</a></h3>
+<p>Antes de qualquer coisa técnica, você precisa responder: quantos dos meus clientes ativos vão usar esse cartão? Qual o GMV on-us projetado? Qual o ticket médio esperado? Qual a inadimplência prevista? Sem esses quatro números, o projeto começa torto. Faça o cálculo de breakeven com faixas pessimista, realista e otimista. Se o cenário pessimista já fecha no positivo, vá em frente. Se só o otimista fecha, repense o modelo ou adie.</p>
+<h3 id="2-escolher-baas-parceira-vs-caminho-próprio"><a href="#2-escolher-baas-parceira-vs-caminho-próprio">2. Escolher BaaS parceira vs caminho próprio</a></h3>
+<p>Critério de decisão objetivo: quer virar fintech de pagamentos ou quer um programa de fidelização com crédito? Se é o segundo, use BaaS. Se é o primeiro, prepare-se para 12 meses de regulação. Avalie a BaaS em cinco dimensões: licença vigente, estabilidade de APIs, time de suporte, flexibilidade de produto, custo transparente. O mais barato na proposta nem sempre é o mais barato em produção.</p>
+<h3 id="3-desenhar-produto"><a href="#3-desenhar-produto">3. Desenhar produto</a></h3>
+<p>Pré-pago, crédito, híbrido ou múltiplos saldos. Pré-pago é mais simples, tem breakeven mais baixo, não tem PDD. Crédito traz margem mas traz risco. Híbrido permite cashback e crédito coexistindo. Múltiplos saldos é o que faz sentido em benefícios corporativos, onde alimentação, mobilidade e cultura ficam em bolsos diferentes no mesmo cartão. Escolha em função do caso de uso, não da vaidade do produto.</p>
+<h3 id="4-integrar-erp-pos-e-commerce-e-app"><a href="#4-integrar-erp-pos-e-commerce-e-app">4. Integrar ERP, POS, e-commerce e app</a></h3>
+<p>A parte que atrasa projetos. POS legado costuma precisar de firmware novo. ERP precisa receber a autorização em tempo real para dar baixa no estoque. App precisa de SDK para consulta de saldo e extrato. E-commerce precisa de gateway que reconheça o BIN do programa. Mapeie todas as integrações no início, orce com folga, teste em ambiente controlado antes de abrir para portadores reais.</p>
+<h3 id="5-piloto-com-base-controlada"><a href="#5-piloto-com-base-controlada">5. Piloto com base controlada</a></h3>
+<p>60 a 90 dias, entre 500 e 2.000 portadores. KPIs claros: taxa de ativação do cartão, frequência de uso, ticket médio, inadimplência (se crédito), NPS do portador, tempo médio de atendimento, taxa de falha transacional. Se qualquer desses KPIs ficar fora da faixa esperada, segure o go-live. Ajuste antes de escalar. É sempre mais barato corrigir em 1.000 cartões do que em 100 mil.</p>
+<h3 id="6-go-live-e-escala"><a href="#6-go-live-e-escala">6. Go-live e escala</a></h3>
+<p>Critérios de saída do piloto: ativação acima de 60%, taxa de falha transacional abaixo de 0,5%, inadimplência dentro do previsto, NPS positivo. Cumpridos os critérios, abra progressivamente. Não abra para toda a base de uma vez: a escala rápida multiplica problemas operacionais. Curva de crescimento saudável tende a ser logarítmica nos primeiros seis meses, não linear.</p>
+<p>A JUST opera o ciclo completo: emissor, processadora e antifraude. <a href="/antecipacao">Conheça o JUST Credit</a>.</p>
+<h2 id="quando-private-label-não-é-a-resposta"><a href="#quando-private-label-não-é-a-resposta">Quando private label NÃO é a resposta</a></h2>
+<p>Preciso dizer com todas as letras: nem todo negócio deveria lançar cartão próprio. Três cenários onde a resposta sincera é não:</p>
+<h3 id="base-pequena-ou-desengajada"><a href="#base-pequena-ou-desengajada">Base pequena ou desengajada</a></h3>
+<p>Menos de 5 mil clientes engajados é base pequena para sustentar custo fixo de um programa. Base grande mas com baixa recorrência também não funciona. Cartão não conserta falta de engajamento, ele amplifica o engajamento que já existe.</p>
+<h3 id="ticket-médio-muito-baixo"><a href="#ticket-médio-muito-baixo">Ticket médio muito baixo</a></h3>
+<p>Ticket médio abaixo de R$ 50 torna difícil absorver o custo transacional do programa. O cálculo simples: se processar uma transação custa R$ 0,15 e o ticket é R$ 30, você gastou 0,5% só em processamento. Some antifraude, atendimento, PDD. A margem some.</p>
+<h3 id="operação-sem-time-de-crédito-e-compliance"><a href="#operação-sem-time-de-crédito-e-compliance">Operação sem time de crédito e compliance</a></h3>
+<p>Private label com crédito exige política, scoring, cobrança, recuperação, contábil, LGPD, PLD-FT. Sem time dedicado ou parceiro especializado, o programa vira passivo. Se essa estrutura não existe hoje, considere <a href="/sob-demanda">JUST Custom, para projetos sob demanda</a> ou comece com pré-pago antes de partir para crédito.</p>
+<p>Alternativas quando não é hora do private label: crediário digital integrado ao checkout, cashback via app sem cartão físico, co-branded com banco parceiro. Todas mais baratas, todas mais rápidas de lançar.</p>
+<h2 id="além-do-varejo-casos-onde-private-label-é-sub-explorado"><a href="#além-do-varejo-casos-onde-private-label-é-sub-explorado">Além do varejo: casos onde private label é sub-explorado</a></h2>
+<p>Aqui mora o ponto cego do mercado. A conversa sobre private label quase sempre gira em torno de grande varejo. Mas o modelo funciona em vários outros contextos onde a base é engajada e a recorrência existe. Em alguns deles, a matemática é até mais favorável.</p>
+<h3 id="cooperativas-de-crédito-e-consumo"><a href="#cooperativas-de-crédito-e-consumo">Cooperativas de crédito e consumo</a></h3>
+<p>Sicredi, Unicred, cooperativas regionais. Um cartão da cooperativa, aceito na rede interna de parceiros, com crédito cooperativo e benefícios para cooperados, fecha um ciclo de fidelização que o banco tradicional não consegue replicar. Pré-pago funciona bem em cooperativas menores, crédito faz sentido em cooperativas com estrutura maior.</p>
+<h3 id="associações-de-classe-e-sindicatos"><a href="#associações-de-classe-e-sindicatos">Associações de classe e sindicatos</a></h3>
+<p>Associações médicas, de advogados, de engenheiros, conselhos regionais. A base já é engajada, tem recorrência anual (contribuição), e quase sempre faz acordo com fornecedores (seguro, educação, bem-estar). Um cartão da associação agrega esses acordos num instrumento único, negociável e com dado rico.</p>
+<h3 id="franquias-e-franqueadores"><a href="#franquias-e-franqueadores">Franquias e franqueadores</a></h3>
+<p>Rede com 50 ou mais unidades tem, por definição, um problema de fidelização cruzada: cliente da unidade A não compra na unidade B. Cartão da rede resolve isso. Cashback entre unidades estimula frequência. Programa de loyalty da marca consolida dados que hoje ficam isolados no POS de cada franqueado.</p>
+<h3 id="clubes-de-benefício-verticais"><a href="#clubes-de-benefício-verticais">Clubes de benefício verticais</a></h3>
+<p>Programas corporativos para setores específicos: saúde (médicos, dentistas), educação (professores, estudantes), jurídico, engenharia. O vertical conhece bem o público, tem rede de parceiros específica, e pode desenhar benefício relevante. É o que o <a href="/despesas">JUST Expense para cartões corporativos</a> viabiliza em vários casos.</p>
+<p>Cooperativa, associação ou franquia? <a href="/sob-demanda">Desenhamos do zero</a>.</p>
+<h2 id="exemplos-de-cartões-private-label-no-brasil"><a href="#exemplos-de-cartões-private-label-no-brasil">Exemplos de cartões private label no Brasil</a></h2>
+<p>Para calibrar expectativa com casos reais, alguns programas em operação no país:</p>
+<ul>
+<li><strong>Pernambucanas</strong>: um dos maiores private labels do Brasil, em operação há décadas, com forte presença no Sudeste e Nordeste.</li>
+<li><strong>Renner (Meu Cartão Renner, via Realize)</strong>: private label com crédito, hoje um dos principais centros de receita do grupo.</li>
+<li><strong>Riachuelo (Midway)</strong>: estrutura financeira própria da rede, com cartão próprio e outros produtos.</li>
+<li><strong>C&amp;A (Bradescard)</strong>: operação em parceria com Bradesco, historicamente relevante em volume.</li>
+<li><strong>Magalu</strong>: programa com múltiplas frentes financeiras, integrado ao super-app.</li>
+<li><strong>Casas Bahia</strong>: emissor histórico de crediário e cartão próprio no varejo de eletrodomésticos.</li>
+<li><strong>Assaí</strong>: programa voltado para o público atacarejo, com benefícios específicos.</li>
+<li><strong>Carrefour</strong>: operação com cartão próprio e co-branded, forte no hipermercado.</li>
+<li><strong>Condor</strong>: rede do Paraná com programa próprio de relacionamento e pagamento.</li>
+</ul>
+<p>Cada um desses programas tem particularidades de estrutura societária (alguns com banco próprio, outros em parceria) e de produto (crédito, co-branded, híbrido). O ponto é que o modelo funciona em escalas diferentes, com desenhos diferentes.</p>
+<h2 id="matriz-de-decisão-qual-modelo-escolher"><a href="#matriz-de-decisão-qual-modelo-escolher">Matriz de decisão: qual modelo escolher</a></h2>
+<p>Tabela prescritiva para ajudar a pensar. Não substitui análise do seu caso específico.</p>
+<table><thead><tr><th>Se você é...</th><th>E quer...</th><th>Modelo sugerido</th></tr></thead><tbody><tr><td>Varejo acima de R$ 100 mi GMV, base engajada</td><td>Fidelização e crédito próprio</td><td>Private label crédito</td></tr><tr><td>Cooperativa ou associação</td><td>Experiência própria sem custo de bandeira</td><td>Private label pré-pago</td></tr><tr><td>Franqueador</td><td>Programa de fidelidade e cashback entre unidades</td><td>Private label pré-pago com cashback</td></tr><tr><td>Fintech vertical</td><td>Produto financeiro com marca própria</td><td>White label com bandeira</td></tr><tr><td>Varejo abaixo de R$ 50 mi GMV</td><td>Crédito sem complexidade regulatória</td><td>Co-branded ou crediário digital</td></tr><tr><td>Operação B2B com compras frequentes</td><td>Controle de gasto e visibilidade de dado</td><td>Private label corporativo</td></tr></tbody></table>
+<p>Note como fintech vertical e varejo de grande porte não vão no mesmo modelo. A lógica muda. Para fintech, a aceitação ampla é quase sempre parte do valor percebido pelo usuário final, então white label com bandeira ganha. Para varejo com base fiel, a economia de MDR e a fidelização falam mais alto, e o private label ganha.</p>
+<h2 id="perguntas-frequentes-sobre-cartão-private-label"><a href="#perguntas-frequentes-sobre-cartão-private-label">Perguntas frequentes sobre cartão private label</a></h2>
+<p><strong>1. O que é um cartão private label?</strong></p>
+<p>É um cartão de pagamento emitido por uma empresa para uso restrito à sua própria rede, operado em arranjo de pagamento fechado conforme a Lei 12.865/2013. Não tem bandeira aberta como Visa ou Mastercard. O emissor, a processadora e a rede aceitadora são do mesmo grupo econômico.</p>
+<p><strong>2. Qual a diferença entre cartão private label, white label e co-branded?</strong></p>
+<p>Private label é cartão da casa, sem bandeira, aceito só na rede do emissor. White label é cartão com bandeira Visa ou Mastercard, vendido com a marca do cliente. Co-branded é cartão bandeirado que divide marca entre emissor e parceiro, com aceitação ampla. Cada modelo tem custo, risco e alcance diferentes.</p>
+<p><strong>3. Preciso ser banco ou ter autorização do BACEN para emitir um cartão private label?</strong></p>
+<p>Depende do volume. Operações abaixo dos thresholds da Resolução BCB 150/2021 não exigem autorização formal do arranjo. Acima disso, sim. O emissor não precisa virar Instituição de Pagamento se contratar uma BaaS autorizada. A BaaS emprestar a licença é prática comum no mercado brasileiro.</p>
+<p><strong>4. Quanto custa lançar um cartão private label?</strong></p>
+<p>Faixa típica de CAPEX via BaaS fica entre R$ 50 mil e R$ 300 mil, a depender de customização e integrações. OPEX mensal depende de volume transacionado, antifraude e PDD. Ser IP própria custa de R$ 500 mil a R$ 2 milhões, com 8 a 12 meses de regulação.</p>
+<p><strong>5. Em quanto tempo um cartão private label entra em operação?</strong></p>
+<p>Via BaaS, entre 3 e 6 meses do briefing ao piloto, dependendo de integrações. Caminho próprio, passando por autorização como IP, leva de 12 a 18 meses. Programas pré-pagos simples, com integrações leves, conseguem ir ao ar em 90 dias.</p>
+<p><strong>6. Cartão private label pode ser de crédito, pré-pago ou débito?</strong></p>
+<p>Pode ser de crédito ou pré-pago. Débito puro em arranjo fechado é raro no Brasil porque não há vantagem técnica sobre pré-pago. A combinação mais comum é pré-pago com ou sem cashback, ou crédito com limite rotativo. Híbridos com múltiplos saldos existem e são comuns em benefícios.</p>
+<p><strong>7. Como funciona a cobrança em um cartão private label?</strong></p>
+<p>No crédito, o portador recebe fatura mensal com compras parceladas ou à vista, podendo pagar total ou parcial. No pré-pago, o portador carrega saldo antes de usar. A cobrança fica dentro do ecossistema do emissor, o que simplifica conciliação e reduz custos de adquirência.</p>
+<p><strong>8. Quais são os riscos do cartão private label para o lojista?</strong></p>
+<p>Inadimplência e PDD no modelo de crédito, capital imobilizado no crédito concedido, fraude transacional com 100% do chargeback a cargo do emissor, e o risco de investir em programa para uma base que não é engajada o suficiente para sustentá-lo.</p>
+<p><strong>9. Cartão private label serve para pequeno varejo ou só para grandes redes?</strong></p>
+<p>Serve para quem tem base ativa e recorrente, independente do tamanho da rede. Operações pequenas com nicho fiel podem funcionar. Redes grandes com base fria podem falhar. O que define viabilidade não é tamanho, é engajamento.</p>
+<p><strong>10. Cooperativas e associações podem emitir cartão private label?</strong></p>
+<p>Podem e, em muitos casos, é o formato que melhor se encaixa. A base é engajada, tem recorrência, e a aceitação restrita à rede de parceiros faz sentido do ponto de vista do benefício. Cooperativas de crédito, associações de classe e clubes setoriais são casos onde o modelo é sub-explorado.</p>
+<hr/>
+<p>A JUST é a infraestrutura por trás de cartões private label em operação. Atuamos como emissora, processadora e motor de antifraude, com <a href="/stack">nossa stack tecnológica</a> conectando ERP, POS, e-commerce e app num único programa. <a href="/antecipacao">Conheça o JUST Credit</a> ou <a href="/contato">fale com o time</a>.</p></article><section class="source-box" aria-labelledby="fontes-referencia" style="border-top:1px solid #dbe3ee;margin-top:42px;padding-top:26px"><h2 id="fontes-referencia" style="color:#10243f;font-size:22px;line-height:1.25;margin-bottom:14px">Fontes de referência</h2><ul style="display:grid;gap:10px;padding-left:18px"><li style="color:#273347;line-height:1.6"><a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12865.htm" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:700;text-underline-offset:3px">Planalto - Lei 12.865/2013</a></li><li style="color:#273347;line-height:1.6"><a href="https://www.bcb.gov.br/estabilidadefinanceira/arranjosnaointegrantesspb" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:700;text-underline-offset:3px">Banco Central do Brasil - Arranjos de pagamento não integrantes do SPB</a></li><li style="color:#273347;line-height:1.6"><a href="https://www.bcb.gov.br/meubc/faqs/s/arranjo-de-pagamentos" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:700;text-underline-offset:3px">Banco Central do Brasil - Perguntas frequentes sobre arranjos de pagamento</a></li></ul></section><footer style="margin-top:48px;padding-top:36px;border-top:1px solid #dbe3ee"><aside style="margin:36px 0;padding:28px;border-radius:8px;background:#fff7f5;border:1px solid rgba(244,85,70,0.22)"><h3 style="color:#10243f;font-size:24px;line-height:1.2;margin-bottom:10px">Quer aplicar isso no seu produto financeiro?</h3><p style="color:#45556c;font-size:16px;line-height:1.65;margin-bottom:22px">A JUST ajuda empresas a desenhar, construir e operar produtos financeiros digitais com arquitetura modular.</p><button style="padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease">Conversar com especialista</button></aside><div style="padding:24px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><p style="color:#45556c;font-size:14px;line-height:1.7;margin-top:14px">Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.</p></div></footer><section style="margin-top:64px"><h2 style="color:#10243f;font-size:30px;line-height:1.2;margin-bottom:22px">Continue lendo</h2><div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:18px"><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Meios de pagamento</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/cartao-bandeirado-o-que-e" style="color:#10243f;text-decoration:none">Cartão bandeirado: o que é, como funciona e quais existem no Brasil</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">O que é cartão bandeirado, como funciona a autorização, quem são as bandeiras no Brasil e qual a diferença para o não-bandeirado. Guia técnico simples.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>8<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->20/04/2026</span></div></article><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Gestão de gastos PJ</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/diferenca-cartao-corporativo-empresarial" style="color:#10243f;text-decoration:none">Diferença entre cartão corporativo e empresarial: o que realmente muda</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">Cartão corporativo e empresarial são sinônimos na prática, mas existem diferenças reais de responsabilidade, controle e contabilização. Entenda quando cada modelo faz sentido.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>8<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->20/04/2026</span></div></article><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Meios de pagamento</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/white-label-vs-private-label" style="color:#10243f;text-decoration:none">White label vs private label: qual modelo de cartão escolher em 2026</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">Diferenças reais entre cartão white label e private label: custo, regulação, aceitação, risco e quando cada modelo vale a pena. Análise sem viés.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>9<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->20/04/2026</span></div></article></div></section></main></div></section></div></div><script>$RB=[];$RV=function(a){$RT=performance.now();for(var b=0;b<a.length;b+=2){var c=a[b],e=a[b+1];null!==e.parentNode&&e.parentNode.removeChild(e);var f=c.parentNode;if(f){var g=c.previousSibling,h=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d||"/&"===d)if(0===h)break;else h--;else"$"!==d&&"$?"!==d&&"$~"!==d&&"$!"!==d&&"&"!==d||h++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;e.firstChild;)f.insertBefore(e.firstChild,c);g.data="$";g._reactRetry&&requestAnimationFrame(g._reactRetry)}}a.length=0};
+$RC=function(a,b){if(b=document.getElementById(b))(a=document.getElementById(a))?(a.previousSibling.data="$~",$RB.push(a,b),2===$RB.length&&("number"!==typeof $RT?requestAnimationFrame($RV.bind(null,$RB)):(a=performance.now(),setTimeout($RV.bind(null,$RB),2300>a&&2E3<a?2300-a:$RT+300-a)))):b.parentNode.removeChild(b)};$RC("B:0","S:0")</script></div>
     <noscript>A JUST desenvolve e integra tecnologia para produtos financeiros digitais.</noscript>
   </body>
 </html>

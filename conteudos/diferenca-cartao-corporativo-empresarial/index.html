@@ -41,7 +41,7 @@
         }
       }(window.location));
     </script>
-    <script type="module" crossorigin src="/assets/index-D7mgY0XA.js"></script>
+    <script type="module" crossorigin src="/assets/index-Bgkzpfet.js"></script>
       <meta property="article:published_time" content="2026-04-20" />
       <meta property="article:modified_time" content="2026-04-20" />
       <meta property="article:author" content="Gabriel Pires" />
@@ -59,7 +59,813 @@
     <!-- /JUST route SEO -->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><link rel="preload" as="image" href="/logo-just-2x.png"/><link rel="preload" as="image" href="/logos/cubo-itau.png"/><link rel="preload" as="image" href="/logos/abfintechs.png"/><link rel="preload" as="image" href="/logos/abstartups.png"/><link rel="preload" as="image" href="/logos/finscale.svg"/><link rel="preload" as="image" href="/logos/aws-partner.png"/><link rel="preload" as="image" href="/logos/swap.svg"/><link rel="preload" as="image" href="/logos/evertec.svg"/><link rel="preload" as="image" href="/logos/fiserv.png"/><link rel="preload" as="image" href="/logos/linx.png"/><link rel="preload" as="image" href="/authors/gabriel-pires.jpeg"/><div style="font-family:&#x27;Inter&#x27;, -apple-system, BlinkMacSystemFont, sans-serif;background:#0f112b;min-height:100vh;-webkit-font-smoothing:antialiased"><style>
+          :root {
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+          }
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          html, body { overflow-x: hidden; width: 100%; background: #0f112b; }
+          ::selection { background: rgba(244,85,70,0.3); }
+          input:focus, textarea:focus, select:focus { border-color: #f45546 !important; }
+          button:focus { outline: none; }
+          button:focus-visible {
+            outline: 2px solid rgba(244,85,70,0.72);
+            outline-offset: 3px;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              scroll-behavior: auto !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+          .desktop-nav .nav-link:hover { color: #f2f4f8 !important; }
+          .desktop-nav .nav-link-active::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            width: 26px;
+            height: 1px;
+            transform: translateX(-50%);
+            background: #f45546;
+            border-radius: 999px;
+          }
+          .hero-title-mobile { display: none; }
+          .hero-title-desktop { display: inline; }
+
+@media (max-width: 900px) {
+  .desktop-nav { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+  header { padding: 0 20px !important; }
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+  }
+  .comp-row > div {
+    min-width: 0 !important;
+  }
+  .comp-row h4,
+  .comp-row p {
+    overflow-wrap: anywhere !important;
+  }
+}
+@media (max-width: 520px) {
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels span {
+    font-size: 10px !important;
+    padding: 7px 10px !important;
+  }
+  .comp-row > div {
+    padding: 16px 10px !important;
+    gap: 9px !important;
+  }
+  .comp-row h4 {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+}
+@media (max-width: 900px) {
+  .hero-grid > div:last-child {
+    display: none !important;
+  }
+  .section-hero {
+    min-height: auto !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    padding: 116px 28px 46px !important;
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    align-items: start !important;
+  }
+  .hero-grid > div:first-child {
+    width: 100% !important;
+    max-width: 680px !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 16px !important;
+    letter-spacing: 0.1em !important;
+  }
+  .hero-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+    margin: 28px 0 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-grid p {
+    max-width: 34ch !important;
+    font-size: 17px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 28px !important;
+  }
+  .flow-steps-row {
+    display: none !important;
+  }
+  .hero-cta-row {
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+  .hero-cta-row button {
+    font-size: 15px !important;
+    padding: 14px 24px !important;
+  }
+  .section-social-proof {
+    padding: 28px 24px 40px !important;
+  }
+  .section-why-just {
+    padding: 84px 28px !important;
+  }
+  .why-just-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+  }
+  .just-pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .just-pillar {
+    min-height: auto !important;
+    padding: 30px 0 34px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  }
+  .just-pillars-grid > div:last-child .just-pillar {
+    border-bottom: none !important;
+  }
+  .just-pillar h3 {
+    font-size: 34px !important;
+  }
+  .social-logos {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(72px, 1fr)) !important;
+    gap: 22px 18px !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+    justify-items: center !important;
+    align-items: center !important;
+  }
+  .social-logos .partner-logo {
+    width: 86px !important;
+    height: 26px !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+  .site-footer {
+    padding: 58px 24px 34px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 38px 34px !important;
+  }
+  .site-footer-brand {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+  }
+  .site-footer-brand p {
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+  }
+  .site-footer-main h4 {
+    margin-bottom: 14px !important;
+  }
+  .site-footer-products button {
+    align-items: center !important;
+    gap: 10px !important;
+    line-height: 1.45 !important;
+    max-width: 100% !important;
+  }
+  .site-footer-company button,
+  .site-footer-contact a,
+  .site-footer-contact span {
+    font-size: 14px !important;
+    line-height: 1.75 !important;
+  }
+  .site-footer-contact {
+    grid-column: 1 / -1 !important;
+  }
+  .site-footer-bottom {
+    margin-top: 36px !important;
+  }
+  .site-footer-partners {
+    justify-content: center !important;
+    gap: 24px 34px !important;
+  }
+  .site-footer-partner-group {
+    text-align: center !important;
+  }
+  .site-footer-partner-logos {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  .privacy-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .privacy-aside {
+    position: static !important;
+  }
+  .article-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .toc-mobile-toggle {
+    display: block !important;
+  }
+  .toc-panel {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .section-hero {
+    min-height: auto !important;
+    padding: 104px 24px 42px !important;
+  }
+  .hero-grid {
+    min-height: auto !important;
+  }
+  .hero-grid > div:first-child {
+    min-height: auto !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 15px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .hero-title {
+    font-size: clamp(46px, 12.6vw, 50px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.058em !important;
+    margin: 30px 0 22px !important;
+    width: 100% !important;
+    max-width: calc(100vw - 48px) !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-title-desktop {
+    display: none !important;
+  }
+  .hero-title-mobile {
+    display: inline !important;
+  }
+  .hero-grid p {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+    max-width: 33ch !important;
+    margin-bottom: 26px !important;
+  }
+  .hero-cta-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    max-width: 306px !important;
+  }
+  .hero-cta-row button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 13px 22px !important;
+  }
+  .section-social-proof {
+    padding: 24px 24px 42px !important;
+  }
+  .section-why-just {
+    padding: 76px 24px !important;
+  }
+  .why-just-title {
+    font-size: clamp(52px, 13.8vw, 59px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.058em !important;
+  }
+  .just-pillar {
+    padding: 28px 0 32px !important;
+  }
+  .just-pillar h3 {
+    font-size: 30px !important;
+    margin-bottom: 18px !important;
+  }
+  .just-pillar p {
+    font-size: 15px !important;
+  }
+  .social-logos {
+    grid-template-columns: repeat(3, minmax(64px, 1fr)) !important;
+    gap: 22px 14px !important;
+    max-width: 330px !important;
+  }
+  .social-logos .partner-logo {
+    width: 72px !important;
+    height: 22px !important;
+    max-width: 100% !important;
+  }
+  .site-footer {
+    padding: 56px 24px 32px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    text-align: center !important;
+  }
+  .site-footer-products button {
+    justify-content: center !important;
+    margin: 0 auto !important;
+    width: fit-content !important;
+  }
+  .site-footer-company button {
+    margin: 0 auto !important;
+  }
+  .site-footer-contact {
+    text-align: center !important;
+  }
+  .site-footer-contact a,
+  .site-footer-contact span {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 300px !important;
+    white-space: pre-line !important;
+  }
+  .site-footer-partners {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .site-footer-partner-group {
+    width: 100% !important;
+  }
+  .site-footer-bottom-row {
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+.content-article {
+  font-size: 18px;
+  line-height: 1.78;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.content-article h1 {
+  display: none;
+}
+.content-article h2 {
+  color: #10243f;
+  font-size: 34px;
+  line-height: 1.18;
+  margin: 52px 0 18px;
+  scroll-margin-top: 112px;
+}
+.content-article h3 {
+  color: #10243f;
+  font-size: 24px;
+  line-height: 1.25;
+  margin: 36px 0 14px;
+}
+.content-article h2 a,
+.content-article h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.content-article p,
+.content-article li {
+  color: #273347;
+}
+.content-article p {
+  margin: 0 0 22px;
+}
+.content-article a {
+  color: #f45546;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+.content-article figure {
+  margin: 34px 0;
+}
+.content-article figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 18px 46px rgba(16,36,63,0.08);
+}
+.content-article figcaption {
+  margin-top: 10px;
+  color: #647084;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.content-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.content-article pre {
+  margin: 30px 0;
+  padding: 18px 20px;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  background: #f8fafc;
+  color: #10243f;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.content-article code {
+  overflow-wrap: anywhere;
+}
+.content-article th,
+.content-article td {
+  border: 1px solid #dbe3ee;
+  padding: 14px 16px;
+  text-align: left;
+}
+.content-article th {
+  color: #10243f;
+  background: #f8fafc;
+}
+.content-article td {
+  color: #273347;
+  background: #ffffff;
+}
+@media (max-width: 900px) {
+  .article-page-header {
+    padding: 118px 28px 48px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-category-kicker {
+    margin-bottom: 14px !important;
+  }
+  .article-page-title {
+    font-size: clamp(38px, 8vw, 48px) !important;
+    line-height: 1.04 !important;
+    max-width: 100% !important;
+    margin-bottom: 18px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-page-description {
+    font-size: 17px !important;
+    line-height: 1.62 !important;
+    max-width: 100% !important;
+    margin-bottom: 26px !important;
+  }
+  .article-page-meta {
+    gap: 20px !important;
+    align-items: flex-start !important;
+  }
+  .article-page-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-hero {
+    padding: 118px 28px 56px !important;
+  }
+  .content-hub-hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+    align-items: start !important;
+  }
+  .content-hub-title {
+    font-size: clamp(44px, 11.4vw, 58px) !important;
+    line-height: 1.02 !important;
+    max-width: 9ch !important;
+    margin-bottom: 20px !important;
+  }
+  .content-hub-subtitle {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+    max-width: 36ch !important;
+  }
+  .content-search {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+  .content-hub-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 34px !important;
+  }
+  .content-hub-layout > main {
+    min-width: 0 !important;
+  }
+  .content-sidebar {
+    order: -1 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+  .content-sidebar-card {
+    padding: 18px !important;
+  }
+  .article-card {
+    min-height: auto !important;
+    padding: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .article-card h2 {
+    font-size: 23px !important;
+    line-height: 1.14 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card-featured h2 {
+    font-size: 30px !important;
+    line-height: 1.1 !important;
+  }
+  .article-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+  .article-layout > aside,
+  .article-layout > main,
+  .article-main {
+    min-width: 0 !important;
+  }
+  .answer-box,
+  .source-box {
+    margin-bottom: 28px !important;
+  }
+  .answer-box h2,
+  .source-box h2 {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+  }
+  .content-article {
+    font-size: 17px !important;
+    line-height: 1.72 !important;
+  }
+  .content-article h2 {
+    font-size: 29px !important;
+    line-height: 1.16 !important;
+    margin: 42px 0 16px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article h3 {
+    font-size: 22px !important;
+    line-height: 1.24 !important;
+    margin: 30px 0 12px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .content-article th,
+  .content-article td {
+    min-width: 150px !important;
+  }
+}
+@media (max-width: 520px) {
+  .article-page-header {
+    padding: 104px 24px 38px !important;
+  }
+  .article-page-body {
+    padding: 40px 24px 68px !important;
+    overflow: hidden !important;
+  }
+  .article-empty-state {
+    padding: 120px 24px 56px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 11px !important;
+    margin-bottom: 18px !important;
+  }
+  .article-category-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .article-page-title {
+    font-size: clamp(34px, 10.2vw, 40px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+    width: 100% !important;
+  }
+  .article-page-description {
+    font-size: 16px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 22px !important;
+  }
+  .article-page-meta {
+    display: grid !important;
+    gap: 16px !important;
+  }
+  .content-hub-hero {
+    padding: 106px 24px 44px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-hero-grid,
+  .content-hub-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .content-hub-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+    margin-bottom: 16px !important;
+  }
+  .content-hub-title {
+    font-size: clamp(42px, 12vw, 48px) !important;
+    max-width: 8.5ch !important;
+  }
+  .content-hub-subtitle {
+    font-size: 16px !important;
+    max-width: 25ch !important;
+  }
+  .content-hub-body {
+    padding: 44px 24px 72px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-layout {
+    gap: 30px !important;
+  }
+  .content-sidebar {
+    order: 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .content-featured {
+    margin-bottom: 38px !important;
+  }
+  .content-section-label {
+    margin-bottom: 12px !important;
+  }
+  .content-list-title {
+    font-size: 28px !important;
+  }
+  .content-card-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .article-card {
+    padding: 22px !important;
+    width: calc(100vw - 48px) !important;
+    max-width: calc(100vw - 48px) !important;
+  }
+  .article-card h2,
+  .article-card-featured h2 {
+    display: block !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    width: min(100%, 24ch) !important;
+    max-width: 24ch !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: inline !important;
+    min-width: 0 !important;
+  }
+  .article-card p {
+    font-size: 14px !important;
+  }
+  .article-card-meta {
+    gap: 8px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+  .content-search,
+  .content-search input {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .article-layout {
+    gap: 22px !important;
+  }
+  .answer-box {
+    padding: 20px 18px !important;
+    margin-bottom: 24px !important;
+  }
+  .source-box {
+    margin-top: 34px !important;
+    padding-top: 20px !important;
+  }
+  .content-article {
+    font-size: 16px !important;
+    line-height: 1.68 !important;
+  }
+  .content-article p {
+    margin-bottom: 18px !important;
+  }
+  .content-article h2 {
+    font-size: 26px !important;
+    line-height: 1.14 !important;
+    margin: 36px 0 14px !important;
+  }
+  .content-article h3 {
+    font-size: 20px !important;
+    line-height: 1.22 !important;
+    margin: 26px 0 10px !important;
+  }
+  .content-article pre {
+    margin: 24px 0 !important;
+    padding: 14px 16px !important;
+    font-size: 13px !important;
+  }
+  .content-article th,
+  .content-article td {
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+  }
+}
+</style><header style="position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(15,17,43,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background-color 200ms var(--ease-out), border-color 200ms ease, backdrop-filter 200ms ease;z-index:100"><div style="cursor:pointer;display:flex;align-items:center"><img src="/logo-just-2x.png" alt="JUST" style="height:36px;object-fit:contain"/></div><nav class="desktop-nav" style="display:flex;align-items:center;gap:2px"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Home</button><div style="position:relative"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s" aria-haspopup="menu" aria-expanded="false">Produtos<!-- --> ▾</button><div style="position:absolute;top:100%;left:-20px;background:rgba(15,17,43,0.98);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:12px 8px;min-width:320px;backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:200;opacity:0;transform:translateY(6px) scale(0.98);transform-origin:top center;pointer-events:none;visibility:hidden;transition:opacity 170ms var(--ease-out), transform 170ms var(--ease-out), border-color 170ms ease" role="menu"><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #6C5CE718, rgba(10,12,31,0.9));border:1px solid #6C5CE740;box-shadow:0 0 12.8px #6C5CE720;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Benefits</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Benefícios flexíveis com arranjo customizável</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00B89418, rgba(10,12,31,0.9));border:1px solid #00B89440;box-shadow:0 0 12.8px #00B89420;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Fleet</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Controle financeiro completo por veículo</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #0984E318, rgba(10,12,31,0.9));border:1px solid #0984E340;box-shadow:0 0 12.8px #0984E320;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Banking</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Conta, cartão e PIX com sua marca</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #E1705518, rgba(10,12,31,0.9));border:1px solid #E1705540;box-shadow:0 0 12.8px #E1705520;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Expense</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Cartões corporativos com políticas inteligentes</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #FDCB6E18, rgba(10,12,31,0.9));border:1px solid #FDCB6E40;box-shadow:0 0 12.8px #FDCB6E20;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Credit</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos de crédito sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #636E7218, rgba(10,12,31,0.9));border:1px solid #636E7240;box-shadow:0 0 12.8px #636E7220;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Custom</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos financeiros sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00CEC918, rgba(10,12,31,0.9));border:1px solid #00CEC940;box-shadow:0 0 12.8px #00CEC920;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Sentinel</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Antifraude AI-native em tempo real</div></div></button></div></div><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Tecnologia</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Cases</button><button class="nav-link nav-link-active" style="color:#f2f4f8;font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Conteúdos</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Sobre</button><div style="display:flex;align-items:center;gap:6px;margin-left:8px;color:rgba(242,244,248,0.44);font-size:12px"><button style="padding:0;border:none;background:none;cursor:pointer;color:#f2f4f8;font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">PT</button><span style="opacity:0.55">/</span><button style="padding:0;border:none;background:none;cursor:pointer;color:rgba(242,244,248,0.34);font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">EN</button></div><button style="padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease;margin-left:8px">Fale Conosco</button></nav><button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:8px;color:#f2f4f8;width:40px;height:40px"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button></header><main><!--$?--><template id="B:0"></template><div style="min-height:80vh;background:#0f112b"></div><!--/$--></main><footer class="site-footer" style="background:#0a0c1e;padding:80px 48px 40px;border-top:1px solid rgba(255,255,255,0.07)"><div class="site-footer-main" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px"><div class="site-footer-brand"><div style="margin-bottom:20px"><img src="/logo-just-2x.png" alt="JUST" style="height:30px;object-fit:contain"/></div><p style="font-size:13px;color:rgba(242,244,248,0.35);line-height:1.7;max-width:260px">Crie sua fintech com tecnologia pronta para operar, escalar e evoluir.</p></div><div class="site-footer-products"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Produtos</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span>JUST Benefits</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span>JUST Fleet</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span>JUST Banking</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span>JUST Expense</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span>JUST Credit</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span>JUST Custom</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span>JUST Sentinel</button></div><div class="site-footer-company"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Empresa</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Sobre</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Cases</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Tecnologia</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Conteúdos</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Contato</button></div><div class="site-footer-contact"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Contato</h4><a href="mailto:contato@wearejust.it" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">contato@wearejust.it</a><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:8px">Condomínio Praça Capital<!-- -->
+<!-- -->Av. José Rocha Bomfim, 214 - Edifício Madri<!-- -->
+<!-- -->Campinas - SP</span><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:10px">Cubo Itaú<!-- -->
+<!-- -->Alameda Vicente Pinzón, 54 - Vila Olímpia<!-- -->
+<!-- -->São Paulo - SP</span><a href="https://www.linkedin.com/company/wearejust-it" target="_blank" rel="noopener noreferrer" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">LinkedIn →</a></div></div><div class="site-footer-bottom" style="max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.04)"><div class="site-footer-partners" style="display:flex;gap:48px;margin-bottom:24px;flex-wrap:wrap"><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Ecossistema e associações</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/cubo-itau.png" alt="Cubo Itaú" style="height:24px;width:auto;opacity:0.2"/><img src="/logos/abfintechs.png" alt="ABFintechs" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/abstartups.png" alt="ABStartups" style="height:18px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/finscale.svg" alt="Finscale" style="height:14px;width:auto;opacity:0.2"/></div></div><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Parceiros tecnológicos</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/aws-partner.png" alt="AWS" style="height:20px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/swap.svg" alt="Swap" style="height:16px;width:auto;opacity:0.2;filter:invert(1)"/><img src="/logos/evertec.svg" alt="Evertec" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/fiserv.png" alt="Fiserv" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/linx.png" alt="Linx" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/></div></div></div><p style="font-size:11px;color:rgba(242,244,248,0.18);line-height:1.7;margin-bottom:24px">A JUST atua exclusivamente como provedora de tecnologia e não realiza atividades privativas de instituições financeiras. Todos os serviços financeiros são operados por parceiros devidamente autorizados pelo Banco Central do Brasil.</p><div class="site-footer-bottom-row" style="display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap"><p style="font-size:12px;color:rgba(242,244,248,0.2)">© 2026 JUST. Todos os direitos reservados.</p><button style="font-size:12px;color:rgba(242,244,248,0.35);background:none;border:none;cursor:pointer;padding:0;text-decoration:none">Política de Privacidade</button></div></div></footer><a href="https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp" style="position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);z-index:1000;transition:transform 0.2s ease, box-shadow 0.2s ease;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a></div><script>requestAnimationFrame(function(){$RT=performance.now()});</script><div hidden id="S:0"><div style="background:#ffffff;min-height:100vh"><header class="article-page-header" style="padding:138px 48px 64px;background:#f6f8fb;border-bottom:1px solid #dbe3ee"><div style="max-width:1120px;margin:0 auto"><nav class="article-breadcrumbs" style="color:#647084;font-size:13px;margin-bottom:28px"><a href="/" style="color:inherit;text-decoration:none">Home</a><span style="margin:0 8px">/</span><a href="/conteudos" style="color:inherit;text-decoration:none">Conteúdos</a><span style="margin:0 8px">/</span><a href="/conteudos/categoria/gestao-de-gastos-pj" style="color:#f45546;text-decoration:none">Gestão de gastos PJ</a></nav><div class="article-category-kicker" style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px">Gestão de gastos PJ</div><h1 class="article-page-title" style="color:#10243f;font-size:56px;line-height:1.03;letter-spacing:-0.02em;max-width:900px;margin-bottom:22px">Diferença entre cartão corporativo e empresarial: o que realmente muda</h1><p class="article-page-description" style="color:#45556c;font-size:19px;line-height:1.65;max-width:760px;margin-bottom:32px">Cartão corporativo e empresarial são sinônimos na prática, mas existem diferenças reais de responsabilidade, controle e contabilização. Entenda quando cada modelo faz sentido.</p><div class="article-page-meta" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><div style="color:#647084;font-size:13px;line-height:1.7"><div>Atualizado em <!-- -->20/04/2026</div><div>8<!-- --> min de leitura</div></div></div></div></header><section class="article-page-body" style="padding:72px 48px 104px;background:#ffffff"><div class="article-layout" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:260px minmax(0, 1fr);gap:54px;align-items:start"><aside style="position:sticky;top:104px"><button class="toc-mobile-toggle" style="display:none;width:100%;padding:12px 14px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc;color:#10243f;font-weight:700;margin-bottom:12px">Índice do artigo</button><div class="toc-panel" style="padding:20px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><p style="color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:800;margin-bottom:14px">Neste artigo</p><ol style="list-style:none;display:grid;gap:10px;margin:0;padding:0"><li><a href="#resposta-direta" style="color:#f45546;font-size:13px;line-height:1.45;text-decoration:none;font-weight:700">Resposta direta</a></li><li><a href="#a-confusão-dos-termos" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">A confusão dos termos</a></li><li><a href="#o-que-muda-de-verdade-entre-os-produtos-pj" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">O que muda de verdade entre os produtos PJ</a></li><li><a href="#responsabilidade-a-diferença-que-mexe-no-bolso" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Responsabilidade: a diferença que mexe no bolso</a></li><li><a href="#controle-de-gasto-onde-a-tecnologia-aparece" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Controle de gasto: onde a tecnologia aparece</a></li><li><a href="#contabilização-e-reconciliação" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Contabilização e reconciliação</a></li><li><a href="#private-label-corporativo-terceira-opção" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Private label corporativo: terceira opção</a></li><li><a href="#quando-usar-cada-modelo" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Quando usar cada modelo</a></li><li><a href="#faq" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">FAQ</a></li></ol></div></aside><main class="article-main"><section class="answer-box" aria-labelledby="resposta-curta" style="border:1px solid #dbe3ee;border-left:4px solid #f45546;border-radius:8px;padding:24px 26px;margin-bottom:34px;background:#ffffff;box-shadow:0 14px 34px rgba(16,36,63,0.06)"><h2 id="resposta-curta" style="color:#10243f;font-size:22px;line-height:1.25;margin-bottom:10px">Resposta curta</h2><p style="color:#273347;font-size:17px;line-height:1.7;margin:0">No Brasil, cartão corporativo e cartão empresarial costumam ser nomes comerciais para produtos PJ parecidos. A diferença real aparece no contrato e na operação: responsabilidade pela dívida, aval dos sócios, limite, controle por política, integração com ERP e forma de contabilização.</p></section><article class="content-article" style="color:#273347"><h2 id="resposta-direta"><a href="#resposta-direta">Resposta direta</a></h2>
+<p>Na prática brasileira, os termos cartão empresarial e cartão corporativo são usados como sinônimos. A diferença real está em quem responde pela dívida (PJ + sócios vs PJ exclusivamente), no nível de controle de gasto e na contabilização.</p>
+<p>Quem escreve sobre o assunto gosta de criar distinções que o mercado não usa. A verdade é que você vai ouvir &quot;cartão empresarial&quot; num banco, &quot;cartão corporativo&quot; em outro, e os dois vão oferecer produtos tecnicamente equivalentes.</p>
+<p>O que vale a pena entender são as diferenças que aparecem no contrato, não no nome do produto.</p>
+<h2 id="a-confusão-dos-termos"><a href="#a-confusão-dos-termos">A confusão dos termos</a></h2>
+<p>Se você pesquisar &quot;cartão empresarial&quot; e &quot;cartão corporativo&quot; no Google, vai encontrar artigos jurando que um é para PME e outro é para grande empresa. Outros vão dizer que empresarial tem responsabilidade solidária e corporativo não. Outros vão inverter.</p>
+<p>Nenhuma dessas definições é consagrada em lei, regulação do BACEN ou manual de bandeira. A Lei 12.865/2013 fala em &quot;cartão de pagamento&quot; sem distinguir empresarial de corporativo. A Resolução BCB 150/2021 idem.</p>
+<p>Na prática, cada emissor nomeia seu produto como quer. O Itaú tem &quot;Empresarial&quot; e &quot;Corporate&quot;. O Bradesco tem &quot;Empresarial&quot; e &quot;Corporativo&quot;. Fintechs recentes tendem a usar &quot;corporativo&quot; porque soa mais sofisticado, mas operam lógica PME.</p>
+<p>O que diferencia produtos de cartão PJ não é o nome. São as cláusulas.</p>
+<h2 id="o-que-muda-de-verdade-entre-os-produtos-pj"><a href="#o-que-muda-de-verdade-entre-os-produtos-pj">O que muda de verdade entre os produtos PJ</a></h2>
+<p>Esqueça o rótulo. Compare essas sete dimensões quando estiver avaliando um cartão PJ.</p>
+<table><thead><tr><th>Dimensão</th><th>Perfil mais típico de &quot;empresarial&quot; (PME)</th><th>Perfil mais típico de &quot;corporativo&quot; (grande conta)</th></tr></thead><tbody><tr><td>Responsabilidade pela dívida</td><td>PJ + aval solidário dos sócios</td><td>PJ exclusivamente</td></tr><tr><td>Análise de crédito</td><td>CNPJ + CPF dos sócios</td><td>CNPJ isolado, com rating corporativo</td></tr><tr><td>Limite total</td><td>R$ 10 mil a R$ 500 mil</td><td>R$ 500 mil a vários milhões</td></tr><tr><td>Quantidade de cartões</td><td>1 a 20</td><td>20 a milhares</td></tr><tr><td>Controle por cartão</td><td>Básico (bloqueio, limite fixo)</td><td>Avançado (MCC, hora, geolocalização, regras dinâmicas)</td></tr><tr><td>Integração com ERP</td><td>Exportação em CSV</td><td>API, SSO, reconciliação automática</td></tr><tr><td>Contabilização</td><td>Fatura consolidada em contas a pagar</td><td>Rateio por centro de custo, projeto, aprovador</td></tr><tr><td>Programa de milhas/cashback</td><td>Usual</td><td>Negociado caso a caso</td></tr><tr><td>Tarifa</td><td>Mensalidade ou gratuito com condições</td><td>Pacote customizado</td></tr><tr><td>Bandeira</td><td>Visa, Mastercard padrão</td><td>Visa Business, Mastercard Corporate, Amex Corporate</td></tr></tbody></table>
+<p>A leitura não é binária. Uma empresa pode ter R$ 100 mil de limite e ainda assim exigir controle avançado por MCC. Outra pode ter R$ 5 milhões e usar tudo na mão do CFO.</p>
+<p>O que importa é fazer a pergunta certa: quem responde pela dívida, quem aprova o gasto, como fecha a contabilidade.</p>
+<figure><img src="/conteudos/diferenca-cartao-corporativo-empresarial/controle-cartao-corporativo-empresarial.png" alt="Comparativo entre controle reativo e controle preventivo em cartão empresarial e corporativo" loading="lazy" decoding="async"/><figcaption>A diferença relevante não está no nome do cartão. Está no nível de controle antes da autorização e na qualidade da reconciliação depois da compra.</figcaption></figure>
+<h2 id="responsabilidade-a-diferença-que-mexe-no-bolso"><a href="#responsabilidade-a-diferença-que-mexe-no-bolso">Responsabilidade: a diferença que mexe no bolso</a></h2>
+<p>A cláusula de aval solidário é o ponto mais importante de negociação. Num contrato de cartão empresarial padrão para PME, o emissor exige que os sócios assinem como avalistas. Se a PJ não paga, os sócios respondem com patrimônio pessoal.</p>
+<p>Em cartões corporativos para grande empresa, a responsabilidade é exclusivamente da PJ. Se a empresa tiver caixa para honrar a fatura, paga. Se não tiver, o emissor assume o risco de crédito corporativo.</p>
+<p>A fronteira entre os dois regimes não é tamanho da empresa, é rating de crédito. Uma PME com três anos de histórico, faturamento estável e demonstrativos auditados pode negociar cartão sem aval. Uma empresa grande recém-criada pode precisar de aval mesmo com alto faturamento projetado.</p>
+<p>Quando alguém te oferece &quot;cartão corporativo sem aval&quot;, vale ler o contrato inteiro antes de comemorar.</p>
+<h2 id="controle-de-gasto-onde-a-tecnologia-aparece"><a href="#controle-de-gasto-onde-a-tecnologia-aparece">Controle de gasto: onde a tecnologia aparece</a></h2>
+<p>Em cartões empresariais tradicionais de bancão, o controle é limitado. Você define limite total, bloqueia o cartão se perder, e usa a fatura mensal para auditar o que foi gasto.</p>
+<p>Em cartões corporativos modernos (incluindo os que a <a href="/despesas">JUST opera</a>), o controle acontece antes da autorização. Você define regras por MCC, por horário, por categoria, por aprovador. Se a regra não bate, a transação é negada no POS.</p>
+<p>Esse é o salto qualitativo relevante. Não é &quot;empresarial vs corporativo&quot;, é &quot;controle reativo vs controle preventivo&quot;.</p>
+<p>Empresas com mais de 20 cartões em uso tendem a migrar para produtos com controle preventivo por um motivo simples: reconciliação manual não escala. Aprovar despesa depois de ela acontecer significa brigar com colaborador sobre uísque em restaurante que entrou como almoço de negócio.</p>
+<h2 id="contabilização-e-reconciliação"><a href="#contabilização-e-reconciliação">Contabilização e reconciliação</a></h2>
+<p>Num cartão empresarial padrão, a fatura vem consolidada. Todas as despesas do CNPJ, todos os centros de custo, num único valor a pagar. A reconciliação é manual: o financeiro abre a fatura, classifica cada linha, lança no ERP.</p>
+<p>Num cartão corporativo com tecnologia, cada transação já nasce classificada. Centro de custo vinculado ao portador, projeto vinculado ao MCC, aprovação digital antes do pagamento. O arquivo entra no ERP por API, não por CSV.</p>
+<p>A economia de tempo em uma operação de porte médio é significativa. Empresas com 50 a 200 cartões costumam reportar redução de 60% a 80% no tempo de fechamento quando migram de fatura manual para reconciliação automática.</p>
+<h2 id="private-label-corporativo-terceira-opção"><a href="#private-label-corporativo-terceira-opção">Private label corporativo: terceira opção</a></h2>
+<p>A maioria dos artigos sobre cartão PJ ignora uma alternativa real: o cartão private label corporativo. É um desenho que a gente opera na JUST e que faz sentido em casos específicos.</p>
+<p>Em vez de usar um cartão bandeirado aceito em qualquer lugar, a empresa emite um cartão que só aceita em uma rede controlada. Pode ser a rede de fornecedores homologados, o ecossistema de uma holding, ou uma malha específica de parceiros.</p>
+<p>Por que alguém faria isso? Três motivos práticos.</p>
+<p><strong>Controle absoluto de gasto.</strong> Se o cartão só aceita em fornecedores homologados, não existe desvio de uso. Não tem como passar cartão em bar, em loja online aleatória, em concorrente.</p>
+<p><strong>Margem capturada.</strong> Cada transação bandeirada paga MDR para adquirente e intercâmbio para emissor. Num private label corporativo, a empresa captura parte dessa margem de volta.</p>
+<p><strong>Poder de negociação com fornecedores.</strong> Fornecedor que depende do volume do seu cartão private label negocia condições que ele nunca daria num cartão bandeirado aberto.</p>
+<p>O trade-off é óbvio: reduz flexibilidade do usuário. Se o colaborador precisa comprar algo fora da rede, o cartão não funciona. Por isso, o private label corporativo costuma coexistir com um cartão bandeirado tradicional para despesas de uso geral.</p>
+<p>Falei em profundidade sobre o modelo no <a href="/conteudos/cartao-private-label">guia de cartão private label</a>. A lógica corporativa é a mesma, aplicada no contexto B2B.</p>
+<h2 id="quando-usar-cada-modelo"><a href="#quando-usar-cada-modelo">Quando usar cada modelo</a></h2>
+<p>Nenhum modelo é universalmente superior. A escolha é caso a caso.</p>
+<p><strong>Cartão empresarial tradicional (com aval).</strong> Para PME com até 20 cartões, sem sistema de gestão de despesas maduro, que precisa de crédito rotativo e aceita aval. Custo baixo, simplicidade alta, controle limitado.</p>
+<p><strong>Cartão corporativo com tecnologia (sem aval ou aval parcial).</strong> Para empresas de médio e grande porte, com ERP integrado, múltiplos centros de custo, exigência de reconciliação automática. Tarifa maior, controle preventivo, escala operacional.</p>
+<p><strong>Cartão private label corporativo.</strong> Para empresas com malha de fornecedores controlável, holdings com ecossistema interno, programas específicos de suprimentos ou benefícios. Menos flexibilidade do usuário, muito mais controle e captura de margem.</p>
+<p><strong>Combinação de dois modelos.</strong> Grande empresa que dá cartão bandeirado para despesas gerais e cartão private label para compras homologadas. Cada instrumento no seu uso.</p>
+<p>A JUST opera os três caminhos via <a href="/despesas">despesas</a> e <a href="/sob-demanda">sob demanda</a>. O que muda é o desenho do produto, não a plataforma.</p>
+<h2 id="faq"><a href="#faq">FAQ</a></h2>
+<p><strong>Cartão empresarial e corporativo são a mesma coisa?</strong> Na maior parte dos casos, sim. A distinção varia do emissor, não da regulação. O que diferencia produtos de verdade é responsabilidade, controle e integração.</p>
+<p><strong>Cartão corporativo exige aval dos sócios?</strong> Depende do rating de crédito da empresa. Em PME padrão, sim. Em grande empresa com histórico consolidado, pode negociar sem aval.</p>
+<p><strong>Qual a diferença no limite entre empresarial e corporativo?</strong> Não há fronteira oficial. Empresarial de banco costuma ir até R$ 500 mil. Corporativo pode chegar a vários milhões. Mas tem emissor que chama de &quot;empresarial&quot; um cartão de R$ 5 milhões.</p>
+<p><strong>Cartão corporativo gera nota fiscal?</strong> Cartão em si não gera. Cada transação de compra gera a nota do fornecedor. O emissor fornece fatura com CNPJ da empresa, que pode ser usada como comprovante contábil.</p>
+<p><strong>Cartão corporativo pode ser usado para despesa pessoal?</strong> Em tese, não. Na prática, empresas sem controle preventivo sofrem com uso indevido. É o problema que o controle por MCC resolve.</p>
+<p><strong>Posso emitir cartão corporativo com a marca da minha empresa?</strong> Sim. Via parceria BaaS, qualquer empresa pode emitir cartão corporativo com marca própria, bandeira Visa ou Mastercard, e regras customizadas. É o caso de uso mais comum para <a href="/stack">tecnologia como a nossa</a>.</p>
+<p><strong>Qual modelo é mais barato para empresa de 50 funcionários?</strong> Depende do uso. Se a maior parte do gasto é em categorias controláveis (combustível, alimentação, viagem), um produto com reconciliação automática paga o investimento em poucos meses. Se o volume é baixo e a classificação é simples, cartão empresarial tradicional resolve.</p>
+<p><strong>Faz sentido combinar cartão bandeirado e private label?</strong> Faz, quando a empresa tem malha de fornecedores estruturada. Private label para compras recorrentes com fornecedores homologados, bandeirado para despesas gerais. É o desenho que a JUST monta com mais frequência para clientes de médio porte.</p>
+<p>A escolha entre cartão empresarial e corporativo é menos relevante do que a escolha entre reativo e preventivo, entre aval e sem aval, entre fatura consolidada e reconciliação por API. Se você está avaliando um produto, leia o contrato pela dimensão que importa.</p>
+<p>Se quiser conversar sobre o desenho certo para a sua empresa, <a href="/contato">fale com a JUST</a>. A gente opera tanto o lado tradicional quanto o private label corporativo.</p></article><section class="source-box" aria-labelledby="fontes-referencia" style="border-top:1px solid #dbe3ee;margin-top:42px;padding-top:26px"><h2 id="fontes-referencia" style="color:#10243f;font-size:22px;line-height:1.25;margin-bottom:14px">Fontes de referência</h2><ul style="display:grid;gap:10px;padding-left:18px"><li style="color:#273347;line-height:1.6"><a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12865.htm" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:700;text-underline-offset:3px">Planalto - Lei 12.865/2013</a></li><li style="color:#273347;line-height:1.6"><a href="https://www.bcb.gov.br/estabilidadefinanceira/arranjosintegrantesspb" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:700;text-underline-offset:3px">Banco Central do Brasil - Arranjos de pagamentos integrantes do SPB</a></li><li style="color:#273347;line-height:1.6"><a href="https://www.bcb.gov.br/meubc/faqs/s/arranjo-de-pagamentos" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:700;text-underline-offset:3px">Banco Central do Brasil - Perguntas frequentes sobre arranjos de pagamento</a></li></ul></section><footer style="margin-top:48px;padding-top:36px;border-top:1px solid #dbe3ee"><aside style="margin:36px 0;padding:28px;border-radius:8px;background:#fff7f5;border:1px solid rgba(244,85,70,0.22)"><h3 style="color:#10243f;font-size:24px;line-height:1.2;margin-bottom:10px">Quer aplicar isso no seu produto financeiro?</h3><p style="color:#45556c;font-size:16px;line-height:1.65;margin-bottom:22px">A JUST ajuda empresas a desenhar, construir e operar produtos financeiros digitais com arquitetura modular.</p><button style="padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease">Conversar com especialista</button></aside><div style="padding:24px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><p style="color:#45556c;font-size:14px;line-height:1.7;margin-top:14px">Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.</p></div></footer><section style="margin-top:64px"><h2 style="color:#10243f;font-size:30px;line-height:1.2;margin-bottom:22px">Continue lendo</h2><div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:18px"><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Meios de pagamento</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/cartao-bandeirado-o-que-e" style="color:#10243f;text-decoration:none">Cartão bandeirado: o que é, como funciona e quais existem no Brasil</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">O que é cartão bandeirado, como funciona a autorização, quem são as bandeiras no Brasil e qual a diferença para o não-bandeirado. Guia técnico simples.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>8<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->20/04/2026</span></div></article><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Meios de pagamento</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/cartao-private-label" style="color:#10243f;text-decoration:none">Cartão private label: o guia completo para emitir o seu em 2026</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">Como funciona, quanto custa, o que diz o BACEN e quando vale lançar um cartão private label próprio. Guia pragmático para empresas.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>14<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->20/04/2026</span></div></article><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Meios de pagamento</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/white-label-vs-private-label" style="color:#10243f;text-decoration:none">White label vs private label: qual modelo de cartão escolher em 2026</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">Diferenças reais entre cartão white label e private label: custo, regulação, aceitação, risco e quando cada modelo vale a pena. Análise sem viés.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>9<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->20/04/2026</span></div></article></div></section></main></div></section></div></div><script>$RB=[];$RV=function(a){$RT=performance.now();for(var b=0;b<a.length;b+=2){var c=a[b],e=a[b+1];null!==e.parentNode&&e.parentNode.removeChild(e);var f=c.parentNode;if(f){var g=c.previousSibling,h=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d||"/&"===d)if(0===h)break;else h--;else"$"!==d&&"$?"!==d&&"$~"!==d&&"$!"!==d&&"&"!==d||h++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;e.firstChild;)f.insertBefore(e.firstChild,c);g.data="$";g._reactRetry&&requestAnimationFrame(g._reactRetry)}}a.length=0};
+$RC=function(a,b){if(b=document.getElementById(b))(a=document.getElementById(a))?(a.previousSibling.data="$~",$RB.push(a,b),2===$RB.length&&("number"!==typeof $RT?requestAnimationFrame($RV.bind(null,$RB)):(a=performance.now(),setTimeout($RV.bind(null,$RB),2300>a&&2E3<a?2300-a:$RT+300-a)))):b.parentNode.removeChild(b)};$RC("B:0","S:0")</script></div>
     <noscript>A JUST desenvolve e integra tecnologia para produtos financeiros digitais.</noscript>
   </body>
 </html>

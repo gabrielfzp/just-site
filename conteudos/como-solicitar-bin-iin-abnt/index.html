@@ -41,7 +41,7 @@
         }
       }(window.location));
     </script>
-    <script type="module" crossorigin src="/assets/index-D7mgY0XA.js"></script>
+    <script type="module" crossorigin src="/assets/index-Bgkzpfet.js"></script>
       <meta property="article:published_time" content="2026-04-23" />
       <meta property="article:modified_time" content="2026-04-23" />
       <meta property="article:author" content="Gabriel Pires" />
@@ -60,7 +60,859 @@
     <!-- /JUST route SEO -->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><link rel="preload" as="image" href="/logo-just-2x.png"/><link rel="preload" as="image" href="/logos/cubo-itau.png"/><link rel="preload" as="image" href="/logos/abfintechs.png"/><link rel="preload" as="image" href="/logos/abstartups.png"/><link rel="preload" as="image" href="/logos/finscale.svg"/><link rel="preload" as="image" href="/logos/aws-partner.png"/><link rel="preload" as="image" href="/logos/swap.svg"/><link rel="preload" as="image" href="/logos/evertec.svg"/><link rel="preload" as="image" href="/logos/fiserv.png"/><link rel="preload" as="image" href="/logos/linx.png"/><link rel="preload" as="image" href="/authors/gabriel-pires.jpeg"/><div style="font-family:&#x27;Inter&#x27;, -apple-system, BlinkMacSystemFont, sans-serif;background:#0f112b;min-height:100vh;-webkit-font-smoothing:antialiased"><style>
+          :root {
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+          }
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          html, body { overflow-x: hidden; width: 100%; background: #0f112b; }
+          ::selection { background: rgba(244,85,70,0.3); }
+          input:focus, textarea:focus, select:focus { border-color: #f45546 !important; }
+          button:focus { outline: none; }
+          button:focus-visible {
+            outline: 2px solid rgba(244,85,70,0.72);
+            outline-offset: 3px;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              scroll-behavior: auto !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+          .desktop-nav .nav-link:hover { color: #f2f4f8 !important; }
+          .desktop-nav .nav-link-active::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            width: 26px;
+            height: 1px;
+            transform: translateX(-50%);
+            background: #f45546;
+            border-radius: 999px;
+          }
+          .hero-title-mobile { display: none; }
+          .hero-title-desktop { display: inline; }
+
+@media (max-width: 900px) {
+  .desktop-nav { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+  header { padding: 0 20px !important; }
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) !important;
+  }
+  .comp-row > div {
+    min-width: 0 !important;
+  }
+  .comp-row h4,
+  .comp-row p {
+    overflow-wrap: anywhere !important;
+  }
+}
+@media (max-width: 520px) {
+  .depara-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels,
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) !important;
+  }
+  .depara-labels span {
+    font-size: 10px !important;
+    padding: 7px 10px !important;
+  }
+  .comp-row > div {
+    padding: 16px 10px !important;
+    gap: 9px !important;
+  }
+  .comp-row h4 {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+}
+@media (max-width: 900px) {
+  .hero-grid > div:last-child {
+    display: none !important;
+  }
+  .section-hero {
+    min-height: auto !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    padding: 116px 28px 46px !important;
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    align-items: start !important;
+  }
+  .hero-grid > div:first-child {
+    width: 100% !important;
+    max-width: 680px !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 16px !important;
+    letter-spacing: 0.1em !important;
+  }
+  .hero-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+    margin: 28px 0 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-grid p {
+    max-width: 34ch !important;
+    font-size: 17px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 28px !important;
+  }
+  .flow-steps-row {
+    display: none !important;
+  }
+  .hero-cta-row {
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+  .hero-cta-row button {
+    font-size: 15px !important;
+    padding: 14px 24px !important;
+  }
+  .section-social-proof {
+    padding: 28px 24px 40px !important;
+  }
+  .section-why-just {
+    padding: 84px 28px !important;
+  }
+  .why-just-title {
+    font-size: clamp(58px, 9.4vw, 70px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+  }
+  .just-pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .just-pillar {
+    min-height: auto !important;
+    padding: 30px 0 34px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  }
+  .just-pillars-grid > div:last-child .just-pillar {
+    border-bottom: none !important;
+  }
+  .just-pillar h3 {
+    font-size: 34px !important;
+  }
+  .social-logos {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(72px, 1fr)) !important;
+    gap: 22px 18px !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+    justify-items: center !important;
+    align-items: center !important;
+  }
+  .social-logos .partner-logo {
+    width: 86px !important;
+    height: 26px !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+  .site-footer {
+    padding: 58px 24px 34px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 38px 34px !important;
+  }
+  .site-footer-brand {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+  }
+  .site-footer-brand p {
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+  }
+  .site-footer-main h4 {
+    margin-bottom: 14px !important;
+  }
+  .site-footer-products button {
+    align-items: center !important;
+    gap: 10px !important;
+    line-height: 1.45 !important;
+    max-width: 100% !important;
+  }
+  .site-footer-company button,
+  .site-footer-contact a,
+  .site-footer-contact span {
+    font-size: 14px !important;
+    line-height: 1.75 !important;
+  }
+  .site-footer-contact {
+    grid-column: 1 / -1 !important;
+  }
+  .site-footer-bottom {
+    margin-top: 36px !important;
+  }
+  .site-footer-partners {
+    justify-content: center !important;
+    gap: 24px 34px !important;
+  }
+  .site-footer-partner-group {
+    text-align: center !important;
+  }
+  .site-footer-partner-logos {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  .privacy-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .privacy-aside {
+    position: static !important;
+  }
+  .article-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .toc-mobile-toggle {
+    display: block !important;
+  }
+  .toc-panel {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .section-hero {
+    min-height: auto !important;
+    padding: 104px 24px 42px !important;
+  }
+  .hero-grid {
+    min-height: auto !important;
+  }
+  .hero-grid > div:first-child {
+    min-height: auto !important;
+    padding-top: 0 !important;
+  }
+  .hero-eyebrow span {
+    font-size: 12px !important;
+    padding: 8px 15px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .hero-title {
+    font-size: clamp(46px, 12.6vw, 50px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.058em !important;
+    margin: 30px 0 22px !important;
+    width: 100% !important;
+    max-width: calc(100vw - 48px) !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-title-desktop {
+    display: none !important;
+  }
+  .hero-title-mobile {
+    display: inline !important;
+  }
+  .hero-grid p {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+    max-width: 33ch !important;
+    margin-bottom: 26px !important;
+  }
+  .hero-cta-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    max-width: 306px !important;
+  }
+  .hero-cta-row button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 13px 22px !important;
+  }
+  .section-social-proof {
+    padding: 24px 24px 42px !important;
+  }
+  .section-why-just {
+    padding: 76px 24px !important;
+  }
+  .why-just-title {
+    font-size: clamp(52px, 13.8vw, 59px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.058em !important;
+  }
+  .just-pillar {
+    padding: 28px 0 32px !important;
+  }
+  .just-pillar h3 {
+    font-size: 30px !important;
+    margin-bottom: 18px !important;
+  }
+  .just-pillar p {
+    font-size: 15px !important;
+  }
+  .social-logos {
+    grid-template-columns: repeat(3, minmax(64px, 1fr)) !important;
+    gap: 22px 14px !important;
+    max-width: 330px !important;
+  }
+  .social-logos .partner-logo {
+    width: 72px !important;
+    height: 22px !important;
+    max-width: 100% !important;
+  }
+  .site-footer {
+    padding: 56px 24px 32px !important;
+  }
+  .site-footer-main {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    text-align: center !important;
+  }
+  .site-footer-products button {
+    justify-content: center !important;
+    margin: 0 auto !important;
+    width: fit-content !important;
+  }
+  .site-footer-company button {
+    margin: 0 auto !important;
+  }
+  .site-footer-contact {
+    text-align: center !important;
+  }
+  .site-footer-contact a,
+  .site-footer-contact span {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 300px !important;
+    white-space: pre-line !important;
+  }
+  .site-footer-partners {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .site-footer-partner-group {
+    width: 100% !important;
+  }
+  .site-footer-bottom-row {
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+.content-article {
+  font-size: 18px;
+  line-height: 1.78;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.content-article h1 {
+  display: none;
+}
+.content-article h2 {
+  color: #10243f;
+  font-size: 34px;
+  line-height: 1.18;
+  margin: 52px 0 18px;
+  scroll-margin-top: 112px;
+}
+.content-article h3 {
+  color: #10243f;
+  font-size: 24px;
+  line-height: 1.25;
+  margin: 36px 0 14px;
+}
+.content-article h2 a,
+.content-article h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.content-article p,
+.content-article li {
+  color: #273347;
+}
+.content-article p {
+  margin: 0 0 22px;
+}
+.content-article a {
+  color: #f45546;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+.content-article figure {
+  margin: 34px 0;
+}
+.content-article figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 18px 46px rgba(16,36,63,0.08);
+}
+.content-article figcaption {
+  margin-top: 10px;
+  color: #647084;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.content-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.content-article pre {
+  margin: 30px 0;
+  padding: 18px 20px;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  background: #f8fafc;
+  color: #10243f;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.content-article code {
+  overflow-wrap: anywhere;
+}
+.content-article th,
+.content-article td {
+  border: 1px solid #dbe3ee;
+  padding: 14px 16px;
+  text-align: left;
+}
+.content-article th {
+  color: #10243f;
+  background: #f8fafc;
+}
+.content-article td {
+  color: #273347;
+  background: #ffffff;
+}
+@media (max-width: 900px) {
+  .article-page-header {
+    padding: 118px 28px 48px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-category-kicker {
+    margin-bottom: 14px !important;
+  }
+  .article-page-title {
+    font-size: clamp(38px, 8vw, 48px) !important;
+    line-height: 1.04 !important;
+    max-width: 100% !important;
+    margin-bottom: 18px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-page-description {
+    font-size: 17px !important;
+    line-height: 1.62 !important;
+    max-width: 100% !important;
+    margin-bottom: 26px !important;
+  }
+  .article-page-meta {
+    gap: 20px !important;
+    align-items: flex-start !important;
+  }
+  .article-page-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-hero {
+    padding: 118px 28px 56px !important;
+  }
+  .content-hub-hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+    align-items: start !important;
+  }
+  .content-hub-title {
+    font-size: clamp(44px, 11.4vw, 58px) !important;
+    line-height: 1.02 !important;
+    max-width: 9ch !important;
+    margin-bottom: 20px !important;
+  }
+  .content-hub-subtitle {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+    max-width: 36ch !important;
+  }
+  .content-search {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+  .content-hub-body {
+    padding: 54px 28px 80px !important;
+  }
+  .content-hub-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 34px !important;
+  }
+  .content-hub-layout > main {
+    min-width: 0 !important;
+  }
+  .content-sidebar {
+    order: -1 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+  .content-sidebar-card {
+    padding: 18px !important;
+  }
+  .article-card {
+    min-height: auto !important;
+    padding: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .article-card h2 {
+    font-size: 23px !important;
+    line-height: 1.14 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card-featured h2 {
+    font-size: 30px !important;
+    line-height: 1.1 !important;
+  }
+  .article-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+  .article-layout > aside,
+  .article-layout > main,
+  .article-main {
+    min-width: 0 !important;
+  }
+  .answer-box,
+  .source-box {
+    margin-bottom: 28px !important;
+  }
+  .answer-box h2,
+  .source-box h2 {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+  }
+  .content-article {
+    font-size: 17px !important;
+    line-height: 1.72 !important;
+  }
+  .content-article h2 {
+    font-size: 29px !important;
+    line-height: 1.16 !important;
+    margin: 42px 0 16px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article h3 {
+    font-size: 22px !important;
+    line-height: 1.24 !important;
+    margin: 30px 0 12px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .content-article table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .content-article th,
+  .content-article td {
+    min-width: 150px !important;
+  }
+}
+@media (max-width: 520px) {
+  .article-page-header {
+    padding: 104px 24px 38px !important;
+  }
+  .article-page-body {
+    padding: 40px 24px 68px !important;
+    overflow: hidden !important;
+  }
+  .article-empty-state {
+    padding: 120px 24px 56px !important;
+  }
+  .article-breadcrumbs {
+    font-size: 11px !important;
+    margin-bottom: 18px !important;
+  }
+  .article-category-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+  }
+  .article-page-title {
+    font-size: clamp(34px, 10.2vw, 40px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+    width: 100% !important;
+  }
+  .article-page-description {
+    font-size: 16px !important;
+    line-height: 1.58 !important;
+    margin-bottom: 22px !important;
+  }
+  .article-page-meta {
+    display: grid !important;
+    gap: 16px !important;
+  }
+  .content-hub-hero {
+    padding: 106px 24px 44px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-hero-grid,
+  .content-hub-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .content-hub-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.09em !important;
+    margin-bottom: 16px !important;
+  }
+  .content-hub-title {
+    font-size: clamp(42px, 12vw, 48px) !important;
+    max-width: 8.5ch !important;
+  }
+  .content-hub-subtitle {
+    font-size: 16px !important;
+    max-width: 25ch !important;
+  }
+  .content-hub-body {
+    padding: 44px 24px 72px !important;
+    overflow: hidden !important;
+  }
+  .content-hub-layout {
+    gap: 30px !important;
+  }
+  .content-sidebar {
+    order: 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .content-featured {
+    margin-bottom: 38px !important;
+  }
+  .content-section-label {
+    margin-bottom: 12px !important;
+  }
+  .content-list-title {
+    font-size: 28px !important;
+  }
+  .content-card-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .article-card {
+    padding: 22px !important;
+    width: calc(100vw - 48px) !important;
+    max-width: calc(100vw - 48px) !important;
+  }
+  .article-card h2,
+  .article-card-featured h2 {
+    display: block !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    width: min(100%, 24ch) !important;
+    max-width: 24ch !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .article-card h2 a {
+    display: inline !important;
+    min-width: 0 !important;
+  }
+  .article-card p {
+    font-size: 14px !important;
+  }
+  .article-card-meta {
+    gap: 8px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+  .content-search,
+  .content-search input {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .article-layout {
+    gap: 22px !important;
+  }
+  .answer-box {
+    padding: 20px 18px !important;
+    margin-bottom: 24px !important;
+  }
+  .source-box {
+    margin-top: 34px !important;
+    padding-top: 20px !important;
+  }
+  .content-article {
+    font-size: 16px !important;
+    line-height: 1.68 !important;
+  }
+  .content-article p {
+    margin-bottom: 18px !important;
+  }
+  .content-article h2 {
+    font-size: 26px !important;
+    line-height: 1.14 !important;
+    margin: 36px 0 14px !important;
+  }
+  .content-article h3 {
+    font-size: 20px !important;
+    line-height: 1.22 !important;
+    margin: 26px 0 10px !important;
+  }
+  .content-article pre {
+    margin: 24px 0 !important;
+    padding: 14px 16px !important;
+    font-size: 13px !important;
+  }
+  .content-article th,
+  .content-article td {
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+  }
+}
+</style><header style="position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(15,17,43,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background-color 200ms var(--ease-out), border-color 200ms ease, backdrop-filter 200ms ease;z-index:100"><div style="cursor:pointer;display:flex;align-items:center"><img src="/logo-just-2x.png" alt="JUST" style="height:36px;object-fit:contain"/></div><nav class="desktop-nav" style="display:flex;align-items:center;gap:2px"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Home</button><div style="position:relative"><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s" aria-haspopup="menu" aria-expanded="false">Produtos<!-- --> ▾</button><div style="position:absolute;top:100%;left:-20px;background:rgba(15,17,43,0.98);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:12px 8px;min-width:320px;backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:200;opacity:0;transform:translateY(6px) scale(0.98);transform-origin:top center;pointer-events:none;visibility:hidden;transition:opacity 170ms var(--ease-out), transform 170ms var(--ease-out), border-color 170ms ease" role="menu"><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #6C5CE718, rgba(10,12,31,0.9));border:1px solid #6C5CE740;box-shadow:0 0 12.8px #6C5CE720;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Benefits</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Benefícios flexíveis com arranjo customizável</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00B89418, rgba(10,12,31,0.9));border:1px solid #00B89440;box-shadow:0 0 12.8px #00B89420;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Fleet</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Controle financeiro completo por veículo</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #0984E318, rgba(10,12,31,0.9));border:1px solid #0984E340;box-shadow:0 0 12.8px #0984E320;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Banking</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Conta, cartão e PIX com sua marca</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #E1705518, rgba(10,12,31,0.9));border:1px solid #E1705540;box-shadow:0 0 12.8px #E1705520;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Expense</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Cartões corporativos com políticas inteligentes</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #FDCB6E18, rgba(10,12,31,0.9));border:1px solid #FDCB6E40;box-shadow:0 0 12.8px #FDCB6E20;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Credit</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos de crédito sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #636E7218, rgba(10,12,31,0.9));border:1px solid #636E7240;box-shadow:0 0 12.8px #636E7220;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Custom</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Produtos financeiros sob medida</div></div></button><button tabindex="-1" role="menuitem" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#f2f4f8;font-size:14px;cursor:pointer;border-radius:10px;transition:background 0.15s"><div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg, #00CEC918, rgba(10,12,31,0.9));border:1px solid #00CEC940;box-shadow:0 0 12.8px #00CEC920;flex-shrink:0"><span style="display:flex;width:19.2px;height:19.2px"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span></div><div><div style="font-weight:600;font-size:13px;color:#f2f4f8">JUST Sentinel</div><div style="font-size:11px;color:rgba(242,244,248,0.55);margin-top:2px;font-weight:400">Antifraude AI-native em tempo real</div></div></button></div></div><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Tecnologia</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Cases</button><button class="nav-link nav-link-active" style="color:#f2f4f8;font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Conteúdos</button><button class="nav-link " style="color:rgba(242,244,248,0.68);font-size:14px;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 14px;position:relative;transition:color 0.2s">Sobre</button><div style="display:flex;align-items:center;gap:6px;margin-left:8px;color:rgba(242,244,248,0.44);font-size:12px"><button style="padding:0;border:none;background:none;cursor:pointer;color:#f2f4f8;font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">PT</button><span style="opacity:0.55">/</span><button style="padding:0;border:none;background:none;cursor:pointer;color:rgba(242,244,248,0.34);font-size:12px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s, opacity 0.2s">EN</button></div><button style="padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease;margin-left:8px">Fale Conosco</button></nav><button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:8px;color:#f2f4f8;width:40px;height:40px"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button></header><main><!--$?--><template id="B:0"></template><div style="min-height:80vh;background:#0f112b"></div><!--/$--></main><footer class="site-footer" style="background:#0a0c1e;padding:80px 48px 40px;border-top:1px solid rgba(255,255,255,0.07)"><div class="site-footer-main" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px"><div class="site-footer-brand"><div style="margin-bottom:20px"><img src="/logo-just-2x.png" alt="JUST" style="height:30px;object-fit:contain"/></div><p style="font-size:13px;color:rgba(242,244,248,0.35);line-height:1.7;max-width:260px">Crie sua fintech com tecnologia pronta para operar, escalar e evoluir.</p></div><div class="site-footer-products"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Produtos</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="10" width="34" height="24" rx="4" stroke="#6C5CE7" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="10" y="16" width="7" height="5" rx="1.2" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.7"></rect><line x1="10" y1="26" x2="22" y2="26" stroke="#6C5CE7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="10" y1="29" x2="17" y2="29" stroke="#6C5CE7" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></line><circle cx="33" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.6"></circle><circle cx="30" cy="27" r="3" stroke="#6C5CE7" stroke-width="1.5" fill="none" opacity="0.4"></circle></svg></span>JUST Benefits</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><rect x="8" y="10" width="20" height="26" rx="3" stroke="#00B894" stroke-width="2" fill="none" opacity="0.9"></rect><rect x="12" y="14" width="12" height="8" rx="1.5" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.6"></rect><path d="M28 16h4a3 3 0 0 1 3 3v10a2 2 0 0 1-2 2h-1" stroke="#00B894" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"></path><circle cx="33" cy="26" r="2" stroke="#00B894" stroke-width="1.5" fill="none" opacity="0.5"></circle><line x1="8" y1="36" x2="28" y2="36" stroke="#00B894" stroke-width="1.8" stroke-linecap="round" opacity="0.4"></line></svg></span>JUST Fleet</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 6L6 16h32L22 6z" stroke="#0984E3" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="6" y1="36" x2="38" y2="36" stroke="#0984E3" stroke-width="2" stroke-linecap="round" opacity="0.8"></line><line x1="8" y1="16" x2="36" y2="16" stroke="#0984E3" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><rect x="11" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="20" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect><rect x="29" y="18" width="4" height="15" rx="1" stroke="#0984E3" stroke-width="1.5" fill="none" opacity="0.5"></rect></svg></span>JUST Banking</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M10 6h24v32l-4-3-4 3-4-3-4 3-4-3-4 3V6z" stroke="#E17055" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><line x1="16" y1="14" x2="28" y2="14" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line><line x1="16" y1="19" x2="28" y2="19" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.5"></line><line x1="16" y1="24" x2="24" y2="24" stroke="#E17055" stroke-width="1.5" stroke-linecap="round" opacity="0.4"></line><circle cx="28" cy="24" r="2" fill="#E17055" opacity="0.5"></circle></svg></span>JUST Expense</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="14" stroke="#FDCB6E" stroke-width="2" fill="none" opacity="0.9"></circle><path d="M20 13v9l6 4" stroke="#FDCB6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="20" cy="22" r="2" fill="#D4A017" opacity="0.4"></circle><path d="M33 14l3-3M36 11h-4M36 11v4" stroke="#FDCB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"></path></svg></span>JUST Credit</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M18 8h8v4a4 4 0 0 0 8 0V8h2a2 2 0 0 1 2 2v8h-4a4 4 0 0 0 0 8h4v8a2 2 0 0 1-2 2h-8v-4a4 4 0 0 0-8 0v4H8a2 2 0 0 1-2-2v-8h4a4 4 0 0 0 0-8H6V10a2 2 0 0 1 2-2h10z" stroke="#636E72" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><circle cx="22" cy="22" r="3" stroke="#636E72" stroke-width="1.5" fill="none" opacity="0.5"></circle></svg></span>JUST Custom</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:flex;line-height:2.4;transition:color 0.2s;align-items:center;gap:8px"><span style="display:inline-flex;width:18px;height:18px;flex-shrink:0"><svg viewBox="0 0 44 44" fill="none"><path d="M22 5L8 11v10c0 9.4 6 18 14 21 8-3 14-11.6 14-21V11L22 5z" stroke="#00CEC9" stroke-width="2" fill="none" opacity="0.9" stroke-linejoin="round"></path><path d="M16 22l4 4 8-8" stroke="#00B2B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"></path><circle cx="22" cy="22" r="2.5" stroke="#00CEC9" stroke-width="1.2" fill="none" opacity="0.3"></circle><path d="M22 14v2M22 28v2M14 22h2M28 22h2" stroke="#00CEC9" stroke-width="1.2" stroke-linecap="round" opacity="0.35"></path></svg></span>JUST Sentinel</button></div><div class="site-footer-company"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Empresa</h4><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Sobre</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Cases</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Tecnologia</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Conteúdos</button><button style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s">Contato</button></div><div class="site-footer-contact"><h4 style="color:rgba(242,244,248,0.6);font-size:11px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em">Contato</h4><a href="mailto:contato@wearejust.it" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">contato@wearejust.it</a><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:8px">Condomínio Praça Capital<!-- -->
+<!-- -->Av. José Rocha Bomfim, 214 - Edifício Madri<!-- -->
+<!-- -->Campinas - SP</span><span style="color:rgba(242,244,248,0.4);font-size:13px;cursor:default;background:none;border:none;display:block;line-height:1.6;transition:color 0.2s;margin-bottom:10px">Cubo Itaú<!-- -->
+<!-- -->Alameda Vicente Pinzón, 54 - Vila Olímpia<!-- -->
+<!-- -->São Paulo - SP</span><a href="https://www.linkedin.com/company/wearejust-it" target="_blank" rel="noopener noreferrer" style="color:rgba(242,244,248,0.4);font-size:13px;cursor:pointer;background:none;border:none;display:block;line-height:2.4;transition:color 0.2s;text-decoration:none">LinkedIn →</a></div></div><div class="site-footer-bottom" style="max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.04)"><div class="site-footer-partners" style="display:flex;gap:48px;margin-bottom:24px;flex-wrap:wrap"><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Ecossistema e associações</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/cubo-itau.png" alt="Cubo Itaú" style="height:24px;width:auto;opacity:0.2"/><img src="/logos/abfintechs.png" alt="ABFintechs" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/abstartups.png" alt="ABStartups" style="height:18px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/finscale.svg" alt="Finscale" style="height:14px;width:auto;opacity:0.2"/></div></div><div class="site-footer-partner-group"><p style="font-size:10px;color:rgba(242,244,248,0.2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-weight:600">Parceiros tecnológicos</p><div class="site-footer-partner-logos" style="display:flex;gap:20px;align-items:center"><img src="/logos/aws-partner.png" alt="AWS" style="height:20px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/swap.svg" alt="Swap" style="height:16px;width:auto;opacity:0.2;filter:invert(1)"/><img src="/logos/evertec.svg" alt="Evertec" style="height:16px;width:auto;opacity:0.2"/><img src="/logos/fiserv.png" alt="Fiserv" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/><img src="/logos/linx.png" alt="Linx" style="height:16px;width:auto;opacity:0.2;filter:brightness(0) invert(1)"/></div></div></div><p style="font-size:11px;color:rgba(242,244,248,0.18);line-height:1.7;margin-bottom:24px">A JUST atua exclusivamente como provedora de tecnologia e não realiza atividades privativas de instituições financeiras. Todos os serviços financeiros são operados por parceiros devidamente autorizados pelo Banco Central do Brasil.</p><div class="site-footer-bottom-row" style="display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap"><p style="font-size:12px;color:rgba(242,244,248,0.2)">© 2026 JUST. Todos os direitos reservados.</p><button style="font-size:12px;color:rgba(242,244,248,0.35);background:none;border:none;cursor:pointer;padding:0;text-decoration:none">Política de Privacidade</button></div></div></footer><a href="https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp" style="position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);z-index:1000;transition:transform 0.2s ease, box-shadow 0.2s ease;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a></div><script>requestAnimationFrame(function(){$RT=performance.now()});</script><div hidden id="S:0"><div style="background:#ffffff;min-height:100vh"><header class="article-page-header" style="padding:138px 48px 64px;background:#f6f8fb;border-bottom:1px solid #dbe3ee"><div style="max-width:1120px;margin:0 auto"><nav class="article-breadcrumbs" style="color:#647084;font-size:13px;margin-bottom:28px"><a href="/" style="color:inherit;text-decoration:none">Home</a><span style="margin:0 8px">/</span><a href="/conteudos" style="color:inherit;text-decoration:none">Conteúdos</a><span style="margin:0 8px">/</span><a href="/conteudos/categoria/cartoes" style="color:#f45546;text-decoration:none">Cartões</a></nav><div class="article-category-kicker" style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px">Cartões</div><h1 class="article-page-title" style="color:#10243f;font-size:56px;line-height:1.03;letter-spacing:-0.02em;max-width:900px;margin-bottom:22px">Como solicitar um BIN/IIN para arranjo fechado no Brasil: o caminho da ABNT</h1><p class="article-page-description" style="color:#45556c;font-size:19px;line-height:1.65;max-width:760px;margin-bottom:32px">Para emitir cartão em arranjo fechado no Brasil, o BIN (Bank Identification Number) é registrado junto à ABNT seguindo a ISO/IEC 7812-1. Entenda o processo, o custo, o prazo e quando esse caminho faz sentido.</p><div class="article-page-meta" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><div style="color:#647084;font-size:13px;line-height:1.7"><div>Atualizado em <!-- -->23/04/2026</div><div>10<!-- --> min de leitura</div></div></div></div></header><section class="article-page-body" style="padding:72px 48px 104px;background:#ffffff"><div class="article-layout" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:260px minmax(0, 1fr);gap:54px;align-items:start"><aside style="position:sticky;top:104px"><button class="toc-mobile-toggle" style="display:none;width:100%;padding:12px 14px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc;color:#10243f;font-weight:700;margin-bottom:12px">Índice do artigo</button><div class="toc-panel" style="padding:20px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><p style="color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:800;margin-bottom:14px">Neste artigo</p><ol style="list-style:none;display:grid;gap:10px;margin:0;padding:0"><li><a href="#resposta-direta" style="color:#f45546;font-size:13px;line-height:1.45;text-decoration:none;font-weight:700">Resposta direta</a></li><li><a href="#o-que-é-bin-e-o-que-é-iin" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">O que é BIN e o que é IIN</a></li><li><a href="#arranjo-fechado-vs-arranjo-aberto-dois-caminhos-diferentes" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Arranjo fechado vs arranjo aberto: dois caminhos diferentes</a></li><li><a href="#quando-você-precisa-de-bin-próprio-em-arranjo-fechado" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Quando você precisa de BIN próprio em arranjo fechado</a></li><li><a href="#a-abnt-como-autoridade-de-registro" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">A ABNT como autoridade de registro</a></li><li><a href="#o-passo-a-passo-do-processo" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">O passo a passo do processo</a></li><li><a href="#o-que-muitas-operações-esquecem" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">O que muitas operações esquecem</a></li><li><a href="#faq" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">FAQ</a></li><li><a href="#próximo-passo" style="color:#45556c;font-size:13px;line-height:1.45;text-decoration:none;font-weight:500">Próximo passo</a></li></ol></div></aside><main class="article-main"><section class="answer-box" aria-labelledby="resposta-curta" style="border:1px solid #dbe3ee;border-left:4px solid #f45546;border-radius:8px;padding:24px 26px;margin-bottom:34px;background:#ffffff;box-shadow:0 14px 34px rgba(16,36,63,0.06)"><h2 id="resposta-curta" style="color:#10243f;font-size:22px;line-height:1.25;margin-bottom:10px">Resposta curta</h2><p style="color:#273347;font-size:17px;line-height:1.7;margin:0">Para operações de cartão em arranjo fechado no Brasil, o registro do BIN (Bank Identification Number) e IIN (Issuer Identification Number) é feito diretamente junto à ABNT, que atua como Registration Authority do padrão ISO/IEC 7812-1. O processo envolve contato formal com a ABNT, preenchimento do formulário oficial (em inglês, no padrão internacional) e aguardo da aprovação. Custa entre R$ 3.000 e R$ 5.000, leva em torno de 30 dias e resulta em um identificador único de 6 ou 8 dígitos usado nos cartões da sua própria rede. Para arranjo aberto (cartões bandeirados Visa, Mastercard, Elo), o caminho é outro: o registro do BIN passa pela bandeira e envolve homologação técnica específica, não por solicitação direta à ABNT.</p></section><article class="content-article" style="color:#273347"><h1 id="como-solicitar-um-biniin-para-arranjo-fechado-no-brasil-o-caminho-da-abnt"><a href="#como-solicitar-um-biniin-para-arranjo-fechado-no-brasil-o-caminho-da-abnt">Como solicitar um BIN/IIN para arranjo fechado no Brasil: o caminho da ABNT</a></h1>
+<h2 id="resposta-direta"><a href="#resposta-direta">Resposta direta</a></h2>
+<p>Para operações de cartão em arranjo fechado no Brasil, o registro do BIN (Bank Identification Number) e IIN (Issuer Identification Number) é feito diretamente junto à ABNT, que atua como Registration Authority do padrão ISO/IEC 7812-1. O processo envolve contato formal com a ABNT, preenchimento do formulário oficial (em inglês, no padrão internacional) e aguardo da aprovação. Custa entre R$ 3.000 e R$ 5.000, leva em torno de 30 dias e resulta em um identificador único de 6 ou 8 dígitos usado nos cartões da sua própria rede. Para arranjo aberto (cartões bandeirados Visa, Mastercard, Elo), o caminho é outro: o registro do BIN passa pela bandeira e envolve homologação técnica específica, não por solicitação direta à ABNT.</p>
+<h2 id="o-que-é-bin-e-o-que-é-iin"><a href="#o-que-é-bin-e-o-que-é-iin">O que é BIN e o que é IIN</a></h2>
+<p>Os dois termos se confundem e muita gente usa como sinônimos. Tecnicamente têm origens diferentes.</p>
+<p><strong>BIN (Bank Identification Number)</strong> é o termo histórico. Surgiu quando praticamente só bancos emitiam cartões. São os primeiros 6 dígitos do número impresso no cartão, que identificam quem emitiu aquele plástico.</p>
+<p><strong>IIN (Issuer Identification Number)</strong> é o termo moderno e oficial da norma ISO/IEC 7812-1. Com a expansão da emissão para fintechs, companhias de benefícios e varejistas, &quot;Bank&quot; ficou ultrapassado. Hoje o IIN é o termo tecnicamente correto, e a norma está em transição de 6 para 8 dígitos.</p>
+<p>Na prática, no Brasil e no mundo, se usa BIN e IIN como sinônimos. Esse artigo segue essa convenção.</p>
+<p>Os dígitos do IIN identificam o emissor do cartão no sistema global de pagamentos. Sem IIN registrado, o roteamento de transações não consegue encontrar quem emitiu o cartão. É o equivalente a um domínio no DNS: sem ele, ninguém sabe pra onde mandar o pacote.</p>
+<h2 id="arranjo-fechado-vs-arranjo-aberto-dois-caminhos-diferentes"><a href="#arranjo-fechado-vs-arranjo-aberto-dois-caminhos-diferentes">Arranjo fechado vs arranjo aberto: dois caminhos diferentes</a></h2>
+<p>Antes de entrar no passo a passo, vale deixar claro em qual cenário esse caminho via ABNT se aplica.</p>
+<ul>
+<li><strong>Arranjo fechado (foco deste artigo).</strong> O emissor controla toda a cadeia, cria sua própria bandeira proprietária e credencia a rede de estabelecimentos que vai aceitar o cartão. O BIN precisa ser único no sistema global de identificação para não colidir com outros emissores. É para esse caso que o registro direto junto à ABNT faz sentido, seguindo a ISO/IEC 7812-1. Empresas que operam <a href="/conteudos/cartao-private-label">private label</a>, frota própria ou programas proprietários usam esse caminho.</li>
+<li><strong>Arranjo aberto (Visa, Mastercard, Elo, American Express).</strong> O emissor precisa de um BIN alocado pela bandeira, não solicitado diretamente à ABNT. O processo passa por contrato com a bandeira, homologação técnica, PCI DSS, integração com a rede global da bandeira. A bandeira cuida do registro do BIN nos sistemas internacionais dela. Se você vai emitir cartão Visa ou Mastercard, não é pela ABNT que o BIN é liberado, é pela bandeira (ou pelo seu <a href="/conteudos/bin-sponsor-o-que-e">BIN Sponsor</a>, que já tem essa estrutura).</li>
+</ul>
+<p>O resto deste artigo descreve o fluxo via ABNT, aplicável a arranjo fechado.</p>
+<h2 id="quando-você-precisa-de-bin-próprio-em-arranjo-fechado"><a href="#quando-você-precisa-de-bin-próprio-em-arranjo-fechado">Quando você precisa de BIN próprio em arranjo fechado</a></h2>
+<p>Nem toda operação em arranjo fechado precisa solicitar BIN próprio à ABNT. A regra geral:</p>
+<ul>
+<li>Se você opera via <a href="/conteudos/bin-sponsor-o-que-e">BIN Sponsor</a> (tanto em bandeira aberta quanto em arranjo fechado suportado pelo sponsor), não precisa. Você usa o BIN do sponsor.</li>
+<li>Se você emite <a href="/conteudos/cartao-private-label">cartão private label</a> em rede própria e não usa sponsor, precisa. O BIN próprio identifica seus cartões no seu ecossistema e garante que o identificador não conflite com outros no mundo.</li>
+<li>Se você tem um arranjo de pagamento próprio que interopera com outros sistemas (credenciadores, aceitadores terceiros), precisa. O IIN é o que permite roteamento entre sistemas.</li>
+</ul>
+<p>Na maioria das operações de fintech que começam hoje, o caminho é via sponsor, e não é necessário solicitar BIN diretamente. Private labels grandes e operações proprietárias que não passam por sponsor dependem de BIN registrado via ABNT.</p>
+<h2 id="a-abnt-como-autoridade-de-registro"><a href="#a-abnt-como-autoridade-de-registro">A ABNT como autoridade de registro</a></h2>
+<p>No mundo, a ISO/IEC 7812-1 delega o controle dos registros para Registration Authorities nacionais. Nos Estados Unidos, é a American Bankers Association (ABA). No Brasil, é a Associação Brasileira de Normas Técnicas (ABNT).</p>
+<p>A ABNT tem um papel administrativo no processo. Recebe o pedido, valida o candidato, atribui um identificador único e comunica a aprovação ao sistema internacional. Não faz supervisão regulatória. Não analisa modelo de negócio. Não precisa aprovação do BACEN como pré-requisito (embora o BACEN tenha que autorizar a operação como um todo quando o caso exige).</p>
+<p>Quem registra BIN junto à ABNT recebe um número único que ninguém mais no mundo vai poder usar. É uma atribuição global, administrada localmente.</p>
+<p>Um ponto prático: o canal de contato da ABNT para essa solicitação não é publicado de forma visível no site, o processo depende do contato correto com a área técnica responsável pelo registro de IIN. Operações que nunca passaram por isso costumam perder semanas tentando achar a porta certa. A gente na JUST conduz esse processo regularmente para clientes, então se você estiver nessa etapa, <a href="/contato">fale com a gente</a> que orientamos o fluxo inicial sem custo.</p>
+<h2 id="o-passo-a-passo-do-processo"><a href="#o-passo-a-passo-do-processo">O passo a passo do processo</a></h2>
+<p>O fluxo prático é esse:</p>
+<h3 id="passo-1-contato-inicial-com-a-abnt"><a href="#passo-1-contato-inicial-com-a-abnt">Passo 1: Contato inicial com a ABNT</a></h3>
+<p>O primeiro movimento é abrir o contato formal com a área técnica da ABNT responsável pelo registro de IIN. Na mensagem, a empresa informa o interesse em solicitar um identificador e pede o formulário oficial de aplicação.</p>
+<p>A resposta da ABNT costuma vir em poucos dias úteis. Vem com o formulário de aplicação (em inglês, no padrão internacional) e com orientações de pagamento da taxa. Quem já fez esse processo antes passa por aqui em uma semana. Quem nunca fez costuma travar, porque o canal de contato não está exposto publicamente. Em caso de dúvida, a gente pode orientar como proceder, <a href="/contato">é só nos chamar</a>.</p>
+<h3 id="passo-2-preenchimento-do-formulário"><a href="#passo-2-preenchimento-do-formulário">Passo 2: Preenchimento do formulário</a></h3>
+<p>O formulário é o &quot;Application/Agreement for Issuer Identification Number&quot; padrão ISO/IEC 7812-1. É em inglês porque é o mesmo documento usado em qualquer país do mundo.</p>
+<p>Pede as seguintes informações principais:</p>
+<ul>
+<li>Nome legal completo da organização requerente.</li>
+<li>Endereço físico da organização.</li>
+<li>Endereço para correspondência, se diferente.</li>
+<li>Contato principal: nome e sobrenome.</li>
+<li>Número de telefone.</li>
+<li>E-mail.</li>
+<li>VAT ou equivalente fiscal (CNPJ, no Brasil).</li>
+<li>Indústria principal. O formulário lista opções (Airline, Entertainment, Banking/Financial, Healthcare, Merchandising/Retail, Technology, Telecommunications, Other).</li>
+<li>Descrição breve do negócio do requerente.</li>
+<li>Descrição breve de como o cartão será usado.</li>
+<li>Se a organização já tem algum IIN fora desse sistema (indica caso a organização já opere em outros países com IIN separado).</li>
+<li>Data prevista de primeiro uso do IIN.</li>
+<li>Quantos IINs você pretende registrar (uma organização pode ter mais de um se justificar o uso).</li>
+<li>Compromisso de que o IIN será usado em conformidade com a ISO/IEC 7812.</li>
+<li>Se o uso será doméstico e internacional, ou só doméstico (fechado).</li>
+<li>O formulário precisa ser assinado por representante legal da organização.</li>
+</ul>
+<h3 id="passo-3-pagamento-da-taxa"><a href="#passo-3-pagamento-da-taxa">Passo 3: Pagamento da taxa</a></h3>
+<p>A ABNT cobra taxa pelo processo, que varia no tempo e dependendo do número de IINs solicitados. A faixa que o mercado costuma praticar é entre R$ 3.000 e R$ 5.000 para o primeiro IIN. IINs adicionais na mesma solicitação podem ter desconto.</p>
+<p>O pagamento costuma ser feito por depósito bancário ou boleto. A confirmação do pagamento é o gatilho para o processamento do pedido.</p>
+<h3 id="passo-4-aprovação-e-entrega-do-iin"><a href="#passo-4-aprovação-e-entrega-do-iin">Passo 4: Aprovação e entrega do IIN</a></h3>
+<p>A ABNT analisa o pedido. Se tudo está correto, atribui um número único e envia de volta ao requerente. O tempo médio é de 30 dias corridos, podendo variar conforme carga da ABNT no período.</p>
+<p>O que chega na aprovação:</p>
+<ul>
+<li>O número do IIN atribuído.</li>
+<li>Certificado oficial (em inglês).</li>
+<li>Instruções para comunicação do uso ao sistema internacional.</li>
+</ul>
+<p>A partir daí, o IIN é seu. Tecnicamente, ele está disponível para ser usado imediatamente na identificação dos cartões que você vai emitir. Na prática, ainda há passos adicionais.</p>
+<h2 id="o-que-muitas-operações-esquecem"><a href="#o-que-muitas-operações-esquecem">O que muitas operações esquecem</a></h2>
+<p>Quatro coisas que a gente vê travando o processo de BIN:</p>
+<ul>
+<li><strong>Primeira: pedir o IIN antes de ter clareza do modelo de cartão.</strong> Registrar BIN sem saber se vai ser pré-pago, débito ou crédito, ou sem saber se vai ser bandeira aberta ou fechada, leva a IIN mal utilizado ou a necessidade de pedir outro depois. Faça o planejamento do produto antes do pedido.</li>
+<li><strong>Segunda: negligenciar a homologação na bandeira.</strong> O IIN na mão não basta se o cartão não passa na maquininha. A homologação tem suas próprias regras e seu prazo, muitas vezes mais longo do que o registro do IIN em si.</li>
+<li><strong>Terceira: esquecer do registro interno na processadora.</strong> A processadora de cartão (sua ou de terceiros) precisa ser configurada para reconhecer o IIN e encaminhar transações corretamente. Erro comum de quem delega demais: assumir que alguém vai fazer isso sozinho.</li>
+<li><strong>Quarta: não manter documentação atualizada.</strong> Quando a empresa muda razão social, endereço, estrutura societária, o registro na ABNT precisa ser atualizado. Manter isso organizado evita problemas em auditorias futuras.</li>
+</ul>
+<h2 id="faq"><a href="#faq">FAQ</a></h2>
+<p><strong>O que é BIN de cartão?</strong></p>
+<p>BIN (Bank Identification Number) é o conjunto dos 6 ou 8 primeiros dígitos do número do cartão. Identifica a instituição emissora. É a chave que permite o roteamento de transações no sistema global de pagamentos.</p>
+<p><strong>Qual é a diferença entre BIN e IIN?</strong></p>
+<p>BIN é o termo histórico. IIN (Issuer Identification Number) é o termo moderno e oficial da norma ISO/IEC 7812-1. Ambos se referem ao mesmo conjunto de dígitos. Hoje é uma terminologia dupla, com IIN sendo tecnicamente correto e BIN sendo comum no dia a dia.</p>
+<p><strong>Quanto custa solicitar um BIN no Brasil?</strong></p>
+<p>O custo direto na ABNT fica entre R$ 3.000 e R$ 5.000 por IIN. Incluindo homologação em bandeira, integração técnica e setup operacional, o custo total para ter um BIN funcional vai de R$ 170 mil a R$ 830 mil.</p>
+<p><strong>Quanto tempo leva para receber um BIN?</strong></p>
+<p>O processo na ABNT leva em torno de 30 dias corridos. Considerando homologação em bandeira e integração, pode levar de 3 a 6 meses no total até o primeiro cartão em produção.</p>
+<p><strong>Preciso de BIN próprio para emitir cartão?</strong></p>
+<p>Não necessariamente. Se você opera via BIN Sponsor em bandeira aberta, usa o BIN do sponsor. Só precisa de BIN próprio se quer emitir cartão com arranjo fechado próprio, se quer ser emissor direto em bandeira aberta, ou se tem arranjo proprietário que interopera com outros.</p>
+<p><strong>Posso registrar mais de um BIN?</strong></p>
+<p>Sim. Uma organização pode registrar múltiplos IINs se justificar o uso (múltiplas marcas, múltiplos programas, múltiplos países). Na solicitação inicial à ABNT, basta indicar quantos quer.</p>
+<p><strong>O que é ISO/IEC 7812?</strong></p>
+<p>É a norma internacional que define o padrão de numeração de cartões de identificação. A parte 1 da norma define o sistema de IIN. A parte 2 trata de procedimentos de registro. A ISO/IEC 7812 é o padrão seguido pela Visa, Mastercard, American Express, Elo, Discover e bandeiras regionais em todo o mundo.</p>
+<p><strong>O BIN de 6 dígitos está sendo descontinuado?</strong></p>
+<p>Sim. A transição de 6 para 8 dígitos começou em 2017 e está em fase final. BINs novos já são atribuídos em 8 dígitos. BINs antigos de 6 dígitos continuam válidos, mas os sistemas estão sendo atualizados para tratar o IIN como de 8 dígitos por padrão.</p>
+<p><strong>Preciso de autorização do BACEN para registrar BIN?</strong></p>
+<p>Não. O registro do IIN na ABNT é processo administrativo independente do BACEN. Porém, a operação que usará o BIN pode precisar de autorização do BACEN, conforme a <a href="/conteudos/resolucao-bcb-150-2021">Resolução BCB 150/2021</a>.</p>
+<p><strong>Posso usar o BIN registrado em outro país?</strong></p>
+<p>Depende da bandeira e do tipo de uso. O IIN é um identificador global, mas o uso efetivo em rede internacional exige homologação específica da bandeira. Cartões em arranjo fechado geralmente ficam restritos ao Brasil.</p>
+<p><strong>Esse processo na ABNT vale para cartão Visa ou Mastercard?</strong></p>
+<p>Não. Para cartão de arranjo aberto (Visa, Mastercard, Elo, American Express), o BIN é alocado pela própria bandeira no processo de homologação do emissor, não solicitado diretamente à ABNT. Se você opera via <a href="/conteudos/bin-sponsor-o-que-e">BIN Sponsor</a>, o sponsor já tem o BIN alocado com a bandeira e você usa o dele. O caminho via ABNT descrito aqui é o padrão para arranjo fechado.</p>
+<p><strong>Como começar o contato com a ABNT?</strong></p>
+<p>O canal correto da ABNT para registro de IIN não é publicado de forma aberta no site deles. Operações que nunca passaram por isso costumam travar nessa etapa. A gente na JUST orienta clientes que estão nesse caminho. Se você está começando o processo, <a href="/contato">fale com a gente</a> que indicamos a porta certa.</p>
+<h2 id="próximo-passo"><a href="#próximo-passo">Próximo passo</a></h2>
+<p>Se você está estruturando uma operação de cartão em arranjo fechado e precisa solicitar BIN próprio, a JUST orienta o processo junto à ABNT e ajuda a desenhar a estrutura completa de emissão. Para quem opera em arranjo aberto, a gente conecta com o caminho via bandeira ou BIN Sponsor adequado ao modelo. <a href="/contato">Fale com a gente</a> para uma análise inicial.</p></article><footer style="margin-top:48px;padding-top:36px;border-top:1px solid #dbe3ee"><aside style="margin:36px 0;padding:28px;border-radius:8px;background:#fff7f5;border:1px solid rgba(244,85,70,0.22)"><h3 style="color:#10243f;font-size:24px;line-height:1.2;margin-bottom:10px">Quer aplicar isso no seu produto financeiro?</h3><p style="color:#45556c;font-size:16px;line-height:1.65;margin-bottom:22px">A JUST ajuda empresas a desenhar, construir e operar produtos financeiros digitais com arquitetura modular.</p><button style="padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:none;background:#f45546;color:#fff;transform:none;box-shadow:none;transition:transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease">Conversar com especialista</button></aside><div style="padding:24px;border-radius:8px;border:1px solid #dbe3ee;background:#f8fafc"><div style="display:flex;gap:12px;align-items:center"><a href="/autores/gabriel-pires" aria-label="Ver conteúdos de Gabriel Pires" style="text-decoration:none"><div style="width:44px;height:44px;border-radius:50%;background:#ffffff;color:#f2f4f8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;overflow:hidden;border:1px solid #c7d3e3"><img src="/authors/gabriel-pires.jpeg" alt="Gabriel Pires" style="width:100%;height:100%;object-fit:cover;object-position:40% 25%;transform:scale(2.05);transform-origin:40% 25%;display:block"/></div></a><span><span style="display:block;color:#647084;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Autor</span><a href="/autores/gabriel-pires" style="display:block;color:#10243f;font-size:15px;font-weight:800;text-decoration:none">Gabriel Pires</a><span style="display:block;color:#45556c;font-size:13px;margin-top:2px">Founder &amp; CEO da JUST</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;width:fit-content;color:#f45546;font-size:13px;font-weight:800;margin-top:6px;text-decoration:none">LinkedIn</a></span></div><p style="color:#45556c;font-size:14px;line-height:1.7;margin-top:14px">Especialista em produtos financeiros digitais, meios de pagamento e plataformas financeiras modulares.</p></div></footer><section style="margin-top:64px"><h2 style="color:#10243f;font-size:30px;line-height:1.2;margin-bottom:22px">Continue lendo</h2><div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:18px"><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Cartões</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/anatomia-do-cartao" style="color:#10243f;text-decoration:none">Anatomia do cartão: o que são PAN, BIN, CVV, chip EMV e trilha magnética</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">O cartão físico tem vários componentes técnicos: PAN, BIN, CVV, chip EMV, trilha magnética, NFC e data de expiração. Entenda o que cada um faz, por que existe e como conversam entre si.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>12<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->23/04/2026</span></div></article><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Cartões</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/arranjo-aberto-vs-arranjo-fechado" style="color:#10243f;text-decoration:none">Arranjo aberto vs arranjo fechado: qual modelo de cartão faz sentido para sua operação</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">Arranjo aberto e arranjo fechado são os dois modelos que o BACEN reconhece para operações de cartão. Entenda as diferenças, a matemática de cada um e como escolher o que faz sentido para sua empresa.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>12<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->23/04/2026</span></div></article><article class="article-card " role="link" tabindex="0" style="display:block;min-height:260px;padding:26px;border-radius:8px;background:#ffffff;border:1px solid #dbe3ee;box-shadow:0 10px 30px rgba(16,36,63,0.04);cursor:pointer;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"><div style="color:#f45546;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px">Cartões</div><h2 style="font-size:24px;line-height:1.12;margin-bottom:14px"><a href="/conteudos/bin-sponsor-o-que-e" style="color:#10243f;text-decoration:none">BIN Sponsor: o que é e como viabilizar sua emissão de cartão sem licença própria</a></h2><p style="color:#45556c;font-size:15px;line-height:1.65;margin-bottom:22px">BIN Sponsor é o modelo que permite emitir cartão no Brasil sem ter licença do BACEN nem contrato direto com a bandeira. Entenda como funciona, quando faz sentido e o que precisa olhar antes de assinar.</p><div class="article-card-meta" style="display:flex;flex-wrap:wrap;gap:12px;color:#647084;font-size:13px"><span>Gabriel Pires</span><span>•</span><a href="https://www.linkedin.com/in/gabrielfzp/" target="_blank" rel="noopener noreferrer" style="color:#f45546;font-weight:800;text-decoration:none">LinkedIn</a><span>•</span><span>11<!-- --> min de leitura</span><span>•</span><span>Atualizado em <!-- -->23/04/2026</span></div></article></div></section></main></div></section></div></div><script>$RB=[];$RV=function(a){$RT=performance.now();for(var b=0;b<a.length;b+=2){var c=a[b],e=a[b+1];null!==e.parentNode&&e.parentNode.removeChild(e);var f=c.parentNode;if(f){var g=c.previousSibling,h=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d||"/&"===d)if(0===h)break;else h--;else"$"!==d&&"$?"!==d&&"$~"!==d&&"$!"!==d&&"&"!==d||h++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;e.firstChild;)f.insertBefore(e.firstChild,c);g.data="$";g._reactRetry&&requestAnimationFrame(g._reactRetry)}}a.length=0};
+$RC=function(a,b){if(b=document.getElementById(b))(a=document.getElementById(a))?(a.previousSibling.data="$~",$RB.push(a,b),2===$RB.length&&("number"!==typeof $RT?requestAnimationFrame($RV.bind(null,$RB)):(a=performance.now(),setTimeout($RV.bind(null,$RB),2300>a&&2E3<a?2300-a:$RT+300-a)))):b.parentNode.removeChild(b)};$RC("B:0","S:0")</script></div>
     <noscript>A JUST desenvolve e integra tecnologia para produtos financeiros digitais.</noscript>
   </body>
 </html>
