@@ -153,11 +153,25 @@ URLs esperadas:
 Regra editorial: conteúdo em pt-BR nos primeiros 12 meses. Não criar versão EN para artigos ainda.
 
 ## Deploy para GitHub Pages
+
 ```bash
-npm run build
-cp CNAME dist/CNAME
-git push origin HEAD:gh-pages --force   # a partir de um branch com o dist/ commitado
+./scripts/deploy-gh-pages.sh "mensagem do commit"
 ```
+
+**Use o script, não os comandos à mão.** Ele existe por causa de duas quebras
+reais em produção, as duas silenciosas:
+
+1. `git commit -a` **não adiciona arquivo novo**. Como os bundles têm hash no
+   nome, todo build gera nomes novos: o commit levava só as remoções e o site
+   ficava sem JS.
+2. `rsync -a` compara **tamanho + mtime**. O `index.html` novo tem exatamente
+   o mesmo tamanho do antigo (mudam 8 caracteres do hash lá dentro) e o
+   `git worktree add` costuma escrever no mesmo segundo do build — então o
+   rsync pulava o arquivo e publicava o HTML velho apontando para um bundle
+   inexistente. Site inteiro em 404 no JS.
+
+O script usa `--checksum`, `git add -A` e **aborta antes do push** se algum
+HTML referenciar asset ausente.
 
 Branch de desenvolvimento: `teste-visual`
 Branch de produção (GitHub Pages): `gh-pages`
