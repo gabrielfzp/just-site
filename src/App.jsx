@@ -177,7 +177,14 @@ export function AppContent() {
             --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
           }
           * { margin: 0; padding: 0; box-sizing: border-box; }
-          html, body { overflow-x: hidden; width: 100%; background: #0f112b; }
+          /* o iOS infla o texto de blocos que julga largos demais, e isso
+             estourava o layout no iPhone sem reproduzir em emulador nenhum */
+          html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+          /* clip, não hidden: o iOS Safari ignora overflow-x:hidden no root e
+             deixa a página panar para o lado assim mesmo, que é o que levava
+             o botão fixo do WhatsApp para fora da tela. clip corta de verdade
+             e não cria contexto de rolagem. */
+          html, body { overflow-x: clip; width: 100%; background: #0f112b; }
           ::selection { background: rgba(244,85,70,0.3); }
           input:focus, textarea:focus, select:focus { border-color: ${T.cta} !important; }
           button:focus { outline: none; }
@@ -917,6 +924,35 @@ export function AppContent() {
     font-size: 14px !important;
   }
 }
+
+/* ── /contato no mobile ────────────────────────────────────────────────
+   Os estilos da página são inline, então media query só alcança por classe
+   com !important, que é a convenção já usada acima.
+
+   O problema: os dois grids eram fixos ("1.5fr 1fr" e "1fr 1fr") e nunca
+   colapsavam. A 375px isso deixava os campos com 52px e 66px de largura. */
+@media (max-width: 900px) {
+  .contato-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 40px !important;
+  }
+}
+@media (max-width: 640px) {
+  .contato-hero { padding: 120px 20px 48px !important; }
+  .contato-secao { padding: 48px 20px !important; }
+  .contato-h1 { font-size: 30px !important; line-height: 1.15 !important; }
+  .contato-sub { font-size: 15px !important; }
+  .contato-campos { grid-template-columns: minmax(0, 1fr) !important; }
+}
+
+/* 16px é o piso que impede o zoom automático do iOS ao focar um campo.
+   Abaixo disso o Safari amplia a página, o viewport visual encolhe e todo
+   elemento position:fixed sai da tela: é o que sumia com o botão do
+   WhatsApp e obrigava a rolar para o lado. Vale em qualquer largura de
+   toque, não só no telefone. */
+@media (hover: none) and (pointer: coarse) {
+  input, select, textarea { font-size: 16px !important; }
+}
 `}</style>
         <Header page={page} setPage={setPage} lang={lang} />
         <main>
@@ -933,7 +969,11 @@ export function AppContent() {
             rel="noopener noreferrer"
             title="Fale conosco pelo WhatsApp"
             style={{
-              position: "fixed", bottom: 24, right: 24, width: 48, height: 48,
+              // safe-area: sem isso o botão cai sob a barra de gestos do iPhone
+              position: "fixed",
+              bottom: "calc(24px + env(safe-area-inset-bottom, 0px))",
+              right: "calc(24px + env(safe-area-inset-right, 0px))",
+              width: 48, height: 48,
               borderRadius: "50%", background: "#25D366", display: "flex",
               alignItems: "center", justifyContent: "center", boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
               zIndex: 1000, transition: "transform 0.2s ease, box-shadow 0.2s ease",

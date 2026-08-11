@@ -70,16 +70,16 @@ export default function ContatoPage({ lang }) {
   const faqs = tr.faqs;
   return (
     <div>
-      <section style={{ background: `linear-gradient(160deg, ${T.primary}, ${T.darkAlt})`, padding: "170px 48px 80px", textAlign: "center" }}>
-        <Reveal><h1 style={{ fontSize: 44, fontWeight: 700, color: T.textLight, marginBottom: 12 }}>{tr.h1}</h1></Reveal>
-        <Reveal delay={0.1}><p style={{ fontSize: 17, color: T.textMutedLight }}>{tr.subtitle}</p></Reveal>
+      <section className="contato-hero" style={{ background: `linear-gradient(160deg, ${T.primary}, ${T.darkAlt})`, padding: "170px 48px 80px", textAlign: "center" }}>
+        <Reveal><h1 className="contato-h1" style={{ fontSize: 44, fontWeight: 700, color: T.textLight, marginBottom: 12 }}>{tr.h1}</h1></Reveal>
+        <Reveal delay={0.1}><p className="contato-sub" style={{ fontSize: 17, color: T.textMutedLight }}>{tr.subtitle}</p></Reveal>
       </section>
-      <section style={{ background: T.primary, padding: "80px 48px" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 60 }}>
+      <section className="contato-secao" style={{ background: T.primary, padding: "80px 48px" }}>
+        <div className="contato-grid" style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 60 }}>
           {!sent ? (
             <Reveal>
               <div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+                <div className="contato-campos" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
                   {[{ l: tr.nameLabel, t: "text", k: "nome" }, { l: tr.emailLabel, t: "email", k: "email" }, { l: tr.companyLabel, t: "text", k: "empresa" }, { l: tr.phoneLabel, t: "tel", k: "telefone" }].map((f, i) => (
                     <div key={i}>
                       <label style={{ display: "block", fontSize: 12, color: T.textMuted, marginBottom: 5, fontWeight: 500 }}>{f.l}</label>
@@ -127,7 +127,7 @@ export default function ContatoPage({ lang }) {
           </Reveal>
         </div>
       </section>
-      <section style={{ background: T.darkAlt, padding: "80px 48px" }}>
+      <section className="contato-secao" style={{ background: T.darkAlt, padding: "80px 48px" }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <h2 style={{ fontSize: 28, fontWeight: 700, color: T.textLight, marginBottom: 28, textAlign: "center" }}>{tr.faqTitle}</h2>
           {faqs.map((f, i) => (
