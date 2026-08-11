@@ -176,6 +176,24 @@ function capturarContexto() {
   };
 }
 
+/** Cookie _fbp, criado pelo pixel. É o sinal que a Meta mais usa para casar
+ *  o evento do servidor com o do navegador. */
+function lerFbp() {
+  const m = document.cookie.match(/(?:^|;\s*)_fbp=([^;]+)/);
+  return m ? m[1] : undefined;
+}
+
+/** fbc: derivado do fbclid da URL. É o que liga a conversão ao anúncio
+ *  clicado; sem ele a Meta sabe que houve conversão, não de qual anúncio. */
+function montarFbc() {
+  const fbclid = new URLSearchParams(window.location.search).get("fbclid");
+  if (!fbclid) {
+    const m = document.cookie.match(/(?:^|;\s*)_fbc=([^;]+)/);
+    return m ? m[1] : undefined;
+  }
+  return `fb.1.${Date.now()}.${fbclid}`;
+}
+
 function sessaoAtual() {
   const sid = ler(CHAVE_SID);
   const em = Number(ler(CHAVE_SID_EM) || 0);
@@ -195,7 +213,9 @@ async function despachar(eventos, viaBeacon) {
     // com consentimento a sessão persiste entre carregamentos; sem ele, vive
     // apenas na memória desta aba
     sid: (consent === "concedido" ? sessaoAtual() : lerSessao(CHAVE_SID_ANON)) || undefined,
-    ctx: contexto || undefined,
+    // lidos aqui, não na carga da página: o _fbp só passa a existir depois
+    // que o visitante aceita e o pixel inicializa
+    ctx: contexto ? { ...contexto, fbp: lerFbp(), fbc: montarFbc() } : undefined,
     eventos,
   });
 
@@ -240,7 +260,7 @@ function escoar(viaBeacon = false) {
   return despachar(lote, viaBeacon);
 }
 
-export function justTrack(nome, props = {}) {
+export function justTrack(nome, props = {}, meta) {
   if (!ativo() || !iniciado) return;
   if (!/^[a-z][a-z0-9_]{1,47}$/.test(nome)) return;
 
@@ -248,11 +268,11 @@ export function justTrack(nome, props = {}) {
     Object.entries(props).filter(([, v]) => v !== undefined && v !== null && v !== ""),
   );
 
-  enfileirar(nome, limpos, window.location.href);
+  enfileirar(nome, limpos, window.location.href, meta);
 }
 
-function enfileirar(nome, props, url) {
-  fila.push({ nome, ts: new Date().toISOString(), url, props });
+function enfileirar(nome, props, url, meta) {
+  fila.push({ nome, ts: new Date().toISOString(), url, props, ...(meta ? { meta } : {}) });
   if (fila.length >= 10) escoar();
   else if (!timer) timer = setTimeout(() => escoar(), 1500);
 }

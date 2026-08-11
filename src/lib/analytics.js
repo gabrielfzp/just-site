@@ -45,6 +45,19 @@ let llmReferralTracked = false;
 /** o init do pixel já mandou o PageView desta página; o próximo é do router */
 let pixelContouAPagina = false;
 
+/**
+ * Identificador do evento, compartilhado entre navegador e servidor.
+ *
+ * É ele que permite ligar a Conversions API sem dobrar a contagem: a Meta
+ * recebe o mesmo evento duas vezes, vê o mesmo id e descarta a segunda. Sem
+ * isso, cada conversão contaria em dobro e o algoritmo passaria a otimizar
+ * para um número que não existe.
+ */
+function novoEventId() {
+  if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
+}
+
 function canUseBrowser() {
   return typeof window !== "undefined" && typeof document !== "undefined";
 }
@@ -159,14 +172,18 @@ export function trackEvent(name, props = {}) {
   if (typeof window.gtag === "function") {
     window.gtag("event", name, limpos);
   }
-  justTrack(name, limpos);
-
   // Meta só recebe o que tem tradução: mandar nome interno como evento
   // customizado polui o Events Manager e não otimiza nada
   const padrao = META_EVENTOS[name];
   if (padrao && typeof window.fbq === "function") {
-    window.fbq("track", padrao, limpos);
+    const eventID = novoEventId();
+    window.fbq("track", padrao, limpos, { eventID });
+    // o MESMO id vai ao nosso coletor, que repete o evento pelo servidor
+    justTrack(name, limpos, { evento: padrao, id: eventID });
+    return;
   }
+
+  justTrack(name, limpos);
 }
 
 /**
@@ -189,9 +206,16 @@ export function trackPageView(path, title) {
     // sem esta guarda a primeira página contava duas vezes: uma no init do
     // pixel e outra aqui, inflando a métrica logo na porta de entrada
     if (pixelContouAPagina) pixelContouAPagina = false;
-    else window.fbq("track", "PageView");
+    else window.fbq("track", "PageView", {}, { eventID: novoEventId() });
     if (produto) {
-      window.fbq("track", "ViewContent", { content_category: "produto", content_name: produto });
+      const eventID = novoEventId();
+      window.fbq(
+        "track",
+        "ViewContent",
+        { content_category: "produto", content_name: produto },
+        { eventID },
+      );
+      justTrack("meta_view_content", { produto }, { evento: "ViewContent", id: eventID });
     }
   }
 
