@@ -222,7 +222,8 @@ export const T18N = {
             "As preferências são separadas: você pode aceitar ser reconhecido em visitas futuras sem aceitar publicidade. A opção de publicidade é a única que envolve outras plataformas, como Google e Meta.",
             "Seu endereço IP não é armazenado em nenhum caso. Ele é usado no momento do acesso apenas para identificar a operadora de internet, o tipo de rede e o país. Quando você aceita a medição, guardamos também um código irreversível derivado dele; quando você recusa, nem isso é guardado.",
             "Também utilizamos o Google Analytics 4, configurado com Consent Mode: enquanto você não aceitar, ele opera sem gravar cookies.",
-            "Você pode mudar de ideia a qualquer momento apagando os cookies deste site no seu navegador, o que faz o aviso de consentimento aparecer novamente. Ao recusar depois de ter aceitado, os dados de navegação associados ao seu identificador são apagados dos nossos sistemas.",
+            "Se você aceitar, guardamos essa escolha no seu navegador e não perguntamos de novo. Se você recusar, não guardamos nada permanente: a recusa vale para a visita atual e o aviso volta a aparecer quando você acessar o site outra vez. Ao recusar depois de ter aceitado, os dados de navegação associados ao seu identificador são apagados dos nossos sistemas.",
+            "Para uma visita anônima, usamos o armazenamento de sessão do navegador apenas para não contar a mesma visita várias vezes ao recarregar a página. Ele é descartado quando você fecha a aba.",
             "Registros de navegação são mantidos por até 13 meses; depois disso permanecem apenas números agregados, sem identificadores."
           ]
         },
@@ -517,7 +518,8 @@ export const T18N = {
             "Preferences are separate: you can accept being recognised on future visits without accepting advertising. Advertising is the only option that involves third-party platforms such as Google and Meta.",
             "Your IP address is never stored. It is used at request time only to identify the internet provider, network type and country. If you accept measurement we also keep an irreversible code derived from it; if you decline, not even that is kept.",
             "We also use Google Analytics 4 with Consent Mode enabled: until you accept, it runs without setting cookies.",
-            "You can change your mind at any time by clearing this site's cookies in your browser, which brings the consent notice back. If you decline after having accepted, the browsing data linked to your identifier is deleted from our systems.",
+            "If you accept, we store that choice in your browser and will not ask again. If you decline, nothing permanent is stored: the refusal applies to the current visit and the notice reappears the next time you open the site. If you decline after having accepted, the browsing data linked to your identifier is deleted from our systems.",
+            "For an anonymous visit we use the browser session storage only so that reloading the page does not count the same visit twice. It is discarded when you close the tab.",
             "Browsing records are kept for up to 13 months; after that only aggregate figures remain, with no identifiers."
           ]
         },

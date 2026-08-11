@@ -3,11 +3,15 @@
  *
  * Três decisões que explicam quase todo o arquivo:
  *
- * 1. NADA é gravado no dispositivo sem consentimento. A visita continua sendo
- *    medida por inteiro (páginas, sequência, tempo de tela) — só que a sessão
- *    vive na memória desta aba e morre com ela, sem cookie e sem identificador.
- *    Medir audiência e rastrear pessoa são coisas diferentes, e a diferença
- *    está exatamente aqui.
+ * 1. NADA que sobreviva à visita é gravado sem consentimento. A visita continua
+ *    sendo medida por inteiro (páginas, sequência, tempo de tela), mas a sessão
+ *    mora no sessionStorage: morre quando a aba fecha, sem cookie e sem
+ *    identificador entre visitas. Medir audiência e rastrear pessoa são coisas
+ *    diferentes, e a diferença está exatamente aqui.
+ *
+ *    O aceite é lembrado no dispositivo; a recusa, só na aba. Quem recusa é
+ *    perguntado de novo na próxima visita (decisão do Gabriel), mas recarregar
+ *    a página não repergunta.
  *
  * 2. O contexto de chegada (referrer, UTM, click ids, página de entrada) fica
  *    em MEMÓRIA desde o primeiro instante. Se a pessoa aceitar 20 segundos
@@ -27,6 +31,14 @@ const env = import.meta.env || {};
 const ENDPOINT = (env.VITE_IDENTITY_URL || "").replace(/\/$/, "");
 
 const CHAVE_CONSENT = "just_consent";
+/**
+ * A RECUSA vive só na aba, o aceite vive no dispositivo.
+ *
+ * Assimetria proposital: quem aceita é lembrado; quem recusa é perguntado de
+ * novo na próxima visita. Recarregar a página não pergunta de novo (o
+ * sessionStorage sobrevive ao reload), só abrir o site outra vez.
+ */
+const CHAVE_RECUSA = "just_consent_sessao";
 /** Publicidade é escolha separada: quem aceita ser reconhecido não
  *  necessariamente aceita ser perseguido por anúncio. */
 const CHAVE_ADS = "just_consent_ads";
@@ -45,15 +57,8 @@ let inicioPagina = Date.now();
 let marcosScroll = new Set();
 let refCode = null;
 let ouvintesConsent = [];
-/**
- * Sessão de quem NÃO consentiu: vive só aqui, numa variável.
- *
- * Nada é gravado no dispositivo, então recarregar a página começa outra
- * sessão. Como o site é uma SPA, a visita inteira cabe num carregamento e a
- * jornada fica completa mesmo assim. É o que permite medir a audiência toda
- * sem criar identificador em quem recusou.
- */
-let sidMemoria = null;
+/** Chave da sessão anônima no sessionStorage (morre junto com a aba). */
+const CHAVE_SID_ANON = "just_sid_sessao";
 /** URL da página corrente, para o page_exit ser atribuído à tela certa. */
 let urlPagina = null;
 
@@ -91,9 +96,34 @@ function apagar(chave) {
   }
 }
 
+/**
+ * sessionStorage: morre com a aba, sobrevive ao recarregamento.
+ *
+ * É o que faz a sessão anônima parar de se multiplicar a cada F5 (três
+ * recarregamentos viravam três "visitas") sem gravar nada que sobreviva à
+ * visita.
+ */
+function lerSessao(chave) {
+  try {
+    return window.sessionStorage.getItem(chave);
+  } catch {
+    return null;
+  }
+}
+
+function gravarSessao(chave, valor) {
+  try {
+    window.sessionStorage.setItem(chave, valor);
+  } catch {
+    /* sem sessionStorage: cai no comportamento antigo, sessão por carregamento */
+  }
+}
+
 export function consentimento() {
-  const v = ler(CHAVE_CONSENT);
-  return v === "concedido" || v === "negado" ? v : null;
+  // aceite é lembrado entre visitas; recusa, só dentro da aba
+  const aceite = ler(CHAVE_CONSENT);
+  if (aceite === "concedido") return "concedido";
+  return lerSessao(CHAVE_RECUSA) === "negado" ? "negado" : null;
 }
 
 /** Consentimento de publicidade (Meta Pixel, remarketing do Google). */
@@ -164,7 +194,7 @@ async function despachar(eventos, viaBeacon) {
     consent,
     // com consentimento a sessão persiste entre carregamentos; sem ele, vive
     // apenas na memória desta aba
-    sid: (consent === "concedido" ? sessaoAtual() : sidMemoria) || undefined,
+    sid: (consent === "concedido" ? sessaoAtual() : lerSessao(CHAVE_SID_ANON)) || undefined,
     ctx: contexto || undefined,
     eventos,
   });
@@ -194,7 +224,7 @@ async function despachar(eventos, viaBeacon) {
     const dados = await resp.json().catch(() => ({}));
     if (!dados.sid) return;
     if (consent === "concedido") tocarSessao(dados.sid);
-    else sidMemoria = dados.sid;
+    else gravarSessao(CHAVE_SID_ANON, dados.sid);
   } catch {
     /* coletor fora do ar nunca pode quebrar o site */
   }
@@ -363,7 +393,7 @@ export function aoMudarConsentimento(fn) {
  */
 export async function definirConsentimento(valor, ads = valor) {
   const anterior = consentimento();
-  gravar(CHAVE_CONSENT, valor);
+  if (valor === "concedido") gravar(CHAVE_CONSENT, valor);
   // publicidade só pode existir com medição: sem identificador não há a quem
   // atribuir o anúncio, então aceitar ads e recusar medição é incoerente
   gravar(CHAVE_ADS, valor === "concedido" ? ads : "negado");
@@ -372,8 +402,10 @@ export async function definirConsentimento(valor, ads = valor) {
     apagar(CHAVE_SID);
     apagar(CHAVE_SID_EM);
     apagar(CHAVE_REF);
+    apagar(CHAVE_CONSENT);
     refCode = null;
-    sidMemoria = null;
+    // a recusa fica na aba: na próxima visita perguntamos de novo
+    gravarSessao(CHAVE_RECUSA, "negado");
     if (anterior === "concedido" && ativo()) {
       try {
         await fetch(`${ENDPOINT}/c/apagar`, { method: "POST", credentials: "include" });
