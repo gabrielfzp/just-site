@@ -1,7 +1,27 @@
 import { CONTENT_T, T } from "../../site/shared.jsx";
 
-export function AuthorBadge({ author, label = "Autor", compact = false }) {
+/**
+ * Crachá do autor.
+ *
+ * `comoTitulo` existe porque este componente aparece em três lugares com
+ * significados diferentes: no card e no rodapé de artigo ele é uma assinatura
+ * secundária, e na página do próprio autor ele É o título da página. Sem a
+ * distinção, ou as páginas de autor ficam sem h1 (era o caso), ou todo card de
+ * artigo passa a ter um h1 indevido.
+ *
+ * O estilo do nome é o mesmo nos dois casos de propósito: a mudança é
+ * semântica, para o Google, e não deve alterar o visual.
+ */
+export function AuthorBadge({ author, label = "Autor", compact = false, comoTitulo = false }) {
   if (!author) return null;
+
+  const estiloNome = {
+    display: "block",
+    color: CONTENT_T.navy,
+    fontSize: compact ? 13 : 15,
+    fontWeight: 800,
+    textDecoration: "none",
+  };
   return (
     <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
       <a href={`/autores/${author.slug}`} aria-label={`Ver conteúdos de ${author.name}`} style={{ textDecoration: "none" }}>
@@ -39,7 +59,13 @@ export function AuthorBadge({ author, label = "Autor", compact = false }) {
       </a>
       <span>
         <span style={{ display: "block", color: CONTENT_T.muted, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 2 }}>{label}</span>
-        <a href={`/autores/${author.slug}`} style={{ display: "block", color: CONTENT_T.navy, fontSize: compact ? 13 : 15, fontWeight: 800, textDecoration: "none" }}>{author.name}</a>
+        {comoTitulo ? (
+          // na própria página do autor o nome não vira link: apontaria para
+          // onde o visitante já está
+          <h1 style={estiloNome}>{author.name}</h1>
+        ) : (
+          <a href={`/autores/${author.slug}`} style={estiloNome}>{author.name}</a>
+        )}
         {!compact && <span style={{ display: "block", color: CONTENT_T.mutedStrong, fontSize: 13, marginTop: 2 }}>{author.role}</span>}
         {author.linkedin && (
           <a

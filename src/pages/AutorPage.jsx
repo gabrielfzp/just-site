@@ -31,7 +31,8 @@ export default function AutorPage({ slug }) {
       <div style={{ maxWidth: 1120, margin: "0 auto" }}>
         <a href="/conteudos" style={{ color: T.cta, textDecoration: "none", fontSize: 13, fontWeight: 700 }}>← Conteúdos</a>
         <div style={{ margin: "28px 0 22px" }}>
-          <AuthorBadge author={author} />
+          {/* aqui o crachá É o título da página, então o nome sai como h1 */}
+          <AuthorBadge author={author} comoTitulo />
         </div>
         <p style={{ color: CONTENT_T.mutedStrong, fontSize: 18, lineHeight: 1.65, maxWidth: 760, marginBottom: 18 }}>{author.bio}</p>
         {author.linkedin && (
