@@ -218,8 +218,9 @@ export const T18N = {
           body: [
             "Ao aceitar a medição, gravamos um cookie próprio chamado just_vid. Ele contém apenas um identificador aleatório, sem nome, email ou qualquer dado seu, e serve para reconhecer visitas recorrentes do mesmo navegador. Tem validade de até 400 dias e é acessível somente ao nosso servidor, não ao código da página.",
             "Com esse identificador registramos páginas acessadas, origem da visita (incluindo parâmetros de campanha), tipo de dispositivo, idioma e interações como rolagem, cliques em botões de contato e envio de formulários.",
-            "Se você recusar, não gravamos cookie nem identificador: mantemos apenas uma contagem agregada e anônima de acessos, que não permite identificar ou reconhecer visitantes.",
-            "Seu endereço IP não é armazenado. Ele é usado no momento do acesso apenas para estimar a organização e a localização aproximada, e convertido em um código irreversível antes de qualquer gravação.",
+            "Se você recusar, não gravamos cookie nem qualquer identificador no seu navegador. Seguimos medindo a visita de forma anônima: páginas acessadas, sequência da navegação, tempo em cada tela, tipo de dispositivo, operadora de internet e país. Esses registros não têm identificador, morrem com a visita e não podem ser ligados a você nem a outro acesso seu.",
+            "As preferências são separadas: você pode aceitar ser reconhecido em visitas futuras sem aceitar publicidade. A opção de publicidade é a única que envolve outras plataformas, como Google e Meta.",
+            "Seu endereço IP não é armazenado em nenhum caso. Ele é usado no momento do acesso apenas para identificar a operadora de internet, o tipo de rede e o país. Quando você aceita a medição, guardamos também um código irreversível derivado dele; quando você recusa, nem isso é guardado.",
             "Também utilizamos o Google Analytics 4, configurado com Consent Mode: enquanto você não aceitar, ele opera sem gravar cookies.",
             "Você pode mudar de ideia a qualquer momento apagando os cookies deste site no seu navegador, o que faz o aviso de consentimento aparecer novamente. Ao recusar depois de ter aceitado, os dados de navegação associados ao seu identificador são apagados dos nossos sistemas.",
             "Registros de navegação são mantidos por até 13 meses; depois disso permanecem apenas números agregados, sem identificadores."
@@ -512,8 +513,9 @@ export const T18N = {
           body: [
             "If you accept measurement, we set a first-party cookie named just_vid. It holds only a random identifier — no name, email or personal data — and is used to recognise returning visits from the same browser. It lasts up to 400 days and is readable only by our server, not by page scripts.",
             "With that identifier we record pages viewed, traffic source (including campaign parameters), device type, language and interactions such as scrolling, clicks on contact buttons and form submissions.",
-            "If you decline, no cookie and no identifier are stored: we keep only an aggregate, anonymous count of visits, which cannot identify or recognise visitors.",
-            "Your IP address is not stored. It is used at request time only to estimate the organisation and approximate location, and is converted into an irreversible code before anything is written.",
+            "If you decline, no cookie and no identifier are stored in your browser. We still measure the visit anonymously: pages viewed, navigation order, time on each screen, device type, internet provider and country. These records carry no identifier, end with the visit and cannot be linked to you or to any other visit of yours.",
+            "Preferences are separate: you can accept being recognised on future visits without accepting advertising. Advertising is the only option that involves third-party platforms such as Google and Meta.",
+            "Your IP address is never stored. It is used at request time only to identify the internet provider, network type and country. If you accept measurement we also keep an irreversible code derived from it; if you decline, not even that is kept.",
             "We also use Google Analytics 4 with Consent Mode enabled: until you accept, it runs without setting cookies.",
             "You can change your mind at any time by clearing this site's cookies in your browser, which brings the consent notice back. If you decline after having accepted, the browsing data linked to your identifier is deleted from our systems.",
             "Browsing records are kept for up to 13 months; after that only aggregate figures remain, with no identifiers."

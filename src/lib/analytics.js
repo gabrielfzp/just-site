@@ -1,4 +1,4 @@
-import { justPageView, justTrack, consentimento } from "./just-id.js";
+import { justPageView, justTrack, consentimento, consentimentoAds } from "./just-id.js";
 
 const env = import.meta.env || {};
 
@@ -84,7 +84,7 @@ export function initAnalytics() {
       security_storage: "granted",
       wait_for_update: 500,
     });
-    if (concedido) aplicarConsentimentoGA4("concedido");
+    if (concedido) aplicarConsentimentoGA4("concedido", consentimentoAds() === "concedido");
 
     window.gtag("js", new Date());
     window.gtag("config", GA4_ID, { send_page_view: false });
@@ -98,17 +98,24 @@ export function initAnalytics() {
   initMetaPixel();
 }
 
-/** Propaga a escolha do visitante para o GA4 (e, por tabela, para o Ads). */
-export function aplicarConsentimentoGA4(valor) {
+/**
+ * Propaga a escolha do visitante para o GA4.
+ *
+ * Medição e publicidade viajam separadas porque são escolhas separadas no
+ * banner: aceitar ser reconhecido não é aceitar ser perseguido por anúncio.
+ * Mandar tudo junto faria as chaves da segunda camada virarem enfeite.
+ */
+export function aplicarConsentimentoGA4(valor, ads = valor === "concedido") {
   if (!canUseBrowser() || typeof window.gtag !== "function") return;
-  const estado = valor === "concedido" ? "granted" : "denied";
+  const medicao = valor === "concedido" ? "granted" : "denied";
+  const publicidade = valor === "concedido" && ads ? "granted" : "denied";
   window.gtag("consent", "update", {
-    ad_storage: estado,
-    ad_user_data: estado,
-    ad_personalization: estado,
-    analytics_storage: estado,
-    functionality_storage: estado,
-    personalization_storage: estado,
+    ad_storage: publicidade,
+    ad_user_data: publicidade,
+    ad_personalization: publicidade,
+    analytics_storage: medicao,
+    functionality_storage: medicao,
+    personalization_storage: medicao,
   });
 }
 
@@ -172,7 +179,8 @@ async function sha256Hex(texto) {
  */
 export async function marcarConversaoIdentificada({ email, telefone } = {}) {
   if (!canUseBrowser() || typeof window.gtag !== "function") return;
-  if (consentimento() !== "concedido") return;
+  // Enhanced Conversions alimenta o Ads: depende do consentimento de publicidade
+  if (consentimentoAds() !== "concedido") return;
 
   const dados = {};
   if (email) {
@@ -203,7 +211,8 @@ export async function marcarConversaoIdentificada({ email, telefone } = {}) {
  */
 export function initMetaPixel() {
   if (!canUseBrowser() || !META_PIXEL_ID || isLocalhost()) return;
-  if (consentimento() !== "concedido" || window.fbq) return;
+  // pixel é publicidade, não medição: exige o consentimento específico
+  if (consentimentoAds() !== "concedido" || window.fbq) return;
 
   !(function (f, b, e, v, n, t, s) {
     if (f.fbq) return;

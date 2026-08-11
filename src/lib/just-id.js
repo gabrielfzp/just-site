@@ -3,10 +3,11 @@
  *
  * Três decisões que explicam quase todo o arquivo:
  *
- * 1. NADA é gravado antes da escolha do visitante. Enquanto ele não decidiu,
- *    os eventos vão embora anônimos (o servidor só incrementa um contador por
- *    dia) e nenhum localStorage é tocado. Banner que já gravou identificador
- *    "só pra não perder o dado" é banner decorativo.
+ * 1. NADA é gravado no dispositivo sem consentimento. A visita continua sendo
+ *    medida por inteiro (páginas, sequência, tempo de tela) — só que a sessão
+ *    vive na memória desta aba e morre com ela, sem cookie e sem identificador.
+ *    Medir audiência e rastrear pessoa são coisas diferentes, e a diferença
+ *    está exatamente aqui.
  *
  * 2. O contexto de chegada (referrer, UTM, click ids, página de entrada) fica
  *    em MEMÓRIA desde o primeiro instante. Se a pessoa aceitar 20 segundos
@@ -26,6 +27,9 @@ const env = import.meta.env || {};
 const ENDPOINT = (env.VITE_IDENTITY_URL || "").replace(/\/$/, "");
 
 const CHAVE_CONSENT = "just_consent";
+/** Publicidade é escolha separada: quem aceita ser reconhecido não
+ *  necessariamente aceita ser perseguido por anúncio. */
+const CHAVE_ADS = "just_consent_ads";
 const CHAVE_SID = "just_sid";
 const CHAVE_SID_EM = "just_sid_em";
 const CHAVE_REF = "just_ref";
@@ -41,6 +45,17 @@ let inicioPagina = Date.now();
 let marcosScroll = new Set();
 let refCode = null;
 let ouvintesConsent = [];
+/**
+ * Sessão de quem NÃO consentiu: vive só aqui, numa variável.
+ *
+ * Nada é gravado no dispositivo, então recarregar a página começa outra
+ * sessão. Como o site é uma SPA, a visita inteira cabe num carregamento e a
+ * jornada fica completa mesmo assim. É o que permite medir a audiência toda
+ * sem criar identificador em quem recusou.
+ */
+let sidMemoria = null;
+/** URL da página corrente, para o page_exit ser atribuído à tela certa. */
+let urlPagina = null;
 
 function temNavegador() {
   return typeof window !== "undefined" && typeof document !== "undefined";
@@ -78,6 +93,12 @@ function apagar(chave) {
 
 export function consentimento() {
   const v = ler(CHAVE_CONSENT);
+  return v === "concedido" || v === "negado" ? v : null;
+}
+
+/** Consentimento de publicidade (Meta Pixel, remarketing do Google). */
+export function consentimentoAds() {
+  const v = ler(CHAVE_ADS);
   return v === "concedido" || v === "negado" ? v : null;
 }
 
@@ -141,7 +162,9 @@ async function despachar(eventos, viaBeacon) {
   const consent = consentimento() || "negado";
   const corpo = JSON.stringify({
     consent,
-    sid: consent === "concedido" ? sessaoAtual() || undefined : undefined,
+    // com consentimento a sessão persiste entre carregamentos; sem ele, vive
+    // apenas na memória desta aba
+    sid: (consent === "concedido" ? sessaoAtual() : sidMemoria) || undefined,
     ctx: contexto || undefined,
     eventos,
   });
@@ -169,7 +192,9 @@ async function despachar(eventos, viaBeacon) {
     });
     if (!resp.ok) return;
     const dados = await resp.json().catch(() => ({}));
-    if (dados.sid) tocarSessao(dados.sid);
+    if (!dados.sid) return;
+    if (consent === "concedido") tocarSessao(dados.sid);
+    else sidMemoria = dados.sid;
   } catch {
     /* coletor fora do ar nunca pode quebrar o site */
   }
@@ -193,17 +218,37 @@ export function justTrack(nome, props = {}) {
     Object.entries(props).filter(([, v]) => v !== undefined && v !== null && v !== ""),
   );
 
-  fila.push({ nome, ts: new Date().toISOString(), url: window.location.href, props: limpos });
+  enfileirar(nome, limpos, window.location.href);
+}
 
+function enfileirar(nome, props, url) {
+  fila.push({ nome, ts: new Date().toISOString(), url, props });
   if (fila.length >= 10) escoar();
   else if (!timer) timer = setTimeout(() => escoar(), 1500);
 }
 
-/** Página nova numa SPA: o relógio e os marcos de rolagem recomeçam. */
+/**
+ * Fecha a tela anterior.
+ *
+ * Numa SPA, trocar de rota não descarrega nada, então sem isto o tempo de
+ * tela só seria registrado ao fechar a aba: a pessoa que lê três páginas
+ * apareceria com tempo em uma só. A URL vai explícita porque, quando isto
+ * roda, window.location já é a página NOVA.
+ */
+function fecharTela() {
+  if (!urlPagina) return;
+  const segundos = Math.round((Date.now() - inicioPagina) / 1000);
+  if (segundos >= 1) enfileirar("page_exit", { segundos }, urlPagina);
+  urlPagina = null;
+}
+
+/** Página nova numa SPA: fecha a anterior, zera o relógio e a rolagem. */
 export function justPageView(titulo) {
   if (!ativo()) return;
+  fecharTela();
   inicioPagina = Date.now();
   marcosScroll = new Set();
+  urlPagina = window.location.href;
   justTrack("page_view", { title: titulo || document.title });
 }
 
@@ -225,7 +270,7 @@ function observarScroll() {
 function observarSaida() {
   const sair = () => {
     if (document.visibilityState !== "hidden") return;
-    justTrack("page_exit", { segundos: Math.round((Date.now() - inicioPagina) / 1000) });
+    fecharTela();
     escoar(true);
   };
   document.addEventListener("visibilitychange", sair);
@@ -316,15 +361,19 @@ export function aoMudarConsentimento(fn) {
  * local. Consentimento que só para de coletar, sem apagar o que já coletou,
  * é meia-verdade.
  */
-export async function definirConsentimento(valor) {
+export async function definirConsentimento(valor, ads = valor) {
   const anterior = consentimento();
   gravar(CHAVE_CONSENT, valor);
+  // publicidade só pode existir com medição: sem identificador não há a quem
+  // atribuir o anúncio, então aceitar ads e recusar medição é incoerente
+  gravar(CHAVE_ADS, valor === "concedido" ? ads : "negado");
 
   if (valor === "negado") {
     apagar(CHAVE_SID);
     apagar(CHAVE_SID_EM);
     apagar(CHAVE_REF);
     refCode = null;
+    sidMemoria = null;
     if (anterior === "concedido" && ativo()) {
       try {
         await fetch(`${ENDPOINT}/c/apagar`, { method: "POST", credentials: "include" });
