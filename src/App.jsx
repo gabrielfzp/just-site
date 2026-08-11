@@ -55,7 +55,7 @@ function AppContent() {
   const setPage = (p) => {
     if (p === "contato") {
       trackEvent("contact_cta_click", {
-        source: "internal_navigation",
+        link_label: "internal_navigation",
         from_path: location.pathname,
       });
     }
@@ -97,7 +97,7 @@ function AppContent() {
 
       if (href.includes("wa.me") || href.includes("api.whatsapp.com")) {
         trackEvent("whatsapp_click", {
-          source: anchor.title || label || "link",
+          link_label: anchor.title || label || "link",
           from_path: location.pathname,
         });
         return;
@@ -105,7 +105,7 @@ function AppContent() {
 
       if (href === "/contato" || href.startsWith("/contato?")) {
         trackEvent("contact_cta_click", {
-          source: label || "link",
+          link_label: label || "link",
           from_path: location.pathname,
         });
         return;
@@ -113,7 +113,7 @@ function AppContent() {
 
       if (href.includes("linkedin.com/in/")) {
         trackEvent("author_linkedin_click", {
-          source: label || "linkedin",
+          link_label: label || "linkedin",
           from_path: location.pathname,
           href,
         });
@@ -122,7 +122,7 @@ function AppContent() {
 
       if (href.includes("linkedin.com/company/")) {
         trackEvent("company_linkedin_click", {
-          source: label || "linkedin",
+          link_label: label || "linkedin",
           from_path: location.pathname,
           href,
         });

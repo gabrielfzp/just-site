@@ -14,7 +14,7 @@ export function InlineCTA({ title = "Quer estruturar esse projeto?", text, href 
       {text && <p style={{ color: CONTENT_T.mutedStrong, fontSize: 16, lineHeight: 1.65, marginBottom: 22 }}>{text}</p>}
       <Btn onClick={() => {
         trackEvent("contact_cta_click", {
-          source: "inline_cta",
+          link_label: "inline_cta",
           label,
           href,
           from_path: window.location.pathname,

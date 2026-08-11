@@ -83,10 +83,16 @@ export function trackPageView(path, title) {
   if (!canUseBrowser()) return;
   if (typeof window.gtag !== "function" || !GA4_ID) return;
   const pagePath = normalizePath(path);
-  window.gtag("config", GA4_ID, {
-    page_path: pagePath,
+
+  // Era `gtag("config", ...)` a cada rota, e config REPETIDO nao emite
+  // page_view quando o config inicial tem send_page_view:false. Resultado
+  // medido em producao: screenPageViews = 0 e zero eventos page_view em 30
+  // dias, ou seja, nenhuma pagina de entrada e nenhum funil.
+  // Em SPA o page_view e um EVENTO explicito, um por rota.
+  window.gtag("event", "page_view", {
     page_location: `${window.location.origin}${pagePath}`,
     page_title: title || document.title,
+    page_referrer: document.referrer || undefined,
   });
 }
 
@@ -102,8 +108,10 @@ export function maybeTrackLlmReferral(path) {
   if (!source) return;
 
   llmReferralTracked = true;
+  // `source` NAO pode ser nome de parametro: o GA4 o trata como parametro de
+  // ATRIBUICAO e ele reescreve a origem da sessao.
   trackEvent("llm_referral", {
-    source,
+    llm: source,
     referrer: document.referrer,
     landing_path: normalizePath(path),
   });
