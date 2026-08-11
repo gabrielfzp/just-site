@@ -89,7 +89,10 @@ function AppContent() {
     const path = `${location.pathname}${location.search}${location.hash}`;
     trackPageView(path);
     maybeTrackLlmReferral(path);
-    if (location.pathname === "/contato") {
+    // O GitHub Pages redireciona para barra final, entao o caminho real e
+    // "/contato/". Comparar com "/contato" nunca casava e este evento nunca
+    // chegou ao GA4 nem a Meta desde que existe.
+    if (location.pathname.replace(/\/+$/, "") === "/contato") {
       trackEvent("contact_page_view", { path });
     }
   }, [location.pathname, location.search, location.hash]);
@@ -109,7 +112,8 @@ function AppContent() {
         return;
       }
 
-      if (href === "/contato" || href.startsWith("/contato?")) {
+      // mesma armadilha da barra final: "/contato/" nunca casava
+      if (/^\/contato\/?(\?|$)/.test(href)) {
         trackEvent("contact_cta_click", {
           link_label: label || "link",
           from_path: location.pathname,
