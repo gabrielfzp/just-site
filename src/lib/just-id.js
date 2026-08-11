@@ -207,7 +207,11 @@ function tocarSessao(sid) {
 }
 
 async function despachar(eventos, viaBeacon) {
-  const consent = consentimento() || "negado";
+  // null = ainda não respondeu. Vai como "pendente", não como "negado": para
+  // a coleta os dois são idênticos (nada persistente), mas no painel a
+  // diferença é tudo — chamar silêncio de recusa fez o Radar reportar 53% de
+  // recusa num site onde quase ninguém chegou a clicar no banner.
+  const consent = consentimento() || "pendente";
   const corpo = JSON.stringify({
     consent,
     // com consentimento a sessão persiste entre carregamentos; sem ele, vive
