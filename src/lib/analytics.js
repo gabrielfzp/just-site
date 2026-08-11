@@ -3,8 +3,31 @@ import { justPageView, justTrack, consentimento, consentimentoAds } from "./just
 const env = import.meta.env || {};
 
 const GA4_ID = env.VITE_GA4_ID || "";
-/** Vazio = sem Meta Pixel. Hoje é o caso: o cano fica pronto, desligado. */
+/** Vazio = sem Meta Pixel. */
 const META_PIXEL_ID = env.VITE_META_PIXEL_ID || "";
+/**
+ * Tag do Google Ads (AW-XXXXXXXXX), separada da do GA4.
+ *
+ * Dá para fazer remarketing só com o vínculo GA4 ↔ Ads, mas a tag própria é
+ * o que permite público por página específica e conversão medida no Ads, sem
+ * depender de o vínculo estar configurado do outro lado.
+ */
+const GOOGLE_ADS_ID = env.VITE_GOOGLE_ADS_ID || "";
+
+/**
+ * Nossos eventos traduzidos para o vocabulário padrão da Meta.
+ *
+ * Sem isso o pixel só veria PageView, e público de remarketing viraria "quem
+ * entrou no site", sem distinguir quem olhou produto de quem pediu contato.
+ * Evento padrão também é o que a Meta usa para otimizar entrega.
+ */
+const META_EVENTOS = {
+  whatsapp_click: "Contact",
+  contact_form_submit: "Lead",
+  contact_cta_click: "InitiateCheckout",
+  contact_page_view: "ViewContent",
+  article_view: "ViewContent",
+};
 
 const LLM_REFERRERS = [
   "chatgpt.com",
@@ -19,6 +42,8 @@ const LLM_REFERRERS = [
 
 let analyticsReady = false;
 let llmReferralTracked = false;
+/** o init do pixel já mandou o PageView desta página; o próximo é do router */
+let pixelContouAPagina = false;
 
 function canUseBrowser() {
   return typeof window !== "undefined" && typeof document !== "undefined";
@@ -88,6 +113,8 @@ export function initAnalytics() {
 
     window.gtag("js", new Date());
     window.gtag("config", GA4_ID, { send_page_view: false });
+    // tag do Ads no mesmo gtag: uma carga de script, dois destinos
+    if (GOOGLE_ADS_ID) window.gtag("config", GOOGLE_ADS_ID);
     appendScript("ga4-script", {
       async: true,
       src: `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`,
@@ -133,7 +160,21 @@ export function trackEvent(name, props = {}) {
     window.gtag("event", name, limpos);
   }
   justTrack(name, limpos);
+
+  // Meta só recebe o que tem tradução: mandar nome interno como evento
+  // customizado polui o Events Manager e não otimiza nada
+  const padrao = META_EVENTOS[name];
+  if (padrao && typeof window.fbq === "function") {
+    window.fbq("track", padrao, limpos);
+  }
 }
+
+/**
+ * Produtos do site. Página de produto vira ViewContent com o nome do produto,
+ * que é o que permite público "olhou Banking" em vez de só "olhou o site" —
+ * a diferença entre remarketing útil e remarketing genérico.
+ */
+const PRODUTOS = ["banking", "beneficios", "frotas", "despesas", "antecipacao", "sob-demanda"];
 
 export function trackPageView(path, title) {
   if (!canUseBrowser()) return;
@@ -141,6 +182,18 @@ export function trackPageView(path, title) {
   // o Radar recebe a página independente do GA4: são dois sistemas, e um
   // fora do ar não pode cegar o outro
   justPageView(title);
+
+  if (typeof window.fbq === "function") {
+    const rota = window.location.pathname.replace(/^\/+|\/+$/g, "").split("/").pop() || "home";
+    const produto = PRODUTOS.find((p) => p === rota);
+    // sem esta guarda a primeira página contava duas vezes: uma no init do
+    // pixel e outra aqui, inflando a métrica logo na porta de entrada
+    if (pixelContouAPagina) pixelContouAPagina = false;
+    else window.fbq("track", "PageView");
+    if (produto) {
+      window.fbq("track", "ViewContent", { content_category: "produto", content_name: produto });
+    }
+  }
 
   if (typeof window.gtag !== "function" || !GA4_ID) return;
   const pagePath = normalizePath(path);
@@ -226,7 +279,10 @@ export function initMetaPixel() {
   })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
 
   window.fbq("init", META_PIXEL_ID);
+  // o PageView de abertura sai daqui porque, quando a pessoa aceita no meio
+  // da visita, não haverá outro trackPageView até ela trocar de rota
   window.fbq("track", "PageView");
+  pixelContouAPagina = true;
 }
 
 export function maybeTrackLlmReferral(path) {
