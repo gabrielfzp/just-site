@@ -216,8 +216,13 @@ export const T18N = {
         {
           title: "4. Cookies e tecnologias semelhantes",
           body: [
-            "Podemos utilizar cookies essenciais para funcionamento do site e tecnologias de medição ou analytics para entender desempenho, origem de acesso e interações com as páginas.",
-            "Você pode bloquear, apagar ou gerenciar cookies nas configurações do seu navegador. Algumas funcionalidades podem ficar indisponíveis ou menos eficientes se cookies essenciais forem desativados."
+            "Ao aceitar a medição, gravamos um cookie próprio chamado just_vid. Ele contém apenas um identificador aleatório, sem nome, email ou qualquer dado seu, e serve para reconhecer visitas recorrentes do mesmo navegador. Tem validade de até 400 dias e é acessível somente ao nosso servidor, não ao código da página.",
+            "Com esse identificador registramos páginas acessadas, origem da visita (incluindo parâmetros de campanha), tipo de dispositivo, idioma e interações como rolagem, cliques em botões de contato e envio de formulários.",
+            "Se você recusar, não gravamos cookie nem identificador: mantemos apenas uma contagem agregada e anônima de acessos, que não permite identificar ou reconhecer visitantes.",
+            "Seu endereço IP não é armazenado. Ele é usado no momento do acesso apenas para estimar a organização e a localização aproximada, e convertido em um código irreversível antes de qualquer gravação.",
+            "Também utilizamos o Google Analytics 4, configurado com Consent Mode: enquanto você não aceitar, ele opera sem gravar cookies.",
+            "Você pode mudar de ideia a qualquer momento apagando os cookies deste site no seu navegador, o que faz o aviso de consentimento aparecer novamente. Ao recusar depois de ter aceitado, os dados de navegação associados ao seu identificador são apagados dos nossos sistemas.",
+            "Registros de navegação são mantidos por até 13 meses; depois disso permanecem apenas números agregados, sem identificadores."
           ]
         },
         {
@@ -505,8 +510,13 @@ export const T18N = {
         {
           title: "4. Cookies and similar technologies",
           body: [
-            "We may use essential cookies for website operation and measurement or analytics technologies to understand performance, traffic source and interactions with pages.",
-            "You can block, delete or manage cookies in your browser settings. Some features may become unavailable or less efficient if essential cookies are disabled."
+            "If you accept measurement, we set a first-party cookie named just_vid. It holds only a random identifier — no name, email or personal data — and is used to recognise returning visits from the same browser. It lasts up to 400 days and is readable only by our server, not by page scripts.",
+            "With that identifier we record pages viewed, traffic source (including campaign parameters), device type, language and interactions such as scrolling, clicks on contact buttons and form submissions.",
+            "If you decline, no cookie and no identifier are stored: we keep only an aggregate, anonymous count of visits, which cannot identify or recognise visitors.",
+            "Your IP address is not stored. It is used at request time only to estimate the organisation and approximate location, and is converted into an irreversible code before anything is written.",
+            "We also use Google Analytics 4 with Consent Mode enabled: until you accept, it runs without setting cookies.",
+            "You can change your mind at any time by clearing this site's cookies in your browser, which brings the consent notice back. If you decline after having accepted, the browsing data linked to your identifier is deleted from our systems.",
+            "Browsing records are kept for up to 13 months; after that only aggregate figures remain, with no identifiers."
           ]
         },
         {

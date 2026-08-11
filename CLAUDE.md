@@ -81,16 +81,34 @@ Para adicionar uma nova string:
 
 **Regra**: nunca hardcodar strings em português diretamente nos componentes. Arrays de dados (timeline, cases, security cards, comparisons, FAQs, hybrid features) também vivem no T18N.
 
-## Analytics
+## Analytics e medição
 
-Camada única em `src/lib/analytics.js`, inicializada em `App.jsx` (`initAnalytics` no mount, `trackPageView` a cada rota, `trackEvent` para interações). Provedor: **GA4** (ativo em produção desde 2026-08-10, propriedade `G-ZLGE23K7KT`).
+Duas camadas, uma chamada só. `trackEvent`/`trackPageView` em `src/lib/analytics.js` emitem **para o GA4 e para o JUST Radar ao mesmo tempo** — o GA4 responde "quantos", o Radar responde "quem". Foi a divergência entre dois caminhos separados que fez o site passar 30 dias sem nenhum `page_view`.
 
-- O ID vem de `VITE_GA4_ID` no `.env` (gitignored) e entra no bundle no momento do build.
-- O script gtag é injetado dinamicamente com `send_page_view: false`; page views de SPA são enviados manualmente via `config` a cada mudança de rota. Por isso, na Medição Otimizada do GA4, "alterações de página com base no histórico do navegador" fica **desligada**.
-- **Guard de localhost**: em `localhost`, `127.0.0.1` e `*.localhost` o analytics não inicializa (nada de dados de dev na propriedade).
-- O Plausible foi removido em ago/2026 (assinatura expirou em jun/2026). Não reintroduzir.
+### GA4
+Propriedade `G-ZLGE23K7KT`, ativa desde 2026-08-10. ID em `VITE_GA4_ID` (gitignored), entra no bundle no build.
 
-Eventos instrumentados: `contact_form_submit`, `contact_form_error`, `contact_cta_click`, `contact_page_view`, `whatsapp_click`, `author_linkedin_click`, `company_linkedin_click`, `article_view`, `article_read_progress`, `llm_referral`.
+- gtag injetado dinamicamente com `send_page_view: false`. Em SPA o page view é um **evento explícito** por rota (`gtag("event","page_view",…)`), não `config` repetido — `config` repetido simplesmente não emite nada quando o inicial tem `send_page_view:false`. Por isso, na Medição Otimizada, "alterações de página com base no histórico do navegador" fica **desligada**.
+- **Consent Mode v2**: o `consent default` é enviado com tudo negado ANTES da tag carregar, e atualizado no aceite. Sem cookie até o visitante decidir.
+- **Guard de localhost**: em `localhost`, `127.0.0.1` e `*.localhost` o GA4 não inicializa.
+- Nunca use `source` como nome de parâmetro: o GA4 o trata como parâmetro de **atribuição** e ele reescreve a origem da sessão. Use `link_label`.
+- Plausible removido em ago/2026. Não reintroduzir.
+
+### JUST Radar (identidade first-party)
+SDK em `src/lib/just-id.js`, coletor em `https://i.wearejust.it` (`VITE_IDENTITY_URL`; vazio desliga tudo).
+
+- Cookie `just_vid` emitido **pelo servidor**, HttpOnly, 400 dias. Cookie criado por JS morreria em 7 dias no Safari.
+- **Nada é gravado antes da escolha.** Recusa mantém só contagem agregada anônima; aceite depois de recusar não existe sem apagar o que havia.
+- O contexto de chegada (referrer, UTM, click ids) fica em memória desde o load, então aceitar 20s depois preserva a atribuição sem ter persistido nada antes da hora.
+- Corpo vai como `text/plain` para evitar preflight — é o que faz o último evento da sessão não se perder no unload.
+- **Código de referência no WhatsApp**: o SDK carimba `[ref JX-XXXX]` no texto pré-preenchido. É o elo que amarra a conversa (canal que mais converte) à navegação.
+- Banner: `src/components/ConsentBanner.jsx`. Os dois botões têm o mesmo peso visual de propósito.
+
+### Mídia
+- **Enhanced Conversions**: `marcarConversaoIdentificada()` manda email/telefone com SHA-256 no envio do formulário. Só com consentimento.
+- **Meta Pixel**: `VITE_META_PIXEL_ID` (hoje vazio = desligado). Carrega só após o aceite, nunca antes.
+
+Eventos: `page_view`, `page_exit`, `scroll_50`, `scroll_90`, `contact_form_submit`, `contact_form_error`, `contact_cta_click`, `contact_page_view`, `whatsapp_click`, `author_linkedin_click`, `company_linkedin_click`, `article_view`, `article_read_progress`, `llm_referral`.
 
 ## Como Rodar
 

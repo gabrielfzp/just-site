@@ -4,6 +4,8 @@ import { CONTENT_T, ErrorBoundary, LangContext, T } from "./site/shared.jsx";
 import { applySeo, getSeo } from "./site/seo.js";
 import { Header, Footer } from "./components/Layout.jsx";
 import { initAnalytics, maybeTrackLlmReferral, trackEvent, trackPageView } from "./lib/analytics.js";
+import { initJustId } from "./lib/just-id.js";
+import ConsentBanner from "./components/ConsentBanner.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import SobrePage from "./pages/SobrePage.jsx";
 import StackPage from "./pages/StackPage.jsx";
@@ -76,6 +78,10 @@ function AppContent() {
   }, [resolvedRouteKey, lang]);
 
   useEffect(() => {
+    // ordem importa: o SDK do Radar precisa estar de pé antes do primeiro
+    // trackPageView, e o Consent Mode do GA4 precisa saber a escolha já
+    // gravada antes de a tag carregar
+    initJustId();
     initAnalytics();
   }, []);
 
@@ -906,6 +912,7 @@ function AppContent() {
           </Suspense>
         </main>
         <Footer setPage={setPage} lang={lang} />
+        <ConsentBanner setPage={setPage} />
         {page !== "contato" && (
           <a
             href="https://wa.me/5511971874759?text=Ola%2C%20acessei%20o%20site%20da%20JUST%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Btn, EcosystemAnimation, HeroOrbital, Metric, ProductIcon, ProductMockup, PRODUCT_COLORS, Reveal, SectionTitle, T, T18N, Tag } from "../site/shared.jsx";
-import { trackEvent } from "../lib/analytics.js";
+import { marcarConversaoIdentificada, trackEvent } from "../lib/analytics.js";
+import { justLead } from "../lib/just-id.js";
 
 export default function ContatoPage({ lang }) {
   const tr = (T18N[lang] || T18N["pt-BR"]).contato;
@@ -39,6 +40,22 @@ export default function ContatoPage({ lang }) {
         product: form.produto,
         has_phone: Boolean(form.telefone),
         has_project: Boolean(form.projeto),
+      });
+
+      // Enhanced Conversions: email com hash (nunca em claro) para o Google
+      // casar este lead com o clique no anúncio que o originou.
+      void marcarConversaoIdentificada({ email: form.email, telefone: form.telefone });
+
+      // Amarra o lead ao navegador no JUST Radar: é o que transforma
+      // "alguém visitou banking 4 vezes" em "o CTO da Empresa X visitou".
+      // Os dois sem await de propósito: são observadores, e uma falha deles
+      // nunca pode fazer o formulário dizer que a mensagem não foi enviada.
+      void justLead({
+        email: form.email,
+        nome: form.nome,
+        telefone: form.telefone || undefined,
+        empresa: form.empresa || undefined,
+        props: { produto: form.produto, tem_projeto: Boolean(form.projeto) },
       });
     } catch (err) {
       console.error("Form submission error:", err);
