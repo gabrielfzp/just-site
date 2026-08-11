@@ -152,11 +152,23 @@ URLs esperadas:
 
 Regra editorial: conteúdo em pt-BR nos primeiros 12 meses. Não criar versão EN para artigos ainda.
 
-## Deploy para GitHub Pages
+## Deploy
 
 ```bash
-./scripts/deploy-gh-pages.sh "mensagem do commit"
+./scripts/deploy-site.sh "mensagem do commit"
 ```
+
+Publica nos DOIS destinos com o mesmo build: **Kaleo** (VPS dedicada,
+`179.198.124.84`, nginx em `/var/www/wearejust`, alias `ssh kaleo`) e
+**GitHub Pages** (reserva para rollback de DNS). Enquanto os dois existirem,
+deploy parcial é pior que nenhum: rollback de DNS serviria conteúdo velho.
+
+A Kaleo também roda o **shipper da Temso** (`temso-shipper.service`), que
+envia logs de crawler para o painel de AI visibility. O IP do visitante só
+sai quando o user-agent é crawler conhecido (map no nginx): visitante humano
+tem o IP suprimido antes de qualquer envio, conforme a política do site.
+
+O script antigo `deploy-gh-pages.sh` continua existindo só como referência.
 
 **Use o script, não os comandos à mão.** Ele existe por causa de duas quebras
 reais em produção, as duas silenciosas:
