@@ -1,9 +1,18 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+const raiz = document.getElementById('root')
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+
+// O build pre-renderiza cada rota dentro do #root. Quando esse HTML ja esta
+// la, criar uma raiz nova jogaria fora o conteudo que o Google acabou de ler.
+if (raiz.hasChildNodes()) {
+  hydrateRoot(raiz, app)
+} else {
+  createRoot(raiz).render(app)
+}

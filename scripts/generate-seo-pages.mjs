@@ -10,7 +10,11 @@ import { loadContentArticles } from "./load-content.mjs";
 
 const rootDir = fileURLToPath(new URL("..", import.meta.url));
 const distDir = join(rootDir, "dist");
-const baseHtml = await readFile(join(distDir, "index.html"), "utf8");
+// prerender.mjs enche o #root do proprio dist/index.html. Rodar este script
+// sozinho, sem um `vite build` antes, copiaria o corpo da home para todas as
+// rotas; esvaziar o #root aqui torna o molde sempre o mesmo.
+const baseHtml = (await readFile(join(distDir, "index.html"), "utf8"))
+  .replace(/<div id="root">[\s\S]*<\/div>(\s*<noscript)/, '<div id="root"></div>$1');
 const articles = await loadContentArticles();
 
 function writeRoute(path, seo) {

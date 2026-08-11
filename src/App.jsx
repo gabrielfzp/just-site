@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState, useSyncExternalStore } from "react";
 import { BrowserRouter, useNavigate, useLocation } from "react-router-dom";
 import { CONTENT_T, ErrorBoundary, LangContext, T } from "./site/shared.jsx";
 import { applySeo, getSeo } from "./site/seo.js";
@@ -34,19 +34,28 @@ const ROUTE_ALIASES = {
   "authors/time-just": "autores/time-just",
 };
 
+const semAssinatura = () => () => {};
+const idiomaGuardado = () => {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("lang") || localStorage.getItem("just-lang") || "pt-BR";
+};
+// O HTML estatico e um so por rota e sai sempre em pt-BR. Ler ?lang= ou o
+// localStorage no primeiro render faria o cliente divergir desse HTML e
+// quebrar a hidratacao; o React reavalia isso sozinho depois de hidratar.
+const idiomaNoBuild = () => "pt-BR";
+
 // MAIN APP
 // ========================================
-function AppContent() {
+export function AppContent() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [lang, setLang] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("lang") || localStorage.getItem("just-lang") || "pt-BR";
-  });
+  const idiomaInicial = useSyncExternalStore(semAssinatura, idiomaGuardado, idiomaNoBuild);
+  const [idiomaEscolhido, setIdiomaEscolhido] = useState(null);
+  const lang = idiomaEscolhido || idiomaInicial;
 
   const changeLang = (newLang) => {
-    setLang(newLang);
+    setIdiomaEscolhido(newLang);
     localStorage.setItem("just-lang", newLang);
     const params = new URLSearchParams(location.search);
     if (newLang !== "pt-BR") { params.set("lang", newLang); } else { params.delete("lang"); }

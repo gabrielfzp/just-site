@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-article-images.mjs && node scripts/generate-content-manifest.mjs && vite build && node scripts/generate-og-images.mjs && node scripts/generate-seo-pages.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-content-markdown.mjs && node scripts/generate-llms-txt.mjs",
+    "build": "node scripts/generate-article-images.mjs && node scripts/generate-content-manifest.mjs && vite build && node scripts/generate-og-images.mjs && node scripts/generate-seo-pages.mjs && node scripts/prerender.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-content-markdown.mjs && node scripts/generate-llms-txt.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

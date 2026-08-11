@@ -13,7 +13,7 @@
  * nada no dispositivo, não cria identificador e morre com a visita. Está dita
  * no texto em vez de ficar implícita.
  */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { T } from "../site/shared.jsx";
 import { consentimento, definirConsentimento } from "../lib/just-id.js";
 import { aplicarConsentimentoGA4, initMetaPixel } from "../lib/analytics.js";
@@ -33,11 +33,22 @@ const CATEGORIAS = [
   },
 ];
 
+const semAssinatura = () => () => {};
+const faltaEscolher = () => consentimento() === null;
+// no HTML estatico do build nao ha localStorage para consultar; se o banner
+// saisse renderizado la, ele sumiria na hidratacao de quem ja escolheu e o
+// React acusaria divergencia. O servidor sempre diz "nao mostra" e o React
+// reavalia sozinho assim que a hidratacao termina.
+const faltaEscolherNoBuild = () => false;
+
 export default function ConsentBanner({ setPage }) {
-  const [visivel, setVisivel] = useState(() => consentimento() === null);
+  const perguntar = useSyncExternalStore(semAssinatura, faltaEscolher, faltaEscolherNoBuild);
+  const [respondido, setRespondido] = useState(false);
   const [entrou, setEntrou] = useState(false);
   const [detalhado, setDetalhado] = useState(false);
   const [opcoes, setOpcoes] = useState({ medicao: true, ads: true });
+
+  const visivel = perguntar && !respondido;
 
   useEffect(() => {
     if (!visivel) return undefined;
@@ -53,7 +64,7 @@ export default function ConsentBanner({ setPage }) {
     aplicarConsentimentoGA4(valor, ads);
     await definirConsentimento(valor, ads ? "concedido" : "negado");
     if (medicao && ads) initMetaPixel();
-    setTimeout(() => setVisivel(false), 220);
+    setTimeout(() => setRespondido(true), 220);
   };
 
   const botao = (principal) => ({
