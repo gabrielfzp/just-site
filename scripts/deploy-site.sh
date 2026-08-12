@@ -69,6 +69,9 @@ fi
 echo "   ok: Kaleo servindo $BUNDLE"
 
 echo "==> 5/6 GitHub Pages (reserva de rollback)"
+# worktree registrada por um deploy morto bloqueia o add; prune so limpa
+# registro de diretorio que ja sumiu, deploy concorrente segue abortando
+git worktree prune
 git fetch -q origin gh-pages
 git worktree add -q "$TRABALHO" gh-pages
 rsync -a --delete --checksum --exclude '.git' dist/ "$TRABALHO/"
@@ -82,4 +85,7 @@ else
   echo "   gh-pages publicado (CDN propaga sozinho em alguns minutos)"
 fi
 
-echo "==> 6/6 pronto: Kaleo verificada, gh-pages atualizado"
+echo "==> 6/6 IndexNow (o indice do Bing e o que o ChatGPT consulta)"
+node "$RAIZ/scripts/indexnow.mjs" || echo "   AVISO: IndexNow falhou; reenvie com: node scripts/indexnow.mjs"
+
+echo "==> pronto: Kaleo verificada, gh-pages atualizado, Bing avisado"
