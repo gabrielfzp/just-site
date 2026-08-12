@@ -1,4 +1,4 @@
-import { canonicalUrl, DEFAULT_IMAGE, SITE_BRAND_NAME, SITE_DESCRIPTION, SITE_KNOWS_ABOUT, SITE_NAME, SITE_SAME_AS, SITE_URL } from "../site/seo.js";
+import { canonicalUrl, DEFAULT_IMAGE, SITE_ALTERNATE_NAMES, SITE_DESCRIPTION, SITE_KNOWS_ABOUT, SITE_NAME, SITE_SAME_AS, SITE_URL } from "../site/seo.js";
 
 export function buildArticleUrl(article) {
   return canonicalUrl(article.canonicalPath || `/conteudos/${article.slug}`);
@@ -20,7 +20,7 @@ export function buildArticleSchema(article) {
     publisher: {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
-      name: SITE_BRAND_NAME,
+      name: SITE_NAME,
       logo: { "@type": "ImageObject", url: DEFAULT_IMAGE },
     },
     articleSection: article.category?.name,
@@ -103,6 +103,7 @@ export function buildArticleJsonLd(article) {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
+      alternateName: SITE_ALTERNATE_NAMES,
       url: SITE_URL,
       logo: DEFAULT_IMAGE,
       description: SITE_DESCRIPTION,

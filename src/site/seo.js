@@ -3,8 +3,15 @@ export const SITE_BRAND_NAME = "JUST";
 export const SITE_NAME = "JUST Fintechs";
 export const SITE_DESCRIPTION = "Crie sua fintech com a JUST: tecnologia para cartões, banking, benefícios, frotas, despesas e crédito, pronta para operar em escala.";
 export const DEFAULT_IMAGE = `${SITE_URL}/logo-just.png`;
+// Aliases da entidade: o nome canonico e "JUST Fintechs" (decisao de
+// 11/08/2026). "JUST" sozinho e ambiguo demais (adverbio em ingles, varias
+// empresas globais); os aliases ensinam os motores que as grafias que
+// circulam sao a MESMA entidade.
+export const SITE_ALTERNATE_NAMES = ["JUST", "wearejust", "just.it"];
+
 export const SITE_SAME_AS = [
   "https://www.linkedin.com/company/wearejust-it",
+  "https://www.instagram.com/just.fintech/",
 ];
 export const SITE_KNOWS_ABOUT = [
   "produtos financeiros digitais",
@@ -211,7 +218,9 @@ function buildJsonLd({ title, description, canonical, path, route }) {
     {
       "@type": "Organization",
       "@id": organizationId,
-      name: SITE_BRAND_NAME,
+      // nome canonico sempre; a variacao vive em alternateName, nunca em name
+      name: SITE_NAME,
+      alternateName: SITE_ALTERNATE_NAMES,
       url: SITE_URL,
       logo: DEFAULT_IMAGE,
       description: SITE_DESCRIPTION,
