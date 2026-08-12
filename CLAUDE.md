@@ -105,8 +105,17 @@ SDK em `src/lib/just-id.js`, coletor em `https://i.wearejust.it` (`VITE_IDENTITY
 - Banner: `src/components/ConsentBanner.jsx`. Os dois botões têm o mesmo peso visual de propósito.
 
 ### Mídia
+Nenhuma tag desta seção carrega antes do aceite de publicidade em `ConsentBanner.jsx`. Os IDs abaixo não são segredo — todos ficam visíveis no bundle público — mas documentados aqui para não precisar caçar em `.env` nem redescobrir qual conjunto de dados é o certo.
+
+- **Google Ads**: `VITE_GOOGLE_ADS_ID=AW-18381859242` (conta 893-652-4072). Monta no mesmo `gtag` do GA4. Existe uma tag unificada alternativa (`GT-M6JGG2DS`) não usada — trocaria o carregador inteiro sem ganho hoje.
 - **Enhanced Conversions**: `marcarConversaoIdentificada()` manda email/telefone com SHA-256 no envio do formulário. Só com consentimento.
-- **Meta Pixel**: `VITE_META_PIXEL_ID` (hoje vazio = desligado). Carrega só após o aceite, nunca antes.
+- **Meta Pixel**: `VITE_META_PIXEL_ID=1021375773863226`. Este é o pixel **WEB** dentro do portfólio empresarial JUST Fintechs no Business Manager.
+  - **Cuidado ao trocar**: existem dois conjuntos de dados `Just-mkt` no mesmo portfólio que são de **App** (nasceram junto com o app de publicação no Instagram), não Web — eventos de pixel enviados a eles são descartados pela Meta **em silêncio**, sem erro. Confirme sempre "ID do pixel" e ícone de monitor no Events Manager, nunca "ID do app".
+  - **Conversions API** (server-side) fica no repo da Central de Marketing, não aqui: `apps/api/src/identity/meta-capi.service.ts`. Deduplicada por `event_id` compartilhado com o pixel do navegador — o mesmo id sai nos dois envios e a Meta descarta a duplicata.
+- **LinkedIn Insight Tag**: `VITE_LINKEDIN_PARTNER_ID=10685417`, dentro do app "JUST Central de Marketing" no LinkedIn Developers, vinculado à página da JUST.
+  - Conversões (evento específico, não carga de página — o formulário não muda de URL ao enviar): `VITE_LI_CONV_LEAD=30045713` (envio do formulário) e `VITE_LI_CONV_CONTATO=30045721` (clique no WhatsApp).
+  - Métricas de campanha do LinkedIn vivem só no Campaign Manager deles — **não** aparecem no dashboard da Central (`mkt.justit.cloud/dashboard`), que só tem ETL de GA4 e Search Console.
+  - **Publicação automática de posts pendente**: exige aprovação da *Community Management API* (development tier), solicitada com escopo "Page management" — em fila de revisão do LinkedIn. Quando aprovar, o publicador segue o padrão de `apps/api/src/services/instagram.service.ts` no repo da Central (token cifrado em `SegredoCanal`, agendador, verificação de cota).
 
 Eventos: `page_view`, `page_exit`, `scroll_50`, `scroll_90`, `contact_form_submit`, `contact_form_error`, `contact_cta_click`, `contact_page_view`, `whatsapp_click`, `author_linkedin_click`, `company_linkedin_click`, `article_view`, `article_read_progress`, `llm_referral`.
 
