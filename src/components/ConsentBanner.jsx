@@ -16,7 +16,7 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { T } from "../site/shared.jsx";
 import { consentimento, definirConsentimento } from "../lib/just-id.js";
-import { aplicarConsentimentoGA4, initMetaPixel } from "../lib/analytics.js";
+import { aplicarConsentimentoGA4, initLinkedIn, initMetaPixel } from "../lib/analytics.js";
 
 const CATEGORIAS = [
   {
@@ -63,7 +63,10 @@ export default function ConsentBanner({ setPage }) {
     const valor = medicao ? "concedido" : "negado";
     aplicarConsentimentoGA4(valor, ads);
     await definirConsentimento(valor, ads ? "concedido" : "negado");
-    if (medicao && ads) initMetaPixel();
+    if (medicao && ads) {
+      initMetaPixel();
+      initLinkedIn();
+    }
     setTimeout(() => setRespondido(true), 220);
   };
 

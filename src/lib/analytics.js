@@ -13,6 +13,14 @@ const META_PIXEL_ID = env.VITE_META_PIXEL_ID || "";
  * depender de o vínculo estar configurado do outro lado.
  */
 const GOOGLE_ADS_ID = env.VITE_GOOGLE_ADS_ID || "";
+/**
+ * LinkedIn Insight Tag.
+ *
+ * Para B2B é a plataforma que segmenta por cargo, setor e porte da empresa,
+ * ou seja, pelo ICP e não por interesse declarado. Vazio mantém tudo
+ * desligado, igual ao pixel da Meta.
+ */
+const LINKEDIN_PARTNER_ID = env.VITE_LINKEDIN_PARTNER_ID || "";
 
 /**
  * Nossos eventos traduzidos para o vocabulário padrão da Meta.
@@ -21,6 +29,18 @@ const GOOGLE_ADS_ID = env.VITE_GOOGLE_ADS_ID || "";
  * entrou no site", sem distinguir quem olhou produto de quem pediu contato.
  * Evento padrão também é o que a Meta usa para otimizar entrega.
  */
+/**
+ * Conversões do LinkedIn: nosso evento -> id numérico da conversão no
+ * Campaign Manager. Preenchido pelas variáveis VITE_LI_CONV_*; sem elas o
+ * evento simplesmente não é enviado, em vez de disparar com id inválido.
+ */
+const LINKEDIN_CONVERSOES = Object.fromEntries(
+  [
+    ["contact_form_submit", env.VITE_LI_CONV_LEAD],
+    ["whatsapp_click", env.VITE_LI_CONV_CONTATO],
+  ].filter(([, id]) => id),
+);
+
 const META_EVENTOS = {
   whatsapp_click: "Contact",
   contact_form_submit: "Lead",
@@ -136,6 +156,7 @@ export function initAnalytics() {
 
   // visitante que já aceitou numa visita anterior: o pixel sobe junto
   initMetaPixel();
+  initLinkedIn();
 }
 
 /**
@@ -174,6 +195,14 @@ export function trackEvent(name, props = {}) {
   }
   // Meta só recebe o que tem tradução: mandar nome interno como evento
   // customizado polui o Events Manager e não otimiza nada
+  // LinkedIn: só os eventos que viram conversão lá. O id numérico vem da
+  // aba Conversões do Campaign Manager e é diferente por conversão, então
+  // ele mora em env em vez de constante: muda sem tocar no código.
+  const conversaoLi = LINKEDIN_CONVERSOES[name];
+  if (conversaoLi && typeof window.lintrk === "function") {
+    window.lintrk("track", { conversion_id: conversaoLi });
+  }
+
   const padrao = META_EVENTOS[name];
   if (padrao && typeof window.fbq === "function") {
     const eventID = novoEventId();
@@ -286,6 +315,29 @@ export async function marcarConversaoIdentificada({ email, telefone } = {}) {
  * desligado — hoje é esse o caso, e os canos ficam prontos para quando houver
  * campanha.
  */
+/**
+ * Carrega o Insight Tag. Só depois do aceite de publicidade, nunca antes: a
+ * tag do LinkedIn grava cookie no primeiro instante em que carrega.
+ */
+export function initLinkedIn() {
+  if (!canUseBrowser() || !LINKEDIN_PARTNER_ID || isLocalhost()) return;
+  if (consentimentoAds() !== "concedido" || window.lintrk) return;
+
+  window._linkedin_partner_id = LINKEDIN_PARTNER_ID;
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(LINKEDIN_PARTNER_ID);
+
+  window.lintrk = function (a, b) {
+    window.lintrk.q.push([a, b]);
+  };
+  window.lintrk.q = [];
+
+  appendScript("linkedin-insight", {
+    async: true,
+    src: "https://snap.licdn.com/li/js/liTag.js",
+  });
+}
+
 export function initMetaPixel() {
   if (!canUseBrowser() || !META_PIXEL_ID || isLocalhost()) return;
   // pixel é publicidade, não medição: exige o consentimento específico
