@@ -73,6 +73,10 @@ echo "==> publicado. aguardando o GitHub Pages servir $ESPERADO"
 for _ in $(seq 1 60); do
   if curl -s --max-time 15 https://wearejust.it/ | grep -q "$ESPERADO"; then
     echo "==> no ar: https://wearejust.it"
+    # IndexNow: avisa o Bing (o indice que o ChatGPT consulta) que ha conteudo
+    # novo. So depois de confirmado no ar, porque o Bing valida a chave no
+    # site. Falha aqui nunca derruba o deploy.
+    node "$RAIZ/scripts/indexnow.mjs" || echo "AVISO: IndexNow falhou; reenvie com: node scripts/indexnow.mjs"
     exit 0
   fi
   sleep 10
