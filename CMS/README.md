@@ -54,4 +54,4 @@ CMS/
 - **Projeto do site**: [`../`](../) (React 19 + Vite 7 + React Router 7)
 - **CLAUDE.md do site**: [`../CLAUDE.md`](../CLAUDE.md)
 - **Domínio em produção**: https://wearejust.it
-- **Deploy**: GitHub Pages branch `gh-pages`
+- **Deploy**: VPS Kaleo (nginx) via `./scripts/deploy-site.sh`

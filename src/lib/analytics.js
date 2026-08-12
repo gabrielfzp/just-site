@@ -334,7 +334,7 @@ export function initLinkedIn() {
 
   appendScript("linkedin-insight", {
     async: true,
-    src: "https://snap.licdn.com/li/js/liTag.js",
+    src: "https://snap.licdn.com/li.lms-analytics/insight.min.js",
   });
 }
 

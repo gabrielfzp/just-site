@@ -2,7 +2,7 @@
  * Renderiza o app React em HTML no build e injeta dentro do #root de cada
  * rota ja escrita por generate-seo-pages.mjs.
  *
- * Sem isso o GitHub Pages entrega `<body><div id="root"></div></body>`: o
+ * Sem isso o nginx da Kaleo entrega `<body><div id="root"></div></body>`: o
  * <head> vem completo, o corpo vem vazio, e o Google arquiva a pagina como
  * "detectada, mas nao indexada".
  *
@@ -36,7 +36,7 @@ async function listarHtmlDeRota(dir) {
 
 function rotaDoArquivo(arquivo) {
   const relativo = relative(distDir, arquivo).split(sep).slice(0, -1).join("/");
-  // o GitHub Pages serve esses arquivos sempre com barra final; a location do
+  // o host estatico serve esses arquivos sempre com barra final; a location do
   // StaticRouter precisa bater com a do navegador para a hidratacao fechar
   return relativo ? `/${relativo}/` : "/";
 }

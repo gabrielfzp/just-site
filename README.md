@@ -93,7 +93,15 @@ Para adicionar artigo:
 ## Deploy
 
 ```bash
-npm run build
-cp CNAME dist/CNAME
-git push origin HEAD:gh-pages --force
+./scripts/deploy-site.sh "mensagem do commit"
 ```
+
+O site roda na **VPS Kaleo** (`179.198.124.84`, nginx em `/var/www/wearejust`,
+alias `ssh kaleo`). O script faz o build, aborta se algum HTML referenciar
+asset inexistente, publica via `rsync --checksum`, confere que a Kaleo está
+servindo o bundle novo, espelha o mesmo build no branch `gh-pages` (reserva
+fria para rollback de DNS) e avisa o Bing via IndexNow.
+
+Não publique à mão. O `rsync` sem `--checksum` e o `git commit -a` já
+derrubaram o JS do site em produção, em silêncio — os detalhes estão no
+`CLAUDE.md`.

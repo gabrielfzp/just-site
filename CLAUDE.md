@@ -1,7 +1,7 @@
 # JUST Site — Contexto do Projeto
 
 ## Visão Geral
-Site institucional da JUST (marketing/produto). React 19 + Vite 7 + React Router 7. SPA publicada no GitHub Pages com domínio customizado `wearejust.it`.
+Site institucional da JUST (marketing/produto). React 19 + Vite 7 + React Router 7. SPA servida pela **VPS Kaleo** (nginx) no domínio `wearejust.it`.
 
 ## Stack
 - **Framework**: React 19
@@ -10,7 +10,7 @@ Site institucional da JUST (marketing/produto). React 19 + Vite 7 + React Router
 - **i18n**: Solução própria — objeto `T18N` exportado de `src/site/shared.jsx`, hook `useLang()` via `LangContext`, toggle persistido em localStorage (`just-lang`) e URL `?lang=`
 - **SEO**: `src/site/seo.js` com `PAGE_SEO` por rota e função `applySeo()` chamada no `useEffect` de cada página
 - **Estilo**: Inline styles com design tokens no objeto `T` exportado de `shared.jsx`, sem CSS framework
-- **Deploy**: GitHub Pages, branch `gh-pages`, domínio `wearejust.it` (CNAME)
+- **Deploy**: VPS Kaleo (nginx, `/var/www/wearejust`) via `./scripts/deploy-site.sh`
 
 ## Estrutura de Arquivos
 ```
@@ -158,10 +158,15 @@ Regra editorial: conteúdo em pt-BR nos primeiros 12 meses. Não criar versão E
 ./scripts/deploy-site.sh "mensagem do commit"
 ```
 
-Publica nos DOIS destinos com o mesmo build: **Kaleo** (VPS dedicada,
-`179.198.124.84`, nginx em `/var/www/wearejust`, alias `ssh kaleo`) e
-**GitHub Pages** (reserva para rollback de DNS). Enquanto os dois existirem,
-deploy parcial é pior que nenhum: rollback de DNS serviria conteúdo velho.
+**Produção é a Kaleo**: VPS dedicada, `179.198.124.84`, nginx servindo
+`/var/www/wearejust`, alias `ssh kaleo`. O DNS de `wearejust.it` aponta para
+ela, e é o `rsync` do script que publica o build.
+
+O mesmo build também é espelhado no branch `gh-pages`, que hoje serve apenas
+como **reserva fria para rollback de DNS** — nenhum visitante é atendido por
+ele enquanto o DNS estiver na Kaleo. Enquanto os dois destinos existirem,
+deploy parcial é pior que nenhum: o rollback serviria conteúdo velho sem
+ninguém perceber. Por isso o script para no primeiro erro.
 
 A Kaleo também roda o **shipper da Temso** (`temso-shipper.service`), que
 envia logs de crawler para o painel de AI visibility. O IP do visitante só
@@ -186,7 +191,7 @@ O script usa `--checksum`, `git add -A` e **aborta antes do push** se algum
 HTML referenciar asset ausente.
 
 Branch de desenvolvimento: `teste-visual`
-Branch de produção (GitHub Pages): `gh-pages`
+Branch `gh-pages`: espelho do build para rollback, não é a produção.
 
 ## Infraestrutura Docker
 Arquivos no projeto:

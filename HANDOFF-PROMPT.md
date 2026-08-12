@@ -6,7 +6,12 @@ Copy everything below this line into a new conversation:
 
 ## Context: JUST Institutional Website (wearejust.it)
 
-You are continuing work on the **JUST institutional website**, a React SPA for a Brazilian fintech company. The site is live at **https://wearejust.it** and deployed via GitHub Pages.
+You are continuing work on the **JUST institutional website**, a React SPA for a Brazilian fintech company. The site is live at **https://wearejust.it**, served by the Kaleo VPS (nginx).
+
+> **AVISO**: este handoff está obsoleto fora a linha de deploy acima. Ele
+> descreve React 18 com `App.jsx` monolítico e roteamento por `useState`; o
+> projeto hoje é React 19 + React Router 7 com páginas em `src/pages/`. Use o
+> `CLAUDE.md` como fonte de verdade.
 
 ### Project Structure
 
@@ -29,7 +34,7 @@ just-site/                    ← root (mounted folder)
 - **Inline styles** with a design token object `T` (colors, spacing, fonts)
 - **Key components**: `Reveal` (scroll animation), `Btn`, `Tag`, `SectionTitle`, `ProductIcon`, `ProductMockup`, `JustLogo`, `HeroOrbital`
 - **Routing**: custom hash-based via `useState` (`page` state), `nav()` function
-- **Deployment**: GitHub Pages on `gh-pages` branch, custom domain `wearejust.it`
+- **Deployment**: Kaleo VPS (nginx, `/var/www/wearejust`) via `./scripts/deploy-site.sh`; domain `wearejust.it`
 
 ### What Has Been Done (completed and verified)
 1. Source code fully reconciled with production bundle (40/40 content checks passed)
