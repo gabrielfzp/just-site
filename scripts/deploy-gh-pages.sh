@@ -36,6 +36,11 @@ echo "==> 2/5 CNAME (dominio customizado morre sem ele)"
 cp CNAME dist/CNAME
 
 echo "==> 3/5 preparando a branch gh-pages"
+# worktree de um deploy morto (kill no meio do laco de espera) fica registrada
+# e bloqueia todos os deploys seguintes com "branch already used by worktree".
+# prune so remove registro de worktree cujo diretorio ja sumiu: um deploy
+# CONCORRENTE de verdade continua abortando, que e o comportamento certo.
+git worktree prune
 git fetch -q origin gh-pages
 git worktree add -q "$TRABALHO" gh-pages
 # --checksum e a linha que impede a quebra 2 acima. Nao troque por -a puro.
